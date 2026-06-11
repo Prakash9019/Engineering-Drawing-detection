@@ -1,0 +1,1962 @@
+{
+  "version": "v2",
+  "input_image": "output/input_drawing_enhanced_color.jpg",
+  "image_size": [
+    9934,
+    7017
+  ],
+  "tiles_processed": 7,
+  "total_clouds_detected": 11,
+  "clouds_per_region": {
+    "notes_left_upper": 2,
+    "notes_left_lower": 1,
+    "notes_bottom_left": 0,
+    "notes_bottom_right": 2,
+    "abbreviations": 3,
+    "ref_legends": 2,
+    "title_block": 1
+  },
+  "raw_notes_count": 73,
+  "unique_notes_count": 62,
+  "abbreviations": {
+    "ASC": "Anti-Surge Control",
+    "ASV": "Anti-Surge Valve",
+    "HGBV": "Hot Gas Bypass Valve",
+    "HISEL": "High Selector",
+    "HS": "High Spped",
+    "LOSEL": "Low Selector",
+    "LS": "Low Speed",
+    "NTS": "Not To Scale"
+  },
+  "drawing_notes": [
+    {
+      "id": "1",
+      "raw_text": "1. FOR SYMBOLS AND ABBREVIATIONS REFER TO ES.D.10.",
+      "semantic_type": "drafting_rule",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "SYMBOLS AND ABBREVIATIONS",
+        "rule": "Refer to document ES.D.10 for symbols and abbreviations."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_bottom_left",
+      "source_priority": 1
+    },
+    {
+      "id": "1.A",
+      "raw_text": "A. FOR STANDARD P&ID SYMBOLS, EQUIPMENT SYMBOLS AND DESCRIPTION REFER TO STANDARD DRAWING ES.0.07.0100 REV.B",
+      "semantic_type": "drafting_rule",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "STANDARD P&ID SYMBOLS, EQUIPMENT SYMBOLS AND DESCRIPTION",
+        "rule": "Refer to standard drawing ES.0.07.0100 REV.B for standard P&ID symbols, equipment symbols, and description."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_bottom_left",
+      "source_priority": 1
+    },
+    {
+      "id": "2",
+      "raw_text": "2. ALL DRAWINGS ARE PREPARED IN COMPLIANCE WITH COMPANY ENGINEERING STANDARD CORP-ENG-STD-018 REV. 01 (DRAUGHTING), CORP-ENG-STD-021 REV. 01 (ENGINEERING DATA CODING SYSTEM), ES.0.07.0028 REV.D (TAG NUMBERING AND EQUIPMENT IDENTIFIERS), 4224-MGDTY-6-50-2001 (STANDARD SYMBOLS MULTI-DISCIPLINE).",
+      "semantic_type": "drafting_rule",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "ALL DRAWINGS",
+        "rule": "Drawings must comply with the following standards: CORP-ENG-STD-018 REV. 01 (Draughting), CORP-ENG-STD-021 REV. 01 (Engineering Data Coding System), ES.0.07.0028 REV.D (Tag Numbering and Equipment Identifiers), and 4224-MGDTY-6-50-2001 (Standard Symbols Multi-Discipline)."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_bottom_left",
+      "source_priority": 1
+    },
+    {
+      "id": "3",
+      "raw_text": "3. COMPRESSORS ARE VARIABLE SPEED MOTOR DRIVEN. NEW MOTOR (COMPLETE WITH VSD SYSTEM) SHALL BE PROVIDED.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "COMPRESSORS",
+        "rule": "Compressors are variable speed motor driven. A new motor, complete with VSD system, shall be provided."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_bottom_left",
+      "source_priority": 1
+    },
+    {
+      "id": "4",
+      "raw_text": "4. EXISTING ETHANE COMPRESSOR SHALL BE MODIFIED FOR NEW PROCESS CONDITIONS DEFINED IN THE PROCESS DATASHEET. ADEQUACY OF ALL EXISTING ASSOCIATED EQUIPMENT SUCH AS SUCTION & DISCHARGE K.O. DRUMS, DISCHARGE GAS COOLER, ANTI-SURGE CONTROL VALVES, AUXILIARIES AND OTHER AS APPLICABLE HAS BEEN VERIFIED BY OEM HITACHI.",
+      "semantic_type": "scope_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "EXISTING ETHANE COMPRESSOR AND ASSOCIATED EQUIPMENT",
+        "rule": "The existing ethane compressor must be modified for new process conditions as defined in the process datasheet. The adequacy of all existing associated equipment, including suction & discharge K.O. drums, discharge gas cooler, anti-surge control valves, and other auxiliaries, has been verified by the OEM, Hitachi."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_bottom_left",
+      "source_priority": 1
+    },
+    {
+      "id": "5",
+      "raw_text": "5. LOAD SHARING SHALL BE PROVIDED BY ETHANE COMPRESSOR VENDOR TO SHARE FLOW RATE EQUALLY ACROSS BOTH OPERATING UNITS.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "ETHANE COMPRESSOR VENDOR",
+        "rule": "The ethane compressor vendor must provide a load sharing system to share flow rate equally across both operating units."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_bottom_left",
+      "source_priority": 1
+    },
+    {
+      "id": "6",
+      "raw_text": "6. EXISTING DISCHARGE GAS COOLER E-V-201 WAS PART OF THIS P&ID, NOW IT IS SHOWN IN NEW DWG. NO. 4224-MGDV-6-50-2004-002 ALONG WITH NEW DISCHARGE GAS COOLER.",
+      "semantic_type": "drafting_rule",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "EXISTING DISCHARGE GAS COOLER E-V-201",
+        "rule": "The existing discharge gas cooler E-V-201, which was previously on this P&ID, is now shown on new drawing 4224-MGDV-6-50-2004-002 along with the new discharge gas cooler."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_bottom_left",
+      "source_priority": 1
+    },
+    {
+      "id": "12",
+      "raw_text": "COMPRESSOR UNIT CONTROL PANEL (UCP) BEING REPLACED UNDER THIS PROJECT. ALL EXISTING INSTRUMENT CONNECTIVITIES, FUNCTIONS, INTERLOCKS, ALARMS, SHALL BE CONFIGURED IN THE NEWLY SUPPLY PLC BASED UCP. ALL SIGNALS IN THE UCP SHALL ALSO BE AVAILABLE IN THE EXISTING GDS SCADA INLINE WITH EXISTING PHILOSOPHY.",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "constraint",
+        "subject": "Compressor Unit Control Panel (UCP)",
+        "rule": "The Compressor Unit Control Panel (UCP) is to be replaced with a new PLC-based UCP. All existing instrument connectivities, functions, interlocks, and alarms must be configured in the new UCP. All signals from the new UCP must be made available on the existing GDS SCADA system, consistent with the existing philosophy."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_left_upper",
+      "source_priority": 1
+    },
+    {
+      "id": "13",
+      "raw_text": "NEW SAFETY RELIEF VALVE SHALL BE PROVIDED TO SAFEGUARD SYSTEM AGAINST OVERPRESSURE (BLOCKED DISCHARGE CONDITION). ISOLATION VALVES SHALL BE PROVIDED WITH NEW PLATFORM FOR OPERATION.",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "constraint",
+        "subject": "Safety Relief Valve",
+        "rule": "A new safety relief valve must be installed to protect the system from overpressure due to a blocked discharge. New isolation valves and a new operating platform must also be provided."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_left_upper",
+      "source_priority": 1
+    },
+    {
+      "id": "14",
+      "raw_text": "COMMON WARE HOUSE SPARE RV SHALL BE PROVIDED (ONE NO. FOR 3 COMPRESSOR).",
+      "semantic_type": "general_note",
+      "extracted_rule": null,
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "15",
+      "raw_text": "THERE IS NO INTERLOCKING FOR ISOLATION VALVE ON SINGLE RV.",
+      "semantic_type": "general_note",
+      "extracted_rule": null,
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "16",
+      "raw_text": "NEW PROPOSED MOTOR ENCLOSURE (ATEX, EX'P' TYPE) REQUIRES INSTRUMENT AIR.",
+      "semantic_type": "general_note",
+      "extracted_rule": null,
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "17",
+      "raw_text": "EXISTING RCI MODULE SHALL BE REMOVED FROM THE EXISTING UCP PANEL AND SHALL BE RE-USED INSIDE THE NEW UCP PANEL.",
+      "semantic_type": "general_note",
+      "extracted_rule": null,
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "18",
+      "raw_text": "COMPRESSOR SUCTION ESD VALVE (V-ESDV-209) IS RETAINED.",
+      "semantic_type": "general_note",
+      "extracted_rule": null,
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "19",
+      "raw_text": "ONE (COMMON FOR ALL THREE TRAINS) TEMPORARY SUCTION STRAINER SHALL BE SUPPLIED BY OEM (MS. HITACHI). AFTER SUCCESSFULL COMMISSIONING, THE STRAINER SHALL BE REMOVED, AND REPLACED WITH A FABRICATED SPOOL PIECE BY EPIC CONTRACTOR.",
+      "semantic_type": "general_note",
+      "extracted_rule": null,
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "20",
+      "raw_text": "COMPRESSOR LOWER DESIGN TEMPERATURE (-)29 DEGC, EXCEPT FOR DRY GAS SEAL O-RING, WHICH IS 0 DEGC. COMPRESSOR UPPER DESIGN TEMPERATURE 150 DEGC, HOWEVER, SINCE ASME PTC10 TYPE 2 TEST SHALL BE CONDUCTED, THEREFORE, COMPRESSOR CASING SHALL BE DESIGNED TO 170 DEGC WHICH IS REQUIRED DUE TO THE USE OF CO2 AS TEST GAS. ULTIMATELY NAME PLATE RATING FOR THIS UNIT USING ETHANE GAS IS 150 DEGC.",
+      "semantic_type": "general_note",
+      "extracted_rule": null,
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "21",
+      "raw_text": "HIGH PERFORMANCE (CLASS-1) NON-RETURN VALVE (NON-SLAM TYPE), WITH LOW CRACK OPEN DP SHALL BE SELECTED FOR THIS APPLICATION. (PURPOSE: AVOID REVERSE FLOW / SURGE ISSUES DURING DYNAMIC SCENARIO OF COMPRESSOR TRIP).",
+      "semantic_type": "general_note",
+      "extracted_rule": null,
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "22",
+      "raw_text": "EXISTING SUCTION & DISCHARGE COMPRESSOR INLET & OUTLET SPOOL SHALL BE DISMANTLED TO FACILITATE COMPRESSOR MODIFICATION, AND THEN RE-INSTATED.",
+      "semantic_type": "general_note",
+      "extracted_rule": null,
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "23",
+      "raw_text": "SOFT HAND SWITCH SHALL BE CONFIGURED IN UCP HMI TO ENABLE/ DISABLE STATION S HIGH PRESSURE CONTROLLER (%) WHICH IS REPEATED FROM LOAD SHARING PANEL.",
+      "semantic_type": "general_note",
+      "extracted_rule": null,
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "24",
+      "raw_text": "RECLOSURE OF XV-202 (NORMAL SHUTDOWN DEPRESSURING VALVE) SHALL BE PERFORMED BY UCP, ONCE V-PAL-214 IS OBTAINED (@ 18 barg) OR AFTER 20 MINUTES TIME DELAY FROM OPENING OF XV-202 WHICHEVER COMES FIRST. (NOTE: PAL-214 SHALL BE CONSIDERED AN EVENT, NOT ALARM).",
+      "semantic_type": "general_note",
+      "extracted_rule": null,
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "25",
+      "raw_text": "FOR INTERLOCK DETAILS, REFER TO SYMBOLS & LEGENDS DRAWING NO. 4224-MGDTY-6-50-2001-003.",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "INTERLOCK DETAILS",
+        "rule": "Refer to drawing number 4224-MGDTY-6-50-2001-003 for interlock details."
+      },
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_left_lower",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:ASC",
+      "raw_text": "ASC : ANTI-SURGE CONTROL",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "ASC",
+        "rule": "ASC stands for Anti-Surge Control."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_left_upper",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:ASV",
+      "raw_text": "ASV : ANTI-SURGE VALVE",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "ASV",
+        "rule": "ASV stands for Anti-Surge Valve."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_left_upper",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:HGBV",
+      "raw_text": "HGBV : HOT GAS BYPASS VALVE",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "HGBV",
+        "rule": "HGBV stands for Hot Gas Bypass Valve."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_left_upper",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:HISEL",
+      "raw_text": "HISEL : HIGH SELECTOR",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "HISEL",
+        "rule": "HISEL stands for High Selector."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_left_upper",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:HS",
+      "raw_text": "HS : HIGH SPPED",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "HS",
+        "rule": "HS stands for High Speed."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_left_upper",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:LOSEL",
+      "raw_text": "LOSEL : LOW SELECTOR",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "LOSEL",
+        "rule": "LOSEL stands for Low Selector."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_left_upper",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:LS",
+      "raw_text": "LS : LOW SPEED",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "LS",
+        "rule": "LS stands for Low Speed."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_left_upper",
+      "source_priority": 1
+    },
+    {
+      "id": "CAD_DRAWING_RULE",
+      "raw_text": "THIS IS A CAD DRAWING AND MUST NOT BE ALTERED MANUALLY",
+      "semantic_type": "drafting_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "CAD drawing",
+        "rule": "This CAD drawing must not be altered manually"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "title_block",
+      "source_priority": 3
+    },
+    {
+      "id": "CONTINUATION_NOTE",
+      "raw_text": "Cont. on 002",
+      "semantic_type": "title_info",
+      "extracted_rule": null,
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "title_block",
+      "source_priority": 3
+    },
+    {
+      "id": "DRAWING_NUMBER",
+      "raw_text": "4224-MGDV-6-50-2004",
+      "semantic_type": "title_info",
+      "extracted_rule": null,
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "title_block",
+      "source_priority": 3
+    },
+    {
+      "id": "DRAWING_SIZE",
+      "raw_text": "DWG SIZE: A1",
+      "semantic_type": "title_info",
+      "extracted_rule": {
+        "type": "format",
+        "subject": "drawing",
+        "rule": "Drawing size is A1"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "title_block",
+      "source_priority": 3
+    },
+    {
+      "id": "DRAWING_TITLE",
+      "raw_text": "ED GAS DISTRIBUTION STATIONS, MGDV OR UPGRADE OF ETHANE COMPRESSORS AT V AND ASSOCIATED FACILITIES AT STATION S ETHANE GAS COMPRESSOR (K-V-201)",
+      "semantic_type": "title_info",
+      "extracted_rule": null,
+      "confidence": 1.0,
+      "partially_obscured": true,
+      "source_region": "title_block",
+      "source_priority": 3
+    },
+    {
+      "id": "DWG_NO",
+      "raw_text": "DWG NO. 4224-MGDW",
+      "semantic_type": "title_info",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Drawing Number",
+        "rule": "The drawing number is 4224-MGDW."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "LEGEND:SPECTACLE_BLIND_GATE_VALVE",
+      "raw_text": "SPECTACLE BLIND & GATE VALVE SHOWN IN THIS COLOUR IS EXISTING & SHALL BE RE-USED AS PER PIPING MODIFICATION.",
+      "semantic_type": "symbol_exception",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Spectacle Blind & Gate Valve (blue)",
+        "rule": "If a spectacle blind and gate valve is shown in this colour (blue), it is existing and shall be re-used as per piping modification."
+      },
+      "confidence": 0.9,
+      "partially_obscured": true,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "NOTE 7",
+      "raw_text": "NOTE 7",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Note 7",
+        "rule": "Content of Note 7 is not visible."
+      },
+      "confidence": 1.0,
+      "partially_obscured": true,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "NOTE:FROM_COMPRESSOR_SUCTION_HEADER",
+      "raw_text": "FROM COMPRESSOR SUCTION HEADER",
+      "semantic_type": "connection_description",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Connection Point",
+        "rule": "Originates from Compressor Suction Header"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "abbreviations",
+      "source_priority": 2
+    },
+    {
+      "id": "NOTE_FRAGMENT_1",
+      "raw_text": "IER, ACTUATOR, LIMIT SWITCHES,\nHITACHI.",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "UNKNOWN COMPONENT",
+        "rule": "Note fragment refers to IER, ACTUATOR, LIMIT SWITCHES, HITACHI."
+      },
+      "confidence": 0.98,
+      "partially_obscured": true,
+      "source_region": "notes_bottom_right",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE_FRAGMENT_2",
+      "raw_text": "E-224) BY EPIC CONTRACTOR",
+      "semantic_type": "scope_rule",
+      "extracted_rule": {
+        "type": "constraint",
+        "subject": "Item related to TE-224",
+        "rule": "Scope of supply is by the EPIC Contractor."
+      },
+      "confidence": 0.99,
+      "partially_obscured": true,
+      "source_region": "notes_bottom_right",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE_FRAGMENT_3",
+      "raw_text": "FOR CALCULATING MAXIMUM\nNCTION BLOCK TO COMPUTE THE\nFUNCTION SHALL BE PART OF\nNG & CONTROL PHILOSOPHY",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Function block for calculating maximum",
+        "rule": "The function block to compute the maximum value shall be part of the operating and control philosophy."
+      },
+      "confidence": 0.98,
+      "partially_obscured": true,
+      "source_region": "notes_bottom_right",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE_FRAGMENT_4",
+      "raw_text": "PLACED, REFER ADEQUACY",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Placement of an unspecified item",
+        "rule": "Refer to an adequacy study or document for placement details."
+      },
+      "confidence": 0.98,
+      "partially_obscured": true,
+      "source_region": "notes_bottom_right",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE_FRAGMENT_5",
+      "raw_text": "D WITH NEW BY HITACHI.",
+      "semantic_type": "scope_rule",
+      "extracted_rule": {
+        "type": "constraint",
+        "subject": "An unspecified item",
+        "rule": "Item is to be replaced with a new one by Hitachi."
+      },
+      "confidence": 0.99,
+      "partially_obscured": true,
+      "source_region": "notes_bottom_right",
+      "source_priority": 1
+    },
+    {
+      "id": "ORIG_DWG_SIZE",
+      "raw_text": "ORIG.DWG SIZE: A1",
+      "semantic_type": "title_info",
+      "extracted_rule": {
+        "type": "format",
+        "subject": "Original Drawing Size",
+        "rule": "A1"
+      },
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_bottom_right",
+      "source_priority": 1
+    },
+    {
+      "id": "PROJECT_IDENTIFIER_CLOUDED",
+      "raw_text": "4224-MGDV-6-50-2002-001",
+      "semantic_type": "title_info",
+      "extracted_rule": null,
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "title_block",
+      "source_priority": 3
+    },
+    {
+      "id": "REVISION",
+      "raw_text": "REV C",
+      "semantic_type": "title_info",
+      "extracted_rule": null,
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "title_block",
+      "source_priority": 3
+    },
+    {
+      "id": "REV_0_DESCRIPTION",
+      "raw_text": "ISSUED FOR COMMENTS",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Revision 0",
+        "rule": "Drawing was issued for comments."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "REV_1_DESCRIPTION",
+      "raw_text": "ISSUED FOR HAZOP",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Revision 1",
+        "rule": "Drawing was issued for HAZOP review."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "REV_2_DESCRIPTION",
+      "raw_text": "ISSUED FOR APPROVAL",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Revision 2",
+        "rule": "Drawing was issued for approval."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "REV_A_DESCRIPTION",
+      "raw_text": "APPROVED FOR CONSTRUCTION",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Revision A",
+        "rule": "Drawing was approved for construction."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "REV_C_DESCRIPTION",
+      "raw_text": "RE-ISSUED FOR CONSTRUCTION",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Revision C",
+        "rule": "Drawing was re-issued for construction."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "SCALE",
+      "raw_text": "SCALE:NTS",
+      "semantic_type": "title_info",
+      "extracted_rule": {
+        "type": "format",
+        "subject": "Scale",
+        "rule": "The drawing is Not To Scale (NTS)."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "SCOPE:1",
+      "raw_text": "SCOPE OF SUPPLY\nHITACHI EPIC CONTRACTOR",
+      "semantic_type": "scope_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Scope of Supply",
+        "rule": "The scope of supply is divided between Hitachi and the EPIC Contractor, as demarcated by the line symbol."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "notes_left_upper",
+      "source_priority": 1
+    },
+    {
+      "id": "SCOPE:CONTRACTOR",
+      "raw_text": "HITACHI EPIC CONTRACTOR",
+      "semantic_type": "scope_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Scope of Supply",
+        "rule": "Hitachi Epic Contractor"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "abbreviations",
+      "source_priority": 2
+    },
+    {
+      "id": "SHT_NO",
+      "raw_text": "Sht. 001",
+      "semantic_type": "title_info",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Sheet Number",
+        "rule": "This is sheet 001."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "TAG:4224-MGDV-6-50-2002-001",
+      "raw_text": "4224-MGDV-6-50-2002-001",
+      "semantic_type": "equipment_tag",
+      "extracted_rule": {
+        "type": "identifier",
+        "subject": "Equipment/Component",
+        "rule": "Tag: 4224-MGDV-6-50-2002-001"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "abbreviations",
+      "source_priority": 2
+    },
+    {
+      "id": "TITLE",
+      "raw_text": "MESAIEED GAS DISTR\nEPIC FOR UPGRADE OF\nSTATION V AND ASSOCIA\nP&ID - ETHANE GAS",
+      "semantic_type": "title_info",
+      "extracted_rule": {
+        "type": "format",
+        "subject": "Drawing Title",
+        "rule": "MESAIEED GAS DISTR\nEPIC FOR UPGRADE OF\nSTATION V AND ASSOCIA\nP&ID - ETHANE GAS"
+      },
+      "confidence": 0.99,
+      "partially_obscured": false,
+      "source_region": "notes_bottom_right",
+      "source_priority": 1
+    },
+    {
+      "id": "TITLE:ABBREVIATIONS",
+      "raw_text": "ABBREVIATIONS:\u2014",
+      "semantic_type": "title_info",
+      "extracted_rule": null,
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "abbreviations",
+      "source_priority": 2
+    },
+    {
+      "id": "TITLE:SCOPE_OF_SUPPLY",
+      "raw_text": "SCOPE OF SUPPLY",
+      "semantic_type": "title_info",
+      "extracted_rule": null,
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "abbreviations",
+      "source_priority": 2
+    },
+    {
+      "id": "TITLE_PRIMARY",
+      "raw_text": "MESAIEED GA",
+      "semantic_type": "title_info",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Drawing Title Primary",
+        "rule": "The primary drawing title is MESAIEED GA."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "TITLE_SECONDARY_1",
+      "raw_text": "EPIC FOR UP",
+      "semantic_type": "title_info",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Drawing Title Secondary 1",
+        "rule": "The secondary drawing title includes EPIC FOR UP (likely UPGRADE)."
+      },
+      "confidence": 0.8,
+      "partially_obscured": true,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "TITLE_SECONDARY_2",
+      "raw_text": "STATION V AND",
+      "semantic_type": "title_info",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Drawing Title Secondary 2",
+        "rule": "The secondary drawing title includes STATION V AND (likely followed by another term)."
+      },
+      "confidence": 0.8,
+      "partially_obscured": true,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    },
+    {
+      "id": "TITLE_SECONDARY_3",
+      "raw_text": "P&ID - ETHA",
+      "semantic_type": "title_info",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Drawing Title Secondary 3",
+        "rule": "The secondary drawing title includes P&ID - ETHA (likely ETHANE or ETHYLENE)."
+      },
+      "confidence": 0.8,
+      "partially_obscured": true,
+      "source_region": "ref_legends",
+      "source_priority": 2
+    }
+  ],
+  "region_summary": [
+    {
+      "tile": "notes_left_upper",
+      "description": "Left margin notes (Cont'd block upper)",
+      "notes_extracted": 10,
+      "cloud_count": 2,
+      "ocr_chars": 1300
+    },
+    {
+      "tile": "notes_left_lower",
+      "description": "Left margin notes (Cont'd block lower)",
+      "notes_extracted": 13,
+      "cloud_count": 1,
+      "ocr_chars": 2154
+    },
+    {
+      "tile": "notes_bottom_left",
+      "description": "Bottom strip left \u2014 NOTES 1-6",
+      "notes_extracted": 7,
+      "cloud_count": 0,
+      "ocr_chars": 2092
+    },
+    {
+      "tile": "notes_bottom_right",
+      "description": "Bottom strip right \u2014 NOTES 7-11",
+      "notes_extracted": 10,
+      "cloud_count": 2,
+      "ocr_chars": 625
+    },
+    {
+      "tile": "abbreviations",
+      "description": "Abbreviations block (upper left)",
+      "notes_extracted": 12,
+      "cloud_count": 3,
+      "ocr_chars": 360
+    },
+    {
+      "tile": "ref_legends",
+      "description": "Reference drawings & legends",
+      "notes_extracted": 14,
+      "cloud_count": 2,
+      "ocr_chars": 634
+    },
+    {
+      "tile": "title_block",
+      "description": "Title block (drawing metadata)",
+      "notes_extracted": 7,
+      "cloud_count": 1,
+      "ocr_chars": 176
+    }
+  ],
+  "tile_results": [
+    {
+      "tile": "notes_left_upper",
+      "description": "Left margin notes (Cont'd block upper)",
+      "priority": 1,
+      "crop_size": [
+        3377,
+        2315
+      ],
+      "cloud_count": 2,
+      "contour_count": 35,
+      "ocr_chars": 1300,
+      "notes_extracted": 10,
+      "items": [
+        {
+          "id": "ABBR:ASC",
+          "raw_text": "ASC : ANTI-SURGE CONTROL",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "ASC",
+            "rule": "ASC stands for Anti-Surge Control."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_left_upper",
+          "source_priority": 1
+        },
+        {
+          "id": "ABBR:ASV",
+          "raw_text": "ASV : ANTI-SURGE VALVE",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "ASV",
+            "rule": "ASV stands for Anti-Surge Valve."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_left_upper",
+          "source_priority": 1
+        },
+        {
+          "id": "ABBR:HISEL",
+          "raw_text": "HISEL : HIGH SELECTOR",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "HISEL",
+            "rule": "HISEL stands for High Selector."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_left_upper",
+          "source_priority": 1
+        },
+        {
+          "id": "ABBR:LOSEL",
+          "raw_text": "LOSEL : LOW SELECTOR",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "LOSEL",
+            "rule": "LOSEL stands for Low Selector."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_left_upper",
+          "source_priority": 1
+        },
+        {
+          "id": "ABBR:HGBV",
+          "raw_text": "HGBV : HOT GAS BYPASS VALVE",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "HGBV",
+            "rule": "HGBV stands for Hot Gas Bypass Valve."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_left_upper",
+          "source_priority": 1
+        },
+        {
+          "id": "ABBR:HS",
+          "raw_text": "HS : HIGH SPPED",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "HS",
+            "rule": "HS stands for High Speed."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_left_upper",
+          "source_priority": 1
+        },
+        {
+          "id": "ABBR:LS",
+          "raw_text": "LS : LOW SPEED",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "LS",
+            "rule": "LS stands for Low Speed."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_left_upper",
+          "source_priority": 1
+        },
+        {
+          "id": "SCOPE:1",
+          "raw_text": "SCOPE OF SUPPLY\nHITACHI EPIC CONTRACTOR",
+          "semantic_type": "scope_rule",
+          "extracted_rule": {
+            "type": "rule",
+            "subject": "Scope of Supply",
+            "rule": "The scope of supply is divided between Hitachi and the EPIC Contractor, as demarcated by the line symbol."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_left_upper",
+          "source_priority": 1
+        },
+        {
+          "id": "12",
+          "raw_text": "COMPRESSOR UNIT CONTROL PANEL (UCP) BEING REPLACED UNDER THIS PROJECT. ALL EXISTING INSTRUMENT CONNECTIVITIES, FUNCTIONS, INTERLOCKS, ALARMS, SHALL BE CONFIGURED IN THE NEWLY SUPPLY PLC BASED UCP. ALL SIGNALS IN THE UCP SHALL ALSO BE AVAILABLE IN THE EXISTING GDS SCADA INLINE WITH EXISTING PHILOSOPHY.",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "constraint",
+            "subject": "Compressor Unit Control Panel (UCP)",
+            "rule": "The Compressor Unit Control Panel (UCP) is to be replaced with a new PLC-based UCP. All existing instrument connectivities, functions, interlocks, and alarms must be configured in the new UCP. All signals from the new UCP must be made available on the existing GDS SCADA system, consistent with the existing philosophy."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_left_upper",
+          "source_priority": 1
+        },
+        {
+          "id": "13",
+          "raw_text": "NEW SAFETY RELIEF VALVE SHALL BE PROVIDED TO SAFEGUARD SYSTEM AGAINST OVERPRESSURE (BLOCKED DISCHARGE CONDITION). ISOLATION VALVES SHALL BE PROVIDED WITH NEW PLATFORM FOR OPERATION.",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "constraint",
+            "subject": "Safety Relief Valve",
+            "rule": "A new safety relief valve must be installed to protect the system from overpressure due to a blocked discharge. New isolation valves and a new operating platform must also be provided."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_left_upper",
+          "source_priority": 1
+        }
+      ],
+      "error": null,
+      "revision_cloud_wraps": true,
+      "gemini_cloud_estimate": 0
+    },
+    {
+      "tile": "notes_left_lower",
+      "description": "Left margin notes (Cont'd block lower)",
+      "priority": 1,
+      "crop_size": [
+        3377,
+        2105
+      ],
+      "cloud_count": 1,
+      "contour_count": 4,
+      "ocr_chars": 2154,
+      "notes_extracted": 13,
+      "items": [
+        {
+          "id": "13",
+          "raw_text": "NEW SAFETY RELIEF VALVE SHALL BE PROVIDED TO SAFEGUARD SYSTEM AGAINST OVERPRESSURE (BLOCKED DISCHARGE CONDITION). ISOLATION VALVES SHALL BE PROVIDED WITH NEW PLATFORM FOR OPERATION.",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "14",
+          "raw_text": "COMMON WARE HOUSE SPARE RV SHALL BE PROVIDED (ONE NO. FOR 3 COMPRESSOR).",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "15",
+          "raw_text": "THERE IS NO INTERLOCKING FOR ISOLATION VALVE ON SINGLE RV.",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "16",
+          "raw_text": "NEW PROPOSED MOTOR ENCLOSURE (ATEX, EX'P' TYPE) REQUIRES INSTRUMENT AIR.",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "17",
+          "raw_text": "EXISTING RCI MODULE SHALL BE REMOVED FROM THE EXISTING UCP PANEL AND SHALL BE RE-USED INSIDE THE NEW UCP PANEL.",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "18",
+          "raw_text": "COMPRESSOR SUCTION ESD VALVE (V-ESDV-209) IS RETAINED.",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "19",
+          "raw_text": "ONE (COMMON FOR ALL THREE TRAINS) TEMPORARY SUCTION STRAINER SHALL BE SUPPLIED BY OEM (MS. HITACHI). AFTER SUCCESSFULL COMMISSIONING, THE STRAINER SHALL BE REMOVED, AND REPLACED WITH A FABRICATED SPOOL PIECE BY EPIC CONTRACTOR.",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "20",
+          "raw_text": "COMPRESSOR LOWER DESIGN TEMPERATURE (-)29 DEGC, EXCEPT FOR DRY GAS SEAL O-RING, WHICH IS 0 DEGC. COMPRESSOR UPPER DESIGN TEMPERATURE 150 DEGC, HOWEVER, SINCE ASME PTC10 TYPE 2 TEST SHALL BE CONDUCTED, THEREFORE, COMPRESSOR CASING SHALL BE DESIGNED TO 170 DEGC WHICH IS REQUIRED DUE TO THE USE OF CO2 AS TEST GAS. ULTIMATELY NAME PLATE RATING FOR THIS UNIT USING ETHANE GAS IS 150 DEGC.",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "21",
+          "raw_text": "HIGH PERFORMANCE (CLASS-1) NON-RETURN VALVE (NON-SLAM TYPE), WITH LOW CRACK OPEN DP SHALL BE SELECTED FOR THIS APPLICATION. (PURPOSE: AVOID REVERSE FLOW / SURGE ISSUES DURING DYNAMIC SCENARIO OF COMPRESSOR TRIP).",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "22",
+          "raw_text": "EXISTING SUCTION & DISCHARGE COMPRESSOR INLET & OUTLET SPOOL SHALL BE DISMANTLED TO FACILITATE COMPRESSOR MODIFICATION, AND THEN RE-INSTATED.",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "23",
+          "raw_text": "SOFT HAND SWITCH SHALL BE CONFIGURED IN UCP HMI TO ENABLE/ DISABLE STATION S HIGH PRESSURE CONTROLLER (%) WHICH IS REPEATED FROM LOAD SHARING PANEL.",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "24",
+          "raw_text": "RECLOSURE OF XV-202 (NORMAL SHUTDOWN DEPRESSURING VALVE) SHALL BE PERFORMED BY UCP, ONCE V-PAL-214 IS OBTAINED (@ 18 barg) OR AFTER 20 MINUTES TIME DELAY FROM OPENING OF XV-202 WHICHEVER COMES FIRST. (NOTE: PAL-214 SHALL BE CONSIDERED AN EVENT, NOT ALARM).",
+          "semantic_type": "general_note",
+          "extracted_rule": null,
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        },
+        {
+          "id": "25",
+          "raw_text": "FOR INTERLOCK DETAILS, REFER TO SYMBOLS & LEGENDS DRAWING NO. 4224-MGDTY-6-50-2001-003.",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "INTERLOCK DETAILS",
+            "rule": "Refer to drawing number 4224-MGDTY-6-50-2001-003 for interlock details."
+          },
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_left_lower",
+          "source_priority": 1
+        }
+      ],
+      "error": null,
+      "revision_cloud_wraps": true,
+      "gemini_cloud_estimate": 0
+    },
+    {
+      "tile": "notes_bottom_left",
+      "description": "Bottom strip left \u2014 NOTES 1-6",
+      "priority": 1,
+      "crop_size": [
+        5364,
+        1264
+      ],
+      "cloud_count": 0,
+      "contour_count": 2,
+      "ocr_chars": 2092,
+      "notes_extracted": 7,
+      "items": [
+        {
+          "id": "1",
+          "raw_text": "1. FOR SYMBOLS AND ABBREVIATIONS REFER TO ES.D.10.",
+          "semantic_type": "drafting_rule",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "SYMBOLS AND ABBREVIATIONS",
+            "rule": "Refer to document ES.D.10 for symbols and abbreviations."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_bottom_left",
+          "source_priority": 1
+        },
+        {
+          "id": "1.A",
+          "raw_text": "A. FOR STANDARD P&ID SYMBOLS, EQUIPMENT SYMBOLS AND DESCRIPTION REFER TO STANDARD DRAWING ES.0.07.0100 REV.B",
+          "semantic_type": "drafting_rule",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "STANDARD P&ID SYMBOLS, EQUIPMENT SYMBOLS AND DESCRIPTION",
+            "rule": "Refer to standard drawing ES.0.07.0100 REV.B for standard P&ID symbols, equipment symbols, and description."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_bottom_left",
+          "source_priority": 1
+        },
+        {
+          "id": "2",
+          "raw_text": "2. ALL DRAWINGS ARE PREPARED IN COMPLIANCE WITH COMPANY ENGINEERING STANDARD CORP-ENG-STD-018 REV. 01 (DRAUGHTING), CORP-ENG-STD-021 REV. 01 (ENGINEERING DATA CODING SYSTEM), ES.0.07.0028 REV.D (TAG NUMBERING AND EQUIPMENT IDENTIFIERS), 4224-MGDTY-6-50-2001 (STANDARD SYMBOLS MULTI-DISCIPLINE).",
+          "semantic_type": "drafting_rule",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "ALL DRAWINGS",
+            "rule": "Drawings must comply with the following standards: CORP-ENG-STD-018 REV. 01 (Draughting), CORP-ENG-STD-021 REV. 01 (Engineering Data Coding System), ES.0.07.0028 REV.D (Tag Numbering and Equipment Identifiers), and 4224-MGDTY-6-50-2001 (Standard Symbols Multi-Discipline)."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_bottom_left",
+          "source_priority": 1
+        },
+        {
+          "id": "3",
+          "raw_text": "3. COMPRESSORS ARE VARIABLE SPEED MOTOR DRIVEN. NEW MOTOR (COMPLETE WITH VSD SYSTEM) SHALL BE PROVIDED.",
+          "semantic_type": "equipment_rule",
+          "extracted_rule": {
+            "type": "rule",
+            "subject": "COMPRESSORS",
+            "rule": "Compressors are variable speed motor driven. A new motor, complete with VSD system, shall be provided."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_bottom_left",
+          "source_priority": 1
+        },
+        {
+          "id": "4",
+          "raw_text": "4. EXISTING ETHANE COMPRESSOR SHALL BE MODIFIED FOR NEW PROCESS CONDITIONS DEFINED IN THE PROCESS DATASHEET. ADEQUACY OF ALL EXISTING ASSOCIATED EQUIPMENT SUCH AS SUCTION & DISCHARGE K.O. DRUMS, DISCHARGE GAS COOLER, ANTI-SURGE CONTROL VALVES, AUXILIARIES AND OTHER AS APPLICABLE HAS BEEN VERIFIED BY OEM HITACHI.",
+          "semantic_type": "scope_rule",
+          "extracted_rule": {
+            "type": "rule",
+            "subject": "EXISTING ETHANE COMPRESSOR AND ASSOCIATED EQUIPMENT",
+            "rule": "The existing ethane compressor must be modified for new process conditions as defined in the process datasheet. The adequacy of all existing associated equipment, including suction & discharge K.O. drums, discharge gas cooler, anti-surge control valves, and other auxiliaries, has been verified by the OEM, Hitachi."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_bottom_left",
+          "source_priority": 1
+        },
+        {
+          "id": "5",
+          "raw_text": "5. LOAD SHARING SHALL BE PROVIDED BY ETHANE COMPRESSOR VENDOR TO SHARE FLOW RATE EQUALLY ACROSS BOTH OPERATING UNITS.",
+          "semantic_type": "equipment_rule",
+          "extracted_rule": {
+            "type": "rule",
+            "subject": "ETHANE COMPRESSOR VENDOR",
+            "rule": "The ethane compressor vendor must provide a load sharing system to share flow rate equally across both operating units."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_bottom_left",
+          "source_priority": 1
+        },
+        {
+          "id": "6",
+          "raw_text": "6. EXISTING DISCHARGE GAS COOLER E-V-201 WAS PART OF THIS P&ID, NOW IT IS SHOWN IN NEW DWG. NO. 4224-MGDV-6-50-2004-002 ALONG WITH NEW DISCHARGE GAS COOLER.",
+          "semantic_type": "drafting_rule",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "EXISTING DISCHARGE GAS COOLER E-V-201",
+            "rule": "The existing discharge gas cooler E-V-201, which was previously on this P&ID, is now shown on new drawing 4224-MGDV-6-50-2004-002 along with the new discharge gas cooler."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "notes_bottom_left",
+          "source_priority": 1
+        }
+      ],
+      "error": null,
+      "revision_cloud_wraps": true,
+      "gemini_cloud_estimate": 0
+    },
+    {
+      "tile": "notes_bottom_right",
+      "description": "Bottom strip right \u2014 NOTES 7-11",
+      "priority": 1,
+      "crop_size": [
+        3576,
+        1264
+      ],
+      "cloud_count": 2,
+      "contour_count": 4,
+      "ocr_chars": 625,
+      "notes_extracted": 10,
+      "items": [
+        {
+          "id": "NOTE_FRAGMENT_1",
+          "raw_text": "IER, ACTUATOR, LIMIT SWITCHES,\nHITACHI.",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "UNKNOWN COMPONENT",
+            "rule": "Note fragment refers to IER, ACTUATOR, LIMIT SWITCHES, HITACHI."
+          },
+          "confidence": 0.98,
+          "partially_obscured": true,
+          "source_region": "notes_bottom_right",
+          "source_priority": 1
+        },
+        {
+          "id": "NOTE_FRAGMENT_2",
+          "raw_text": "E-224) BY EPIC CONTRACTOR",
+          "semantic_type": "scope_rule",
+          "extracted_rule": {
+            "type": "constraint",
+            "subject": "Item related to TE-224",
+            "rule": "Scope of supply is by the EPIC Contractor."
+          },
+          "confidence": 0.99,
+          "partially_obscured": true,
+          "source_region": "notes_bottom_right",
+          "source_priority": 1
+        },
+        {
+          "id": "NOTE_FRAGMENT_3",
+          "raw_text": "FOR CALCULATING MAXIMUM\nNCTION BLOCK TO COMPUTE THE\nFUNCTION SHALL BE PART OF\nNG & CONTROL PHILOSOPHY",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "rule",
+            "subject": "Function block for calculating maximum",
+            "rule": "The function block to compute the maximum value shall be part of the operating and control philosophy."
+          },
+          "confidence": 0.98,
+          "partially_obscured": true,
+          "source_region": "notes_bottom_right",
+          "source_priority": 1
+        },
+        {
+          "id": "NOTE_FRAGMENT_4",
+          "raw_text": "PLACED, REFER ADEQUACY",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Placement of an unspecified item",
+            "rule": "Refer to an adequacy study or document for placement details."
+          },
+          "confidence": 0.98,
+          "partially_obscured": true,
+          "source_region": "notes_bottom_right",
+          "source_priority": 1
+        },
+        {
+          "id": "NOTE_FRAGMENT_5",
+          "raw_text": "D WITH NEW BY HITACHI.",
+          "semantic_type": "scope_rule",
+          "extracted_rule": {
+            "type": "constraint",
+            "subject": "An unspecified item",
+            "rule": "Item is to be replaced with a new one by Hitachi."
+          },
+          "confidence": 0.99,
+          "partially_obscured": true,
+          "source_region": "notes_bottom_right",
+          "source_priority": 1
+        },
+        {
+          "id": "TITLE",
+          "raw_text": "MESAIEED GAS DISTR\nEPIC FOR UPGRADE OF\nSTATION V AND ASSOCIA\nP&ID - ETHANE GAS",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "format",
+            "subject": "Drawing Title",
+            "rule": "MESAIEED GAS DISTR\nEPIC FOR UPGRADE OF\nSTATION V AND ASSOCIA\nP&ID - ETHANE GAS"
+          },
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_bottom_right",
+          "source_priority": 1
+        },
+        {
+          "id": "SCALE",
+          "raw_text": "SCALE:NTS",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "format",
+            "subject": "Drawing Scale",
+            "rule": "Not to Scale (NTS)"
+          },
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_bottom_right",
+          "source_priority": 1
+        },
+        {
+          "id": "ORIG_DWG_SIZE",
+          "raw_text": "ORIG.DWG SIZE: A1",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "format",
+            "subject": "Original Drawing Size",
+            "rule": "A1"
+          },
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_bottom_right",
+          "source_priority": 1
+        },
+        {
+          "id": "DWG_NO",
+          "raw_text": "DWG NO. 4224-MGDV-6-50-",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "format",
+            "subject": "Drawing Number",
+            "rule": "4224-MGDV-6-50-"
+          },
+          "confidence": 0.99,
+          "partially_obscured": true,
+          "source_region": "notes_bottom_right",
+          "source_priority": 1
+        },
+        {
+          "id": "SHT_NO",
+          "raw_text": "Sht. 001",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "format",
+            "subject": "Sheet Number",
+            "rule": "001"
+          },
+          "confidence": 0.99,
+          "partially_obscured": false,
+          "source_region": "notes_bottom_right",
+          "source_priority": 1
+        }
+      ],
+      "error": null,
+      "revision_cloud_wraps": true,
+      "gemini_cloud_estimate": 0
+    },
+    {
+      "tile": "abbreviations",
+      "description": "Abbreviations block (upper left)",
+      "priority": 2,
+      "crop_size": [
+        2284,
+        1263
+      ],
+      "cloud_count": 3,
+      "contour_count": 6,
+      "ocr_chars": 360,
+      "notes_extracted": 12,
+      "items": [
+        {
+          "id": "TITLE:ABBREVIATIONS",
+          "raw_text": "ABBREVIATIONS:\u2014",
+          "semantic_type": "title_info",
+          "extracted_rule": null,
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        },
+        {
+          "id": "ABBR:ASC",
+          "raw_text": "ASC : ANTI-SURGE CONTROL",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "ASC",
+            "rule": "Anti-Surge Control"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        },
+        {
+          "id": "ABBR:ASV",
+          "raw_text": "ASV : ANTI-SURGE VALVE",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "ASV",
+            "rule": "Anti-Surge Valve"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        },
+        {
+          "id": "ABBR:HISEL",
+          "raw_text": "HISEL : HIGH SELECTOR",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "HISEL",
+            "rule": "High Selector"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        },
+        {
+          "id": "ABBR:LOSEL",
+          "raw_text": "LOSEL : LOW SELECTOR",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "LOSEL",
+            "rule": "Low Selector"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        },
+        {
+          "id": "ABBR:HGBV",
+          "raw_text": "HGBV : HOT GAS BYPASS VALVE",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "HGBV",
+            "rule": "Hot Gas Bypass Valve"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        },
+        {
+          "id": "ABBR:HS",
+          "raw_text": "HS : HIGH SPPED",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "HS",
+            "rule": "High Spped"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        },
+        {
+          "id": "ABBR:LS",
+          "raw_text": "LS : LOW SPEED",
+          "semantic_type": "abbreviation_definition",
+          "extracted_rule": {
+            "type": "abbreviation",
+            "subject": "LS",
+            "rule": "Low Speed"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        },
+        {
+          "id": "TITLE:SCOPE_OF_SUPPLY",
+          "raw_text": "SCOPE OF SUPPLY",
+          "semantic_type": "title_info",
+          "extracted_rule": null,
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        },
+        {
+          "id": "SCOPE:CONTRACTOR",
+          "raw_text": "HITACHI EPIC CONTRACTOR",
+          "semantic_type": "scope_rule",
+          "extracted_rule": {
+            "type": "rule",
+            "subject": "Scope of Supply",
+            "rule": "Hitachi Epic Contractor"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        },
+        {
+          "id": "NOTE:FROM_COMPRESSOR_SUCTION_HEADER",
+          "raw_text": "FROM COMPRESSOR SUCTION HEADER",
+          "semantic_type": "connection_description",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Connection Point",
+            "rule": "Originates from Compressor Suction Header"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        },
+        {
+          "id": "TAG:4224-MGDV-6-50-2002-001",
+          "raw_text": "4224-MGDV-6-50-2002-001",
+          "semantic_type": "equipment_tag",
+          "extracted_rule": {
+            "type": "identifier",
+            "subject": "Equipment/Component",
+            "rule": "Tag: 4224-MGDV-6-50-2002-001"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "abbreviations",
+          "source_priority": 2
+        }
+      ],
+      "error": null,
+      "revision_cloud_wraps": true,
+      "gemini_cloud_estimate": 1
+    },
+    {
+      "tile": "ref_legends",
+      "description": "Reference drawings & legends",
+      "priority": 2,
+      "crop_size": [
+        2682,
+        1614
+      ],
+      "cloud_count": 2,
+      "contour_count": 6,
+      "ocr_chars": 634,
+      "notes_extracted": 14,
+      "items": [
+        {
+          "id": "LEGEND:SPECTACLE_BLIND_GATE_VALVE",
+          "raw_text": "SPECTACLE BLIND & GATE VALVE SHOWN IN THIS COLOUR IS EXISTING & SHALL BE RE-USED AS PER PIPING MODIFICATION.",
+          "semantic_type": "symbol_exception",
+          "extracted_rule": {
+            "type": "rule",
+            "subject": "Spectacle Blind & Gate Valve (blue)",
+            "rule": "If a spectacle blind and gate valve is shown in this colour (blue), it is existing and shall be re-used as per piping modification."
+          },
+          "confidence": 0.9,
+          "partially_obscured": true,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "NOTE 7",
+          "raw_text": "NOTE 7",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Note 7",
+            "rule": "Content of Note 7 is not visible."
+          },
+          "confidence": 1.0,
+          "partially_obscured": true,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "REV_C_DESCRIPTION",
+          "raw_text": "RE-ISSUED FOR CONSTRUCTION",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Revision C",
+            "rule": "Drawing was re-issued for construction."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "REV_A_DESCRIPTION",
+          "raw_text": "APPROVED FOR CONSTRUCTION",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Revision A",
+            "rule": "Drawing was approved for construction."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "REV_2_DESCRIPTION",
+          "raw_text": "ISSUED FOR APPROVAL",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Revision 2",
+            "rule": "Drawing was issued for approval."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "REV_1_DESCRIPTION",
+          "raw_text": "ISSUED FOR HAZOP",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Revision 1",
+            "rule": "Drawing was issued for HAZOP review."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "REV_0_DESCRIPTION",
+          "raw_text": "ISSUED FOR COMMENTS",
+          "semantic_type": "general_note",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Revision 0",
+            "rule": "Drawing was issued for comments."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "TITLE_PRIMARY",
+          "raw_text": "MESAIEED GA",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Drawing Title Primary",
+            "rule": "The primary drawing title is MESAIEED GA."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "TITLE_SECONDARY_1",
+          "raw_text": "EPIC FOR UP",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Drawing Title Secondary 1",
+            "rule": "The secondary drawing title includes EPIC FOR UP (likely UPGRADE)."
+          },
+          "confidence": 0.8,
+          "partially_obscured": true,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "TITLE_SECONDARY_2",
+          "raw_text": "STATION V AND",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Drawing Title Secondary 2",
+            "rule": "The secondary drawing title includes STATION V AND (likely followed by another term)."
+          },
+          "confidence": 0.8,
+          "partially_obscured": true,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "TITLE_SECONDARY_3",
+          "raw_text": "P&ID - ETHA",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Drawing Title Secondary 3",
+            "rule": "The secondary drawing title includes P&ID - ETHA (likely ETHANE or ETHYLENE)."
+          },
+          "confidence": 0.8,
+          "partially_obscured": true,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "SCALE",
+          "raw_text": "SCALE:NTS",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "format",
+            "subject": "Scale",
+            "rule": "The drawing is Not To Scale (NTS)."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "DWG_NO",
+          "raw_text": "DWG NO. 4224-MGDW",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Drawing Number",
+            "rule": "The drawing number is 4224-MGDW."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        },
+        {
+          "id": "SHT_NO",
+          "raw_text": "Sht. 001",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "reference",
+            "subject": "Sheet Number",
+            "rule": "This is sheet 001."
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "ref_legends",
+          "source_priority": 2
+        }
+      ],
+      "error": null,
+      "revision_cloud_wraps": true,
+      "gemini_cloud_estimate": 1
+    },
+    {
+      "tile": "title_block",
+      "description": "Title block (drawing metadata)",
+      "priority": 3,
+      "crop_size": [
+        1590,
+        1264
+      ],
+      "cloud_count": 1,
+      "contour_count": 2,
+      "ocr_chars": 176,
+      "notes_extracted": 7,
+      "items": [
+        {
+          "id": "PROJECT_IDENTIFIER_CLOUDED",
+          "raw_text": "4224-MGDV-6-50-2002-001",
+          "semantic_type": "title_info",
+          "extracted_rule": null,
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "title_block",
+          "source_priority": 3
+        },
+        {
+          "id": "DRAWING_TITLE",
+          "raw_text": "ED GAS DISTRIBUTION STATIONS, MGDV OR UPGRADE OF ETHANE COMPRESSORS AT V AND ASSOCIATED FACILITIES AT STATION S ETHANE GAS COMPRESSOR (K-V-201)",
+          "semantic_type": "title_info",
+          "extracted_rule": null,
+          "confidence": 1.0,
+          "partially_obscured": true,
+          "source_region": "title_block",
+          "source_priority": 3
+        },
+        {
+          "id": "DRAWING_SIZE",
+          "raw_text": "DWG SIZE: A1",
+          "semantic_type": "title_info",
+          "extracted_rule": {
+            "type": "format",
+            "subject": "drawing",
+            "rule": "Drawing size is A1"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "title_block",
+          "source_priority": 3
+        },
+        {
+          "id": "CAD_DRAWING_RULE",
+          "raw_text": "THIS IS A CAD DRAWING AND MUST NOT BE ALTERED MANUALLY",
+          "semantic_type": "drafting_rule",
+          "extracted_rule": {
+            "type": "rule",
+            "subject": "CAD drawing",
+            "rule": "This CAD drawing must not be altered manually"
+          },
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "title_block",
+          "source_priority": 3
+        },
+        {
+          "id": "DRAWING_NUMBER",
+          "raw_text": "4224-MGDV-6-50-2004",
+          "semantic_type": "title_info",
+          "extracted_rule": null,
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "title_block",
+          "source_priority": 3
+        },
+        {
+          "id": "CONTINUATION_NOTE",
+          "raw_text": "Cont. on 002",
+          "semantic_type": "title_info",
+          "extracted_rule": null,
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "title_block",
+          "source_priority": 3
+        },
+        {
+          "id": "REVISION",
+          "raw_text": "REV C",
+          "semantic_type": "title_info",
+          "extracted_rule": null,
+          "confidence": 1.0,
+          "partially_obscured": false,
+          "source_region": "title_block",
+          "source_priority": 3
+        }
+      ],
+      "error": null,
+      "revision_cloud_wraps": false,
+      "gemini_cloud_estimate": 1
+    }
+  ],
+  "rules_prompt_block": "== DRAWING-SPECIFIC RULES (extracted from notes block) ==\n\n-- Region Coverage Table --\nRegion                        Notes  Clouds  OCR chars\n----------------------------------------------------------\nnotes_left_upper                 10       2       1300\nnotes_left_lower                 13       1       2154\nnotes_bottom_left                 7       0       2092\nnotes_bottom_right               10       2        625\nabbreviations                    12       3        360\nref_legends                      14       2        634\ntitle_block                       7       1        176\nTOTAL                            73      11\n\n-- Global Rules (all agents) --\n  [3] Compressors are variable speed motor driven. A new motor, complete with VSD system, shall be provided.\n  [4] The existing ethane compressor must be modified for new process conditions as defined in the process datasheet. The adequacy of all existing associated equipment, including suction & discharge K.O. drums, discharge gas cooler, anti-surge control valves, and other auxiliaries, has been verified by the OEM, Hitachi.\n  [5] The ethane compressor vendor must provide a load sharing system to share flow rate equally across both operating units.\n  [12] The Compressor Unit Control Panel (UCP) is to be replaced with a new PLC-based UCP. All existing instrument connectivities, functions, interlocks, and alarms must be configured in the new UCP. All signals from the new UCP must be made available on the existing GDS SCADA system, consistent with the existing philosophy.\n  [13] A new safety relief valve must be installed to protect the system from overpressure due to a blocked discharge. New isolation valves and a new operating platform must also be provided.\n  [14] COMMON WARE HOUSE SPARE RV SHALL BE PROVIDED (ONE NO. FOR 3 COMPRESSOR).\n  [15] THERE IS NO INTERLOCKING FOR ISOLATION VALVE ON SINGLE RV.\n  [16] NEW PROPOSED MOTOR ENCLOSURE (ATEX, EX'P' TYPE) REQUIRES INSTRUMENT AIR.\n  [17] EXISTING RCI MODULE SHALL BE REMOVED FROM THE EXISTING UCP PANEL AND SHALL BE RE-USED INSIDE THE NEW UCP PANEL.\n  [18] COMPRESSOR SUCTION ESD VALVE (V-ESDV-209) IS RETAINED.\n  [19] ONE (COMMON FOR ALL THREE TRAINS) TEMPORARY SUCTION STRAINER SHALL BE SUPPLIED BY OEM (MS. HITACHI). AFTER SUCCESSFULL COMMISSIONING, THE STRAINER SHALL BE REMOVED, AND REPLACED WITH A FABRICATED SPOOL PIECE BY EPIC CONTRACTOR.\n  [20] COMPRESSOR LOWER DESIGN TEMPERATURE (-)29 DEGC, EXCEPT FOR DRY GAS SEAL O-RING, WHICH IS 0 DEGC. COMPRESSOR UPPER DESIGN TEMPERATURE 150 DEGC, HOWEVER, SINCE ASME PTC10 TYPE 2 TEST SHALL BE CONDUCTED, THEREFORE, COMPRESSOR CASING SHALL BE DESIGNED TO 170 DEGC WHICH IS REQUIRED DUE TO THE USE OF CO2 AS TEST GAS. ULTIMATELY NAME PLATE RATING FOR THIS UNIT USING ETHANE GAS IS 150 DEGC.\n  [21] HIGH PERFORMANCE (CLASS-1) NON-RETURN VALVE (NON-SLAM TYPE), WITH LOW CRACK OPEN DP SHALL BE SELECTED FOR THIS APPLICATION. (PURPOSE: AVOID REVERSE FLOW / SURGE ISSUES DURING DYNAMIC SCENARIO OF COMPRESSOR TRIP).\n  [22] EXISTING SUCTION & DISCHARGE COMPRESSOR INLET & OUTLET SPOOL SHALL BE DISMANTLED TO FACILITATE COMPRESSOR MODIFICATION, AND THEN RE-INSTATED.\n  [23] SOFT HAND SWITCH SHALL BE CONFIGURED IN UCP HMI TO ENABLE/ DISABLE STATION S HIGH PRESSURE CONTROLLER (%) WHICH IS REPEATED FROM LOAD SHARING PANEL.\n  [24] RECLOSURE OF XV-202 (NORMAL SHUTDOWN DEPRESSURING VALVE) SHALL BE PERFORMED BY UCP, ONCE V-PAL-214 IS OBTAINED (@ 18 barg) OR AFTER 20 MINUTES TIME DELAY FROM OPENING OF XV-202 WHICHEVER COMES FIRST. (NOTE: PAL-214 SHALL BE CONSIDERED AN EVENT, NOT ALARM).\n  [25] Refer to drawing number 4224-MGDTY-6-50-2001-003 for interlock details.\n  [NOTE 7] Content of Note 7 is not visible.\n  [NOTE_FRAGMENT_1] Note fragment refers to IER, ACTUATOR, LIMIT SWITCHES, HITACHI.\n  [NOTE_FRAGMENT_2] Scope of supply is by the EPIC Contractor.\n  [NOTE_FRAGMENT_3] The function block to compute the maximum value shall be part of the operating and control philosophy.\n  [NOTE_FRAGMENT_4] Refer to an adequacy study or document for placement details.\n  [NOTE_FRAGMENT_5] Item is to be replaced with a new one by Hitachi.\n  [REV_0_DESCRIPTION] Drawing was issued for comments.\n  [REV_1_DESCRIPTION] Drawing was issued for HAZOP review.\n  [REV_2_DESCRIPTION] Drawing was issued for approval.\n  [REV_A_DESCRIPTION] Drawing was approved for construction.\n  [REV_C_DESCRIPTION] Drawing was re-issued for construction.\n  [SCOPE:1] The scope of supply is divided between Hitachi and the EPIC Contractor, as demarcated by the line symbol.\n  [SCOPE:CONTRACTOR] Hitachi Epic Contractor\n\n-- Tag Detection Agent rules --\n  [ABBR:ASC] ASC stands for Anti-Surge Control.\n  [ABBR:ASV] ASV stands for Anti-Surge Valve.\n  [ABBR:HGBV] HGBV stands for Hot Gas Bypass Valve.\n  [ABBR:HISEL] HISEL stands for High Selector.\n  [ABBR:HS] HS stands for High Speed.\n  [ABBR:LOSEL] LOSEL stands for Low Selector.\n  [ABBR:LS] LS stands for Low Speed.\n  [LEGEND:SPECTACLE_BLIND_GATE_VALVE] If a spectacle blind and gate valve is shown in this colour (blue), it is existing and shall be re-used as per piping modification.\n\n-- Abbreviations --\n  ASC: Anti-Surge Control\n  ASV: Anti-Surge Valve\n  HGBV: Hot Gas Bypass Valve\n  HISEL: High Selector\n  HS: High Spped\n  LOSEL: Low Selector\n  LS: Low Speed\n  NTS: Not To Scale\n\n-- Drafting References --\n  [1] 1. FOR SYMBOLS AND ABBREVIATIONS REFER TO ES.D.10.\n  [1.A] A. FOR STANDARD P&ID SYMBOLS, EQUIPMENT SYMBOLS AND DESCRIPTION REFER TO STANDARD DRAWING ES.0.07.0100 REV.B\n  [2] 2. ALL DRAWINGS ARE PREPARED IN COMPLIANCE WITH COMPANY ENGINEERING STANDARD CORP-ENG-STD-018 REV. 01 (DRAUGHTING), CORP-ENG-STD-021 REV. 01 (ENGINEERING DATA CODING SYSTEM), ES.0.07.0028 REV.D (TAG NUMBERING AND EQUIPMENT IDENTIFIERS), 4224-MGDTY-6-50-2001 (STANDARD SYMBOLS MULTI-DISCIPLINE).\n  [6] 6. EXISTING DISCHARGE GAS COOLER E-V-201 WAS PART OF THIS P&ID, NOW IT IS SHOWN IN NEW DWG. NO. 4224-MGDV-6-50-2004-002 ALONG WITH NEW DISCHARGE GAS COOLER.\n  [CAD_DRAWING_RULE] THIS IS A CAD DRAWING AND MUST NOT BE ALTERED MANUALLY\n\n== END RULES ==",
+  "drawing_conventions": {
+    "tag_format_pattern": "unknown",
+    "instrument_bubble_style": "unknown",
+    "isa_version": "ISA 5.1",
+    "unit_system": "mixed",
+    "revision_cloud_present": true
+  }
+}

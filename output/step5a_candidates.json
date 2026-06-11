@@ -1,0 +1,7143 @@
+{
+  "version": "v2_parallel",
+  "input_image": "output/input_drawing_enhanced_color.jpg",
+  "image_size": [
+    9934,
+    7017
+  ],
+  "total_patches": 117,
+  "gemini_calls": 117,
+  "patches_skipped": 0,
+  "max_workers": 8,
+  "total_candidates": 264,
+  "candidates": [
+    {
+      "candidate_id": "c9e5bc44",
+      "patch_id": 0,
+      "symbol_name": "Off-Page Connector",
+      "symbol_category": "piping",
+      "tag_text": "4224-MGDV-6-50-2002-001",
+      "tag_text_gemini": "4224-MGDV-6-50-2002-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 333,
+        "y1": 658,
+        "x2": 993,
+        "y2": 710
+      },
+      "tag_bbox": {
+        "x1": 342,
+        "y1": 679,
+        "x2": 982,
+        "y2": 699
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "76c4085a",
+      "patch_id": 1,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "2\"-GV-V273-11502X",
+      "tag_text_gemini": "2\"-GV-V273-11502X",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1316,
+        "y1": 548,
+        "x2": 1766,
+        "y2": 552
+      },
+      "tag_bbox": {
+        "x1": 1421,
+        "y1": 496,
+        "x2": 1730,
+        "y2": 523
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "9b99f6b0",
+      "patch_id": 3,
+      "symbol_name": "Compressor",
+      "symbol_category": "equipment",
+      "tag_text": "K-V-201",
+      "tag_text_gemini": "K-V-201",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2433,
+        "y1": 121,
+        "x2": 3154,
+        "y2": 508
+      },
+      "tag_bbox": {
+        "x1": 2828,
+        "y1": 129,
+        "x2": 3149,
+        "y2": 191
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "89e30f11",
+      "patch_id": 4,
+      "symbol_name": "Interlock",
+      "symbol_category": "instrument",
+      "tag_text": "I-004",
+      "tag_text_gemini": "I-004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3930,
+        "y1": 654,
+        "x2": 4015,
+        "y2": 738
+      },
+      "tag_bbox": {
+        "x1": 3960,
+        "y1": 678,
+        "x2": 3990,
+        "y2": 713
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "58a15a0d",
+      "patch_id": 4,
+      "symbol_name": "Pressure Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "PAHH-211",
+      "tag_text_gemini": "PAHH-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3925,
+        "y1": 738,
+        "x2": 4020,
+        "y2": 833
+      },
+      "tag_bbox": {
+        "x1": 3930,
+        "y1": 758,
+        "x2": 4015,
+        "y2": 813
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "36d07483",
+      "patch_id": 5,
+      "symbol_name": "Interlock",
+      "symbol_category": "instrument",
+      "tag_text": "I-004",
+      "tag_text_gemini": "I-004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3986,
+        "y1": 653,
+        "x2": 4070,
+        "y2": 699
+      },
+      "tag_bbox": {
+        "x1": 4015,
+        "y1": 660,
+        "x2": 4042,
+        "y2": 691
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "988b71d0",
+      "patch_id": 5,
+      "symbol_name": "Pressure Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "PAHH-211",
+      "tag_text_gemini": "PAHH-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3986,
+        "y1": 700,
+        "x2": 4070,
+        "y2": 748
+      },
+      "tag_bbox": {
+        "x1": 3997,
+        "y1": 708,
+        "x2": 4060,
+        "y2": 740
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "c8c4e4f9",
+      "patch_id": 5,
+      "symbol_name": "Temperature Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T-202C",
+      "tag_text_gemini": "T-202C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4641,
+        "y1": 653,
+        "x2": 4724,
+        "y2": 704
+      },
+      "tag_bbox": {
+        "x1": 4663,
+        "y1": 662,
+        "x2": 4704,
+        "y2": 694
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6cda097f",
+      "patch_id": 5,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-914",
+      "tag_text_gemini": "V-GV-914",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4734,
+        "y1": 785,
+        "x2": 4790,
+        "y2": 819
+      },
+      "tag_bbox": {
+        "x1": 4722,
+        "y1": 825,
+        "x2": 4800,
+        "y2": 839
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "903c0c51",
+      "patch_id": 6,
+      "symbol_name": "Temperature Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T 202A",
+      "tag_text_gemini": "T 202A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5292,
+        "y1": 434,
+        "x2": 5397,
+        "y2": 539
+      },
+      "tag_bbox": {
+        "x1": 5320,
+        "y1": 454,
+        "x2": 5369,
+        "y2": 519
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "adb2f0ca",
+      "patch_id": 6,
+      "symbol_name": "Temperature Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T 202C",
+      "tag_text_gemini": "T 202C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4657,
+        "y1": 498,
+        "x2": 4762,
+        "y2": 603
+      },
+      "tag_bbox": {
+        "x1": 4685,
+        "y1": 518,
+        "x2": 4734,
+        "y2": 583
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "37ef1594",
+      "patch_id": 6,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-914",
+      "tag_text_gemini": "V-GV-914",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4766,
+        "y1": 610,
+        "x2": 4856,
+        "y2": 658
+      },
+      "tag_bbox": {
+        "x1": 4754,
+        "y1": 666,
+        "x2": 4866,
+        "y2": 686
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "17d488cb",
+      "patch_id": 7,
+      "symbol_name": "Tie-in Point",
+      "symbol_category": "piping",
+      "tag_text": "T 202A",
+      "tag_text_gemini": "T 202A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5380,
+        "y1": 488,
+        "x2": 5459,
+        "y2": 567
+      },
+      "tag_bbox": {
+        "x1": 5395,
+        "y1": 506,
+        "x2": 5444,
+        "y2": 549
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d047ba3a",
+      "patch_id": 7,
+      "symbol_name": "Spectacle Blind",
+      "symbol_category": "piping",
+      "tag_text": "SB",
+      "tag_text_gemini": "SB",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5584,
+        "y1": 499,
+        "x2": 5647,
+        "y2": 528
+      },
+      "tag_bbox": {
+        "x1": 5634,
+        "y1": 461,
+        "x2": 5667,
+        "y2": 481
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "faf3f4a1",
+      "patch_id": 7,
+      "symbol_name": "Spectacle Blind",
+      "symbol_category": "piping",
+      "tag_text": "SB",
+      "tag_text_gemini": "SB",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5976,
+        "y1": 510,
+        "x2": 6039,
+        "y2": 539
+      },
+      "tag_bbox": {
+        "x1": 6016,
+        "y1": 472,
+        "x2": 6049,
+        "y2": 492
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "9619af44",
+      "patch_id": 7,
+      "symbol_name": "Tie-in Point",
+      "symbol_category": "piping",
+      "tag_text": "T 203A",
+      "tag_text_gemini": "T 203A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6244,
+        "y1": 499,
+        "x2": 6323,
+        "y2": 578
+      },
+      "tag_bbox": {
+        "x1": 6259,
+        "y1": 517,
+        "x2": 6308,
+        "y2": 560
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e7a32128",
+      "patch_id": 7,
+      "symbol_name": "Vessel",
+      "symbol_category": "equipment",
+      "tag_text": "K-V-201",
+      "tag_text_gemini": "K-V-201",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5492,
+        "y1": 556,
+        "x2": 6226,
+        "y2": 999
+      },
+      "tag_bbox": {
+        "x1": 5709,
+        "y1": 850,
+        "x2": 5936,
+        "y2": 892
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Vessel",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "247c3532",
+      "patch_id": 8,
+      "symbol_name": "Interlock",
+      "symbol_category": "instrument",
+      "tag_text": "T-203A",
+      "tag_text_gemini": "T-203A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6602,
+        "y1": 508,
+        "x2": 6684,
+        "y2": 590
+      },
+      "tag_bbox": {
+        "x1": 6617,
+        "y1": 523,
+        "x2": 6670,
+        "y2": 565
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "661e2f9c",
+      "patch_id": 8,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS",
+      "tag_text_gemini": "HS",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6652,
+        "y1": 810,
+        "x2": 6666,
+        "y2": 844
+      },
+      "tag_bbox": {
+        "x1": 6646,
+        "y1": 778,
+        "x2": 6674,
+        "y2": 802
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'HAND SWITCH OPEN'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "25cfa6cc",
+      "patch_id": 8,
+      "symbol_name": "Gear",
+      "symbol_category": "equipment",
+      "tag_text": "KG-V-201",
+      "tag_text_gemini": "KG-V-201",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6839,
+        "y1": 774,
+        "x2": 6992,
+        "y2": 880
+      },
+      "tag_bbox": {
+        "x1": 6778,
+        "y1": 698,
+        "x2": 6992,
+        "y2": 729
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "7d2c242d",
+      "patch_id": 8,
+      "symbol_name": "Limit Switch",
+      "symbol_category": "instrument",
+      "tag_text": "LS",
+      "tag_text_gemini": "LS",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7072,
+        "y1": 810,
+        "x2": 7086,
+        "y2": 844
+      },
+      "tag_bbox": {
+        "x1": 7068,
+        "y1": 778,
+        "x2": 7092,
+        "y2": 802
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Limit Switch",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1646d8f9",
+      "patch_id": 9,
+      "symbol_name": "Logic Interlock",
+      "symbol_category": "instrument",
+      "tag_text": "I-001",
+      "tag_text_gemini": "I-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7574,
+        "y1": 312,
+        "x2": 7700,
+        "y2": 440
+      },
+      "tag_bbox": {
+        "x1": 7580,
+        "y1": 348,
+        "x2": 7601,
+        "y2": 408
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "87d7971d",
+      "patch_id": 9,
+      "symbol_name": "Position Switch",
+      "symbol_category": "instrument",
+      "tag_text": "XS-239",
+      "tag_text_gemini": "XS-239",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7605,
+        "y1": 346,
+        "x2": 7669,
+        "y2": 410
+      },
+      "tag_bbox": {
+        "x1": 7617,
+        "y1": 352,
+        "x2": 7657,
+        "y2": 404
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "1a1563cb",
+      "patch_id": 10,
+      "symbol_name": "Unclassified Switch",
+      "symbol_category": "instrument",
+      "tag_text": "XS 239",
+      "tag_text_gemini": "XS 239",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7756,
+        "y1": 291,
+        "x2": 7822,
+        "y2": 357
+      },
+      "tag_bbox": {
+        "x1": 7774,
+        "y1": 307,
+        "x2": 7803,
+        "y2": 341
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "4eed4c2c",
+      "patch_id": 10,
+      "symbol_name": "Unclassified Alarm",
+      "symbol_category": "instrument",
+      "tag_text": "XA 237",
+      "tag_text_gemini": "XA 237",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8061,
+        "y1": 291,
+        "x2": 8127,
+        "y2": 357
+      },
+      "tag_bbox": {
+        "x1": 8079,
+        "y1": 307,
+        "x2": 8108,
+        "y2": 341
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "26e9e205",
+      "patch_id": 10,
+      "symbol_name": "Unclassified Switch",
+      "symbol_category": "instrument",
+      "tag_text": "XS 238",
+      "tag_text_gemini": "XS 238",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8391,
+        "y1": 291,
+        "x2": 8457,
+        "y2": 357
+      },
+      "tag_bbox": {
+        "x1": 8409,
+        "y1": 307,
+        "x2": 8438,
+        "y2": 341
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e51ffe56",
+      "patch_id": 11,
+      "symbol_name": "Switch",
+      "symbol_category": "instrument",
+      "tag_text": "XS-238",
+      "tag_text_gemini": "XS-238",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8666,
+        "y1": 297,
+        "x2": 8729,
+        "y2": 360
+      },
+      "tag_bbox": {
+        "x1": 8677,
+        "y1": 305,
+        "x2": 8718,
+        "y2": 351
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0943d7eb",
+      "patch_id": 12,
+      "symbol_name": "Equipment",
+      "symbol_category": "equipment",
+      "tag_text": "MGDV-6-51-2001-001",
+      "tag_text_gemini": "MGDV-6-51-2001-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 558,
+        "x2": 9921,
+        "y2": 676
+      },
+      "tag_bbox": {
+        "x1": 9216,
+        "y1": 623,
+        "x2": 9921,
+        "y2": 676
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "26516dd0",
+      "patch_id": 14,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS-214A",
+      "tag_text_gemini": "HS-214A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1532,
+        "y1": 1190,
+        "x2": 1704,
+        "y2": 1259
+      },
+      "tag_bbox": {
+        "x1": 1613,
+        "y1": 1203,
+        "x2": 1679,
+        "y2": 1244
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'HAND SWITCH OPEN'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "92df2d81",
+      "patch_id": 14,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS-214B",
+      "tag_text_gemini": "HS-214B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1532,
+        "y1": 1390,
+        "x2": 1704,
+        "y2": 1459
+      },
+      "tag_bbox": {
+        "x1": 1613,
+        "y1": 1403,
+        "x2": 1679,
+        "y2": 1444
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'HAND SWITCH OPEN'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e99bc82c",
+      "patch_id": 15,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS 214A",
+      "tag_text_gemini": "HS 214A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1938,
+        "y1": 1129,
+        "x2": 2018,
+        "y2": 1189
+      },
+      "tag_bbox": {
+        "x1": 1961,
+        "y1": 1145,
+        "x2": 1996,
+        "y2": 1175
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'HAND SWITCH OPEN'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e4bff228",
+      "patch_id": 15,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS 214B",
+      "tag_text_gemini": "HS 214B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1938,
+        "y1": 1279,
+        "x2": 2018,
+        "y2": 1339
+      },
+      "tag_bbox": {
+        "x1": 1961,
+        "y1": 1295,
+        "x2": 1996,
+        "y2": 1325
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'HAND SWITCH OPEN'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "c188c6fa",
+      "patch_id": 15,
+      "symbol_name": "Function Block",
+      "symbol_category": "instrument",
+      "tag_text": "RCI",
+      "tag_text_gemini": "RCI",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2209,
+        "y1": 1431,
+        "x2": 2340,
+        "y2": 1511
+      },
+      "tag_bbox": {
+        "x1": 2228,
+        "y1": 1439,
+        "x2": 2274,
+        "y2": 1458
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0184a71e",
+      "patch_id": 17,
+      "symbol_name": "Pressure Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "PAHH-211",
+      "tag_text_gemini": "PAHH-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3946,
+        "y1": 831,
+        "x2": 4066,
+        "y2": 911
+      },
+      "tag_bbox": {
+        "x1": 3970,
+        "y1": 847,
+        "x2": 4041,
+        "y2": 895
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "3a5a0375",
+      "patch_id": 17,
+      "symbol_name": "Pressure Alarm Low Low",
+      "symbol_category": "instrument",
+      "tag_text": "PALL-214",
+      "tag_text_gemini": "PALL-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3946,
+        "y1": 1151,
+        "x2": 4066,
+        "y2": 1231
+      },
+      "tag_bbox": {
+        "x1": 3970,
+        "y1": 1167,
+        "x2": 4041,
+        "y2": 1215
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "05fcc90e",
+      "patch_id": 17,
+      "symbol_name": "Temperature Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH-212",
+      "tag_text_gemini": "TAHH-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3896,
+        "y1": 1421,
+        "x2": 4016,
+        "y2": 1501
+      },
+      "tag_bbox": {
+        "x1": 3920,
+        "y1": 1437,
+        "x2": 3991,
+        "y2": 1485
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "53d25993",
+      "patch_id": 18,
+      "symbol_name": "Equipment Identifier",
+      "symbol_category": "equipment",
+      "tag_text": "202C",
+      "tag_text_gemini": "202C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4702,
+        "y1": 768,
+        "x2": 4783,
+        "y2": 826
+      },
+      "tag_bbox": {
+        "x1": 4718,
+        "y1": 778,
+        "x2": 4766,
+        "y2": 811
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "fee57acf",
+      "patch_id": 18,
+      "symbol_name": "Loop Identifier",
+      "symbol_category": "instrument",
+      "tag_text": "I-004",
+      "tag_text_gemini": "I-004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3959,
+        "y1": 799,
+        "x2": 4039,
+        "y2": 852
+      },
+      "tag_bbox": {
+        "x1": 3988,
+        "y1": 810,
+        "x2": 4010,
+        "y2": 841
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d033bd8a",
+      "patch_id": 18,
+      "symbol_name": "Pressure Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "PAHH-211",
+      "tag_text_gemini": "PAHH-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3959,
+        "y1": 869,
+        "x2": 4039,
+        "y2": 922
+      },
+      "tag_bbox": {
+        "x1": 3975,
+        "y1": 879,
+        "x2": 4023,
+        "y2": 912
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "df4bc3be",
+      "patch_id": 18,
+      "symbol_name": "Pressure Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "PIT-211",
+      "tag_text_gemini": "PIT-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4347,
+        "y1": 869,
+        "x2": 4433,
+        "y2": 932
+      },
+      "tag_bbox": {
+        "x1": 4368,
+        "y1": 882,
+        "x2": 4412,
+        "y2": 919
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Pressure Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "4671ef48",
+      "patch_id": 18,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-913",
+      "tag_text_gemini": "V-GV-914",
+      "tag_text_ocr": "V-GV-913",
+      "symbol_bbox": {
+        "x1": 4643,
+        "y1": 876,
+        "x2": 4722,
+        "y2": 920
+      },
+      "tag_bbox": {
+        "x1": 4633,
+        "y1": 927,
+        "x2": 4732,
+        "y2": 945
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.65,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "cfca41aa",
+      "patch_id": 18,
+      "symbol_name": "Loop Identifier",
+      "symbol_category": "instrument",
+      "tag_text": "I-004",
+      "tag_text_gemini": "I-004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3959,
+        "y1": 1009,
+        "x2": 4039,
+        "y2": 1062
+      },
+      "tag_bbox": {
+        "x1": 3988,
+        "y1": 1020,
+        "x2": 4010,
+        "y2": 1051
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "5975fff9",
+      "patch_id": 18,
+      "symbol_name": "Loop Identifier",
+      "symbol_category": "instrument",
+      "tag_text": "I-001",
+      "tag_text_gemini": "I-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4054,
+        "y1": 1009,
+        "x2": 4134,
+        "y2": 1062
+      },
+      "tag_bbox": {
+        "x1": 4083,
+        "y1": 1020,
+        "x2": 4105,
+        "y2": 1051
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "43075d74",
+      "patch_id": 18,
+      "symbol_name": "Pressure Alarm Low Low",
+      "symbol_category": "instrument",
+      "tag_text": "PALL-214",
+      "tag_text_gemini": "PALL-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3959,
+        "y1": 1079,
+        "x2": 4039,
+        "y2": 1132
+      },
+      "tag_bbox": {
+        "x1": 3975,
+        "y1": 1089,
+        "x2": 4023,
+        "y2": 1122
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "3a9ad3a3",
+      "patch_id": 18,
+      "symbol_name": "Pressure Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "PIT-214",
+      "tag_text_gemini": "PIT-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4347,
+        "y1": 1079,
+        "x2": 4433,
+        "y2": 1142
+      },
+      "tag_bbox": {
+        "x1": 4368,
+        "y1": 1092,
+        "x2": 4412,
+        "y2": 1129
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Pressure Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "08a97747",
+      "patch_id": 18,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-913",
+      "tag_text_gemini": "V-GV-913",
+      "tag_text_ocr": "V-GV-913",
+      "symbol_bbox": {
+        "x1": 4634,
+        "y1": 1086,
+        "x2": 4726,
+        "y2": 1130
+      },
+      "tag_bbox": {
+        "x1": 4634,
+        "y1": 1137,
+        "x2": 4726,
+        "y2": 1155
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.65,
+      "vision_confidence": 0.99,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "78a88979",
+      "patch_id": 18,
+      "symbol_name": "Temperature Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH-212",
+      "tag_text_gemini": "TAHH-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3959,
+        "y1": 1464,
+        "x2": 4039,
+        "y2": 1517
+      },
+      "tag_bbox": {
+        "x1": 3975,
+        "y1": 1474,
+        "x2": 4023,
+        "y2": 1507
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6849775a",
+      "patch_id": 18,
+      "symbol_name": "Temperature Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT-212",
+      "tag_text_gemini": "TIT-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4287,
+        "y1": 1469,
+        "x2": 4373,
+        "y2": 1532
+      },
+      "tag_bbox": {
+        "x1": 4308,
+        "y1": 1482,
+        "x2": 4352,
+        "y2": 1519
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "53a57bf5",
+      "patch_id": 18,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "TE-212",
+      "tag_text_gemini": "TE-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4512,
+        "y1": 1469,
+        "x2": 4598,
+        "y2": 1532
+      },
+      "tag_bbox": {
+        "x1": 4533,
+        "y1": 1482,
+        "x2": 4577,
+        "y2": 1519
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0efae8c2",
+      "patch_id": 18,
+      "symbol_name": "Loop Identifier",
+      "symbol_category": "instrument",
+      "tag_text": "I-004",
+      "tag_text_gemini": "I-004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3959,
+        "y1": 1529,
+        "x2": 4039,
+        "y2": 1582
+      },
+      "tag_bbox": {
+        "x1": 3988,
+        "y1": 1540,
+        "x2": 4010,
+        "y2": 1571
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "a980b04d",
+      "patch_id": 18,
+      "symbol_name": "Thermowell",
+      "symbol_category": "piping",
+      "tag_text": "TW-212",
+      "tag_text_gemini": "TW-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4512,
+        "y1": 1594,
+        "x2": 4598,
+        "y2": 1657
+      },
+      "tag_bbox": {
+        "x1": 4533,
+        "y1": 1607,
+        "x2": 4577,
+        "y2": 1644
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Thermowell",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "5f13e8d6",
+      "patch_id": 18,
+      "symbol_name": "Interlock",
+      "symbol_category": "instrument",
+      "tag_text": "T-256",
+      "tag_text_gemini": "T-256",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4702,
+        "y1": 1590,
+        "x2": 4783,
+        "y2": 1671
+      },
+      "tag_bbox": {
+        "x1": 4727,
+        "y1": 1610,
+        "x2": 4758,
+        "y2": 1651
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b6ed06d1",
+      "patch_id": 19,
+      "symbol_name": "Tie-in Point",
+      "symbol_category": "piping",
+      "tag_text": "202C",
+      "tag_text_gemini": "202C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4609,
+        "y1": 768,
+        "x2": 4709,
+        "y2": 837
+      },
+      "tag_bbox": {
+        "x1": 4635,
+        "y1": 784,
+        "x2": 4684,
+        "y2": 802
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0a65c931",
+      "patch_id": 19,
+      "symbol_name": "Tie-in Point",
+      "symbol_category": "piping",
+      "tag_text": "T 202B",
+      "tag_text_gemini": "T 202B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4974,
+        "y1": 985,
+        "x2": 5067,
+        "y2": 1078
+      },
+      "tag_bbox": {
+        "x1": 5005,
+        "y1": 1006,
+        "x2": 5037,
+        "y2": 1056
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "882f426f",
+      "patch_id": 19,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-913",
+      "tag_text_gemini": "V-GV-913",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4766,
+        "y1": 1215,
+        "x2": 4863,
+        "y2": 1257
+      },
+      "tag_bbox": {
+        "x1": 4769,
+        "y1": 1269,
+        "x2": 4861,
+        "y2": 1286
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "29fc07bb",
+      "patch_id": 19,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-915",
+      "tag_text_gemini": "V-GV-915",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4926,
+        "y1": 1315,
+        "x2": 5023,
+        "y2": 1357
+      },
+      "tag_bbox": {
+        "x1": 4929,
+        "y1": 1369,
+        "x2": 5021,
+        "y2": 1386
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1dfd16ee",
+      "patch_id": 19,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "TE 12",
+      "tag_text_gemini": "TE 12",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4608,
+        "y1": 1452,
+        "x2": 4707,
+        "y2": 1551
+      },
+      "tag_bbox": {
+        "x1": 4637,
+        "y1": 1473,
+        "x2": 4677,
+        "y2": 1522
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f90edde2",
+      "patch_id": 19,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "TE 211",
+      "tag_text_gemini": "TE 211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5091,
+        "y1": 1484,
+        "x2": 5190,
+        "y2": 1583
+      },
+      "tag_bbox": {
+        "x1": 5117,
+        "y1": 1505,
+        "x2": 5164,
+        "y2": 1554
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "51615300",
+      "patch_id": 19,
+      "symbol_name": "Tie-in Point",
+      "symbol_category": "piping",
+      "tag_text": "T 256",
+      "tag_text_gemini": "T 256",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4832,
+        "y1": 1562,
+        "x2": 4925,
+        "y2": 1655
+      },
+      "tag_bbox": {
+        "x1": 4863,
+        "y1": 1583,
+        "x2": 4895,
+        "y2": 1633
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "235e6cfc",
+      "patch_id": 19,
+      "symbol_name": "Thermowell",
+      "symbol_category": "instrument",
+      "tag_text": "TW 12",
+      "tag_text_gemini": "TW 12",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4608,
+        "y1": 1572,
+        "x2": 4707,
+        "y2": 1671
+      },
+      "tag_bbox": {
+        "x1": 4634,
+        "y1": 1593,
+        "x2": 4680,
+        "y2": 1642
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Thermowell",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "601c48ce",
+      "patch_id": 20,
+      "symbol_name": "Pressure Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "PIT-210",
+      "tag_text_gemini": "PIT-210",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5405,
+        "y1": 1363,
+        "x2": 5503,
+        "y2": 1461
+      },
+      "tag_bbox": {
+        "x1": 5425,
+        "y1": 1384,
+        "x2": 5483,
+        "y2": 1439
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Pressure Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "8a7b9841",
+      "patch_id": 20,
+      "symbol_name": "Pressure Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "PIT-212",
+      "tag_text_gemini": "PIT-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5900,
+        "y1": 1264,
+        "x2": 5998,
+        "y2": 1362
+      },
+      "tag_bbox": {
+        "x1": 5920,
+        "y1": 1285,
+        "x2": 5978,
+        "y2": 1340
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Pressure Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f0337be3",
+      "patch_id": 20,
+      "symbol_name": "Temperature Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT-211",
+      "tag_text_gemini": "TIT-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5405,
+        "y1": 1574,
+        "x2": 5503,
+        "y2": 1672
+      },
+      "tag_bbox": {
+        "x1": 5427,
+        "y1": 1595,
+        "x2": 5481,
+        "y2": 1650
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "7aa8cc7c",
+      "patch_id": 21,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-917",
+      "tag_text_gemini": "V-GV-917",
+      "tag_text_ocr": "V-GV-917",
+      "symbol_bbox": {
+        "x1": 6572,
+        "y1": 1317,
+        "x2": 6629,
+        "y2": 1345
+      },
+      "tag_bbox": {
+        "x1": 6558,
+        "y1": 1359,
+        "x2": 6644,
+        "y2": 1376
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.55,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "e418ab29",
+      "patch_id": 21,
+      "symbol_name": "Pressure Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "PIT 213",
+      "tag_text_gemini": "PIT 213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6900,
+        "y1": 1295,
+        "x2": 6993,
+        "y2": 1388
+      },
+      "tag_bbox": {
+        "x1": 6922,
+        "y1": 1323,
+        "x2": 6971,
+        "y2": 1361
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Pressure Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "2e5e51ae",
+      "patch_id": 21,
+      "symbol_name": "Temperature Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT 214",
+      "tag_text_gemini": "TIT 214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6900,
+        "y1": 1595,
+        "x2": 6993,
+        "y2": 1688
+      },
+      "tag_bbox": {
+        "x1": 6922,
+        "y1": 1623,
+        "x2": 6971,
+        "y2": 1661
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "93273371",
+      "patch_id": 22,
+      "symbol_name": "Logic Interlock",
+      "symbol_category": "instrument",
+      "tag_text": "I-004",
+      "tag_text_gemini": "I-004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7279,
+        "y1": 1102,
+        "x2": 7340,
+        "y2": 1163
+      },
+      "tag_bbox": {
+        "x1": 7298,
+        "y1": 1117,
+        "x2": 7321,
+        "y2": 1148
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "7b196fe9",
+      "patch_id": 22,
+      "symbol_name": "Pressure Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "PAHH-213",
+      "tag_text_gemini": "PAHH-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7256,
+        "y1": 1168,
+        "x2": 7363,
+        "y2": 1245
+      },
+      "tag_bbox": {
+        "x1": 7274,
+        "y1": 1184,
+        "x2": 7345,
+        "y2": 1229
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "6ee2bb55",
+      "patch_id": 22,
+      "symbol_name": "DCS Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "PAHH-213",
+      "tag_text_gemini": "PAHH-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7647,
+        "y1": 1168,
+        "x2": 7754,
+        "y2": 1245
+      },
+      "tag_bbox": {
+        "x1": 7665,
+        "y1": 1184,
+        "x2": 7736,
+        "y2": 1229
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "1eed0bdc",
+      "patch_id": 22,
+      "symbol_name": "Logic Interlock",
+      "symbol_category": "instrument",
+      "tag_text": "I-004",
+      "tag_text_gemini": "I-004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7279,
+        "y1": 1269,
+        "x2": 7340,
+        "y2": 1330
+      },
+      "tag_bbox": {
+        "x1": 7298,
+        "y1": 1284,
+        "x2": 7321,
+        "y2": 1315
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "25edd5b2",
+      "patch_id": 22,
+      "symbol_name": "Temperature Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH-214",
+      "tag_text_gemini": "TAHH-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7256,
+        "y1": 1335,
+        "x2": 7363,
+        "y2": 1412
+      },
+      "tag_bbox": {
+        "x1": 7273,
+        "y1": 1351,
+        "x2": 7346,
+        "y2": 1396
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "b781f6cf",
+      "patch_id": 22,
+      "symbol_name": "DCS Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH-214",
+      "tag_text_gemini": "TAHH-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7647,
+        "y1": 1335,
+        "x2": 7754,
+        "y2": 1412
+      },
+      "tag_bbox": {
+        "x1": 7664,
+        "y1": 1351,
+        "x2": 7737,
+        "y2": 1396
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "bce389df",
+      "patch_id": 23,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "PAHH 213",
+      "tag_text_gemini": "PAHH 213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7698,
+        "y1": 1206,
+        "x2": 7843,
+        "y2": 1290
+      },
+      "tag_bbox": {
+        "x1": 7739,
+        "y1": 1225,
+        "x2": 7809,
+        "y2": 1272
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "5f3a073f",
+      "patch_id": 23,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH 214",
+      "tag_text_gemini": "TAHH 214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7698,
+        "y1": 1406,
+        "x2": 7843,
+        "y2": 1490
+      },
+      "tag_bbox": {
+        "x1": 7739,
+        "y1": 1425,
+        "x2": 7809,
+        "y2": 1472
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "eb8381c9",
+      "patch_id": 24,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "BV-2247",
+      "tag_text_gemini": "BV-2247",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8464,
+        "y1": 1056,
+        "x2": 8524,
+        "y2": 1118
+      },
+      "tag_bbox": {
+        "x1": 8449,
+        "y1": 1130,
+        "x2": 8627,
+        "y2": 1157
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "abe0cdfb",
+      "patch_id": 24,
+      "symbol_name": "Line Number",
+      "symbol_category": "piping",
+      "tag_text": "4224-MGDV-6-50-2",
+      "tag_text_gemini": "4224-MGDV-6-50-2",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8972,
+        "y1": 1052,
+        "x2": 9447,
+        "y2": 1122
+      },
+      "tag_bbox": {
+        "x1": 8984,
+        "y1": 1070,
+        "x2": 9432,
+        "y2": 1102
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "5c522d39",
+      "patch_id": 25,
+      "symbol_name": "Vessel",
+      "symbol_category": "equipment",
+      "tag_text": "DV-6-50-2002-001",
+      "tag_text_gemini": "DV-6-50-2002-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 9802,
+        "y1": 768,
+        "x2": 9876,
+        "y2": 1466
+      },
+      "tag_bbox": {
+        "x1": 9216,
+        "y1": 1091,
+        "x2": 9686,
+        "y2": 1151
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Vessel",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "f609fd75",
+      "patch_id": 25,
+      "symbol_name": "Piping Line",
+      "symbol_category": "piping",
+      "tag_text": "-11502X",
+      "tag_text_gemini": "-11502X",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 1196,
+        "x2": 9456,
+        "y2": 1248
+      },
+      "tag_bbox": {
+        "x1": 9216,
+        "y1": 1196,
+        "x2": 9456,
+        "y2": 1248
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "70f218ad",
+      "patch_id": 27,
+      "symbol_name": "Shared Display/Control Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "ZX-209",
+      "tag_text_gemini": "ZX-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1275,
+        "y1": 2213,
+        "x2": 1361,
+        "y2": 2299
+      },
+      "tag_bbox": {
+        "x1": 1297,
+        "y1": 2235,
+        "x2": 1339,
+        "y2": 2277
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "94e80eca",
+      "patch_id": 27,
+      "symbol_name": "Shared Display/Control Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "ZLO-209",
+      "tag_text_gemini": "ZLO-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1470,
+        "y1": 2213,
+        "x2": 1556,
+        "y2": 2299
+      },
+      "tag_bbox": {
+        "x1": 1487,
+        "y1": 2235,
+        "x2": 1539,
+        "y2": 2277
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "c784b4e9",
+      "patch_id": 27,
+      "symbol_name": "Logic/Interlock Function",
+      "symbol_category": "instrument",
+      "tag_text": "I-001",
+      "tag_text_gemini": "I-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1610,
+        "y1": 2213,
+        "x2": 1696,
+        "y2": 2299
+      },
+      "tag_bbox": {
+        "x1": 1637,
+        "y1": 2235,
+        "x2": 1669,
+        "y2": 2277
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "3ede151b",
+      "patch_id": 28,
+      "symbol_name": "PLC/DCS Function Block",
+      "symbol_category": "instrument",
+      "tag_text": "214B",
+      "tag_text_gemini": "214B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1536,
+        "y1": 1536,
+        "x2": 1610,
+        "y2": 1568
+      },
+      "tag_bbox": {
+        "x1": 1554,
+        "y1": 1540,
+        "x2": 1592,
+        "y2": 1554
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "50808090",
+      "patch_id": 28,
+      "symbol_name": "PLC/DCS Function Block",
+      "symbol_category": "instrument",
+      "tag_text": "214B",
+      "tag_text_gemini": "214B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1924,
+        "y1": 1536,
+        "x2": 1998,
+        "y2": 1568
+      },
+      "tag_bbox": {
+        "x1": 1942,
+        "y1": 1540,
+        "x2": 1980,
+        "y2": 1554
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "b7e54c43",
+      "patch_id": 28,
+      "symbol_name": "Recorder Controller Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "RCI",
+      "tag_text_gemini": "RCI",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2214,
+        "y1": 1604,
+        "x2": 2346,
+        "y2": 1660
+      },
+      "tag_bbox": {
+        "x1": 2244,
+        "y1": 1612,
+        "x2": 2288,
+        "y2": 1630
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.97,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "4c7374de",
+      "patch_id": 28,
+      "symbol_name": "Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "I-004",
+      "tag_text_gemini": "I-004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2236,
+        "y1": 1686,
+        "x2": 2424,
+        "y2": 1766
+      },
+      "tag_bbox": {
+        "x1": 2276,
+        "y1": 1718,
+        "x2": 2404,
+        "y2": 1752
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "30382cac",
+      "patch_id": 28,
+      "symbol_name": "Run Status Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "RST-209",
+      "tag_text_gemini": "RST-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2294,
+        "y1": 1864,
+        "x2": 2424,
+        "y2": 1994
+      },
+      "tag_bbox": {
+        "x1": 2326,
+        "y1": 1896,
+        "x2": 2392,
+        "y2": 1962
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "7efc9968",
+      "patch_id": 28,
+      "symbol_name": "Voltage Transducer",
+      "symbol_category": "instrument",
+      "tag_text": "EY-209",
+      "tag_text_gemini": "EY-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2294,
+        "y1": 2056,
+        "x2": 2424,
+        "y2": 2186
+      },
+      "tag_bbox": {
+        "x1": 2332,
+        "y1": 2088,
+        "x2": 2386,
+        "y2": 2154
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "6724a823",
+      "patch_id": 28,
+      "symbol_name": "Position Switch Low Open",
+      "symbol_category": "instrument",
+      "tag_text": "ZLO-209",
+      "tag_text_gemini": "ZLO-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1546,
+        "y1": 2116,
+        "x2": 1656,
+        "y2": 2226
+      },
+      "tag_bbox": {
+        "x1": 1572,
+        "y1": 2136,
+        "x2": 1628,
+        "y2": 2204
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "6e36ebe6",
+      "patch_id": 28,
+      "symbol_name": "Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "I-001",
+      "tag_text_gemini": "I-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1658,
+        "y1": 2116,
+        "x2": 1768,
+        "y2": 2226
+      },
+      "tag_bbox": {
+        "x1": 1694,
+        "y1": 2136,
+        "x2": 1732,
+        "y2": 2204
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "e9055bb3",
+      "patch_id": 28,
+      "symbol_name": "Position Switch Low Closed",
+      "symbol_category": "instrument",
+      "tag_text": "ZLC-209",
+      "tag_text_gemini": "ZLC-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1770,
+        "y1": 2116,
+        "x2": 1880,
+        "y2": 2226
+      },
+      "tag_bbox": {
+        "x1": 1796,
+        "y1": 2136,
+        "x2": 1852,
+        "y2": 2204
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "1f6ed3a5",
+      "patch_id": 29,
+      "symbol_name": "Shared Display/Control",
+      "symbol_category": "instrument",
+      "tag_text": "RCI",
+      "tag_text_gemini": "RCI",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2534,
+        "y1": 1736,
+        "x2": 2664,
+        "y2": 1866
+      },
+      "tag_bbox": {
+        "x1": 2324,
+        "y1": 1636,
+        "x2": 2424,
+        "y2": 1676
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "a2142a61",
+      "patch_id": 29,
+      "symbol_name": "Computer Function",
+      "symbol_category": "instrument",
+      "tag_text": "RCI",
+      "tag_text_gemini": "RCI",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2667,
+        "y1": 1706,
+        "x2": 2874,
+        "y2": 1916
+      },
+      "tag_bbox": {
+        "x1": 2324,
+        "y1": 1636,
+        "x2": 2424,
+        "y2": 1676
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "50d1c5cc",
+      "patch_id": 29,
+      "symbol_name": "Reset Switch",
+      "symbol_category": "instrument",
+      "tag_text": "RST-209",
+      "tag_text_gemini": "RST-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2474,
+        "y1": 2116,
+        "x2": 2644,
+        "y2": 2286
+      },
+      "tag_bbox": {
+        "x1": 2504,
+        "y1": 2156,
+        "x2": 2614,
+        "y2": 2246
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "ba77dd9e",
+      "patch_id": 29,
+      "symbol_name": "Solenoid Valve",
+      "symbol_category": "instrument",
+      "tag_text": "EY-209",
+      "tag_text_gemini": "EY-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2474,
+        "y1": 2326,
+        "x2": 2644,
+        "y2": 2496
+      },
+      "tag_bbox": {
+        "x1": 2514,
+        "y1": 2366,
+        "x2": 2604,
+        "y2": 2456
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Solenoid Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "9417d4c8",
+      "patch_id": 30,
+      "symbol_name": "Relief Valve",
+      "symbol_category": "valve",
+      "tag_text": "RV-207",
+      "tag_text_gemini": "RV-207",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3664,
+        "y1": 2028,
+        "x2": 3742,
+        "y2": 2126
+      },
+      "tag_bbox": {
+        "x1": 3490,
+        "y1": 1811,
+        "x2": 3557,
+        "y2": 1894
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'SAFETY RELIEF VALVE'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "7fb8e7be",
+      "patch_id": 30,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2243",
+      "tag_text_gemini": "V-BV-2244",
+      "tag_text_ocr": "V-BV-2243",
+      "symbol_bbox": {
+        "x1": 3546,
+        "y1": 1969,
+        "x2": 3578,
+        "y2": 2005
+      },
+      "tag_bbox": {
+        "x1": 3588,
+        "y1": 1947,
+        "x2": 3606,
+        "y2": 2047
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.65,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6aacd8bd",
+      "patch_id": 30,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2243",
+      "tag_text_gemini": "V-BV-2243",
+      "tag_text_ocr": "V-BV-2243",
+      "symbol_bbox": {
+        "x1": 3395,
+        "y1": 2048,
+        "x2": 3433,
+        "y2": 2088
+      },
+      "tag_bbox": {
+        "x1": 3368,
+        "y1": 2102,
+        "x2": 3467,
+        "y2": 2120
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.65,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "656f291b",
+      "patch_id": 31,
+      "symbol_name": "Thermowell",
+      "symbol_category": "instrument",
+      "tag_text": "TW 212",
+      "tag_text_gemini": "TW 212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4525,
+        "y1": 1660,
+        "x2": 4623,
+        "y2": 1718
+      },
+      "tag_bbox": {
+        "x1": 4549,
+        "y1": 1673,
+        "x2": 4596,
+        "y2": 1702
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Thermowell",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "4a165644",
+      "patch_id": 31,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "T 256",
+      "tag_text_gemini": "T 256",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4708,
+        "y1": 1660,
+        "x2": 4802,
+        "y2": 1739
+      },
+      "tag_bbox": {
+        "x1": 4730,
+        "y1": 1675,
+        "x2": 4774,
+        "y2": 1712
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "bd3c9194",
+      "patch_id": 31,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-912",
+      "tag_text_gemini": "V-GV-912",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4669,
+        "y1": 2337,
+        "x2": 4774,
+        "y2": 2398
+      },
+      "tag_bbox": {
+        "x1": 4669,
+        "y1": 2418,
+        "x2": 4777,
+        "y2": 2433
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6c8f6c5d",
+      "patch_id": 32,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "TE-211",
+      "tag_text_gemini": "TE-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5066,
+        "y1": 1606,
+        "x2": 5168,
+        "y2": 1708
+      },
+      "tag_bbox": {
+        "x1": 5092,
+        "y1": 1632,
+        "x2": 5142,
+        "y2": 1682
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "eca0518a",
+      "patch_id": 32,
+      "symbol_name": "Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T-256",
+      "tag_text_gemini": "T-256",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4746,
+        "y1": 1636,
+        "x2": 4818,
+        "y2": 1708
+      },
+      "tag_bbox": {
+        "x1": 4764,
+        "y1": 1654,
+        "x2": 4801,
+        "y2": 1690
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b911a306",
+      "patch_id": 32,
+      "symbol_name": "Temperature Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT-211",
+      "tag_text_gemini": "TIT-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5328,
+        "y1": 1606,
+        "x2": 5430,
+        "y2": 1708
+      },
+      "tag_bbox": {
+        "x1": 5352,
+        "y1": 1632,
+        "x2": 5406,
+        "y2": 1682
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "9d02db0d",
+      "patch_id": 32,
+      "symbol_name": "Thermowell",
+      "symbol_category": "instrument",
+      "tag_text": "TW-211",
+      "tag_text_gemini": "TW-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5066,
+        "y1": 1746,
+        "x2": 5168,
+        "y2": 1848
+      },
+      "tag_bbox": {
+        "x1": 5092,
+        "y1": 1772,
+        "x2": 5142,
+        "y2": 1822
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Thermowell",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e6298335",
+      "patch_id": 32,
+      "symbol_name": "Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T-257",
+      "tag_text_gemini": "T-257",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4888,
+        "y1": 1816,
+        "x2": 4958,
+        "y2": 1886
+      },
+      "tag_bbox": {
+        "x1": 4906,
+        "y1": 1834,
+        "x2": 4941,
+        "y2": 1870
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "161915cb",
+      "patch_id": 32,
+      "symbol_name": "Temperature Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "TI-211",
+      "tag_text_gemini": "TI-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5318,
+        "y1": 1916,
+        "x2": 5448,
+        "y2": 2046
+      },
+      "tag_bbox": {
+        "x1": 5348,
+        "y1": 1946,
+        "x2": 5418,
+        "y2": 2016
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Indicator",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0d88fe76",
+      "patch_id": 32,
+      "symbol_name": "Temperature Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "TI-211",
+      "tag_text_gemini": "TI-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4988,
+        "y1": 1946,
+        "x2": 5136,
+        "y2": 2046
+      },
+      "tag_bbox": {
+        "x1": 5028,
+        "y1": 1966,
+        "x2": 5098,
+        "y2": 2026
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Indicator",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "7b98377e",
+      "patch_id": 32,
+      "symbol_name": "Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T-217B",
+      "tag_text_gemini": "T-217B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4992,
+        "y1": 2290,
+        "x2": 5078,
+        "y2": 2376
+      },
+      "tag_bbox": {
+        "x1": 5010,
+        "y1": 2308,
+        "x2": 5060,
+        "y2": 2358
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "dac6d9b7",
+      "patch_id": 32,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-912",
+      "tag_text_gemini": "V-GV-912",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4738,
+        "y1": 2381,
+        "x2": 4818,
+        "y2": 2421
+      },
+      "tag_bbox": {
+        "x1": 4726,
+        "y1": 2436,
+        "x2": 4830,
+        "y2": 2456
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b44c7109",
+      "patch_id": 33,
+      "symbol_name": "Signal Converter",
+      "symbol_category": "instrument",
+      "tag_text": "XY 203",
+      "tag_text_gemini": "XY 203",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5852,
+        "y1": 1762,
+        "x2": 5920,
+        "y2": 1817
+      },
+      "tag_bbox": {
+        "x1": 5868,
+        "y1": 1771,
+        "x2": 5905,
+        "y2": 1806
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f166b7c4",
+      "patch_id": 33,
+      "symbol_name": "Logic Interlock",
+      "symbol_category": "instrument",
+      "tag_text": "I",
+      "tag_text_gemini": "I",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6012,
+        "y1": 1773,
+        "x2": 6060,
+        "y2": 1810
+      },
+      "tag_bbox": {
+        "x1": 6034,
+        "y1": 1783,
+        "x2": 6038,
+        "y2": 1799
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "97a80a40",
+      "patch_id": 33,
+      "symbol_name": "On/Off Valve",
+      "symbol_category": "valve",
+      "tag_text": "XV 203",
+      "tag_text_gemini": "XV 203",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5872,
+        "y1": 1872,
+        "x2": 5916,
+        "y2": 2015
+      },
+      "tag_bbox": {
+        "x1": 5732,
+        "y1": 1862,
+        "x2": 5800,
+        "y2": 1920
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "af2ea347",
+      "patch_id": 34,
+      "symbol_name": "Temperature Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT-214",
+      "tag_text_gemini": "TIT-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6896,
+        "y1": 1639,
+        "x2": 7022,
+        "y2": 1765
+      },
+      "tag_bbox": {
+        "x1": 6927,
+        "y1": 1669,
+        "x2": 6991,
+        "y2": 1735
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "9af81338",
+      "patch_id": 34,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "TE-213",
+      "tag_text_gemini": "TE-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6694,
+        "y1": 1811,
+        "x2": 6820,
+        "y2": 1937
+      },
+      "tag_bbox": {
+        "x1": 6729,
+        "y1": 1841,
+        "x2": 6785,
+        "y2": 1907
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1111b754",
+      "patch_id": 34,
+      "symbol_name": "Temperature Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT-213",
+      "tag_text_gemini": "TIT-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6896,
+        "y1": 1811,
+        "x2": 7022,
+        "y2": 1937
+      },
+      "tag_bbox": {
+        "x1": 6927,
+        "y1": 1841,
+        "x2": 6991,
+        "y2": 1907
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "62d3c070",
+      "patch_id": 34,
+      "symbol_name": "Thermowell",
+      "symbol_category": "instrument",
+      "tag_text": "TW-213",
+      "tag_text_gemini": "TW-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6694,
+        "y1": 1983,
+        "x2": 6820,
+        "y2": 2109
+      },
+      "tag_bbox": {
+        "x1": 6726,
+        "y1": 2013,
+        "x2": 6788,
+        "y2": 2079
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Thermowell",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "5c6a6f61",
+      "patch_id": 34,
+      "symbol_name": "Temperature Point",
+      "symbol_category": "instrument",
+      "tag_text": "T-258A",
+      "tag_text_gemini": "T-258A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6892,
+        "y1": 2086,
+        "x2": 7036,
+        "y2": 2230
+      },
+      "tag_bbox": {
+        "x1": 6928,
+        "y1": 2122,
+        "x2": 7000,
+        "y2": 2194
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "93b7cbf6",
+      "patch_id": 34,
+      "symbol_name": "Temperature Point",
+      "symbol_category": "instrument",
+      "tag_text": "T-258B",
+      "tag_text_gemini": "T-258B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6892,
+        "y1": 2236,
+        "x2": 7036,
+        "y2": 2380
+      },
+      "tag_bbox": {
+        "x1": 6928,
+        "y1": 2272,
+        "x2": 7000,
+        "y2": 2344
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "563ecc9e",
+      "patch_id": 35,
+      "symbol_name": "Software Link",
+      "symbol_category": "instrument",
+      "tag_text": "I/004",
+      "tag_text_gemini": "I/004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7252,
+        "y1": 1536,
+        "x2": 7360,
+        "y2": 1592
+      },
+      "tag_bbox": {
+        "x1": 7281,
+        "y1": 1546,
+        "x2": 7332,
+        "y2": 1580
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6846fa6e",
+      "patch_id": 35,
+      "symbol_name": "Discrete Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH 214",
+      "tag_text_gemini": "TAHH 214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7252,
+        "y1": 1601,
+        "x2": 7360,
+        "y2": 1657
+      },
+      "tag_bbox": {
+        "x1": 7270,
+        "y1": 1611,
+        "x2": 7343,
+        "y2": 1647
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b00d2939",
+      "patch_id": 35,
+      "symbol_name": "Panel-Mounted Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH 214",
+      "tag_text_gemini": "TAHH 214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7670,
+        "y1": 1601,
+        "x2": 7811,
+        "y2": 1657
+      },
+      "tag_bbox": {
+        "x1": 7693,
+        "y1": 1611,
+        "x2": 7788,
+        "y2": 1647
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "45d8de3f",
+      "patch_id": 35,
+      "symbol_name": "Software Link",
+      "symbol_category": "instrument",
+      "tag_text": "I/007",
+      "tag_text_gemini": "I/007",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7252,
+        "y1": 1736,
+        "x2": 7360,
+        "y2": 1792
+      },
+      "tag_bbox": {
+        "x1": 7281,
+        "y1": 1746,
+        "x2": 7332,
+        "y2": 1780
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "8d20a29a",
+      "patch_id": 35,
+      "symbol_name": "Software Link",
+      "symbol_category": "instrument",
+      "tag_text": "I/008",
+      "tag_text_gemini": "I/008",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7370,
+        "y1": 1736,
+        "x2": 7478,
+        "y2": 1792
+      },
+      "tag_bbox": {
+        "x1": 7399,
+        "y1": 1746,
+        "x2": 7450,
+        "y2": 1780
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6e1573ed",
+      "patch_id": 35,
+      "symbol_name": "Shared Control/Display Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "TIC 213",
+      "tag_text_gemini": "TIC 213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7252,
+        "y1": 1801,
+        "x2": 7360,
+        "y2": 1857
+      },
+      "tag_bbox": {
+        "x1": 7278,
+        "y1": 1811,
+        "x2": 7335,
+        "y2": 1847
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0d703d10",
+      "patch_id": 35,
+      "symbol_name": "Panel-Mounted Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "TI 213",
+      "tag_text_gemini": "TI 213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7670,
+        "y1": 1801,
+        "x2": 7811,
+        "y2": 1857
+      },
+      "tag_bbox": {
+        "x1": 7710,
+        "y1": 1811,
+        "x2": 7771,
+        "y2": 1847
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "70dc2a25",
+      "patch_id": 36,
+      "symbol_name": "Temperature Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH-214",
+      "tag_text_gemini": "TAHH-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7711,
+        "y1": 1582,
+        "x2": 7838,
+        "y2": 1654
+      },
+      "tag_bbox": {
+        "x1": 7739,
+        "y1": 1592,
+        "x2": 7802,
+        "y2": 1644
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "7b21a2b2",
+      "patch_id": 36,
+      "symbol_name": "Temperature Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "TI-213",
+      "tag_text_gemini": "TI-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7711,
+        "y1": 1782,
+        "x2": 7838,
+        "y2": 1854
+      },
+      "tag_bbox": {
+        "x1": 7749,
+        "y1": 1793,
+        "x2": 7796,
+        "y2": 1842
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Indicator",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "ebde9849",
+      "patch_id": 38,
+      "symbol_name": "Off-Page Connector",
+      "symbol_category": "piping",
+      "tag_text": "GDV-6-50-2004-002",
+      "tag_text_gemini": "GDV-6-50-2004-002",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 9934,
+        "y1": 2356,
+        "x2": 10171,
+        "y2": 2388
+      },
+      "tag_bbox": {
+        "x1": 9936,
+        "y1": 2361,
+        "x2": 10146,
+        "y2": 2381
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "eb30288c",
+      "patch_id": 39,
+      "symbol_name": "Line Number Tag",
+      "symbol_category": "piping",
+      "tag_text": "4224-MGDV-6-50-2002-001",
+      "tag_text_gemini": "4224-MGDV-6-50-2002-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 324,
+        "y1": 2767,
+        "x2": 978,
+        "y2": 2824
+      },
+      "tag_bbox": {
+        "x1": 340,
+        "y1": 2783,
+        "x2": 961,
+        "y2": 2807
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "5edbece5",
+      "patch_id": 39,
+      "symbol_name": "Line Number Tag",
+      "symbol_category": "piping",
+      "tag_text": "12\"-ETH-V006-C03B",
+      "tag_text_gemini": "12\"-ETH-V006-C03B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 465,
+        "y1": 3083,
+        "x2": 888,
+        "y2": 3123
+      },
+      "tag_bbox": {
+        "x1": 465,
+        "y1": 3083,
+        "x2": 888,
+        "y2": 3107
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "73ee938f",
+      "patch_id": 40,
+      "symbol_name": "Shared Display/Shared Control",
+      "symbol_category": "instrument",
+      "tag_text": "209",
+      "tag_text_gemini": "209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1291,
+        "y1": 2304,
+        "x2": 1391,
+        "y2": 2348
+      },
+      "tag_bbox": {
+        "x1": 1323,
+        "y1": 2320,
+        "x2": 1359,
+        "y2": 2337
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b5717186",
+      "patch_id": 40,
+      "symbol_name": "Shared Display/Shared Control",
+      "symbol_category": "instrument",
+      "tag_text": "209",
+      "tag_text_gemini": "209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1514,
+        "y1": 2304,
+        "x2": 1614,
+        "y2": 2348
+      },
+      "tag_bbox": {
+        "x1": 1546,
+        "y1": 2320,
+        "x2": 1582,
+        "y2": 2337
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "378ea486",
+      "patch_id": 40,
+      "symbol_name": "Shared Display/Shared Control",
+      "symbol_category": "instrument",
+      "tag_text": "001",
+      "tag_text_gemini": "001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1676,
+        "y1": 2304,
+        "x2": 1768,
+        "y2": 2348
+      },
+      "tag_bbox": {
+        "x1": 1708,
+        "y1": 2320,
+        "x2": 1744,
+        "y2": 2337
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "57e1d18f",
+      "patch_id": 40,
+      "symbol_name": "Position Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "EZT-209",
+      "tag_text_gemini": "EZT-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1267,
+        "y1": 2560,
+        "x2": 1379,
+        "y2": 2672
+      },
+      "tag_bbox": {
+        "x1": 1293,
+        "y1": 2591,
+        "x2": 1353,
+        "y2": 2647
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f65667b0",
+      "patch_id": 40,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-760",
+      "tag_text_gemini": "V-BV-760",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1186,
+        "y1": 2812,
+        "x2": 1272,
+        "y2": 2860
+      },
+      "tag_bbox": {
+        "x1": 1176,
+        "y1": 2866,
+        "x2": 1284,
+        "y2": 2884
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "146742b5",
+      "patch_id": 40,
+      "symbol_name": "Temperature Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T-255B",
+      "tag_text_gemini": "T-255B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1056,
+        "y1": 3112,
+        "x2": 1166,
+        "y2": 3222
+      },
+      "tag_bbox": {
+        "x1": 1082,
+        "y1": 3143,
+        "x2": 1140,
+        "y2": 3197
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "37bb91ec",
+      "patch_id": 40,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2249",
+      "tag_text_gemini": "V-BV-2249",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1626,
+        "y1": 3092,
+        "x2": 1712,
+        "y2": 3140
+      },
+      "tag_bbox": {
+        "x1": 1666,
+        "y1": 3146,
+        "x2": 1686,
+        "y2": 3283
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d902d930",
+      "patch_id": 41,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "EY 209",
+      "tag_text_gemini": "EY 209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2260,
+        "y1": 2413,
+        "x2": 2367,
+        "y2": 2520
+      },
+      "tag_bbox": {
+        "x1": 2290,
+        "y1": 2445,
+        "x2": 2338,
+        "y2": 2490
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "c4869c47",
+      "patch_id": 41,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "ESDV 209",
+      "tag_text_gemini": "ESDV 209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2289,
+        "y1": 2640,
+        "x2": 2396,
+        "y2": 2747
+      },
+      "tag_bbox": {
+        "x1": 2308,
+        "y1": 2672,
+        "x2": 2377,
+        "y2": 2717
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "3969fa70",
+      "patch_id": 41,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2249",
+      "tag_text_gemini": "V-BV-2249",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1695,
+        "y1": 2960,
+        "x2": 1728,
+        "y2": 2994
+      },
+      "tag_bbox": {
+        "x1": 1706,
+        "y1": 3004,
+        "x2": 1721,
+        "y2": 3089
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "22effbd0",
+      "patch_id": 41,
+      "symbol_name": "Temperature Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T 255A",
+      "tag_text_gemini": "T 255A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1740,
+        "y1": 2812,
+        "x2": 1836,
+        "y2": 2887
+      },
+      "tag_bbox": {
+        "x1": 1763,
+        "y1": 2831,
+        "x2": 1813,
+        "y2": 2868
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "c2fcbd41",
+      "patch_id": 41,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-1920",
+      "tag_text_gemini": "V-BV-1920",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2020,
+        "y1": 3146,
+        "x2": 2053,
+        "y2": 3179
+      },
+      "tag_bbox": {
+        "x1": 1914,
+        "y1": 3154,
+        "x2": 2014,
+        "y2": 3169
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "b3bbe026",
+      "patch_id": 41,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "LC",
+      "tag_text_gemini": "LC",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2009,
+        "y1": 3190,
+        "x2": 2064,
+        "y2": 3245
+      },
+      "tag_bbox": {
+        "x1": 2029,
+        "y1": 3208,
+        "x2": 2047,
+        "y2": 3226
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "69b2bf21",
+      "patch_id": 42,
+      "symbol_name": "Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "EY 209",
+      "tag_text_gemini": "EY 209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2324,
+        "y1": 2324,
+        "x2": 2422,
+        "y2": 2422
+      },
+      "tag_bbox": {
+        "x1": 2352,
+        "y1": 2350,
+        "x2": 2394,
+        "y2": 2396
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e94d453e",
+      "patch_id": 42,
+      "symbol_name": "Emergency Shutdown Valve",
+      "symbol_category": "valve",
+      "tag_text": "ESDV 209",
+      "tag_text_gemini": "ESDV 209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2306,
+        "y1": 2523,
+        "x2": 2403,
+        "y2": 2620
+      },
+      "tag_bbox": {
+        "x1": 2319,
+        "y1": 2544,
+        "x2": 2390,
+        "y2": 2597
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Emergency Shutdown Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.97,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f01ca953",
+      "patch_id": 42,
+      "symbol_name": "Check Valve",
+      "symbol_category": "valve",
+      "tag_text": "V\u2014NRV-748",
+      "tag_text_gemini": "V\u2014NRV-748",
+      "tag_text_ocr": "V\u2014NRV-748",
+      "symbol_bbox": {
+        "x1": 2465,
+        "y1": 2786,
+        "x2": 2581,
+        "y2": 2843
+      },
+      "tag_bbox": {
+        "x1": 2475,
+        "y1": 2745,
+        "x2": 2698,
+        "y2": 2774
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.56,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "93c5bcdb",
+      "patch_id": 42,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2355",
+      "tag_text_gemini": "V-BV-2355",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2794,
+        "y1": 2867,
+        "x2": 2857,
+        "y2": 2964
+      },
+      "tag_bbox": {
+        "x1": 2765,
+        "y1": 2809,
+        "x2": 2793,
+        "y2": 2994
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "899acfa9",
+      "patch_id": 42,
+      "symbol_name": "Corrosion Coupon",
+      "symbol_category": "piping",
+      "tag_text": "C",
+      "tag_text_gemini": "C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2867,
+        "y1": 3027,
+        "x2": 2943,
+        "y2": 3103
+      },
+      "tag_bbox": {
+        "x1": 2893,
+        "y1": 3048,
+        "x2": 2917,
+        "y2": 3080
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Corrosion Coupon",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6e2c0e3c",
+      "patch_id": 42,
+      "symbol_name": "Tie-in Point",
+      "symbol_category": "piping",
+      "tag_text": "T 201A",
+      "tag_text_gemini": "T 201A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2436,
+        "y1": 3107,
+        "x2": 2573,
+        "y2": 3244
+      },
+      "tag_bbox": {
+        "x1": 2469,
+        "y1": 3138,
+        "x2": 2541,
+        "y2": 3214
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6acb5fd5",
+      "patch_id": 42,
+      "symbol_name": "Tie-in Point",
+      "symbol_category": "piping",
+      "tag_text": "T 201B",
+      "tag_text_gemini": "T 201B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3017,
+        "y1": 3107,
+        "x2": 3154,
+        "y2": 3244
+      },
+      "tag_bbox": {
+        "x1": 3050,
+        "y1": 3138,
+        "x2": 3122,
+        "y2": 3214
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "9727ff62",
+      "patch_id": 43,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-22",
+      "tag_text_gemini": "V-BV-22",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3851,
+        "y1": 2473,
+        "x2": 3882,
+        "y2": 2504
+      },
+      "tag_bbox": {
+        "x1": 3901,
+        "y1": 2482,
+        "x2": 4012,
+        "y2": 2502
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "1f626d52",
+      "patch_id": 43,
+      "symbol_name": "Trap",
+      "symbol_category": "piping",
+      "tag_text": "245",
+      "tag_text_gemini": "245",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3970,
+        "y1": 2532,
+        "x2": 4046,
+        "y2": 2588
+      },
+      "tag_bbox": {
+        "x1": 3991,
+        "y1": 2550,
+        "x2": 4025,
+        "y2": 2568
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "a243245d",
+      "patch_id": 44,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2241",
+      "tag_text_gemini": "V-BV-2241",
+      "tag_text_ocr": "V-BV-2241",
+      "symbol_bbox": {
+        "x1": 3949,
+        "y1": 2463,
+        "x2": 3979,
+        "y2": 2493
+      },
+      "tag_bbox": {
+        "x1": 3990,
+        "y1": 2469,
+        "x2": 4088,
+        "y2": 2484
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.87,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "27777eec",
+      "patch_id": 44,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "T-245",
+      "tag_text_gemini": "T-245",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4038,
+        "y1": 2514,
+        "x2": 4102,
+        "y2": 2578
+      },
+      "tag_bbox": {
+        "x1": 4053,
+        "y1": 2526,
+        "x2": 4088,
+        "y2": 2566
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "2ac02278",
+      "patch_id": 44,
+      "symbol_name": "Flow Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "FIT-207",
+      "tag_text_gemini": "FIT-207",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4288,
+        "y1": 2492,
+        "x2": 4380,
+        "y2": 2584
+      },
+      "tag_bbox": {
+        "x1": 4308,
+        "y1": 2512,
+        "x2": 4360,
+        "y2": 2564
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Flow Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b42d2827",
+      "patch_id": 44,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-911",
+      "tag_text_gemini": "V-GV-912",
+      "tag_text_ocr": "V-GV-911",
+      "symbol_bbox": {
+        "x1": 4648,
+        "y1": 2392,
+        "x2": 4760,
+        "y2": 2448
+      },
+      "tag_bbox": {
+        "x1": 4652,
+        "y1": 2456,
+        "x2": 4756,
+        "y2": 2472
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.81,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "2d30a028",
+      "patch_id": 44,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-911",
+      "tag_text_gemini": "V-GV-911",
+      "tag_text_ocr": "V-GV-911",
+      "symbol_bbox": {
+        "x1": 4648,
+        "y1": 2504,
+        "x2": 4760,
+        "y2": 2560
+      },
+      "tag_bbox": {
+        "x1": 4652,
+        "y1": 2568,
+        "x2": 4756,
+        "y2": 2584
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.81,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "b93b68ac",
+      "patch_id": 44,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "T-217C",
+      "tag_text_gemini": "T-217C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4728,
+        "y1": 2776,
+        "x2": 4820,
+        "y2": 2868
+      },
+      "tag_bbox": {
+        "x1": 4744,
+        "y1": 2796,
+        "x2": 4804,
+        "y2": 2848
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "eef5952b",
+      "patch_id": 44,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "T-274C",
+      "tag_text_gemini": "T-274C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4728,
+        "y1": 3036,
+        "x2": 4820,
+        "y2": 3128
+      },
+      "tag_bbox": {
+        "x1": 4744,
+        "y1": 3056,
+        "x2": 4804,
+        "y2": 3108
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "34ab8e60",
+      "patch_id": 45,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-911",
+      "tag_text_gemini": "V-GV-912",
+      "tag_text_ocr": "V-GV-911",
+      "symbol_bbox": {
+        "x1": 4697,
+        "y1": 2373,
+        "x2": 4769,
+        "y2": 2417
+      },
+      "tag_bbox": {
+        "x1": 4683,
+        "y1": 2426,
+        "x2": 4783,
+        "y2": 2443
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.85,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1c04e8ff",
+      "patch_id": 45,
+      "symbol_name": "Butterfly Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-911",
+      "tag_text_gemini": "V-GV-911",
+      "tag_text_ocr": "V-GV-911",
+      "symbol_bbox": {
+        "x1": 4697,
+        "y1": 2508,
+        "x2": 4769,
+        "y2": 2552
+      },
+      "tag_bbox": {
+        "x1": 4683,
+        "y1": 2561,
+        "x2": 4783,
+        "y2": 2578
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Butterfly Valve",
+      "ocr_confidence": 0.85,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "d74fa020",
+      "patch_id": 45,
+      "symbol_name": "Temperature Point",
+      "symbol_category": "instrument",
+      "tag_text": "T 217C",
+      "tag_text_gemini": "T 217C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4731,
+        "y1": 2627,
+        "x2": 4815,
+        "y2": 2692
+      },
+      "tag_bbox": {
+        "x1": 4754,
+        "y1": 2642,
+        "x2": 4795,
+        "y2": 2676
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.97,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "28f25a5d",
+      "patch_id": 45,
+      "symbol_name": "Temperature Point",
+      "symbol_category": "instrument",
+      "tag_text": "T 274C",
+      "tag_text_gemini": "T 274C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4731,
+        "y1": 2906,
+        "x2": 4815,
+        "y2": 2971
+      },
+      "tag_bbox": {
+        "x1": 4754,
+        "y1": 2921,
+        "x2": 4795,
+        "y2": 2955
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.97,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "8930c7cd",
+      "patch_id": 46,
+      "symbol_name": "Flow Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "FIC-207",
+      "tag_text_gemini": "FIC-207",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5854,
+        "y1": 2862,
+        "x2": 5969,
+        "y2": 2977
+      },
+      "tag_bbox": {
+        "x1": 5892,
+        "y1": 2890,
+        "x2": 5930,
+        "y2": 2944
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'FLOW INDICATING TRANSMITTER'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "8ccf2e67",
+      "patch_id": 46,
+      "symbol_name": "Pressure Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "PIC-210",
+      "tag_text_gemini": "PIC-210",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6261,
+        "y1": 2911,
+        "x2": 6359,
+        "y2": 3009
+      },
+      "tag_bbox": {
+        "x1": 6292,
+        "y1": 2940,
+        "x2": 6328,
+        "y2": 2986
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'PRESSURE INDICATING TRANSMITTER'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "063ed233",
+      "patch_id": 47,
+      "symbol_name": "Piping Line",
+      "symbol_category": "piping",
+      "tag_text": "4\"-ETH-V059-61440X-PP",
+      "tag_text_gemini": "4\"-ETH-V059-61440X-PP",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6168,
+        "y1": 2328,
+        "x2": 6332,
+        "y2": 2374
+      },
+      "tag_bbox": {
+        "x1": 6168,
+        "y1": 2328,
+        "x2": 6332,
+        "y2": 2374
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "71c8fb30",
+      "patch_id": 47,
+      "symbol_name": "Signal Line Identifier",
+      "symbol_category": "instrument",
+      "tag_text": "C06B",
+      "tag_text_gemini": "C06B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6562,
+        "y1": 2328,
+        "x2": 6632,
+        "y2": 2350
+      },
+      "tag_bbox": {
+        "x1": 6562,
+        "y1": 2328,
+        "x2": 6632,
+        "y2": 2350
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "a60f71a4",
+      "patch_id": 47,
+      "symbol_name": "Function Block",
+      "symbol_category": "instrument",
+      "tag_text": "258B",
+      "tag_text_gemini": "258B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6652,
+        "y1": 2314,
+        "x2": 6742,
+        "y2": 2382
+      },
+      "tag_bbox": {
+        "x1": 6666,
+        "y1": 2334,
+        "x2": 6724,
+        "y2": 2362
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "5fb74ac0",
+      "patch_id": 48,
+      "symbol_name": "Field Mounted Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "58B",
+      "tag_text_gemini": "58B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6913,
+        "y1": 2305,
+        "x2": 6995,
+        "y2": 2387
+      },
+      "tag_bbox": {
+        "x1": 6932,
+        "y1": 2325,
+        "x2": 6975,
+        "y2": 2348
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "8e168604",
+      "patch_id": 49,
+      "symbol_name": "Temperature Interlock",
+      "symbol_category": "instrument",
+      "tag_text": "T-204A",
+      "tag_text_gemini": "T-204A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7943,
+        "y1": 2598,
+        "x2": 8018,
+        "y2": 2673
+      },
+      "tag_bbox": {
+        "x1": 7969,
+        "y1": 2611,
+        "x2": 7999,
+        "y2": 2659
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0901eb61",
+      "patch_id": 50,
+      "symbol_name": "IO Point",
+      "symbol_category": "instrument",
+      "tag_text": "4224-MGDV-6-50-2",
+      "tag_text_gemini": "4224-MGDV-6-50-2",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8964,
+        "y1": 2418,
+        "x2": 9448,
+        "y2": 2460
+      },
+      "tag_bbox": {
+        "x1": 8974,
+        "y1": 2429,
+        "x2": 9447,
+        "y2": 2448
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "a3362413",
+      "patch_id": 50,
+      "symbol_name": "IO Point",
+      "symbol_category": "instrument",
+      "tag_text": "4224-MGDV-6-50-2",
+      "tag_text_gemini": "4224-MGDV-6-50-2",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8964,
+        "y1": 2518,
+        "x2": 9448,
+        "y2": 2560
+      },
+      "tag_bbox": {
+        "x1": 8974,
+        "y1": 2529,
+        "x2": 9447,
+        "y2": 2548
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b5f69572",
+      "patch_id": 50,
+      "symbol_name": "Off-Page Connector",
+      "symbol_category": "instrument",
+      "tag_text": "4224-MGDV-6-50-",
+      "tag_text_gemini": "4224-MGDV-6-50-",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8964,
+        "y1": 2720,
+        "x2": 9448,
+        "y2": 2762
+      },
+      "tag_bbox": {
+        "x1": 8974,
+        "y1": 2731,
+        "x2": 9447,
+        "y2": 2750
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e0096987",
+      "patch_id": 50,
+      "symbol_name": "Off-Page Connector",
+      "symbol_category": "instrument",
+      "tag_text": "4224-MGDV-6-50-",
+      "tag_text_gemini": "4224-MGDV-6-50-",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8964,
+        "y1": 2820,
+        "x2": 9448,
+        "y2": 2862
+      },
+      "tag_bbox": {
+        "x1": 8974,
+        "y1": 2831,
+        "x2": 9447,
+        "y2": 2850
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "3f5bf4ae",
+      "patch_id": 52,
+      "symbol_name": "Off-Page Connector",
+      "symbol_category": "piping",
+      "tag_text": "V\u2014XV-202",
+      "tag_text_gemini": "V-XV-202",
+      "tag_text_ocr": "V\u2014XV-202",
+      "symbol_bbox": {
+        "x1": 271,
+        "y1": 3262,
+        "x2": 999,
+        "y2": 3527
+      },
+      "tag_bbox": {
+        "x1": 436,
+        "y1": 3356,
+        "x2": 679,
+        "y2": 3391
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.47,
+      "vision_confidence": 0.98,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "b3e33500",
+      "patch_id": 53,
+      "symbol_name": "Temperature Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T-255B",
+      "tag_text_gemini": "T-255B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1022,
+        "y1": 3176,
+        "x2": 1097,
+        "y2": 3251
+      },
+      "tag_bbox": {
+        "x1": 1046,
+        "y1": 3188,
+        "x2": 1079,
+        "y2": 3236
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "4331c41b",
+      "patch_id": 53,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2249",
+      "tag_text_gemini": "V-BV-2249",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1544,
+        "y1": 3163,
+        "x2": 1577,
+        "y2": 3220
+      },
+      "tag_bbox": {
+        "x1": 1585,
+        "y1": 3143,
+        "x2": 1602,
+        "y2": 3242
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "293d40ee",
+      "patch_id": 54,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2249",
+      "tag_text_gemini": "V-BV-2249",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1645,
+        "y1": 3120,
+        "x2": 1667,
+        "y2": 3144
+      },
+      "tag_bbox": {
+        "x1": 1683,
+        "y1": 3110,
+        "x2": 1698,
+        "y2": 3203
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "a0228c19",
+      "patch_id": 54,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-1920",
+      "tag_text_gemini": "V-BV-1920",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1937,
+        "y1": 3215,
+        "x2": 1979,
+        "y2": 3236
+      },
+      "tag_bbox": {
+        "x1": 1919,
+        "y1": 3176,
+        "x2": 2025,
+        "y2": 3192
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.97,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "54d1813d",
+      "patch_id": 54,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "LC",
+      "tag_text_gemini": "LC",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1929,
+        "y1": 3196,
+        "x2": 1967,
+        "y2": 3234
+      },
+      "tag_bbox": {
+        "x1": 1939,
+        "y1": 3206,
+        "x2": 1957,
+        "y2": 3222
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "16e200c6",
+      "patch_id": 54,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-761",
+      "tag_text_gemini": "V-BV-761",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1937,
+        "y1": 3285,
+        "x2": 1979,
+        "y2": 3306
+      },
+      "tag_bbox": {
+        "x1": 1919,
+        "y1": 3256,
+        "x2": 2004,
+        "y2": 3272
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Ball Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.97,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "7911b0b1",
+      "patch_id": 54,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "LC",
+      "tag_text_gemini": "LC",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1929,
+        "y1": 3266,
+        "x2": 1967,
+        "y2": 3304
+      },
+      "tag_bbox": {
+        "x1": 1939,
+        "y1": 3276,
+        "x2": 1957,
+        "y2": 3292
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "11ed8063",
+      "patch_id": 54,
+      "symbol_name": "Tie-in Point",
+      "symbol_category": "piping",
+      "tag_text": "T-201A",
+      "tag_text_gemini": "T-201A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2231,
+        "y1": 3159,
+        "x2": 2303,
+        "y2": 3231
+      },
+      "tag_bbox": {
+        "x1": 2249,
+        "y1": 3178,
+        "x2": 2285,
+        "y2": 3212
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "d21d7e55",
+      "patch_id": 54,
+      "symbol_name": "Tie-in Point",
+      "symbol_category": "piping",
+      "tag_text": "T-201C",
+      "tag_text_gemini": "T-201C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2231,
+        "y1": 3299,
+        "x2": 2303,
+        "y2": 3371
+      },
+      "tag_bbox": {
+        "x1": 2249,
+        "y1": 3318,
+        "x2": 2285,
+        "y2": 3352
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "5610fa5c",
+      "patch_id": 55,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "T-201B",
+      "tag_text_gemini": "T-201B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2939,
+        "y1": 3198,
+        "x2": 3028,
+        "y2": 3287
+      },
+      "tag_bbox": {
+        "x1": 2970,
+        "y1": 3221,
+        "x2": 2998,
+        "y2": 3264
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d53470d2",
+      "patch_id": 55,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "T-201C",
+      "tag_text_gemini": "T-201C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2309,
+        "y1": 3378,
+        "x2": 2398,
+        "y2": 3467
+      },
+      "tag_bbox": {
+        "x1": 2340,
+        "y1": 3401,
+        "x2": 2368,
+        "y2": 3444
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "da201b04",
+      "patch_id": 56,
+      "symbol_name": "Equipment",
+      "symbol_category": "equipment",
+      "tag_text": "C06B",
+      "tag_text_gemini": "C06B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3072,
+        "y1": 3072,
+        "x2": 3255,
+        "y2": 3173
+      },
+      "tag_bbox": {
+        "x1": 3073,
+        "y1": 3075,
+        "x2": 3172,
+        "y2": 3106
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "373eecfe",
+      "patch_id": 56,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-908",
+      "tag_text_gemini": "V-GV-908",
+      "tag_text_ocr": "V\u2014GV-903",
+      "symbol_bbox": {
+        "x1": 3096,
+        "y1": 3396,
+        "x2": 3162,
+        "y2": 3431
+      },
+      "tag_bbox": {
+        "x1": 3083,
+        "y1": 3439,
+        "x2": 3177,
+        "y2": 3455
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.52,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "aa13d99e",
+      "patch_id": 56,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-907",
+      "tag_text_gemini": "V-GV-907",
+      "tag_text_ocr": "V\u2014GV-903",
+      "symbol_bbox": {
+        "x1": 3266,
+        "y1": 3396,
+        "x2": 3332,
+        "y2": 3431
+      },
+      "tag_bbox": {
+        "x1": 3254,
+        "y1": 3439,
+        "x2": 3348,
+        "y2": 3455
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.52,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e4e8b424",
+      "patch_id": 56,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-906",
+      "tag_text_gemini": "V-GV-906",
+      "tag_text_ocr": "V\u2014GV-903",
+      "symbol_bbox": {
+        "x1": 3226,
+        "y1": 3516,
+        "x2": 3292,
+        "y2": 3551
+      },
+      "tag_bbox": {
+        "x1": 3214,
+        "y1": 3559,
+        "x2": 3308,
+        "y2": 3575
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.52,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b2122d17",
+      "patch_id": 56,
+      "symbol_name": "Level Gauge",
+      "symbol_category": "instrument",
+      "tag_text": "LG 202",
+      "tag_text_gemini": "LG 202",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3086,
+        "y1": 3576,
+        "x2": 3193,
+        "y2": 3683
+      },
+      "tag_bbox": {
+        "x1": 3116,
+        "y1": 3601,
+        "x2": 3162,
+        "y2": 3656
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Level Gauge",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0dcebe63",
+      "patch_id": 56,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-905",
+      "tag_text_gemini": "V-GV-905",
+      "tag_text_ocr": "V\u2014GV-903",
+      "symbol_bbox": {
+        "x1": 3226,
+        "y1": 3706,
+        "x2": 3292,
+        "y2": 3741
+      },
+      "tag_bbox": {
+        "x1": 3214,
+        "y1": 3749,
+        "x2": 3308,
+        "y2": 3765
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.52,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "7e9e1f79",
+      "patch_id": 57,
+      "symbol_name": "Temperature Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "T-274A",
+      "tag_text_gemini": "T-274A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4214,
+        "y1": 3297,
+        "x2": 4298,
+        "y2": 3381
+      },
+      "tag_bbox": {
+        "x1": 4244,
+        "y1": 3317,
+        "x2": 4271,
+        "y2": 3363
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d73e198b",
+      "patch_id": 57,
+      "symbol_name": "Temperature Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "T-274B",
+      "tag_text_gemini": "T-274B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4675,
+        "y1": 3297,
+        "x2": 4759,
+        "y2": 3381
+      },
+      "tag_bbox": {
+        "x1": 4703,
+        "y1": 3317,
+        "x2": 4732,
+        "y2": 3363
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "4cf10f45",
+      "patch_id": 57,
+      "symbol_name": "Temperature Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "T-274C",
+      "tag_text_gemini": "T-274C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4675,
+        "y1": 3097,
+        "x2": 4759,
+        "y2": 3181
+      },
+      "tag_bbox": {
+        "x1": 4703,
+        "y1": 3117,
+        "x2": 4732,
+        "y2": 3163
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "c08c9a2a",
+      "patch_id": 57,
+      "symbol_name": "Temporary Strainer",
+      "symbol_category": "piping",
+      "tag_text": "S-V-204",
+      "tag_text_gemini": "S-V-204",
+      "tag_text_ocr": "S-V-204",
+      "symbol_bbox": {
+        "x1": 4318,
+        "y1": 3240,
+        "x2": 4388,
+        "y2": 3270
+      },
+      "tag_bbox": {
+        "x1": 4356,
+        "y1": 3378,
+        "x2": 4470,
+        "y2": 3394
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.53,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "4521ee79",
+      "patch_id": 57,
+      "symbol_name": "Level Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "LIC-204",
+      "tag_text_gemini": "LIC-204",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4465,
+        "y1": 3458,
+        "x2": 4580,
+        "y2": 3573
+      },
+      "tag_bbox": {
+        "x1": 4497,
+        "y1": 3496,
+        "x2": 4549,
+        "y2": 3539
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'LEVEL INDICATING TRANSMITTER'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "367f2268",
+      "patch_id": 57,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX002",
+      "tag_text_gemini": "V-GV-XX002",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4638,
+        "y1": 3780,
+        "x2": 4689,
+        "y2": 3831
+      },
+      "tag_bbox": {
+        "x1": 4514,
+        "y1": 3745,
+        "x2": 4629,
+        "y2": 3762
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "cf5f0c98",
+      "patch_id": 58,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "T-274C",
+      "tag_text_gemini": "T-274C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4726,
+        "y1": 3072,
+        "x2": 4834,
+        "y2": 3152
+      },
+      "tag_bbox": {
+        "x1": 4759,
+        "y1": 3085,
+        "x2": 4808,
+        "y2": 3135
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "81009dd6",
+      "patch_id": 58,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "T-274B",
+      "tag_text_gemini": "T-274B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4726,
+        "y1": 3206,
+        "x2": 4834,
+        "y2": 3286
+      },
+      "tag_bbox": {
+        "x1": 4759,
+        "y1": 3219,
+        "x2": 4808,
+        "y2": 3269
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "a47f9eed",
+      "patch_id": 58,
+      "symbol_name": "Level Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "LIC-204",
+      "tag_text_gemini": "LIC-204",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4608,
+        "y1": 3494,
+        "x2": 4706,
+        "y2": 3572
+      },
+      "tag_bbox": {
+        "x1": 4631,
+        "y1": 3507,
+        "x2": 4682,
+        "y2": 3557
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'LEVEL INDICATING TRANSMITTER'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "22a158e5",
+      "patch_id": 58,
+      "symbol_name": "Level Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "LI-204",
+      "tag_text_gemini": "LI-204",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4994,
+        "y1": 3494,
+        "x2": 5126,
+        "y2": 3572
+      },
+      "tag_bbox": {
+        "x1": 5030,
+        "y1": 3507,
+        "x2": 5090,
+        "y2": 3557
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Level Indicator",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "fbff1da7",
+      "patch_id": 58,
+      "symbol_name": "Level Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "LIT-206",
+      "tag_text_gemini": "LIT-206",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4790,
+        "y1": 3686,
+        "x2": 4896,
+        "y2": 3792
+      },
+      "tag_bbox": {
+        "x1": 4816,
+        "y1": 3710,
+        "x2": 4870,
+        "y2": 3770
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Level Indicating Transmitter",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0dbb88b8",
+      "patch_id": 58,
+      "symbol_name": "Level Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "LAHH-206",
+      "tag_text_gemini": "LAHH-206",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5122,
+        "y1": 3686,
+        "x2": 5246,
+        "y2": 3764
+      },
+      "tag_bbox": {
+        "x1": 5143,
+        "y1": 3699,
+        "x2": 5225,
+        "y2": 3749
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "38b6529a",
+      "patch_id": 58,
+      "symbol_name": "Interlock",
+      "symbol_category": "instrument",
+      "tag_text": "I-004",
+      "tag_text_gemini": "I-004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5302,
+        "y1": 3686,
+        "x2": 5396,
+        "y2": 3764
+      },
+      "tag_bbox": {
+        "x1": 5331,
+        "y1": 3699,
+        "x2": 5367,
+        "y2": 3749
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "7c5fd210",
+      "patch_id": 58,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX003",
+      "tag_text_gemini": "V-GV-XX003",
+      "tag_text_ocr": "V-GV-XX003",
+      "symbol_bbox": {
+        "x1": 4904,
+        "y1": 3838,
+        "x2": 5094,
+        "y2": 3878
+      },
+      "tag_bbox": {
+        "x1": 4906,
+        "y1": 3806,
+        "x2": 5092,
+        "y2": 3830
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.87,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "39a1a784",
+      "patch_id": 58,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX003",
+      "tag_text_gemini": "V-GV-XX004",
+      "tag_text_ocr": "V-GV-XX003",
+      "symbol_bbox": {
+        "x1": 4904,
+        "y1": 3930,
+        "x2": 5094,
+        "y2": 3970
+      },
+      "tag_bbox": {
+        "x1": 4906,
+        "y1": 3976,
+        "x2": 5092,
+        "y2": 4000
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.87,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b35f953a",
+      "patch_id": 60,
+      "symbol_name": "High Signal Selector",
+      "symbol_category": "instrument",
+      "tag_text": "Y1-206",
+      "tag_text_gemini": "Y1-206",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6330,
+        "y1": 3378,
+        "x2": 6488,
+        "y2": 3536
+      },
+      "tag_bbox": {
+        "x1": 6382,
+        "y1": 3421,
+        "x2": 6436,
+        "y2": 3492
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "5e6516f3",
+      "patch_id": 61,
+      "symbol_name": "Pressure Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "PIC-1466B",
+      "tag_text_gemini": "PIC-1466B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7571,
+        "y1": 3091,
+        "x2": 7657,
+        "y2": 3177
+      },
+      "tag_bbox": {
+        "x1": 7590,
+        "y1": 3113,
+        "x2": 7639,
+        "y2": 3155
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'PRESSURE INDICATING TRANSMITTER'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "7753de60",
+      "patch_id": 61,
+      "symbol_name": "Solenoid Valve",
+      "symbol_category": "valve",
+      "tag_text": "Y2-207",
+      "tag_text_gemini": "Y2-207",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7791,
+        "y1": 3521,
+        "x2": 7877,
+        "y2": 3607
+      },
+      "tag_bbox": {
+        "x1": 7812,
+        "y1": 3541,
+        "x2": 7855,
+        "y2": 3586
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Solenoid Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "83f3723a",
+      "patch_id": 62,
+      "symbol_name": "Switch",
+      "symbol_category": "instrument",
+      "tag_text": "XS-261",
+      "tag_text_gemini": "XS-261",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8218,
+        "y1": 3095,
+        "x2": 8312,
+        "y2": 3156
+      },
+      "tag_bbox": {
+        "x1": 8241,
+        "y1": 3104,
+        "x2": 8289,
+        "y2": 3146
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "9910c664",
+      "patch_id": 62,
+      "symbol_name": "Speed Controller",
+      "symbol_category": "instrument",
+      "tag_text": "SC-201",
+      "tag_text_gemini": "SC-201",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8474,
+        "y1": 3475,
+        "x2": 8568,
+        "y2": 3536
+      },
+      "tag_bbox": {
+        "x1": 8496,
+        "y1": 3484,
+        "x2": 8545,
+        "y2": 3526
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "704c7895",
+      "patch_id": 62,
+      "symbol_name": "Switch",
+      "symbol_category": "instrument",
+      "tag_text": "XS-270",
+      "tag_text_gemini": "XS-270",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8218,
+        "y1": 3475,
+        "x2": 8312,
+        "y2": 3536
+      },
+      "tag_bbox": {
+        "x1": 8241,
+        "y1": 3484,
+        "x2": 8290,
+        "y2": 3526
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "059b5754",
+      "patch_id": 62,
+      "symbol_name": "Relay/Converter",
+      "symbol_category": "instrument",
+      "tag_text": "Y2-207",
+      "tag_text_gemini": "Y2-207",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7846,
+        "y1": 3545,
+        "x2": 7966,
+        "y2": 3634
+      },
+      "tag_bbox": {
+        "x1": 7881,
+        "y1": 3560,
+        "x2": 7931,
+        "y2": 3619
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "31de3ac0",
+      "patch_id": 62,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS-205",
+      "tag_text_gemini": "HS-205",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8218,
+        "y1": 3775,
+        "x2": 8312,
+        "y2": 3836
+      },
+      "tag_bbox": {
+        "x1": 8241,
+        "y1": 3784,
+        "x2": 8290,
+        "y2": 3826
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'HAND SWITCH OPEN'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "ddfea7cc",
+      "patch_id": 63,
+      "symbol_name": "Speed Controller",
+      "symbol_category": "instrument",
+      "tag_text": "V-SC-201",
+      "tag_text_gemini": "V-SC-201",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8624,
+        "y1": 3528,
+        "x2": 8718,
+        "y2": 3622
+      },
+      "tag_bbox": {
+        "x1": 8594,
+        "y1": 3561,
+        "x2": 8700,
+        "y2": 3605
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "a61b0c2f",
+      "patch_id": 64,
+      "symbol_name": "Signal Tag",
+      "symbol_category": "unknown",
+      "tag_text": "GDV-6-50-2002-001",
+      "tag_text_gemini": "GDV-6-50-2002-001",
+      "tag_text_ocr": "GDV-6-50-2002-001",
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 3125,
+        "x2": 9926,
+        "y2": 3183
+      },
+      "tag_bbox": {
+        "x1": 9326,
+        "y1": 3137,
+        "x2": 9915,
+        "y2": 3170
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.47,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "2ff5b6c9",
+      "patch_id": 64,
+      "symbol_name": "Signal Tag",
+      "symbol_category": "unknown",
+      "tag_text": "GDV-6-50-2002-001",
+      "tag_text_gemini": "GDV-6-50-2002-001",
+      "tag_text_ocr": "GDV-6-50-2002-001",
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 3285,
+        "x2": 9996,
+        "y2": 3343
+      },
+      "tag_bbox": {
+        "x1": 9326,
+        "y1": 3297,
+        "x2": 9915,
+        "y2": 3330
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.47,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "680a0a80",
+      "patch_id": 64,
+      "symbol_name": "Signal Tag",
+      "symbol_category": "unknown",
+      "tag_text": "GDV-6-50-2002-001",
+      "tag_text_gemini": "GDV-6-50-2002-001",
+      "tag_text_ocr": "GDV-6-50-2002-001",
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 3445,
+        "x2": 9926,
+        "y2": 3503
+      },
+      "tag_bbox": {
+        "x1": 9326,
+        "y1": 3457,
+        "x2": 9915,
+        "y2": 3490
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.47,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "01dc348d",
+      "patch_id": 64,
+      "symbol_name": "Signal Tag",
+      "symbol_category": "unknown",
+      "tag_text": "DV-6-50-2004-003",
+      "tag_text_gemini": "DV-6-50-2004-003",
+      "tag_text_ocr": "DV-6-50-2004-003",
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 3565,
+        "x2": 9926,
+        "y2": 3623
+      },
+      "tag_bbox": {
+        "x1": 9326,
+        "y1": 3577,
+        "x2": 9915,
+        "y2": 3610
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.7,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "5de097fe",
+      "patch_id": 64,
+      "symbol_name": "Signal Tag",
+      "symbol_category": "unknown",
+      "tag_text": "DV-6-50-2004-003",
+      "tag_text_gemini": "DV-6-50-2004-003",
+      "tag_text_ocr": "DV-6-50-2004-003",
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 3725,
+        "x2": 9996,
+        "y2": 3783
+      },
+      "tag_bbox": {
+        "x1": 9326,
+        "y1": 3737,
+        "x2": 9915,
+        "y2": 3770
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.7,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "3072b4ba",
+      "patch_id": 69,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX001",
+      "tag_text_gemini": "V-GV-XX001",
+      "tag_text_ocr": "V-GV-XX001",
+      "symbol_bbox": {
+        "x1": 3355,
+        "y1": 4670,
+        "x2": 3392,
+        "y2": 4708
+      },
+      "tag_bbox": {
+        "x1": 3222,
+        "y1": 4683,
+        "x2": 3342,
+        "y2": 4701
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.9,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "206e12f2",
+      "patch_id": 70,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX002",
+      "tag_text_gemini": "V-GV-XX002",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4638,
+        "y1": 3948,
+        "x2": 4690,
+        "y2": 3998
+      },
+      "tag_bbox": {
+        "x1": 4406,
+        "y1": 3954,
+        "x2": 4592,
+        "y2": 3981
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "ec3bf7a9",
+      "patch_id": 70,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-922",
+      "tag_text_gemini": "V-GV-922",
+      "tag_text_ocr": "V-GV-922",
+      "symbol_bbox": {
+        "x1": 4397,
+        "y1": 4624,
+        "x2": 4468,
+        "y2": 4672
+      },
+      "tag_bbox": {
+        "x1": 4481,
+        "y1": 4643,
+        "x2": 4601,
+        "y2": 4663
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.88,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "98627686",
+      "patch_id": 70,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "T 246A",
+      "tag_text_gemini": "T 246A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4393,
+        "y1": 4702,
+        "x2": 4472,
+        "y2": 4781
+      },
+      "tag_bbox": {
+        "x1": 4408,
+        "y1": 4721,
+        "x2": 4458,
+        "y2": 4758
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Temperature Element",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "588320cf",
+      "patch_id": 71,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX003",
+      "tag_text_gemini": "V-GV-XX003",
+      "tag_text_ocr": "V-GV-XX003",
+      "symbol_bbox": {
+        "x1": 4888,
+        "y1": 3906,
+        "x2": 4976,
+        "y2": 3938
+      },
+      "tag_bbox": {
+        "x1": 4885,
+        "y1": 3874,
+        "x2": 5027,
+        "y2": 3896
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.91,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "162fa7e6",
+      "patch_id": 71,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX003",
+      "tag_text_gemini": "V-GV-XX004",
+      "tag_text_ocr": "V-GV-XX003",
+      "symbol_bbox": {
+        "x1": 4888,
+        "y1": 3954,
+        "x2": 4976,
+        "y2": 3986
+      },
+      "tag_bbox": {
+        "x1": 4885,
+        "y1": 3992,
+        "x2": 5030,
+        "y2": 4014
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.91,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0196ac7c",
+      "patch_id": 71,
+      "symbol_name": "Level Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "LAHH 206",
+      "tag_text_gemini": "LAHH 206",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5105,
+        "y1": 3968,
+        "x2": 5208,
+        "y2": 4042
+      },
+      "tag_bbox": {
+        "x1": 5116,
+        "y1": 3983,
+        "x2": 5190,
+        "y2": 4028
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "46dd8871",
+      "patch_id": 71,
+      "symbol_name": "Flow Position Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "FZI 208",
+      "tag_text_gemini": "FZI 208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4861,
+        "y1": 4653,
+        "x2": 5060,
+        "y2": 4729
+      },
+      "tag_bbox": {
+        "x1": 4950,
+        "y1": 4668,
+        "x2": 5040,
+        "y2": 4713
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'BI-DIRECTIONAL POSITION INDICATOR'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "01526786",
+      "patch_id": 71,
+      "symbol_name": "Flow Position Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "FZI 208",
+      "tag_text_gemini": "FZI 208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5212,
+        "y1": 4653,
+        "x2": 5356,
+        "y2": 4729
+      },
+      "tag_bbox": {
+        "x1": 5231,
+        "y1": 4668,
+        "x2": 5321,
+        "y2": 4713
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'BI-DIRECTIONAL POSITION INDICATOR'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f16f5a61",
+      "patch_id": 73,
+      "symbol_name": "Flow Relay/Computer",
+      "symbol_category": "instrument",
+      "tag_text": "FY-208",
+      "tag_text_gemini": "FY-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6144,
+        "y1": 4644,
+        "x2": 6242,
+        "y2": 4742
+      },
+      "tag_bbox": {
+        "x1": 6169,
+        "y1": 4661,
+        "x2": 6218,
+        "y2": 4723
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "9c01cc4a",
+      "patch_id": 77,
+      "symbol_name": "Off-Page Connector",
+      "symbol_category": "piping",
+      "tag_text": "DV-6-50-2004-003",
+      "tag_text_gemini": "DV-6-50-2004-003",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 3880,
+        "x2": 9594,
+        "y2": 3920
+      },
+      "tag_bbox": {
+        "x1": 9220,
+        "y1": 3881,
+        "x2": 9554,
+        "y2": 3899
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0ead79ab",
+      "patch_id": 77,
+      "symbol_name": "Off-Page Connector",
+      "symbol_category": "piping",
+      "tag_text": "GDV-6-50-2002-001",
+      "tag_text_gemini": "GDV-6-50-2002-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 4000,
+        "x2": 9594,
+        "y2": 4040
+      },
+      "tag_bbox": {
+        "x1": 9220,
+        "y1": 4001,
+        "x2": 9592,
+        "y2": 4019
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "052c2e1c",
+      "patch_id": 77,
+      "symbol_name": "Off-Page Connector",
+      "symbol_category": "piping",
+      "tag_text": "GDV-6-50-2002-001",
+      "tag_text_gemini": "GDV-6-50-2002-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 4080,
+        "x2": 9594,
+        "y2": 4120
+      },
+      "tag_bbox": {
+        "x1": 9220,
+        "y1": 4081,
+        "x2": 9592,
+        "y2": 4099
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "49e66a84",
+      "patch_id": 77,
+      "symbol_name": "Off-Page Connector",
+      "symbol_category": "piping",
+      "tag_text": "GDV-6-50-2002-001",
+      "tag_text_gemini": "GDV-6-50-2002-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 4160,
+        "x2": 9594,
+        "y2": 4200
+      },
+      "tag_bbox": {
+        "x1": 9220,
+        "y1": 4161,
+        "x2": 9592,
+        "y2": 4179
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "06c37ec3",
+      "patch_id": 77,
+      "symbol_name": "Off-Page Connector",
+      "symbol_category": "piping",
+      "tag_text": "SDV-6-50-2002-001",
+      "tag_text_gemini": "SDV-6-50-2002-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 4280,
+        "x2": 9594,
+        "y2": 4320
+      },
+      "tag_bbox": {
+        "x1": 9220,
+        "y1": 4281,
+        "x2": 9554,
+        "y2": 4299
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "a8958181",
+      "patch_id": 81,
+      "symbol_name": "Line Number",
+      "symbol_category": "piping",
+      "tag_text": "10\u201d\u2014ETH-V061-61440X",
+      "tag_text_gemini": "10\u201d\u2014ETH-V061-61440X",
+      "tag_text_ocr": "10\u201d\u2014ETH-V061-61440X",
+      "symbol_bbox": {
+        "x1": 3108,
+        "y1": 5412,
+        "x2": 3304,
+        "y2": 5469
+      },
+      "tag_bbox": {
+        "x1": 3118,
+        "y1": 5426,
+        "x2": 3296,
+        "y2": 5452
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.49,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "cad32bbc",
+      "patch_id": 82,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX001",
+      "tag_text_gemini": "V-GV-XX001",
+      "tag_text_ocr": "V-GV-XX001",
+      "symbol_bbox": {
+        "x1": 3358,
+        "y1": 4734,
+        "x2": 3430,
+        "y2": 4790
+      },
+      "tag_bbox": {
+        "x1": 3324,
+        "y1": 4764,
+        "x2": 3452,
+        "y2": 4782
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.85,
+      "vision_confidence": 0.98,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "f707a30f",
+      "patch_id": 83,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-922",
+      "tag_text_gemini": "V-GV-922",
+      "tag_text_ocr": "V-GV-922",
+      "symbol_bbox": {
+        "x1": 4156,
+        "y1": 4609,
+        "x2": 4218,
+        "y2": 4649
+      },
+      "tag_bbox": {
+        "x1": 4221,
+        "y1": 4621,
+        "x2": 4319,
+        "y2": 4639
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.86,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "e7c4a39f",
+      "patch_id": 83,
+      "symbol_name": "Temperature Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T 246A",
+      "tag_text_gemini": "T 246A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4078,
+        "y1": 4719,
+        "x2": 4162,
+        "y2": 4803
+      },
+      "tag_bbox": {
+        "x1": 4102,
+        "y1": 4737,
+        "x2": 4141,
+        "y2": 4784
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "bbd06c06",
+      "patch_id": 83,
+      "symbol_name": "Globe Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GLV-523",
+      "tag_text_gemini": "V-GLV-523",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4156,
+        "y1": 4888,
+        "x2": 4218,
+        "y2": 4928
+      },
+      "tag_bbox": {
+        "x1": 4139,
+        "y1": 4937,
+        "x2": 4240,
+        "y2": 4955
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Globe Valve",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "06c926c0",
+      "patch_id": 83,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-922",
+      "tag_text_gemini": "V-GV-923",
+      "tag_text_ocr": "V-GV-922",
+      "symbol_bbox": {
+        "x1": 4260,
+        "y1": 4888,
+        "x2": 4322,
+        "y2": 4928
+      },
+      "tag_bbox": {
+        "x1": 4253,
+        "y1": 4937,
+        "x2": 4351,
+        "y2": 4955
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Gate Valve",
+      "ocr_confidence": 0.86,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1e4cf8a3",
+      "patch_id": 83,
+      "symbol_name": "Temperature Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T 246B",
+      "tag_text_gemini": "T 246B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4078,
+        "y1": 5028,
+        "x2": 4162,
+        "y2": 5112
+      },
+      "tag_bbox": {
+        "x1": 4102,
+        "y1": 5046,
+        "x2": 4141,
+        "y2": 5093
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "ddae197e",
+      "patch_id": 83,
+      "symbol_name": "Temperature Instrument",
+      "symbol_category": "instrument",
+      "tag_text": "T 246C",
+      "tag_text_gemini": "T 246C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4252,
+        "y1": 5028,
+        "x2": 4336,
+        "y2": 5112
+      },
+      "tag_bbox": {
+        "x1": 4276,
+        "y1": 5046,
+        "x2": 4315,
+        "y2": 5093
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "49dbae36",
+      "patch_id": 84,
+      "symbol_name": "Position Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "FZI-208",
+      "tag_text_gemini": "FZI-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4857,
+        "y1": 4726,
+        "x2": 4979,
+        "y2": 4799
+      },
+      "tag_bbox": {
+        "x1": 4893,
+        "y1": 4739,
+        "x2": 4943,
+        "y2": 4785
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'BI-DIRECTIONAL POSITION INDICATOR'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "40d4b6f7",
+      "patch_id": 84,
+      "symbol_name": "Position Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "FZI-208",
+      "tag_text_gemini": "FZI-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5199,
+        "y1": 4726,
+        "x2": 5321,
+        "y2": 4799
+      },
+      "tag_bbox": {
+        "x1": 5235,
+        "y1": 4739,
+        "x2": 5285,
+        "y2": 4785
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'BI-DIRECTIONAL POSITION INDICATOR'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "486b6717",
+      "patch_id": 84,
+      "symbol_name": "Position Controller",
+      "symbol_category": "instrument",
+      "tag_text": "ZLC-208",
+      "tag_text_gemini": "ZLC-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4949,
+        "y1": 4930,
+        "x2": 5070,
+        "y2": 5004
+      },
+      "tag_bbox": {
+        "x1": 4983,
+        "y1": 4944,
+        "x2": 5036,
+        "y2": 4990
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "163244f2",
+      "patch_id": 84,
+      "symbol_name": "Position Switch",
+      "symbol_category": "instrument",
+      "tag_text": "ZLO-208",
+      "tag_text_gemini": "ZLO-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4949,
+        "y1": 5060,
+        "x2": 5070,
+        "y2": 5134
+      },
+      "tag_bbox": {
+        "x1": 4983,
+        "y1": 5074,
+        "x2": 5036,
+        "y2": 5120
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "34a0d9d3",
+      "patch_id": 84,
+      "symbol_name": "Interlock",
+      "symbol_category": "instrument",
+      "tag_text": "I-001",
+      "tag_text_gemini": "I-001",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4968,
+        "y1": 5161,
+        "x2": 5051,
+        "y2": 5229
+      },
+      "tag_bbox": {
+        "x1": 4999,
+        "y1": 5174,
+        "x2": 5020,
+        "y2": 5215
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "edbc5361",
+      "patch_id": 85,
+      "symbol_name": "Flow Position Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "FZT-208",
+      "tag_text_gemini": "FZT-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5553,
+        "y1": 4694,
+        "x2": 5662,
+        "y2": 4769
+      },
+      "tag_bbox": {
+        "x1": 5575,
+        "y1": 4709,
+        "x2": 5640,
+        "y2": 4752
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'FLOW INDICATING TRANSMITTER'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "06684bec",
+      "patch_id": 85,
+      "symbol_name": "Flow Position Switch Close",
+      "symbol_category": "instrument",
+      "tag_text": "FZSC-208",
+      "tag_text_gemini": "FZSC-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5553,
+        "y1": 4894,
+        "x2": 5662,
+        "y2": 4969
+      },
+      "tag_bbox": {
+        "x1": 5571,
+        "y1": 4909,
+        "x2": 5644,
+        "y2": 4952
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f341825b",
+      "patch_id": 85,
+      "symbol_name": "Flow Position Switch Open",
+      "symbol_category": "instrument",
+      "tag_text": "FZSO-208",
+      "tag_text_gemini": "FZSO-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5553,
+        "y1": 5034,
+        "x2": 5662,
+        "y2": 5109
+      },
+      "tag_bbox": {
+        "x1": 5571,
+        "y1": 5049,
+        "x2": 5644,
+        "y2": 5092
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d9bdb533",
+      "patch_id": 85,
+      "symbol_name": "Flow Position Relay",
+      "symbol_category": "instrument",
+      "tag_text": "FZY-208",
+      "tag_text_gemini": "FZY-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6033,
+        "y1": 5144,
+        "x2": 6142,
+        "y2": 5219
+      },
+      "tag_bbox": {
+        "x1": 6055,
+        "y1": 5159,
+        "x2": 6120,
+        "y2": 5202
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1303aebe",
+      "patch_id": 86,
+      "symbol_name": "Flow Relay/Computing Device",
+      "symbol_category": "instrument",
+      "tag_text": "FY-208",
+      "tag_text_gemini": "FY-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6144,
+        "y1": 4729,
+        "x2": 6209,
+        "y2": 4793
+      },
+      "tag_bbox": {
+        "x1": 6159,
+        "y1": 4740,
+        "x2": 6194,
+        "y2": 4781
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f184d7c1",
+      "patch_id": 86,
+      "symbol_name": "Positioner/Actuator",
+      "symbol_category": "instrument",
+      "tag_text": "ZY-208",
+      "tag_text_gemini": "ZY-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6247,
+        "y1": 4851,
+        "x2": 6327,
+        "y2": 4931
+      },
+      "tag_bbox": {
+        "x1": 6268,
+        "y1": 4865,
+        "x2": 6306,
+        "y2": 4916
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "df8965b9",
+      "patch_id": 89,
+      "symbol_name": "Line Number",
+      "symbol_category": "piping",
+      "tag_text": "-ETH-V066\u201461440X",
+      "tag_text_gemini": "-ETH-V066\u201461440X",
+      "tag_text_ocr": "-ETH-V066\u201461440X",
+      "symbol_bbox": {
+        "x1": 8671,
+        "y1": 5421,
+        "x2": 8910,
+        "y2": 5441
+      },
+      "tag_bbox": {
+        "x1": 8671,
+        "y1": 5421,
+        "x2": 8910,
+        "y2": 5441
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.56,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "fe1fbb20",
+      "patch_id": 90,
+      "symbol_name": "Line Tag",
+      "symbol_category": "piping",
+      "tag_text": "GDV-6-50-2004-003",
+      "tag_text_gemini": "GDV-6-50-2002-001",
+      "tag_text_ocr": "GDV-6-50-2004-003",
+      "symbol_bbox": {
+        "x1": 9311,
+        "y1": 4643,
+        "x2": 9971,
+        "y2": 4703
+      },
+      "tag_bbox": {
+        "x1": 9316,
+        "y1": 4663,
+        "x2": 9961,
+        "y2": 4696
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.53,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "fdc542fa",
+      "patch_id": 90,
+      "symbol_name": "Line Tag",
+      "symbol_category": "piping",
+      "tag_text": "GDV-6-50-2004-003",
+      "tag_text_gemini": "GDV-6-50-2004-003",
+      "tag_text_ocr": "GDV-6-50-2004-003",
+      "symbol_bbox": {
+        "x1": 9311,
+        "y1": 5353,
+        "x2": 9971,
+        "y2": 5463
+      },
+      "tag_bbox": {
+        "x1": 9316,
+        "y1": 5413,
+        "x2": 9961,
+        "y2": 5448
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.53,
+      "vision_confidence": 0.99,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "52a87bee",
+      "patch_id": 98,
+      "symbol_name": "Control Valve",
+      "symbol_category": "valve",
+      "tag_text": "FV-208",
+      "tag_text_gemini": "FV-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5761,
+        "y1": 5481,
+        "x2": 5871,
+        "y2": 5626
+      },
+      "tag_bbox": {
+        "x1": 5681,
+        "y1": 5666,
+        "x2": 5726,
+        "y2": 5721
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Partial match (67%) with 'FLOW CONTROL VALVE'",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "fc385aac",
+      "patch_id": 102,
+      "symbol_name": "Valve",
+      "symbol_category": "valve",
+      "tag_text": "4224-MGDV-6-50-",
+      "tag_text_gemini": "4224-MGDV-6-50-",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8968,
+        "y1": 5791,
+        "x2": 9228,
+        "y2": 5831
+      },
+      "tag_bbox": {
+        "x1": 8976,
+        "y1": 5801,
+        "x2": 9218,
+        "y2": 5821
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.99,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f833aeac",
+      "patch_id": 103,
+      "symbol_name": "Line Tag",
+      "symbol_category": "piping",
+      "tag_text": "2\"-ETH-V018",
+      "tag_text_gemini": "2\"-ETH-V018",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 5376,
+        "x2": 9662,
+        "y2": 5424
+      },
+      "tag_bbox": {
+        "x1": 9216,
+        "y1": 5376,
+        "x2": 9662,
+        "y2": 5424
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "ce1ed114",
+      "patch_id": 103,
+      "symbol_name": "Drawing Reference",
+      "symbol_category": "unknown",
+      "tag_text": "GDV-6-50-2004-003",
+      "tag_text_gemini": "GDV-6-50-2004-003",
+      "tag_text_ocr": "GDV-6-50-2004-003",
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 5436,
+        "x2": 9917,
+        "y2": 5498
+      },
+      "tag_bbox": {
+        "x1": 9226,
+        "y1": 5444,
+        "x2": 9907,
+        "y2": 5490
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.5,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "eb6b58b1",
+      "patch_id": 103,
+      "symbol_name": "Vessel",
+      "symbol_category": "equipment",
+      "tag_text": "V-V-03",
+      "tag_text_gemini": "V-V-03",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 5658,
+        "x2": 9972,
+        "y2": 5716
+      },
+      "tag_bbox": {
+        "x1": 9682,
+        "y1": 5658,
+        "x2": 9972,
+        "y2": 5716
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "Exact match in USE: Vessel",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.92,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "df64e275",
+      "patch_id": 103,
+      "symbol_name": "Off-page Connector",
+      "symbol_category": "piping",
+      "tag_text": "GDV-6-50-2004-003",
+      "tag_text_gemini": "GDV-6-50-2002-001",
+      "tag_text_ocr": "GDV-6-50-2004-003",
+      "symbol_bbox": {
+        "x1": 9216,
+        "y1": 5726,
+        "x2": 9997,
+        "y2": 5788
+      },
+      "tag_bbox": {
+        "x1": 9226,
+        "y1": 5734,
+        "x2": 9957,
+        "y2": 5780
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
+      "ocr_confidence": 0.5,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    }
+  ]
+}

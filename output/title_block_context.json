@@ -1,0 +1,89 @@
+{
+  "title_block": {
+    "drawing_number": "4224-MGDV-6-50-2004",
+    "sheet_number": "001",
+    "continuation_sheet": "002",
+    "revision_code": "C",
+    "title": "MESAIEED GAS DISTRIBUTION STATIONS, MGDV | EPIC FOR UPGRADE OF ETHANE COMPRESSORS AT | STATION V AND ASSOCIATED FACILITIES AT STATION S | P&ID - ETHANE GAS COMPRESSOR (K-V-201)",
+    "title_line_1": "MESAIEED GAS DISTRIBUTION STATIONS, MGDV",
+    "title_line_2": "EPIC FOR UPGRADE OF ETHANE COMPRESSORS AT",
+    "title_line_3": "STATION V AND ASSOCIATED FACILITIES AT STATION S",
+    "title_line_4": "P&ID - ETHANE GAS COMPRESSOR (K-V-201)",
+    "project_name": null,
+    "contract_number": null,
+    "client": null,
+    "contractor": null,
+    "scale": "NTS",
+    "orig_dwg_size": "A1",
+    "discipline": "P&ID",
+    "document_type": "P&ID",
+    "issue_date": "29-08-24",
+    "drawn_by": "SJ",
+    "checked_by": "VJD/MSG/SS",
+    "approved_by": "BGS/SR",
+    "confidence": 0.95,
+    "fields_unclear": [],
+    "tb_region_used": "bottom_full",
+    "tb_bbox_px": [
+      0,
+      5753,
+      9934,
+      7017
+    ]
+  },
+  "revision_history": [
+    {
+      "rev": "C",
+      "description": "RE-ISSUED FOR CONSTRUCTION",
+      "date": "29-08-24",
+      "drawn_by": "SJ",
+      "checked_by": "VJD/MSG/SS",
+      "approved_by": "BGS/SR"
+    },
+    {
+      "rev": "A",
+      "description": "APPROVED FOR CONSTRUCTION",
+      "date": "11-06-24",
+      "drawn_by": "SA",
+      "checked_by": "VJD/MSG/SS",
+      "approved_by": "BGS/SR"
+    },
+    {
+      "rev": "2",
+      "description": "ISSUED FOR APPROVAL",
+      "date": "26-03-24",
+      "drawn_by": "SA",
+      "checked_by": "VJD/MSG/SS",
+      "approved_by": "BGS/SR"
+    },
+    {
+      "rev": "1",
+      "description": "ISSUED FOR HAZOP",
+      "date": "15-01-24",
+      "drawn_by": "SA",
+      "checked_by": "VJD/MSG/SS",
+      "approved_by": "BGS/SR"
+    },
+    {
+      "rev": "0",
+      "description": "ISSUED FOR COMMENTS",
+      "date": "16-11-30",
+      "drawn_by": "SA",
+      "checked_by": "VJD/MSG/SS",
+      "approved_by": "BGS/SR"
+    }
+  ],
+  "current_revision": "C",
+  "current_issue_status": "RE-ISSUED FOR CONSTRUCTION",
+  "revision_notice_present": true,
+  "revision_notice_text": "USE THIS DRAWING FOR INFORMATION WITHIN THE CLOUDED AREAS ONLY\nTHIS DRAWING IS DEVELOPED FOR\n: MGDV-6-50-0011",
+  "source_drawing_reference": "4224-MGDV-6-50-2004 SHT.001 REV.C",
+  "project_mode": "FULL_EXTRACTION",
+  "project_prefix": null,
+  "is_revision_drawing": true,
+  "revision_mode": "CLOUD_SCOPE_MODE",
+  "extraction_scope": "CLOUD_ONLY",
+  "revision_cloud_required": true,
+  "scope_reason": "Explicit revision notice: drawing must be used only within clouded areas",
+  "title_block_confidence": 0.95
+}

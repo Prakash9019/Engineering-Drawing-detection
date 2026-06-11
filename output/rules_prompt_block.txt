@@ -1,0 +1,74 @@
+== DRAWING-SPECIFIC RULES (extracted from notes block) ==
+
+-- Region Coverage Table --
+Region                        Notes  Clouds  OCR chars
+----------------------------------------------------------
+notes_left_upper                 10       2       1300
+notes_left_lower                 13       1       2154
+notes_bottom_left                 7       0       2092
+notes_bottom_right               10       2        625
+abbreviations                    12       3        360
+ref_legends                      14       2        634
+title_block                       7       1        176
+TOTAL                            73      11
+
+-- Global Rules (all agents) --
+  [3] Compressors are variable speed motor driven. A new motor, complete with VSD system, shall be provided.
+  [4] The existing ethane compressor must be modified for new process conditions as defined in the process datasheet. The adequacy of all existing associated equipment, including suction & discharge K.O. drums, discharge gas cooler, anti-surge control valves, and other auxiliaries, has been verified by the OEM, Hitachi.
+  [5] The ethane compressor vendor must provide a load sharing system to share flow rate equally across both operating units.
+  [12] The Compressor Unit Control Panel (UCP) is to be replaced with a new PLC-based UCP. All existing instrument connectivities, functions, interlocks, and alarms must be configured in the new UCP. All signals from the new UCP must be made available on the existing GDS SCADA system, consistent with the existing philosophy.
+  [13] A new safety relief valve must be installed to protect the system from overpressure due to a blocked discharge. New isolation valves and a new operating platform must also be provided.
+  [14] COMMON WARE HOUSE SPARE RV SHALL BE PROVIDED (ONE NO. FOR 3 COMPRESSOR).
+  [15] THERE IS NO INTERLOCKING FOR ISOLATION VALVE ON SINGLE RV.
+  [16] NEW PROPOSED MOTOR ENCLOSURE (ATEX, EX'P' TYPE) REQUIRES INSTRUMENT AIR.
+  [17] EXISTING RCI MODULE SHALL BE REMOVED FROM THE EXISTING UCP PANEL AND SHALL BE RE-USED INSIDE THE NEW UCP PANEL.
+  [18] COMPRESSOR SUCTION ESD VALVE (V-ESDV-209) IS RETAINED.
+  [19] ONE (COMMON FOR ALL THREE TRAINS) TEMPORARY SUCTION STRAINER SHALL BE SUPPLIED BY OEM (MS. HITACHI). AFTER SUCCESSFULL COMMISSIONING, THE STRAINER SHALL BE REMOVED, AND REPLACED WITH A FABRICATED SPOOL PIECE BY EPIC CONTRACTOR.
+  [20] COMPRESSOR LOWER DESIGN TEMPERATURE (-)29 DEGC, EXCEPT FOR DRY GAS SEAL O-RING, WHICH IS 0 DEGC. COMPRESSOR UPPER DESIGN TEMPERATURE 150 DEGC, HOWEVER, SINCE ASME PTC10 TYPE 2 TEST SHALL BE CONDUCTED, THEREFORE, COMPRESSOR CASING SHALL BE DESIGNED TO 170 DEGC WHICH IS REQUIRED DUE TO THE USE OF CO2 AS TEST GAS. ULTIMATELY NAME PLATE RATING FOR THIS UNIT USING ETHANE GAS IS 150 DEGC.
+  [21] HIGH PERFORMANCE (CLASS-1) NON-RETURN VALVE (NON-SLAM TYPE), WITH LOW CRACK OPEN DP SHALL BE SELECTED FOR THIS APPLICATION. (PURPOSE: AVOID REVERSE FLOW / SURGE ISSUES DURING DYNAMIC SCENARIO OF COMPRESSOR TRIP).
+  [22] EXISTING SUCTION & DISCHARGE COMPRESSOR INLET & OUTLET SPOOL SHALL BE DISMANTLED TO FACILITATE COMPRESSOR MODIFICATION, AND THEN RE-INSTATED.
+  [23] SOFT HAND SWITCH SHALL BE CONFIGURED IN UCP HMI TO ENABLE/ DISABLE STATION S HIGH PRESSURE CONTROLLER (%) WHICH IS REPEATED FROM LOAD SHARING PANEL.
+  [24] RECLOSURE OF XV-202 (NORMAL SHUTDOWN DEPRESSURING VALVE) SHALL BE PERFORMED BY UCP, ONCE V-PAL-214 IS OBTAINED (@ 18 barg) OR AFTER 20 MINUTES TIME DELAY FROM OPENING OF XV-202 WHICHEVER COMES FIRST. (NOTE: PAL-214 SHALL BE CONSIDERED AN EVENT, NOT ALARM).
+  [25] Refer to drawing number 4224-MGDTY-6-50-2001-003 for interlock details.
+  [NOTE 7] Content of Note 7 is not visible.
+  [NOTE_FRAGMENT_1] Note fragment refers to IER, ACTUATOR, LIMIT SWITCHES, HITACHI.
+  [NOTE_FRAGMENT_2] Scope of supply is by the EPIC Contractor.
+  [NOTE_FRAGMENT_3] The function block to compute the maximum value shall be part of the operating and control philosophy.
+  [NOTE_FRAGMENT_4] Refer to an adequacy study or document for placement details.
+  [NOTE_FRAGMENT_5] Item is to be replaced with a new one by Hitachi.
+  [REV_0_DESCRIPTION] Drawing was issued for comments.
+  [REV_1_DESCRIPTION] Drawing was issued for HAZOP review.
+  [REV_2_DESCRIPTION] Drawing was issued for approval.
+  [REV_A_DESCRIPTION] Drawing was approved for construction.
+  [REV_C_DESCRIPTION] Drawing was re-issued for construction.
+  [SCOPE:1] The scope of supply is divided between Hitachi and the EPIC Contractor, as demarcated by the line symbol.
+  [SCOPE:CONTRACTOR] Hitachi Epic Contractor
+
+-- Tag Detection Agent rules --
+  [ABBR:ASC] ASC stands for Anti-Surge Control.
+  [ABBR:ASV] ASV stands for Anti-Surge Valve.
+  [ABBR:HGBV] HGBV stands for Hot Gas Bypass Valve.
+  [ABBR:HISEL] HISEL stands for High Selector.
+  [ABBR:HS] HS stands for High Speed.
+  [ABBR:LOSEL] LOSEL stands for Low Selector.
+  [ABBR:LS] LS stands for Low Speed.
+  [LEGEND:SPECTACLE_BLIND_GATE_VALVE] If a spectacle blind and gate valve is shown in this colour (blue), it is existing and shall be re-used as per piping modification.
+
+-- Abbreviations --
+  ASC: Anti-Surge Control
+  ASV: Anti-Surge Valve
+  HGBV: Hot Gas Bypass Valve
+  HISEL: High Selector
+  HS: High Spped
+  LOSEL: Low Selector
+  LS: Low Speed
+  NTS: Not To Scale
+
+-- Drafting References --
+  [1] 1. FOR SYMBOLS AND ABBREVIATIONS REFER TO ES.D.10.
+  [1.A] A. FOR STANDARD P&ID SYMBOLS, EQUIPMENT SYMBOLS AND DESCRIPTION REFER TO STANDARD DRAWING ES.0.07.0100 REV.B
+  [2] 2. ALL DRAWINGS ARE PREPARED IN COMPLIANCE WITH COMPANY ENGINEERING STANDARD CORP-ENG-STD-018 REV. 01 (DRAUGHTING), CORP-ENG-STD-021 REV. 01 (ENGINEERING DATA CODING SYSTEM), ES.0.07.0028 REV.D (TAG NUMBERING AND EQUIPMENT IDENTIFIERS), 4224-MGDTY-6-50-2001 (STANDARD SYMBOLS MULTI-DISCIPLINE).
+  [6] 6. EXISTING DISCHARGE GAS COOLER E-V-201 WAS PART OF THIS P&ID, NOW IT IS SHOWN IN NEW DWG. NO. 4224-MGDV-6-50-2004-002 ALONG WITH NEW DISCHARGE GAS COOLER.
+  [CAD_DRAWING_RULE] THIS IS A CAD DRAWING AND MUST NOT BE ALTERED MANUALLY
+
+== END RULES ==

@@ -1,0 +1,145 @@
+== SOW SYMBOL SCOPE MEMORY ==
+Total symbols: 132 (100 ALLOW | 32 BLOCK)
+
+-- ALLOWED SYMBOLS (extract these) --
+  ✓     [CC]  CORROSION COUPON
+  ✓     [CP]  CORROSION PROBE
+  ✓     [AE]  ANALYZER ELEMENT
+  ✓     [FE]  FLOW ELEMENT
+  ✓     [LE]  LEVEL ELEMENT
+  ✓     [TE]  TEMPERATURE ELEMENT
+  ✓     [PG]  DIFFERENTIAL PRESSURE GAUGE
+  ✓     [FG]  FLOW GAUGE
+  ✓     [LG]  LEVEL GAUGE
+  ✓     [PG]  PRESSURE GAUGE
+  ✓     [TG]  TEMPERATURE GAUGE
+  ✓     [QU]  INJECTION QUILL
+  ✓     [LS]  LEVEL SWITCH
+  ✓     [LS]  LIMIT SWITCH
+  ✓    [LSC]  LIMIT SWITCH CLOSE
+  ✓    [LSO]  LIMIT SWITCH OPEN
+  ✓     [PS]  PRESSURE SWITCH
+  ✓     [SS]  SELECTOR SWITCH
+  ✓    [HSO]  HAND SWITCH OPEN
+  ✓    [HSC]  HAND SWITCH CLOSE
+  ✓     [FT]  FLOW TRANSMITTER
+  ✓     [LT]  LEVEL TRANSMITTER
+  ✓     [PT]  PRESSURE TRANSMITTER
+  ✓     [TT]  TEMPERATURE TRANSMITTER
+  ✓    [PIT]  DIFFERENTIAL PRESSURE INDICATING TRANSMITTER
+  ✓    [FIT]  FLOW INDICATING TRANSMITTER
+  ✓    [LIT]  LEVEL INDICATING TRANSMITTER
+  ✓    [PIT]  PRESSURE INDICATING TRANSMITTER
+  ✓    [TIT]  TEMPERATURE INDICATING TRANSMITTER
+  ✓     [LI]  LEVEL INDICATOR
+  ✓     [PI]  PRESSURE INDICATOR
+  ✓     [TI]  TEMPERATURE INDICATOR
+  ✓     [BV]  BALL VALVE
+  ✓     [SV]  3-WAY SOLENOID VALVE
+  ✓     [XV]  BUTTERFLY VALVE
+  ✓   [DBBV]  DOUBLE BLOCK AND BLEED VALVE
+  ✓     [XV]  EMERGENCY SHUTDOWN VALVE
+  ✓     [FV]  FLOAT VALVE
+  ✓     [GV]  GATE VALVE
+  ✓     [XV]  GLOBE VALVE
+  ✓     [WV]  WING VALVE
+  ✓    [MOV]  MOTOR OPERATED VALVE
+  ✓     [NV]  NEEDLE VALVE
+  ✓    [NRV]  NON RETURN VALVE
+  ✓     [PV]  PLUG VALVE
+  ✓    [PSV]  PRESSURE SAFETY VALVE
+  ✓    [SRV]  SAFETY RELIEF VALVE
+  ✓    [QEV]  QUICK EXHAUST VALVE
+  ✓     [XV]  SHUTDOWN VALVE
+  ✓     [SV]  SOLENOID VALVE
+  ✓     [CV]  CHOKE VALVE
+  ✓     [XV]  ON OFF VALVE
+  ✓     [PC]  PRESSURE CONTROL VALVE
+  ✓     [TC]  TEMPERATURE CONTROL VALVE
+  ✓     [FC]  FLOW CONTROL VALVE
+  ✓     [KC]  AIR COMPRESSOR
+  ✓      [E]  AIR COOLER
+  ✓     [AD]  AIR DRYER
+  ✓     [AR]  AIR RECEIVER
+  ✓     [AT]  ANALYZER
+  ✓    [ZIT]  BI-DIRECTIONAL POSITION INDICATOR
+  ✓     [BL]  BLOWER
+  ✓     [CE]  CORROSION ELEMENT
+  ✓     [CT]  CORROSION TRANSMITTER
+  ✓     [EP]  ELECTRO-PNEUMATIC CONVERTER
+  ✓    [SIL]  EXHAUST SILENCER
+  ✓    [STR]  FILTER STRAINER
+  ✓     [FA]  FLAME ARRESTER
+  ✓      [E]  HEAT EXCHANGER ONE PASS TUBE
+  ✓      [E]  HEAT EXCHANGER TWO PASS TUBE
+  ✓     [IL]  INDICATION LAMP CLOSE
+  ✓     [IL]  INDICATION LAMP OPEN
+  ✓     [IP]  I/P CONVERTER
+  ✓     [LA]  LIGHT ALARM
+  ✓      [M]  MOTOR
+  ✓     [PL]  PIG LAUNCHER
+  ✓     [PR]  PIG RECEIVER
+  ✓     [PS]  PIG SIGNALER
+  ✓     [RO]  RESTRICTION ORIFICE
+  ✓     [SG]  SIGHT GLASS
+  ✓     [MX]  STATIC MIXER
+  ✓     [TK]  TANK
+  ✓     [TW]  THERMOWELL
+  ✓      [V]  VESSEL
+  ✓    [STR]  Y-TYPE FILTER STRAINER
+  ✓      [P]  CENTRIFUGAL PUMP
+  ✓      [P]  RECIPROCATING PUMP
+  ✓      [P]  ROTOR PUMP
+  ✓      [P]  VERTICAL PUMP
+  ✓      [P]  VERTICAL SUMP PUMP
+  ✓      [S]  COALESCER
+  ✓     [CF]  COOLING FAN OR MIXER
+  ✓     [TK]  FLOATING ROOF TANK
+  ✓      [E]  HEAT EXCHANGER
+  ✓    [DIT]  DENSITY INDICATING TRANSMITTER
+  ✓   [LINE]  PIPELINE TAG
+  ✓     [EJ]  INDUCTOR/EJECTOR
+  ✓      [H]  FIRED HEATER
+  ✓    [FQI]  FLOW TOTALISER
+  ✓    [CAL]  CALIBRATION POT
+
+-- BLOCKED SYMBOLS (do NOT extract) --
+  ✗           COMPUTER FUNCTION,SIGNAL TAG
+  ✗           DCS,SIGNAL TAG
+  ✗           PLC,SIGNAL TAG
+  ✗           NON MAINTAINABLE TAGS
+  ✗           DESTINATION ARROW OFF
+  ✗           INSULATING COUPLING
+  ✗           FLANGE
+  ✗           TUNDISH
+  ✗           REDUCER
+  ✗           CAUSE AND EFFECTS SYSTEM NUMBER
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           INSULATION
+  ✗           BARRED TEE
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           SOFT TAG
+  ✗           MANWAY
+  ✗           TIE-IN
+  ✗           DIAPHRAGM SEAL
+  ✗           REVISION TRIANGLE
+
+-- CLASSIFICATION RULES --
+  IF symbol in ALLOW list  → extract=true,  scope_status=IN_SCOPE
+  IF symbol in BLOCK list  → extract=false, scope_status=OUT_OF_SCOPE
+  IF symbol not found      → extract=true,  scope_status=UNSPECIFIED (flag for review)
+
+== END SOW MEMORY ==
