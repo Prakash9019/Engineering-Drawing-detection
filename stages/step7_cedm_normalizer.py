@@ -237,6 +237,13 @@ def normalise_tag(raw_tag: str) -> tuple[str, list[str]]:
         transforms.append(f"ocr_char_fix: {repr(tag)} → {repr(fixed)}")
         tag = fixed
 
+    # Inch marker → IN for pipe sizes (10" / 10” → 10IN), matching Annexure-4
+    # style. Only when preceded by a digit so we never touch instrument tags.
+    inch_fixed = re.sub(r'(\d)\s*["”“]', r'\1IN', tag)
+    if inch_fixed != tag:
+        transforms.append(f"inch_normalised: {repr(tag)} → {repr(inch_fixed)}")
+        tag = inch_fixed
+
     # Uppercase
     upper = tag.upper()
     if upper != tag:

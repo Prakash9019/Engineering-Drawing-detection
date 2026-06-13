@@ -1,0 +1,32 @@
+{
+  "version": "v1",
+  "timestamp": "2026-06-12T22:31:39.375879",
+  "drawing_number": "4224-MGDV-6-50-2004",
+  "sheet": "001",
+  "revision": "C",
+  "totals": {
+    "input_records": 209,
+    "auto_accept": 160,
+    "human_review": 49,
+    "auto_reject": 0
+  },
+  "rates": {
+    "accept_pct": 76.6,
+    "review_pct": 23.4,
+    "reject_pct": 0.0
+  },
+  "review_breakdown": {
+    "p1_critical": 20,
+    "p2_high": 11,
+    "p3_medium": 18,
+    "p4_low": 0
+  },
+  "confidence_stats": {
+    "avg_c_final": 0.806
+  },
+  "output_files": {
+    "excel": "output/final_tags.xlsx",
+    "review_queue": "output/human_review_queue.json",
+    "audit_log": "output/audit_log.json"
+  }
+}

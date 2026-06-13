@@ -76,8 +76,11 @@ MEDIA_RESOLUTION = "MEDIA_RESOLUTION_HIGH"
 GEMINI_MAX_SIDE  = 1024
 
 # ── SAHI tiling parameters ────────────────────────────────────────────────────
-SAHI_PATCH_SIZE  = 1024    # px
-SAHI_OVERLAP     = 0.25    # 25% overlap
+# Smaller patches (upscaled to 1024 before Gemini) give each tiny valve/switch
+# tag more effective pixels; higher overlap stops dense clusters and sequential
+# valve banks from being split across a patch seam (boosts recall tail).
+SAHI_PATCH_SIZE  = 768     # px
+SAHI_OVERLAP     = 0.40    # 40% overlap
 
 # ── ISA tag pattern (for Tesseract post-filter) ───────────────────────────────
 ISA_TAG_RE = re.compile(
@@ -305,31 +308,50 @@ Temperature=0.0. Never hallucinate. Only extract what is VISUALLY PRESENT.
 {cloud_note}{rules_section}{ocr_section}
 [Patch {patch_id}] Scan this image patch systematically top-left → bottom-right.
 
-DETECT:
-  - Instrument bubbles (circles with letter codes: FIT, PT, TT, LT, etc.)
-  - Valves (bow-tie, gate, ball, butterfly, control valve symbols)
-  - Pumps, compressors, heat exchangers, vessels, tanks
-  - Corrosion probes/coupons, analyzers, any mechanical equipment
-  - Restriction orifices, thermowells, sight glasses
+DETECT (be EXHAUSTIVE — extract EVERY tag visible in this patch):
+  - Instrument bubbles (circles with letter codes: FIT, PT, TT, LT, TIT, FE,
+    FV, FY, FZT, FZSC, FZSO, XV, ZSC, ZSO, XY, RV, etc.)
+  - Valves (bow-tie, gate GV, ball BV, butterfly, check NRV, relief RV,
+    control valve symbols). Tags look like V-BV-2246, V-GV-923, V-RV-207,
+    V-NRV-748, V-XV-203.
+  - Pumps, compressors, motors (KM-...), gear boxes (KG-...), heat exchangers,
+    vessels, tanks, strainers (S-...), knock-out drums.
+  - Corrosion probes/coupons, analyzers, any mechanical equipment.
+  - Restriction orifices, thermowells (TW), elements (TE/FE), sight glasses.
+  - PIPING LINE NUMBERS written along pipe runs — THESE ARE VALID TAGS, EXTRACT
+    THEM. Format: SIZE-SERVICE-LINENO-SPEC, e.g.
+      10IN-ETH-V061-61440X, 2IN-GV-V273-11502X, 6IN-ETH-V058-61440X-PP,
+      12IN-ETH-V012-61440X-PP, 4IN-ETH-V059-61440X-PP.
+    Classify these as symbol_category="piping".
+
+CRITICAL — DENSE CLUSTERS (this is where tags are most often missed):
+  - Valves frequently appear in BANKS of 3-6 adjacent symbols with SEQUENTIAL
+    numbers (e.g. V-BV-2244, V-BV-2245, V-BV-2246, V-BV-2247). Extract EVERY
+    valve in the bank — never skip one because its neighbour was already read.
+  - Relief valves (V-RV-2xx) and check valves (V-NRV-7xx) are small — look hard.
+  - Limit switches come in CLOSE/OPEN PAIRS stacked vertically (V-ZSC-203 with
+    V-ZSO-203, V-FZSC-208 with V-FZSO-208). If you see one, the other is right
+    next to it — extract BOTH.
+  Count the symbols you see, then make sure you returned one candidate per symbol.
 
 FOR EACH DETECTED SYMBOL:
-  1. Identify its exact visual shape and classification
-  2. Find the nearest associated tag text (use OCR list above as ground truth)
-  3. Record bounding box coordinates [x1, y1, x2, y2] within THIS patch
+  1. Identify its exact visual shape and classification.
+  2. Find the nearest associated tag text (use OCR list above as ground truth).
+  3. PRESERVE the full tag exactly as written, INCLUDING any area/unit prefix
+     such as "V-" (e.g. read "V-FZSC-208", not "FZSC 208"). If the bubble shows
+     only "FZSC / 208" but this drawing's unit prefix is "V-", prepend it.
+  4. Record bounding box coordinates [x1, y1, x2, y2] within THIS patch. The
+     tag_bbox MUST tightly enclose the TAG TEXT characters (not the symbol).
 
 IGNORE — do NOT extract any of these:
-  - Notes and annotations
-  - Table content
-  - Title block text
-  - Revision descriptions
+  - Notes and annotations, table content, title block text, revision descriptions
   - Drawing reference numbers (e.g. 4224-MGDV-6-50-2002-001, MGDV-6-50-...)
   - Off-drawing reference arrows and their destination text
-  - Instrument node/function codes without instrument type (bare "I-004", "I-001")
-  - Piping specification codes (e.g. C06B, 61440X)
-  - Logic controller labels (bare "LC", "RCI", "HS" without a loop number)
-  - Pipe size notations without tag codes (e.g. 12"×10", 2", 600#)
-  - Partial text fragments less than 4 characters
+  - Logic controller labels that are bare codes (bare "LC", "RCI", "HS" with no number)
+  - Partial text fragments less than 3 characters
   - Equipment titles that are descriptions not tags (e.g. "TEMPORARY SUCTION STRAINER")
+  NOTE: piping line numbers (size-service-number) and "61440X"/"11502X" spec
+  suffixes ARE part of valid piping tags — do NOT ignore them.
 
 Return ONLY a JSON object (no markdown):
 {{
@@ -360,11 +382,16 @@ def extract_patch_with_gemini(crop_bgr: np.ndarray, patch_id: int,
                                revision_cloud_present: bool) -> dict:
     """Call Gemini 2.5 Pro on a single patch. Returns parsed JSON."""
     import cv2 as _cv2
-    # Scale to max 1024px
+    # Normalise the longest side to GEMINI_MAX_SIDE. We DOWN-scale big crops and
+    # UP-scale small SAHI patches (cubic) so every symbol gets the maximum token
+    # budget Gemini allows — small valve/switch tags become far more legible.
     H, W = crop_bgr.shape[:2]
-    if max(H, W) > GEMINI_MAX_SIDE:
-        scale = GEMINI_MAX_SIDE / max(H, W)
-        crop_bgr = _cv2.resize(crop_bgr, (int(W * scale), int(H * scale)))
+    gemini_scale = 1.0   # coords_in_gemini = patch_local_coord * gemini_scale
+    if max(H, W) != GEMINI_MAX_SIDE:
+        gemini_scale = GEMINI_MAX_SIDE / max(H, W)
+        interp = _cv2.INTER_AREA if gemini_scale < 1 else _cv2.INTER_CUBIC
+        crop_bgr = _cv2.resize(crop_bgr, (int(W * gemini_scale), int(H * gemini_scale)),
+                               interpolation=interp)
 
     ok, buf = _cv2.imencode(".jpg", crop_bgr, [_cv2.IMWRITE_JPEG_QUALITY, 92])
     if not ok:
@@ -400,6 +427,9 @@ def extract_patch_with_gemini(crop_bgr: np.ndarray, patch_id: int,
         clean = raw.replace("```json", "").replace("```", "").strip()
         m = re.search(r'\{.*\}', clean, re.DOTALL)
         result = json.loads(m.group(0) if m else clean)
+        # Record the scale so post-processing can map bboxes back to native
+        # patch-local pixels before applying the global SAHI offset.
+        result["_gemini_scale"] = gemini_scale
         return result
 
     except json.JSONDecodeError as e:
@@ -477,6 +507,10 @@ def process_patch_candidates(patch_result: dict,
     """
     x_off = patch_meta["x_offset"]
     y_off = patch_meta["y_offset"]
+    # Gemini may have seen an up/down-scaled patch; map its coords back to
+    # native patch-local pixels (divide by the scale) before adding the offset.
+    gscale = patch_result.get("_gemini_scale") or 1.0
+    inv = 1.0 / gscale if gscale else 1.0
     candidates = []
 
     # Build OCR lookup by position for reconciliation
@@ -488,16 +522,16 @@ def process_patch_candidates(patch_result: dict,
         sb = raw.get("symbol_bbox") or {}
         tb = raw.get("tag_bbox")    or {}
         sym_bbox = {
-            "x1": x_off + int(sb.get("x1") or 0),
-            "y1": y_off + int(sb.get("y1") or 0),
-            "x2": x_off + int(sb.get("x2") or 0),
-            "y2": y_off + int(sb.get("y2") or 0),
+            "x1": x_off + int((sb.get("x1") or 0) * inv),
+            "y1": y_off + int((sb.get("y1") or 0) * inv),
+            "x2": x_off + int((sb.get("x2") or 0) * inv),
+            "y2": y_off + int((sb.get("y2") or 0) * inv),
         }
         tag_bbox = {
-            "x1": x_off + int(tb.get("x1") or 0),
-            "y1": y_off + int(tb.get("y1") or 0),
-            "x2": x_off + int(tb.get("x2") or 0),
-            "y2": y_off + int(tb.get("y2") or 0),
+            "x1": x_off + int((tb.get("x1") or 0) * inv),
+            "y1": y_off + int((tb.get("y1") or 0) * inv),
+            "x2": x_off + int((tb.get("x2") or 0) * inv),
+            "y2": y_off + int((tb.get("y2") or 0) * inv),
         }
 
         # ── Revision cloud filter ─────────────────────────────────────────────
@@ -733,51 +767,50 @@ def _fuzzy_match(tag1: str, tag2: str) -> float:
     """Return a similarity ratio between 0.0 and 1.0 for two tags."""
     return SequenceMatcher(None, tag1, tag2).ratio()
 
-def _intra_step_dedup(candidates: list[dict], iou_threshold: float = 0.2, fuzzy_threshold: float = 0.6) -> list[dict]:
+def _intra_step_dedup(candidates: list[dict]) -> list[dict]:
     """
-    Merge duplicate tags resulting from SAHI overlap.
-    Uses Bounding Box IoU and Fuzzy Text Matching to catch split symbols.
+    Merge duplicate tags resulting from SAHI patch overlap.
+
+    RECALL-SAFE policy: only merge two candidates that are almost certainly the
+    SAME physical tag seen in two overlapping patches. We must NEVER merge
+    sequentially-numbered neighbours such as V-BV-2245 vs V-BV-2246 (fuzzy
+    ratio 0.857) or V-TIT-211 vs V-TIT-212. Therefore a merge requires either:
+      • EXACT normalized text equality with any spatial overlap (IoU > 0.15), OR
+      • Very high spatial overlap (IoU > 0.55) AND near-identical text
+        (fuzzy >= 0.92) — catches OCR-noise variants of the same tag.
+    When in doubt we KEEP both (step5d does final spatial dedup later).
     """
     if not candidates:
         return candidates
 
-    # 1. Sort by vision confidence (highest first). We always want to keep the best detection.
     scored = sorted(candidates, key=lambda c: -(c.get("vision_confidence") or 0.0))
-    
     keep = []
 
     for current in scored:
         is_dup = False
-        
-        # Prefer tag_bbox for precise location, fallback to symbol_bbox
         curr_box = current.get("tag_bbox") or current.get("symbol_bbox") or {}
-        # Normalize text: uppercase, strip whitespace and dashes
         curr_tag = re.sub(r'[\s\-]+', '', (current.get("tag_text") or "").upper())
-        
+
         for kept in keep:
             kept_box = kept.get("tag_bbox") or kept.get("symbol_bbox") or {}
             kept_tag = re.sub(r'[\s\-]+', '', (kept.get("tag_text") or "").upper())
-            
-            # 2. Check Spatial Overlap
             iou = _calculate_iou(curr_box, kept_box)
-            
-            # If the bounding boxes overlap significantly...
-            if iou > iou_threshold:
-                # 3. Check if the text is functionally the same (fuzzy match OR substring match)
-                similarity = _fuzzy_match(curr_tag, kept_tag)
-                
-                if similarity > fuzzy_threshold or curr_tag in kept_tag or kept_tag in curr_tag:
-                    is_dup = True
-                    break
-                    
+
+            exact_same = curr_tag and curr_tag == kept_tag
+            if exact_same and iou > 0.15:
+                is_dup = True
+                break
+            if iou > 0.55 and _fuzzy_match(curr_tag, kept_tag) >= 0.92:
+                is_dup = True
+                break
+
         if not is_dup:
             keep.append(current)
 
     removed = len(candidates) - len(keep)
     if removed > 0:
-        log.info("Intra-step dedup (IoU + Fuzzy): removed %d SAHI overlap duplicates (%d → %d candidates)", 
+        log.info("Intra-step dedup (recall-safe): removed %d exact SAHI duplicates (%d → %d candidates)",
                  removed, len(candidates), len(keep))
-
     return keep
 
 
@@ -977,8 +1010,13 @@ def main():
         with open(args.context) as f:
             ctx = json.load(f)
         img_path = ctx.get("raster_path") or ctx.get("input_file")
-        revision_cloud_present = ctx.get("notes_summary", {}).get(
-            "revision_cloud_present", False)
+        # FULL EXTRACTION mode: we want EVERY tag on the drawing, not just the
+        # ones inside revision clouds. cloud_regions is empty here, so the
+        # post-filter drops nothing anyway — but we must also avoid injecting
+        # the "only extract inside cloud boundaries" note into the prompt,
+        # which makes Gemini conservative and skips valid center symbols.
+        revision_cloud_present = bool(cloud_regions) and ctx.get(
+            "notes_summary", {}).get("revision_cloud_present", False)
         # Load SOW memory from context path if not explicitly given
         if not args.sow and ctx.get("sow_memory_path"):
             with open(ctx["sow_memory_path"]) as f:

@@ -14,13 +14,13 @@ export REG_EXCEL="ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx"
 export OUT="output"
 
 # ── PHASE 1: Context (run once per drawing, ~2 min) ───────────────────────────
-python stages/step1_format_detect.py   $DRAWING --out $OUT --api-key $GEMINI_KEY
+
 python stages/step2_title_block.py     --context $OUT/drawing_context.json --api-key $GEMINI_KEY --debug
 
 python stages/step2b_cloud_detection.py --context output/drawing_context.json --api-key $GEMINI_KEY
 
 
-python stages/step3_notes_agent_v2.py  --context $OUT/drawing_context.json --api-key $GEMINI_KEY --debug
+python stages/step3_notes_agent.py  --context $OUT/drawing_context.json --api-key $GEMINI_KEY --debug
 python stages/step4_sow_agent.py build --excel $SOW_EXCEL --out $OUT --api-key $GEMINI_KEY
 python stages/step6_table_agent.py     --context $OUT/drawing_context.json --api-key $GEMINI_KEY --debug
 
@@ -61,7 +61,7 @@ cdci_extractor_final/
 ├── PIPELINE SCRIPTS (12 files)
 │   ├── stages/step1_format_detect.py            ← Layer 1:  Format detect + rasterize
 │   ├── stages/step2_title_block.py              ← Layer 2:  Title block + revision routing
-│   ├── stages/step3_notes_agent_v2.py           ← Layer 5:  Notes + rules extraction
+│   ├── stages/step3_notes_agent.py              ← Layer 5:  Notes + rules extraction (v2)
 │   ├── stages/step4_sow_agent.py                ← Layer 6:  SOW symbol scope memory
 │   ├── stages/step5a_candidate_extraction.py    ← Layer 7+8: SAHI + Gemini + Tesseract
 │   ├── stages/step5b_geometric_association.py   ← Layer 10: Pipe/leader line geometry
@@ -398,7 +398,7 @@ python stages/step5_visualizer.py \
 |----------------|--------|--------|------|------|
 | Layer 1 — Format Detect | stages/step1_format_detect.py | ✅ Done | Flash-Lite opt. | <5s |
 | Layer 2 — Title Block | stages/step2_title_block.py | ✅ Done | Flash ×2 | <15s |
-| Layer 5 — Notes | stages/step3_notes_agent_v2.py | ✅ Done | Pro+Flash ×7 | ~45s |
+| Layer 5 — Notes | stages/step3_notes_agent.py | ✅ Done | Pro+Flash ×7 | ~45s |
 | Layer 6 — SOW Filter | stages/step4_sow_agent.py | ✅ Done | Flash ×132 | ~3min |
 | Layer 7+8 — Detection | stages/step5a_candidate_extraction.py | ✅ Done | Pro ×117 | ~45s |
 | Layer 9 — Tables | stages/step6_table_agent.py | ✅ Done | Flash ×2-4 | <30s |

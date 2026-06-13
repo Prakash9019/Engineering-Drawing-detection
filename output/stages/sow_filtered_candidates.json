@@ -1,0 +1,5973 @@
+{
+  "removed_out_of_scope": 5,
+  "kept": 221,
+  "candidates": [
+    {
+      "candidate_id": "712c00de",
+      "patch_id": 11,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "T-202A",
+      "tag_text_gemini": "T-202A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5323,
+        "y1": 510,
+        "x2": 5486,
+        "y2": 674
+      },
+      "tag_bbox": {
+        "x1": 5360,
+        "y1": 537,
+        "x2": 5450,
+        "y2": 627
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b38b80be",
+      "patch_id": 16,
+      "symbol_name": "Switch",
+      "symbol_category": "instrument",
+      "tag_text": "XS-239",
+      "tag_text_gemini": "XS-239",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7706,
+        "y1": 333,
+        "x2": 7846,
+        "y2": 472
+      },
+      "tag_bbox": {
+        "x1": 7747,
+        "y1": 357,
+        "x2": 7804,
+        "y2": 444
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "07c1f9d6",
+      "patch_id": 17,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "XA-237",
+      "tag_text_gemini": "XA-237",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8073,
+        "y1": 333,
+        "x2": 8214,
+        "y2": 474
+      },
+      "tag_bbox": {
+        "x1": 8113,
+        "y1": 357,
+        "x2": 8172,
+        "y2": 444
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "9eba8d7d",
+      "patch_id": 17,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "XS-238",
+      "tag_text_gemini": "XS-238",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8391,
+        "y1": 333,
+        "x2": 8531,
+        "y2": 474
+      },
+      "tag_bbox": {
+        "x1": 8431,
+        "y1": 357,
+        "x2": 8490,
+        "y2": 444
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "564889e7",
+      "patch_id": 23,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "2\u201d-GV-V273-11",
+      "tag_text_gemini": "2\u201d-GV-V273-11",
+      "tag_text_ocr": "2\u201d-GV-V273-11",
+      "symbol_bbox": {
+        "x1": 1337,
+        "y1": 655,
+        "x2": 1666,
+        "y2": 701
+      },
+      "tag_bbox": {
+        "x1": 1337,
+        "y1": 655,
+        "x2": 1666,
+        "y2": 701
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.42,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "414ccb55",
+      "patch_id": 24,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "GV-V273-11502X",
+      "tag_text_gemini": "GV-V273-11502X",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1390,
+        "y1": 656,
+        "x2": 1777,
+        "y2": 701
+      },
+      "tag_bbox": {
+        "x1": 1390,
+        "y1": 656,
+        "x2": 1777,
+        "y2": 701
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "bd83fa7b",
+      "patch_id": 28,
+      "symbol_name": "Pressure Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "PAHH-211",
+      "tag_text_gemini": "PAHH-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3524,
+        "y1": 856,
+        "x2": 3732,
+        "y2": 995
+      },
+      "tag_bbox": {
+        "x1": 3609,
+        "y1": 874,
+        "x2": 3716,
+        "y2": 979
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1a2dd865",
+      "patch_id": 29,
+      "symbol_name": "Pressure Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "PAHH-211",
+      "tag_text_gemini": "PAHH-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3971,
+        "y1": 856,
+        "x2": 4110,
+        "y2": 995
+      },
+      "tag_bbox": {
+        "x1": 4005,
+        "y1": 886,
+        "x2": 4076,
+        "y2": 965
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "280fe9ba",
+      "patch_id": 31,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "T-202C",
+      "tag_text_gemini": "T-202C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4668,
+        "y1": 682,
+        "x2": 4832,
+        "y2": 843
+      },
+      "tag_bbox": {
+        "x1": 4705,
+        "y1": 706,
+        "x2": 4797,
+        "y2": 802
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b44200c8",
+      "patch_id": 31,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "T-202B",
+      "tag_text_gemini": "T-202B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4947,
+        "y1": 987,
+        "x2": 5110,
+        "y2": 1150
+      },
+      "tag_bbox": {
+        "x1": 4984,
+        "y1": 1012,
+        "x2": 5075,
+        "y2": 1108
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e860812a",
+      "patch_id": 33,
+      "symbol_name": "Compressor",
+      "symbol_category": "equipment",
+      "tag_text": "K-V-201",
+      "tag_text_gemini": "K-V-201",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5548,
+        "y1": 636,
+        "x2": 6225,
+        "y2": 1177
+      },
+      "tag_bbox": {
+        "x1": 5714,
+        "y1": 848,
+        "x2": 6030,
+        "y2": 916
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "ba311620",
+      "patch_id": 33,
+      "symbol_name": "Spectacle Blind",
+      "symbol_category": "piping",
+      "tag_text": "SB 8\"",
+      "tag_text_gemini": "SB 8\"",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5611,
+        "y1": 578,
+        "x2": 5721,
+        "y2": 604
+      },
+      "tag_bbox": {
+        "x1": 5638,
+        "y1": 496,
+        "x2": 5760,
+        "y2": 542
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0445a2e4",
+      "patch_id": 33,
+      "symbol_name": "Spectacle Blind",
+      "symbol_category": "piping",
+      "tag_text": "SB 6\"",
+      "tag_text_gemini": "SB 6\"",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5985,
+        "y1": 625,
+        "x2": 6095,
+        "y2": 650
+      },
+      "tag_bbox": {
+        "x1": 6023,
+        "y1": 559,
+        "x2": 6128,
+        "y2": 606
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1f9e6304",
+      "patch_id": 34,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "T-203A",
+      "tag_text_gemini": "T-203A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6238,
+        "y1": 568,
+        "x2": 6400,
+        "y2": 730
+      },
+      "tag_bbox": {
+        "x1": 6274,
+        "y1": 592,
+        "x2": 6364,
+        "y2": 685
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "ba2ebe7c",
+      "patch_id": 34,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "T-203B",
+      "tag_text_gemini": "T-203B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6331,
+        "y1": 987,
+        "x2": 6496,
+        "y2": 1151
+      },
+      "tag_bbox": {
+        "x1": 6368,
+        "y1": 1011,
+        "x2": 6460,
+        "y2": 1106
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "491ec273",
+      "patch_id": 35,
+      "symbol_name": "Gear Box",
+      "symbol_category": "equipment",
+      "tag_text": "KG-V-201",
+      "tag_text_gemini": "KG-V-201",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6767,
+        "y1": 762,
+        "x2": 6972,
+        "y2": 1051
+      },
+      "tag_bbox": {
+        "x1": 6701,
+        "y1": 670,
+        "x2": 7068,
+        "y2": 736
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "3c2705ec",
+      "patch_id": 36,
+      "symbol_name": "Motor",
+      "symbol_category": "equipment",
+      "tag_text": "KM-V-201",
+      "tag_text_gemini": "KM-V-201",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7195,
+        "y1": 813,
+        "x2": 7553,
+        "y2": 997
+      },
+      "tag_bbox": {
+        "x1": 7192,
+        "y1": 1007,
+        "x2": 7562,
+        "y2": 1076
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "5def24fc",
+      "patch_id": 37,
+      "symbol_name": "Relief Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-RV-208",
+      "tag_text_gemini": "V-RV-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7660,
+        "y1": 945,
+        "x2": 8029,
+        "y2": 1106
+      },
+      "tag_bbox": {
+        "x1": 7689,
+        "y1": 964,
+        "x2": 7754,
+        "y2": 1092
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "f1f64d69",
+      "patch_id": 45,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS-214A",
+      "tag_text_gemini": "HS-214A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1530,
+        "y1": 1209,
+        "x2": 1740,
+        "y2": 1349
+      },
+      "tag_bbox": {
+        "x1": 1631,
+        "y1": 1230,
+        "x2": 1707,
+        "y2": 1319
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "756e8a90",
+      "patch_id": 46,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS-214A",
+      "tag_text_gemini": "HS-214A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1979,
+        "y1": 1209,
+        "x2": 2119,
+        "y2": 1349
+      },
+      "tag_bbox": {
+        "x1": 2011,
+        "y1": 1230,
+        "x2": 2087,
+        "y2": 1317
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e4379083",
+      "patch_id": 49,
+      "symbol_name": "Pressure Alarm Low Low",
+      "symbol_category": "instrument",
+      "tag_text": "PALL-214",
+      "tag_text_gemini": "PALL-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3418,
+        "y1": 1205,
+        "x2": 3625,
+        "y2": 1344
+      },
+      "tag_bbox": {
+        "x1": 3507,
+        "y1": 1221,
+        "x2": 3603,
+        "y2": 1328
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "fd65ca63",
+      "patch_id": 50,
+      "symbol_name": "Pressure Alarm Low Low",
+      "symbol_category": "instrument",
+      "tag_text": "PALL-214",
+      "tag_text_gemini": "PALL-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3971,
+        "y1": 1205,
+        "x2": 4110,
+        "y2": 1344
+      },
+      "tag_bbox": {
+        "x1": 4008,
+        "y1": 1235,
+        "x2": 4071,
+        "y2": 1314
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "87a0732d",
+      "patch_id": 51,
+      "symbol_name": "Pressure Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "PIT-211",
+      "tag_text_gemini": "PIT-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4354,
+        "y1": 902,
+        "x2": 4510,
+        "y2": 1015
+      },
+      "tag_bbox": {
+        "x1": 4398,
+        "y1": 948,
+        "x2": 4473,
+        "y2": 990
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "4ba24ce0",
+      "patch_id": 51,
+      "symbol_name": "Pressure Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "PIT-214",
+      "tag_text_gemini": "PIT-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4354,
+        "y1": 1196,
+        "x2": 4511,
+        "y2": 1353
+      },
+      "tag_bbox": {
+        "x1": 4395,
+        "y1": 1223,
+        "x2": 4471,
+        "y2": 1327
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "44a49989",
+      "patch_id": 52,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-914",
+      "tag_text_gemini": "V-GV-914",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4728,
+        "y1": 920,
+        "x2": 4793,
+        "y2": 954
+      },
+      "tag_bbox": {
+        "x1": 4649,
+        "y1": 969,
+        "x2": 4831,
+        "y2": 1001
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "cc1d2c27",
+      "patch_id": 52,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-913",
+      "tag_text_gemini": "V-GV-913",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4714,
+        "y1": 1256,
+        "x2": 4786,
+        "y2": 1292
+      },
+      "tag_bbox": {
+        "x1": 4666,
+        "y1": 1322,
+        "x2": 4853,
+        "y2": 1355
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "dc442aeb",
+      "patch_id": 54,
+      "symbol_name": "Pressure Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "PIT-212",
+      "tag_text_gemini": "PIT-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5909,
+        "y1": 1295,
+        "x2": 6066,
+        "y2": 1451
+      },
+      "tag_bbox": {
+        "x1": 5949,
+        "y1": 1322,
+        "x2": 6026,
+        "y2": 1427
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "84f47670",
+      "patch_id": 55,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-91",
+      "tag_text_gemini": "V-GV-916",
+      "tag_text_ocr": "V-GV-91",
+      "symbol_bbox": {
+        "x1": 6361,
+        "y1": 1357,
+        "x2": 6430,
+        "y2": 1393
+      },
+      "tag_bbox": {
+        "x1": 6306,
+        "y1": 1313,
+        "x2": 6492,
+        "y2": 1349
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.69,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "56b56ab9",
+      "patch_id": 55,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-91",
+      "tag_text_gemini": "V-GV-91",
+      "tag_text_ocr": "V-GV-91",
+      "symbol_bbox": {
+        "x1": 6636,
+        "y1": 1346,
+        "x2": 6706,
+        "y2": 1382
+      },
+      "tag_bbox": {
+        "x1": 6565,
+        "y1": 1392,
+        "x2": 6726,
+        "y2": 1428
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.69,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "ecfc5d51",
+      "patch_id": 56,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-917",
+      "tag_text_gemini": "V-GV-917",
+      "tag_text_ocr": "V-GV-917",
+      "symbol_bbox": {
+        "x1": 6646,
+        "y1": 1346,
+        "x2": 6716,
+        "y2": 1381
+      },
+      "tag_bbox": {
+        "x1": 6575,
+        "y1": 1391,
+        "x2": 6761,
+        "y2": 1427
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.54,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "c331015f",
+      "patch_id": 56,
+      "symbol_name": "Pressure Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "PIT-213",
+      "tag_text_gemini": "PIT-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6922,
+        "y1": 1286,
+        "x2": 7078,
+        "y2": 1442
+      },
+      "tag_bbox": {
+        "x1": 6962,
+        "y1": 1313,
+        "x2": 7040,
+        "y2": 1415
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "89083539",
+      "patch_id": 56,
+      "symbol_name": "Temperature Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT",
+      "tag_text_gemini": "TIT",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6911,
+        "y1": 1612,
+        "x2": 7066,
+        "y2": 1670
+      },
+      "tag_bbox": {
+        "x1": 6962,
+        "y1": 1639,
+        "x2": 7031,
+        "y2": 1670
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "8094bc44",
+      "patch_id": 57,
+      "symbol_name": "Pressure Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "PAHH-213",
+      "tag_text_gemini": "PAHH-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7243,
+        "y1": 1293,
+        "x2": 7382,
+        "y2": 1434
+      },
+      "tag_bbox": {
+        "x1": 7278,
+        "y1": 1322,
+        "x2": 7347,
+        "y2": 1406
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "2f3dd185",
+      "patch_id": 58,
+      "symbol_name": "Pressure Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "PAHH-213",
+      "tag_text_gemini": "PAHH-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7704,
+        "y1": 1294,
+        "x2": 7912,
+        "y2": 1435
+      },
+      "tag_bbox": {
+        "x1": 7720,
+        "y1": 1308,
+        "x2": 7828,
+        "y2": 1415
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "75b32bf5",
+      "patch_id": 58,
+      "symbol_name": "Temperature Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH",
+      "tag_text_gemini": "TAHH",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7704,
+        "y1": 1616,
+        "x2": 7912,
+        "y2": 1670
+      },
+      "tag_bbox": {
+        "x1": 7725,
+        "y1": 1630,
+        "x2": 7823,
+        "y2": 1670
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "bb2f2d9f",
+      "patch_id": 59,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2248",
+      "tag_text_gemini": "V-BV-2248",
+      "tag_text_ocr": "V-BV-2248",
+      "symbol_bbox": {
+        "x1": 8351,
+        "y1": 975,
+        "x2": 8401,
+        "y2": 1048
+      },
+      "tag_bbox": {
+        "x1": 8156,
+        "y1": 993,
+        "x2": 8339,
+        "y2": 1031
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.72,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "51ad7d3f",
+      "patch_id": 59,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2248",
+      "tag_text_gemini": "V-BV-2246",
+      "tag_text_ocr": "V-BV-2248",
+      "symbol_bbox": {
+        "x1": 8047,
+        "y1": 1329,
+        "x2": 8119,
+        "y2": 1379
+      },
+      "tag_bbox": {
+        "x1": 7963,
+        "y1": 1391,
+        "x2": 8147,
+        "y2": 1428
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.72,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "eba6117c",
+      "patch_id": 59,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2248",
+      "tag_text_gemini": "V-BV-2245",
+      "tag_text_ocr": "V-BV-2248",
+      "symbol_bbox": {
+        "x1": 8181,
+        "y1": 1415,
+        "x2": 8231,
+        "y2": 1488
+      },
+      "tag_bbox": {
+        "x1": 8243,
+        "y1": 1358,
+        "x2": 8278,
+        "y2": 1565
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.72,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "06f0aa88",
+      "patch_id": 59,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-22",
+      "tag_text_gemini": "V-BV-22",
+      "tag_text_ocr": "V-BV-22",
+      "symbol_bbox": {
+        "x1": 8414,
+        "y1": 1107,
+        "x2": 8486,
+        "y2": 1157
+      },
+      "tag_bbox": {
+        "x1": 8405,
+        "y1": 1169,
+        "x2": 8570,
+        "y2": 1207
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.67,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "47a51dae",
+      "patch_id": 60,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2247",
+      "tag_text_gemini": "V-BV-2247",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8424,
+        "y1": 1110,
+        "x2": 8497,
+        "y2": 1158
+      },
+      "tag_bbox": {
+        "x1": 8416,
+        "y1": 1166,
+        "x2": 8623,
+        "y2": 1205
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "02e3b888",
+      "patch_id": 61,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "10\"-GV-V272-11502X",
+      "tag_text_gemini": "10\"-GV-V272-11502X",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8888,
+        "y1": 1241,
+        "x2": 9371,
+        "y2": 1289
+      },
+      "tag_bbox": {
+        "x1": 8888,
+        "y1": 1241,
+        "x2": 9371,
+        "y2": 1289
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "84591b51",
+      "patch_id": 65,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS-214",
+      "tag_text_gemini": "HS-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1520,
+        "y1": 1446,
+        "x2": 1670,
+        "y2": 1587
+      },
+      "tag_bbox": {
+        "x1": 1618,
+        "y1": 1469,
+        "x2": 1670,
+        "y2": 1556
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "457d79bf",
+      "patch_id": 66,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS-214B",
+      "tag_text_gemini": "HS-214B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1517,
+        "y1": 1446,
+        "x2": 1740,
+        "y2": 1587
+      },
+      "tag_bbox": {
+        "x1": 1630,
+        "y1": 1467,
+        "x2": 1708,
+        "y2": 1558
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "204ca65a",
+      "patch_id": 67,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS-214B",
+      "tag_text_gemini": "HS-214B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1979,
+        "y1": 1446,
+        "x2": 2119,
+        "y2": 1586
+      },
+      "tag_bbox": {
+        "x1": 2009,
+        "y1": 1466,
+        "x2": 2088,
+        "y2": 1554
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "37b512bf",
+      "patch_id": 68,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "I-004X",
+      "tag_text_gemini": "I-004X",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2519,
+        "y1": 1762,
+        "x2": 2657,
+        "y2": 1900
+      },
+      "tag_bbox": {
+        "x1": 2547,
+        "y1": 1786,
+        "x2": 2630,
+        "y2": 1863
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1aa71b7b",
+      "patch_id": 68,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "I-009X",
+      "tag_text_gemini": "I-009X",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2588,
+        "y1": 1831,
+        "x2": 2726,
+        "y2": 1969
+      },
+      "tag_bbox": {
+        "x1": 2616,
+        "y1": 1855,
+        "x2": 2699,
+        "y2": 1932
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "bf0baaff",
+      "patch_id": 70,
+      "symbol_name": "Temperature Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH-212",
+      "tag_text_gemini": "TAHH-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3418,
+        "y1": 1483,
+        "x2": 3625,
+        "y2": 1623
+      },
+      "tag_bbox": {
+        "x1": 3508,
+        "y1": 1500,
+        "x2": 3608,
+        "y2": 1605
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "c748ab3a",
+      "patch_id": 70,
+      "symbol_name": "Relief Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-RV-207",
+      "tag_text_gemini": "V-RV-207",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3502,
+        "y1": 1761,
+        "x2": 3871,
+        "y2": 1924
+      },
+      "tag_bbox": {
+        "x1": 3531,
+        "y1": 1771,
+        "x2": 3595,
+        "y2": 1908
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "2b26a287",
+      "patch_id": 71,
+      "symbol_name": "Temperature Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH-212",
+      "tag_text_gemini": "TAHH-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3909,
+        "y1": 1483,
+        "x2": 4049,
+        "y2": 1623
+      },
+      "tag_bbox": {
+        "x1": 3947,
+        "y1": 1513,
+        "x2": 4013,
+        "y2": 1596
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "a1c33df5",
+      "patch_id": 71,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2244",
+      "tag_text_gemini": "V-BV-2244",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3686,
+        "y1": 1956,
+        "x2": 3735,
+        "y2": 2106
+      },
+      "tag_bbox": {
+        "x1": 3753,
+        "y1": 1947,
+        "x2": 3788,
+        "y2": 2106
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "45628527",
+      "patch_id": 72,
+      "symbol_name": "Temperature Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT-212",
+      "tag_text_gemini": "TIT-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4274,
+        "y1": 1477,
+        "x2": 4425,
+        "y2": 1629
+      },
+      "tag_bbox": {
+        "x1": 4317,
+        "y1": 1504,
+        "x2": 4383,
+        "y2": 1605
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "5d984c61",
+      "patch_id": 73,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-915",
+      "tag_text_gemini": "V-GV-915",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4996,
+        "y1": 1410,
+        "x2": 5080,
+        "y2": 1448
+      },
+      "tag_bbox": {
+        "x1": 4921,
+        "y1": 1470,
+        "x2": 5107,
+        "y2": 1508
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "09963097",
+      "patch_id": 73,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "TE-211",
+      "tag_text_gemini": "TE-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5072,
+        "y1": 1577,
+        "x2": 5224,
+        "y2": 1728
+      },
+      "tag_bbox": {
+        "x1": 5119,
+        "y1": 1605,
+        "x2": 5183,
+        "y2": 1704
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "9534d7e4",
+      "patch_id": 73,
+      "symbol_name": "Thermowell",
+      "symbol_category": "instrument",
+      "tag_text": "TW-211",
+      "tag_text_gemini": "TW-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5072,
+        "y1": 1743,
+        "x2": 5224,
+        "y2": 1895
+      },
+      "tag_bbox": {
+        "x1": 5119,
+        "y1": 1771,
+        "x2": 5183,
+        "y2": 1871
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "26cff3ea",
+      "patch_id": 73,
+      "symbol_name": "Temperature Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "T-257",
+      "tag_text_gemini": "T-257",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4891,
+        "y1": 1743,
+        "x2": 5053,
+        "y2": 1895
+      },
+      "tag_bbox": {
+        "x1": 4938,
+        "y1": 1757,
+        "x2": 5007,
+        "y2": 1857
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "69429752",
+      "patch_id": 73,
+      "symbol_name": "Temperature Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "T-256",
+      "tag_text_gemini": "T-256",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4710,
+        "y1": 1644,
+        "x2": 4873,
+        "y2": 1795
+      },
+      "tag_bbox": {
+        "x1": 4757,
+        "y1": 1657,
+        "x2": 4826,
+        "y2": 1757
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "a6981769",
+      "patch_id": 73,
+      "symbol_name": "Thermowell",
+      "symbol_category": "instrument",
+      "tag_text": "TW-212",
+      "tag_text_gemini": "TW-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4539,
+        "y1": 1644,
+        "x2": 4690,
+        "y2": 1795
+      },
+      "tag_bbox": {
+        "x1": 4585,
+        "y1": 1671,
+        "x2": 4649,
+        "y2": 1771
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "0d65e04e",
+      "patch_id": 73,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "TE-212",
+      "tag_text_gemini": "TE-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4539,
+        "y1": 1477,
+        "x2": 4690,
+        "y2": 1629
+      },
+      "tag_bbox": {
+        "x1": 4585,
+        "y1": 1505,
+        "x2": 4649,
+        "y2": 1605
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "1ea0f76a",
+      "patch_id": 74,
+      "symbol_name": "Pressure Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "PIT-210",
+      "tag_text_gemini": "PIT-210",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5343,
+        "y1": 1380,
+        "x2": 5496,
+        "y2": 1507
+      },
+      "tag_bbox": {
+        "x1": 5384,
+        "y1": 1380,
+        "x2": 5461,
+        "y2": 1481
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "9746721c",
+      "patch_id": 74,
+      "symbol_name": "Temperature Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT-211",
+      "tag_text_gemini": "TIT-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5363,
+        "y1": 1578,
+        "x2": 5516,
+        "y2": 1728
+      },
+      "tag_bbox": {
+        "x1": 5411,
+        "y1": 1602,
+        "x2": 5476,
+        "y2": 1704
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "25788cc6",
+      "patch_id": 75,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "212",
+      "tag_text_gemini": "212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5909,
+        "y1": 1357,
+        "x2": 6066,
+        "y2": 1461
+      },
+      "tag_bbox": {
+        "x1": 5950,
+        "y1": 1398,
+        "x2": 6026,
+        "y2": 1437
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "c1ad3c60",
+      "patch_id": 77,
+      "symbol_name": "Temperature Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT-213",
+      "tag_text_gemini": "TIT-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6923,
+        "y1": 1380,
+        "x2": 7077,
+        "y2": 1453
+      },
+      "tag_bbox": {
+        "x1": 6962,
+        "y1": 1387,
+        "x2": 7040,
+        "y2": 1428
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "ee88c3ff",
+      "patch_id": 77,
+      "symbol_name": "Temperature Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT-214",
+      "tag_text_gemini": "TIT-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6911,
+        "y1": 1618,
+        "x2": 7067,
+        "y2": 1774
+      },
+      "tag_bbox": {
+        "x1": 6950,
+        "y1": 1644,
+        "x2": 7028,
+        "y2": 1749
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "454f6c6a",
+      "patch_id": 78,
+      "symbol_name": "Temperature Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH 214",
+      "tag_text_gemini": "TAHH 214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7242,
+        "y1": 1626,
+        "x2": 7382,
+        "y2": 1765
+      },
+      "tag_bbox": {
+        "x1": 7279,
+        "y1": 1652,
+        "x2": 7345,
+        "y2": 1739
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e2b90ee0",
+      "patch_id": 78,
+      "symbol_name": "Logic Controller",
+      "symbol_category": "instrument",
+      "tag_text": "I 004",
+      "tag_text_gemini": "I 004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7242,
+        "y1": 1486,
+        "x2": 7382,
+        "y2": 1626
+      },
+      "tag_bbox": {
+        "x1": 7281,
+        "y1": 1521,
+        "x2": 7343,
+        "y2": 1599
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "19d7c0a0",
+      "patch_id": 78,
+      "symbol_name": "Logic Controller",
+      "symbol_category": "instrument",
+      "tag_text": "I 007",
+      "tag_text_gemini": "I 007",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7242,
+        "y1": 1906,
+        "x2": 7382,
+        "y2": 2046
+      },
+      "tag_bbox": {
+        "x1": 7281,
+        "y1": 1941,
+        "x2": 7343,
+        "y2": 2019
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6d089024",
+      "patch_id": 78,
+      "symbol_name": "Logic Controller",
+      "symbol_category": "instrument",
+      "tag_text": "I 008",
+      "tag_text_gemini": "I 008",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7382,
+        "y1": 1906,
+        "x2": 7521,
+        "y2": 2046
+      },
+      "tag_bbox": {
+        "x1": 7420,
+        "y1": 1941,
+        "x2": 7482,
+        "y2": 2019
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "88dad137",
+      "patch_id": 79,
+      "symbol_name": "Temperature Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "TAHH-214",
+      "tag_text_gemini": "TAHH-214",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7704,
+        "y1": 1626,
+        "x2": 7913,
+        "y2": 1765
+      },
+      "tag_bbox": {
+        "x1": 7724,
+        "y1": 1643,
+        "x2": 7825,
+        "y2": 1749
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "735bf3d4",
+      "patch_id": 79,
+      "symbol_name": "Temperature Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "TI-213",
+      "tag_text_gemini": "TI-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7704,
+        "y1": 1307,
+        "x2": 7913,
+        "y2": 1446
+      },
+      "tag_bbox": {
+        "x1": 7736,
+        "y1": 1386,
+        "x2": 7813,
+        "y2": 1429
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "9016cc8a",
+      "patch_id": 79,
+      "symbol_name": "Temperature Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "TI-217",
+      "tag_text_gemini": "TI-217",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7704,
+        "y1": 2046,
+        "x2": 7913,
+        "y2": 2186
+      },
+      "tag_bbox": {
+        "x1": 7762,
+        "y1": 2079,
+        "x2": 7789,
+        "y2": 2110
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "34f9b1fa",
+      "patch_id": 80,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2246",
+      "tag_text_gemini": "V-BV-2246",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8066,
+        "y1": 1380,
+        "x2": 8147,
+        "y2": 1393
+      },
+      "tag_bbox": {
+        "x1": 7963,
+        "y1": 1401,
+        "x2": 8147,
+        "y2": 1438
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "39ad8b1a",
+      "patch_id": 80,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2245",
+      "tag_text_gemini": "V-BV-2245",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8181,
+        "y1": 1425,
+        "x2": 8231,
+        "y2": 1500
+      },
+      "tag_bbox": {
+        "x1": 8243,
+        "y1": 1380,
+        "x2": 8278,
+        "y2": 1578
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "64b25e67",
+      "patch_id": 80,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "6IN-ETH-V058-61440X-PP",
+      "tag_text_gemini": "6IN-ETH-V058-61440X-PP",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8134,
+        "y1": 1792,
+        "x2": 8175,
+        "y2": 2130
+      },
+      "tag_bbox": {
+        "x1": 8134,
+        "y1": 1792,
+        "x2": 8175,
+        "y2": 2130
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "54042c16",
+      "patch_id": 86,
+      "symbol_name": "Position Switch",
+      "symbol_category": "instrument",
+      "tag_text": "ZX-209",
+      "tag_text_gemini": "ZX-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1297,
+        "y1": 1924,
+        "x2": 1436,
+        "y2": 2065
+      },
+      "tag_bbox": {
+        "x1": 1331,
+        "y1": 1945,
+        "x2": 1406,
+        "y2": 2041
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b390e3ed",
+      "patch_id": 86,
+      "symbol_name": "Position Switch",
+      "symbol_category": "instrument",
+      "tag_text": "ZX-209",
+      "tag_text_gemini": "ZX-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1297,
+        "y1": 2215,
+        "x2": 1436,
+        "y2": 2355
+      },
+      "tag_bbox": {
+        "x1": 1338,
+        "y1": 2242,
+        "x2": 1395,
+        "y2": 2324
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1a069736",
+      "patch_id": 87,
+      "symbol_name": "Position Switch Open",
+      "symbol_category": "instrument",
+      "tag_text": "ZLO-209",
+      "tag_text_gemini": "ZLO-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1467,
+        "y1": 1924,
+        "x2": 1674,
+        "y2": 2065
+      },
+      "tag_bbox": {
+        "x1": 1568,
+        "y1": 1942,
+        "x2": 1643,
+        "y2": 2046
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "76140f9b",
+      "patch_id": 87,
+      "symbol_name": "Position Switch Open",
+      "symbol_category": "instrument",
+      "tag_text": "ZLO-209",
+      "tag_text_gemini": "ZLO-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1536,
+        "y1": 2215,
+        "x2": 1674,
+        "y2": 2355
+      },
+      "tag_bbox": {
+        "x1": 1575,
+        "y1": 2242,
+        "x2": 1635,
+        "y2": 2326
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "87e04eb8",
+      "patch_id": 88,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "ZLC 209",
+      "tag_text_gemini": "ZLC 209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1840,
+        "y1": 1925,
+        "x2": 2001,
+        "y2": 2065
+      },
+      "tag_bbox": {
+        "x1": 1894,
+        "y1": 1943,
+        "x2": 1970,
+        "y2": 2045
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "4bb93331",
+      "patch_id": 88,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "ZLC 209",
+      "tag_text_gemini": "ZLC 209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1862,
+        "y1": 2215,
+        "x2": 2001,
+        "y2": 2354
+      },
+      "tag_bbox": {
+        "x1": 1903,
+        "y1": 2240,
+        "x2": 1960,
+        "y2": 2324
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "760c0f0d",
+      "patch_id": 89,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "RST 209",
+      "tag_text_gemini": "RST 209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2306,
+        "y1": 2133,
+        "x2": 2456,
+        "y2": 2284
+      },
+      "tag_bbox": {
+        "x1": 2348,
+        "y1": 2163,
+        "x2": 2414,
+        "y2": 2254
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "bd0049d7",
+      "patch_id": 91,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2243",
+      "tag_text_gemini": "V-BV-2243",
+      "tag_text_ocr": "V-BV-2243",
+      "symbol_bbox": {
+        "x1": 3532,
+        "y1": 2101,
+        "x2": 3603,
+        "y2": 2152
+      },
+      "tag_bbox": {
+        "x1": 3483,
+        "y1": 2158,
+        "x2": 3693,
+        "y2": 2195
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.64,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "69bbed57",
+      "patch_id": 91,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2243",
+      "tag_text_gemini": "V-BV-2244",
+      "tag_text_ocr": "V-BV-2243",
+      "symbol_bbox": {
+        "x1": 3675,
+        "y1": 1967,
+        "x2": 3724,
+        "y2": 2038
+      },
+      "tag_bbox": {
+        "x1": 3742,
+        "y1": 1956,
+        "x2": 3778,
+        "y2": 2116
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.64,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "9613bef9",
+      "patch_id": 92,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2242",
+      "tag_text_gemini": "V-BV-2244",
+      "tag_text_ocr": "V-BV-2242",
+      "symbol_bbox": {
+        "x1": 3686,
+        "y1": 1968,
+        "x2": 3735,
+        "y2": 2041
+      },
+      "tag_bbox": {
+        "x1": 3752,
+        "y1": 1957,
+        "x2": 3788,
+        "y2": 2116
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.56,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6dcd2bdb",
+      "patch_id": 94,
+      "symbol_name": "Temperature Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "TI-211",
+      "tag_text_gemini": "TI-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5038,
+        "y1": 1933,
+        "x2": 5178,
+        "y2": 2073
+      },
+      "tag_bbox": {
+        "x1": 5075,
+        "y1": 2015,
+        "x2": 5148,
+        "y2": 2056
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "3ddb633d",
+      "patch_id": 94,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-912",
+      "tag_text_gemini": "V-GV-912",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4700,
+        "y1": 2426,
+        "x2": 4786,
+        "y2": 2461
+      },
+      "tag_bbox": {
+        "x1": 4669,
+        "y1": 2497,
+        "x2": 4855,
+        "y2": 2529
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "fd7d942c",
+      "patch_id": 94,
+      "symbol_name": "Temperature Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "T-217B",
+      "tag_text_gemini": "T-217B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4972,
+        "y1": 2329,
+        "x2": 5136,
+        "y2": 2492
+      },
+      "tag_bbox": {
+        "x1": 5009,
+        "y1": 2410,
+        "x2": 5101,
+        "y2": 2452
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "2b80d0a4",
+      "patch_id": 94,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "4\"-ETH-V060-61440X",
+      "tag_text_gemini": "4\"-ETH-V060-61440X",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4976,
+        "y1": 2219,
+        "x2": 5341,
+        "y2": 2275
+      },
+      "tag_bbox": {
+        "x1": 4976,
+        "y1": 2219,
+        "x2": 5280,
+        "y2": 2319
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "1c5a7120",
+      "patch_id": 95,
+      "symbol_name": "Temperature Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "TI-211",
+      "tag_text_gemini": "TI-211",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5370,
+        "y1": 1934,
+        "x2": 5510,
+        "y2": 2074
+      },
+      "tag_bbox": {
+        "x1": 5413,
+        "y1": 1957,
+        "x2": 5471,
+        "y2": 2045
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f822bedd",
+      "patch_id": 95,
+      "symbol_name": "Valve",
+      "symbol_category": "valve",
+      "tag_text": "XV-203",
+      "tag_text_gemini": "XV-203",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5573,
+        "y1": 2020,
+        "x2": 5725,
+        "y2": 2172
+      },
+      "tag_bbox": {
+        "x1": 5617,
+        "y1": 2047,
+        "x2": 5682,
+        "y2": 2146
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "2bdefc0c",
+      "patch_id": 95,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "ETH-VO60\u2014",
+      "tag_text_gemini": "ETH-VO60-",
+      "tag_text_ocr": "ETH-VO60\u2014",
+      "symbol_bbox": {
+        "x1": 5060,
+        "y1": 2218,
+        "x2": 5291,
+        "y2": 2260
+      },
+      "tag_bbox": {
+        "x1": 5060,
+        "y1": 2218,
+        "x2": 5291,
+        "y2": 2260
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.58,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "2e3b15df",
+      "patch_id": 95,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "4\"-ETH-V060-",
+      "tag_text_gemini": "4\"-ETH-V060-",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5387,
+        "y1": 2543,
+        "x2": 5688,
+        "y2": 2585
+      },
+      "tag_bbox": {
+        "x1": 5387,
+        "y1": 2543,
+        "x2": 5688,
+        "y2": 2585
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "daa10695",
+      "patch_id": 96,
+      "symbol_name": "Solenoid Valve",
+      "symbol_category": "instrument",
+      "tag_text": "XY-203",
+      "tag_text_gemini": "XY-203",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5738,
+        "y1": 1840,
+        "x2": 5876,
+        "y2": 1954
+      },
+      "tag_bbox": {
+        "x1": 5778,
+        "y1": 1888,
+        "x2": 5835,
+        "y2": 1926
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "69b16b1b",
+      "patch_id": 98,
+      "symbol_name": "Temperature Element",
+      "symbol_category": "instrument",
+      "tag_text": "TE-213",
+      "tag_text_gemini": "TE-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6699,
+        "y1": 1804,
+        "x2": 6850,
+        "y2": 1954
+      },
+      "tag_bbox": {
+        "x1": 6738,
+        "y1": 1832,
+        "x2": 6815,
+        "y2": 1919
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "3e6d0e48",
+      "patch_id": 98,
+      "symbol_name": "Thermowell",
+      "symbol_category": "instrument",
+      "tag_text": "TW-213",
+      "tag_text_gemini": "TW-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6699,
+        "y1": 1951,
+        "x2": 6850,
+        "y2": 2101
+      },
+      "tag_bbox": {
+        "x1": 6738,
+        "y1": 1978,
+        "x2": 6815,
+        "y2": 2066
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1004be87",
+      "patch_id": 98,
+      "symbol_name": "Temperature Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "TIT-213",
+      "tag_text_gemini": "TIT-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6913,
+        "y1": 1804,
+        "x2": 7064,
+        "y2": 1954
+      },
+      "tag_bbox": {
+        "x1": 6952,
+        "y1": 1832,
+        "x2": 7028,
+        "y2": 1919
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "608c048d",
+      "patch_id": 98,
+      "symbol_name": "Logic Controller",
+      "symbol_category": "instrument",
+      "tag_text": "T-258A",
+      "tag_text_gemini": "T-258A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6783,
+        "y1": 2099,
+        "x2": 6945,
+        "y2": 2261
+      },
+      "tag_bbox": {
+        "x1": 6819,
+        "y1": 2127,
+        "x2": 6909,
+        "y2": 2226
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0ac21929",
+      "patch_id": 98,
+      "symbol_name": "Logic Controller",
+      "symbol_category": "instrument",
+      "tag_text": "T-258B",
+      "tag_text_gemini": "T-258B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6843,
+        "y1": 2228,
+        "x2": 7005,
+        "y2": 2390
+      },
+      "tag_bbox": {
+        "x1": 6879,
+        "y1": 2256,
+        "x2": 6969,
+        "y2": 2355
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "692c5b57",
+      "patch_id": 99,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "213",
+      "tag_text_gemini": "213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6924,
+        "y1": 1840,
+        "x2": 7074,
+        "y2": 1951
+      },
+      "tag_bbox": {
+        "x1": 6963,
+        "y1": 1879,
+        "x2": 7039,
+        "y2": 1918
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "40f18148",
+      "patch_id": 99,
+      "symbol_name": "Instrument Square with Diamond",
+      "symbol_category": "instrument",
+      "tag_text": "TIC-213",
+      "tag_text_gemini": "TIC-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7242,
+        "y1": 2058,
+        "x2": 7382,
+        "y2": 2197
+      },
+      "tag_bbox": {
+        "x1": 7284,
+        "y1": 2086,
+        "x2": 7343,
+        "y2": 2167
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "775cb913",
+      "patch_id": 100,
+      "symbol_name": "Temperature Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "TI-213",
+      "tag_text_gemini": "TI-213",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7705,
+        "y1": 2058,
+        "x2": 7843,
+        "y2": 2197
+      },
+      "tag_bbox": {
+        "x1": 7747,
+        "y1": 2089,
+        "x2": 7804,
+        "y2": 2165
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "b4453e04",
+      "patch_id": 102,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "12\"-ETH-V012-61440X-PP",
+      "tag_text_gemini": "12\"-ETH-V012-61440X-PP",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8280,
+        "y1": 2369,
+        "x2": 8839,
+        "y2": 2416
+      },
+      "tag_bbox": {
+        "x1": 8280,
+        "y1": 2369,
+        "x2": 8839,
+        "y2": 2416
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "27f6dd6a",
+      "patch_id": 108,
+      "symbol_name": "Position Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "EZT-209",
+      "tag_text_gemini": "EZT-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1304,
+        "y1": 2570,
+        "x2": 1453,
+        "y2": 2718
+      },
+      "tag_bbox": {
+        "x1": 1334,
+        "y1": 2594,
+        "x2": 1423,
+        "y2": 2693
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d330a8da",
+      "patch_id": 109,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "EZSC-209",
+      "tag_text_gemini": "EZSC-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1959,
+        "y1": 2477,
+        "x2": 2109,
+        "y2": 2627
+      },
+      "tag_bbox": {
+        "x1": 1990,
+        "y1": 2499,
+        "x2": 2077,
+        "y2": 2601
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "a95bc60c",
+      "patch_id": 109,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "EZSO-209",
+      "tag_text_gemini": "EZSO-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1959,
+        "y1": 2635,
+        "x2": 2109,
+        "y2": 2785
+      },
+      "tag_bbox": {
+        "x1": 1990,
+        "y1": 2657,
+        "x2": 2077,
+        "y2": 2759
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1589e43b",
+      "patch_id": 110,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "EY-209",
+      "tag_text_gemini": "EY-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2306,
+        "y1": 2372,
+        "x2": 2456,
+        "y2": 2522
+      },
+      "tag_bbox": {
+        "x1": 2351,
+        "y1": 2402,
+        "x2": 2414,
+        "y2": 2492
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d65d4b6a",
+      "patch_id": 110,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "ESDV-209",
+      "tag_text_gemini": "ESDV-209",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2279,
+        "y1": 2648,
+        "x2": 2429,
+        "y2": 2798
+      },
+      "tag_bbox": {
+        "x1": 2309,
+        "y1": 2678,
+        "x2": 2396,
+        "y2": 2768
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "7445c572",
+      "patch_id": 111,
+      "symbol_name": "Spectacle Blind",
+      "symbol_category": "piping",
+      "tag_text": "SB 10\" 600#",
+      "tag_text_gemini": "SB 10\" 600#",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3398,
+        "y1": 2824,
+        "x2": 3423,
+        "y2": 2921
+      },
+      "tag_bbox": {
+        "x1": 3305,
+        "y1": 2788,
+        "x2": 3402,
+        "y2": 2975
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b3c02a70",
+      "patch_id": 112,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "2\"-ETH-V057-61440X",
+      "tag_text_gemini": "2\"-ETH-V057-61440X",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3534,
+        "y1": 2368,
+        "x2": 3837,
+        "y2": 2471
+      },
+      "tag_bbox": {
+        "x1": 3534,
+        "y1": 2368,
+        "x2": 3837,
+        "y2": 2471
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "cb45b235",
+      "patch_id": 112,
+      "symbol_name": "Vessel",
+      "symbol_category": "equipment",
+      "tag_text": "V-V-201",
+      "tag_text_gemini": "V-V-201",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3421,
+        "y1": 2697,
+        "x2": 3879,
+        "y2": 3050
+      },
+      "tag_bbox": {
+        "x1": 3253,
+        "y1": 2602,
+        "x2": 3569,
+        "y2": 2663
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "7e07dca4",
+      "patch_id": 113,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2242",
+      "tag_text_gemini": "V-BV-2242",
+      "tag_text_ocr": "V-BV-2242",
+      "symbol_bbox": {
+        "x1": 4004,
+        "y1": 2300,
+        "x2": 4075,
+        "y2": 2336
+      },
+      "tag_bbox": {
+        "x1": 3945,
+        "y1": 2351,
+        "x2": 4154,
+        "y2": 2388
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.56,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "0a1aa63b",
+      "patch_id": 113,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2241",
+      "tag_text_gemini": "V-BV-2241",
+      "tag_text_ocr": "V-BV-2241",
+      "symbol_bbox": {
+        "x1": 3892,
+        "y1": 2481,
+        "x2": 3941,
+        "y2": 2553
+      },
+      "tag_bbox": {
+        "x1": 3956,
+        "y1": 2516,
+        "x2": 4136,
+        "y2": 2553
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.86,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "094993ac",
+      "patch_id": 114,
+      "symbol_name": "Flow Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "FIT 207",
+      "tag_text_gemini": "FIT 207",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4290,
+        "y1": 2489,
+        "x2": 4446,
+        "y2": 2645
+      },
+      "tag_bbox": {
+        "x1": 4330,
+        "y1": 2516,
+        "x2": 4406,
+        "y2": 2618
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "464b584a",
+      "patch_id": 114,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-911",
+      "tag_text_gemini": "V-GV-912",
+      "tag_text_ocr": "V-GV-911",
+      "symbol_bbox": {
+        "x1": 4689,
+        "y1": 2436,
+        "x2": 4788,
+        "y2": 2477
+      },
+      "tag_bbox": {
+        "x1": 4659,
+        "y1": 2507,
+        "x2": 4844,
+        "y2": 2540
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.84,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "673b89b6",
+      "patch_id": 115,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-911",
+      "tag_text_gemini": "V-GV-911",
+      "tag_text_ocr": "V-GV-911",
+      "symbol_bbox": {
+        "x1": 4724,
+        "y1": 2649,
+        "x2": 4819,
+        "y2": 2698
+      },
+      "tag_bbox": {
+        "x1": 4670,
+        "y1": 2595,
+        "x2": 4808,
+        "y2": 2625
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.81,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "b3bde4cb",
+      "patch_id": 116,
+      "symbol_name": "Flow Element",
+      "symbol_category": "instrument",
+      "tag_text": "FE-224",
+      "tag_text_gemini": "FE-224",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5144,
+        "y1": 2518,
+        "x2": 5296,
+        "y2": 2669
+      },
+      "tag_bbox": {
+        "x1": 5187,
+        "y1": 2543,
+        "x2": 5253,
+        "y2": 2643
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.98,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6127327d",
+      "patch_id": 116,
+      "symbol_name": "Flow Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "FIC-207",
+      "tag_text_gemini": "FIC-207",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5611,
+        "y1": 2933,
+        "x2": 5750,
+        "y2": 3050
+      },
+      "tag_bbox": {
+        "x1": 5649,
+        "y1": 2957,
+        "x2": 5705,
+        "y2": 3048
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.97,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "52b5d85b",
+      "patch_id": 116,
+      "symbol_name": "Temperature Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "T-217A",
+      "tag_text_gemini": "T-217A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5060,
+        "y1": 2903,
+        "x2": 5225,
+        "y2": 3050
+      },
+      "tag_bbox": {
+        "x1": 5098,
+        "y1": 2928,
+        "x2": 5187,
+        "y2": 3026
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.96,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "01ef2e66",
+      "patch_id": 116,
+      "symbol_name": "Temperature Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "T-7B",
+      "tag_text_gemini": "T-7B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5060,
+        "y1": 2339,
+        "x2": 5147,
+        "y2": 2501
+      },
+      "tag_bbox": {
+        "x1": 5060,
+        "y1": 2366,
+        "x2": 5113,
+        "y2": 2463
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b42131ef",
+      "patch_id": 116,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "4\"-ETH-V060-61440X",
+      "tag_text_gemini": "4\"-ETH-V060-61440X",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5387,
+        "y1": 2553,
+        "x2": 5660,
+        "y2": 2656
+      },
+      "tag_bbox": {
+        "x1": 5387,
+        "y1": 2553,
+        "x2": 5660,
+        "y2": 2656
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.92,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "76acddc7",
+      "patch_id": 118,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "4\"-ETH-V059-61440X-PP",
+      "tag_text_gemini": "4\"-ETH-V059-61440X-PP",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6149,
+        "y1": 2315,
+        "x2": 6467,
+        "y2": 2424
+      },
+      "tag_bbox": {
+        "x1": 6164,
+        "y1": 2315,
+        "x2": 6448,
+        "y2": 2424
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1cc5ff78",
+      "patch_id": 120,
+      "symbol_name": "Pressure Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "PI-212",
+      "tag_text_gemini": "PI-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7320,
+        "y1": 2628,
+        "x2": 7459,
+        "y2": 2837
+      },
+      "tag_bbox": {
+        "x1": 7360,
+        "y1": 2720,
+        "x2": 7417,
+        "y2": 2807
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "86462434",
+      "patch_id": 121,
+      "symbol_name": "Temperature Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "T-204A",
+      "tag_text_gemini": "T-204A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7873,
+        "y1": 2594,
+        "x2": 8038,
+        "y2": 2757
+      },
+      "tag_bbox": {
+        "x1": 7907,
+        "y1": 2619,
+        "x2": 8003,
+        "y2": 2715
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0224fbc9",
+      "patch_id": 123,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS-466B",
+      "tag_text_gemini": "HS-466B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8280,
+        "y1": 2870,
+        "x2": 8373,
+        "y2": 3012
+      },
+      "tag_bbox": {
+        "x1": 8280,
+        "y1": 2892,
+        "x2": 8343,
+        "y2": 2975
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "77563dee",
+      "patch_id": 123,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "12\u201d-ETH-VO12-61440X\u2014PP",
+      "tag_text_gemini": "12\u201d-ETH-VO12-61440X\u2014PP",
+      "tag_text_ocr": "12\u201d-ETH-VO12-61440X\u2014PP",
+      "symbol_bbox": {
+        "x1": 8280,
+        "y1": 2379,
+        "x2": 8839,
+        "y2": 2427
+      },
+      "tag_bbox": {
+        "x1": 8280,
+        "y1": 2379,
+        "x2": 8839,
+        "y2": 2427
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.41,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "2864996b",
+      "patch_id": 128,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-760",
+      "tag_text_gemini": "V-BV-760",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1203,
+        "y1": 2886,
+        "x2": 1256,
+        "y2": 2938
+      },
+      "tag_bbox": {
+        "x1": 1136,
+        "y1": 2952,
+        "x2": 1322,
+        "y2": 2986
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "fff15608",
+      "patch_id": 128,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "2\",CSO",
+      "tag_text_gemini": "2\",CSO",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1602,
+        "y1": 3180,
+        "x2": 1653,
+        "y2": 3232
+      },
+      "tag_bbox": {
+        "x1": 1551,
+        "y1": 3081,
+        "x2": 1587,
+        "y2": 3196
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "23f6c0ff",
+      "patch_id": 129,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2249",
+      "tag_text_gemini": "V-BV-2249",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 1611,
+        "y1": 3169,
+        "x2": 1663,
+        "y2": 3253
+      },
+      "tag_bbox": {
+        "x1": 1674,
+        "y1": 3097,
+        "x2": 1710,
+        "y2": 3304
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "3a696c4d",
+      "patch_id": 129,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-1918",
+      "tag_text_gemini": "V-BV-1918",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2019,
+        "y1": 2955,
+        "x2": 2091,
+        "y2": 3046
+      },
+      "tag_bbox": {
+        "x1": 1974,
+        "y1": 2935,
+        "x2": 2008,
+        "y2": 3142
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "16663dc5",
+      "patch_id": 130,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-1920",
+      "tag_text_gemini": "V-BV-1920",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2113,
+        "y1": 3257,
+        "x2": 2233,
+        "y2": 3327
+      },
+      "tag_bbox": {
+        "x1": 2045,
+        "y1": 3174,
+        "x2": 2252,
+        "y2": 3208
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "82b79cda",
+      "patch_id": 131,
+      "symbol_name": "Check Valve",
+      "symbol_category": "valve",
+      "tag_text": "V\u2014NRV-748",
+      "tag_text_gemini": "V-NRV-748",
+      "tag_text_ocr": "V\u2014NRV-748",
+      "symbol_bbox": {
+        "x1": 2473,
+        "y1": 2889,
+        "x2": 2592,
+        "y2": 2940
+      },
+      "tag_bbox": {
+        "x1": 2495,
+        "y1": 2850,
+        "x2": 2706,
+        "y2": 2888
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.47,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "85ccd28e",
+      "patch_id": 132,
+      "symbol_name": "Ball Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-2355",
+      "tag_text_gemini": "V-BV-2355",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2829,
+        "y1": 3001,
+        "x2": 2880,
+        "y2": 3073
+      },
+      "tag_bbox": {
+        "x1": 2782,
+        "y1": 2952,
+        "x2": 2819,
+        "y2": 3136
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "b072d53c",
+      "patch_id": 134,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-909",
+      "tag_text_gemini": "V-GV-909",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4277,
+        "y1": 2994,
+        "x2": 4313,
+        "y2": 3066
+      },
+      "tag_bbox": {
+        "x1": 4183,
+        "y1": 3024,
+        "x2": 4217,
+        "y2": 3163
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "08fe746a",
+      "patch_id": 135,
+      "symbol_name": "Pressure Differential Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "PDI 201",
+      "tag_text_gemini": "PDI 201",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4379,
+        "y1": 2779,
+        "x2": 4536,
+        "y2": 2936
+      },
+      "tag_bbox": {
+        "x1": 4423,
+        "y1": 2805,
+        "x2": 4497,
+        "y2": 2908
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "f2ad592f",
+      "patch_id": 135,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "T 217C",
+      "tag_text_gemini": "T 217C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4702,
+        "y1": 2794,
+        "x2": 4865,
+        "y2": 2957
+      },
+      "tag_bbox": {
+        "x1": 4738,
+        "y1": 2818,
+        "x2": 4830,
+        "y2": 2914
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "04cefa4b",
+      "patch_id": 135,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "T 274C",
+      "tag_text_gemini": "T 274C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4692,
+        "y1": 3054,
+        "x2": 4854,
+        "y2": 3216
+      },
+      "tag_bbox": {
+        "x1": 4728,
+        "y1": 3078,
+        "x2": 4820,
+        "y2": 3174
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "1205f227",
+      "patch_id": 135,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "1 1/2\"",
+      "tag_text_gemini": "1 1/2\"",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4288,
+        "y1": 3090,
+        "x2": 4323,
+        "y2": 3162
+      },
+      "tag_bbox": {
+        "x1": 4236,
+        "y1": 3057,
+        "x2": 4281,
+        "y2": 3149
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.85,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "77919ddb",
+      "patch_id": 135,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "1 1/2\"",
+      "tag_text_gemini": "1 1/2\"",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4599,
+        "y1": 3090,
+        "x2": 4634,
+        "y2": 3162
+      },
+      "tag_bbox": {
+        "x1": 4546,
+        "y1": 3057,
+        "x2": 4592,
+        "y2": 3149
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.85,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "c69e4206",
+      "patch_id": 136,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-910",
+      "tag_text_gemini": "V-GV-910",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4609,
+        "y1": 2995,
+        "x2": 4645,
+        "y2": 3067
+      },
+      "tag_bbox": {
+        "x1": 4651,
+        "y1": 2987,
+        "x2": 4684,
+        "y2": 3126
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "206c95e5",
+      "patch_id": 136,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "12\"-ETH-V009-C06",
+      "tag_text_gemini": "12\"-ETH-V009-C06",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4924,
+        "y1": 3285,
+        "x2": 5350,
+        "y2": 3327
+      },
+      "tag_bbox": {
+        "x1": 4924,
+        "y1": 3285,
+        "x2": 5350,
+        "y2": 3327
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e9321a93",
+      "patch_id": 139,
+      "symbol_name": "Pressure Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "PIC-210",
+      "tag_text_gemini": "PIC-210",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6277,
+        "y1": 2944,
+        "x2": 6416,
+        "y2": 3084
+      },
+      "tag_bbox": {
+        "x1": 6316,
+        "y1": 2964,
+        "x2": 6376,
+        "y2": 3054
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "16168c5e",
+      "patch_id": 140,
+      "symbol_name": "Pressure Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "PIC-210A",
+      "tag_text_gemini": "PIC-210A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6686,
+        "y1": 2944,
+        "x2": 6825,
+        "y2": 3084
+      },
+      "tag_bbox": {
+        "x1": 6711,
+        "y1": 2967,
+        "x2": 6792,
+        "y2": 3052
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "26bed555",
+      "patch_id": 140,
+      "symbol_name": "Pressure Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "PIC-212",
+      "tag_text_gemini": "PIC-212",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7076,
+        "y1": 2944,
+        "x2": 7190,
+        "y2": 3084
+      },
+      "tag_bbox": {
+        "x1": 7102,
+        "y1": 2967,
+        "x2": 7174,
+        "y2": 3052
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "b9f5309f",
+      "patch_id": 141,
+      "symbol_name": "Pressure Indicator Controller",
+      "symbol_category": "instrument",
+      "tag_text": "PIC-146",
+      "tag_text_gemini": "PIC-146",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7579,
+        "y1": 3078,
+        "x2": 7650,
+        "y2": 3219
+      },
+      "tag_bbox": {
+        "x1": 7608,
+        "y1": 3102,
+        "x2": 7650,
+        "y2": 3187
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "1851fb37",
+      "patch_id": 142,
+      "symbol_name": "Pressure Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "PIC-1466B",
+      "tag_text_gemini": "PIC-1466B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7590,
+        "y1": 3078,
+        "x2": 7729,
+        "y2": 3219
+      },
+      "tag_bbox": {
+        "x1": 7615,
+        "y1": 3102,
+        "x2": 7700,
+        "y2": 3182
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "2c0ca1fe",
+      "patch_id": 143,
+      "symbol_name": "Hand Switch",
+      "symbol_category": "instrument",
+      "tag_text": "HS-1466B",
+      "tag_text_gemini": "HS-1466B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8223,
+        "y1": 2883,
+        "x2": 8364,
+        "y2": 3024
+      },
+      "tag_bbox": {
+        "x1": 8252,
+        "y1": 2904,
+        "x2": 8336,
+        "y2": 2988
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "7d39a257",
+      "patch_id": 143,
+      "symbol_name": "Position Switch",
+      "symbol_category": "instrument",
+      "tag_text": "XS-261",
+      "tag_text_gemini": "XS-261",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8225,
+        "y1": 3082,
+        "x2": 8366,
+        "y2": 3223
+      },
+      "tag_bbox": {
+        "x1": 8264,
+        "y1": 3103,
+        "x2": 8328,
+        "y2": 3193
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "76649ae6",
+      "patch_id": 149,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "2\u201d-ETH-V067\u201461440X",
+      "tag_text_gemini": "2\u201d-ETH-V067\u201461440X",
+      "tag_text_ocr": "2\u201d-ETH-V067\u201461440X",
+      "symbol_bbox": {
+        "x1": 1088,
+        "y1": 3448,
+        "x2": 1627,
+        "y2": 3448
+      },
+      "tag_bbox": {
+        "x1": 1104,
+        "y1": 3372,
+        "x2": 1586,
+        "y2": 3418
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.52,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "73e2df7e",
+      "patch_id": 151,
+      "symbol_name": "Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-BV-761",
+      "tag_text_gemini": "V-BV-761",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2113,
+        "y1": 3292,
+        "x2": 2234,
+        "y2": 3338
+      },
+      "tag_bbox": {
+        "x1": 1972,
+        "y1": 3367,
+        "x2": 2155,
+        "y2": 3400
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "3bbefec3",
+      "patch_id": 151,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "201A",
+      "tag_text_gemini": "201A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2374,
+        "y1": 3198,
+        "x2": 2539,
+        "y2": 3317
+      },
+      "tag_bbox": {
+        "x1": 2412,
+        "y1": 3230,
+        "x2": 2502,
+        "y2": 3271
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "988092b9",
+      "patch_id": 151,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "T 201C",
+      "tag_text_gemini": "T 201C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2266,
+        "y1": 3442,
+        "x2": 2431,
+        "y2": 3607
+      },
+      "tag_bbox": {
+        "x1": 2302,
+        "y1": 3470,
+        "x2": 2394,
+        "y2": 3560
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "458b64a0",
+      "patch_id": 153,
+      "symbol_name": "Pressure Gauge",
+      "symbol_category": "instrument",
+      "tag_text": "PG-206",
+      "tag_text_gemini": "PG-206",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2878,
+        "y1": 3395,
+        "x2": 3034,
+        "y2": 3551
+      },
+      "tag_bbox": {
+        "x1": 2918,
+        "y1": 3421,
+        "x2": 2994,
+        "y2": 3526
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "bb981f0b",
+      "patch_id": 153,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-908",
+      "tag_text_gemini": "V-GV-908",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3108,
+        "y1": 3455,
+        "x2": 3178,
+        "y2": 3488
+      },
+      "tag_bbox": {
+        "x1": 3050,
+        "y1": 3498,
+        "x2": 3237,
+        "y2": 3530
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1a3f983e",
+      "patch_id": 153,
+      "symbol_name": "Level Gauge",
+      "symbol_category": "instrument",
+      "tag_text": "LG-202",
+      "tag_text_gemini": "LG-202",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3078,
+        "y1": 3703,
+        "x2": 3234,
+        "y2": 3859
+      },
+      "tag_bbox": {
+        "x1": 3117,
+        "y1": 3728,
+        "x2": 3193,
+        "y2": 3834
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "365c7c8f",
+      "patch_id": 153,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-906",
+      "tag_text_gemini": "V-GV-906",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3222,
+        "y1": 3643,
+        "x2": 3292,
+        "y2": 3676
+      },
+      "tag_bbox": {
+        "x1": 3226,
+        "y1": 3693,
+        "x2": 3413,
+        "y2": 3725
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0e11f0e2",
+      "patch_id": 154,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-907",
+      "tag_text_gemini": "V-GV-907",
+      "tag_text_ocr": "V-CV-906",
+      "symbol_bbox": {
+        "x1": 3282,
+        "y1": 3454,
+        "x2": 3353,
+        "y2": 3487
+      },
+      "tag_bbox": {
+        "x1": 3271,
+        "y1": 3498,
+        "x2": 3456,
+        "y2": 3531
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.45,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "5cb471a3",
+      "patch_id": 154,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-CV-906",
+      "tag_text_gemini": "V-GV-906",
+      "tag_text_ocr": "V-CV-906",
+      "symbol_bbox": {
+        "x1": 3232,
+        "y1": 3641,
+        "x2": 3304,
+        "y2": 3677
+      },
+      "tag_bbox": {
+        "x1": 3238,
+        "y1": 3691,
+        "x2": 3424,
+        "y2": 3727
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.45,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "4f284a0a",
+      "patch_id": 154,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-905",
+      "tag_text_gemini": "V-GV-905",
+      "tag_text_ocr": "V-CV-906",
+      "symbol_bbox": {
+        "x1": 3232,
+        "y1": 3888,
+        "x2": 3304,
+        "y2": 3924
+      },
+      "tag_bbox": {
+        "x1": 3220,
+        "y1": 3928,
+        "x2": 3367,
+        "y2": 3962
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.45,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "c7969e0c",
+      "patch_id": 155,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-903",
+      "tag_text_gemini": "V-GV-903",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3922,
+        "y1": 3829,
+        "x2": 3992,
+        "y2": 3862
+      },
+      "tag_bbox": {
+        "x1": 3858,
+        "y1": 3875,
+        "x2": 4044,
+        "y2": 3908
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "70e51591",
+      "patch_id": 156,
+      "symbol_name": "Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "T-274A",
+      "tag_text_gemini": "T-274A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4182,
+        "y1": 3292,
+        "x2": 4346,
+        "y2": 3455
+      },
+      "tag_bbox": {
+        "x1": 4219,
+        "y1": 3319,
+        "x2": 4309,
+        "y2": 3413
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "1b1ff77a",
+      "patch_id": 156,
+      "symbol_name": "Level Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "LIT-204",
+      "tag_text_gemini": "LIT-204",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4144,
+        "y1": 3523,
+        "x2": 4301,
+        "y2": 3680
+      },
+      "tag_bbox": {
+        "x1": 4184,
+        "y1": 3550,
+        "x2": 4261,
+        "y2": 3653
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "e7c73285",
+      "patch_id": 156,
+      "symbol_name": "Strainer",
+      "symbol_category": "equipment",
+      "tag_text": "S-V-204",
+      "tag_text_gemini": "S-V-204",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4335,
+        "y1": 3220,
+        "x2": 4671,
+        "y2": 3334
+      },
+      "tag_bbox": {
+        "x1": 4374,
+        "y1": 3463,
+        "x2": 4557,
+        "y2": 3503
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "5f4331a2",
+      "patch_id": 156,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX002",
+      "tag_text_gemini": "V-GV-XX002",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4701,
+        "y1": 3911,
+        "x2": 4736,
+        "y2": 3970
+      },
+      "tag_bbox": {
+        "x1": 4409,
+        "y1": 3919,
+        "x2": 4656,
+        "y2": 3957
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "22362fe0",
+      "patch_id": 157,
+      "symbol_name": "Level Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "LIC-204",
+      "tag_text_gemini": "LIC-204",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4600,
+        "y1": 3532,
+        "x2": 4737,
+        "y2": 3672
+      },
+      "tag_bbox": {
+        "x1": 4636,
+        "y1": 3553,
+        "x2": 4696,
+        "y2": 3642
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "4eb7df40",
+      "patch_id": 157,
+      "symbol_name": "Level Indicating Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "LIT-206",
+      "tag_text_gemini": "LIT-206",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4782,
+        "y1": 3704,
+        "x2": 4938,
+        "y2": 3860
+      },
+      "tag_bbox": {
+        "x1": 4823,
+        "y1": 3733,
+        "x2": 4899,
+        "y2": 3831
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "ed69caa3",
+      "patch_id": 157,
+      "symbol_name": "Temperature Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "T-274B",
+      "tag_text_gemini": "T-274B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4707,
+        "y1": 3292,
+        "x2": 4870,
+        "y2": 3455
+      },
+      "tag_bbox": {
+        "x1": 4744,
+        "y1": 3320,
+        "x2": 4836,
+        "y2": 3415
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d34c7733",
+      "patch_id": 157,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX003",
+      "tag_text_gemini": "V-GV-XX003",
+      "tag_text_ocr": "V-GV-XX003",
+      "symbol_bbox": {
+        "x1": 4711,
+        "y1": 3910,
+        "x2": 5000,
+        "y2": 3970
+      },
+      "tag_bbox": {
+        "x1": 4736,
+        "y1": 3865,
+        "x2": 4982,
+        "y2": 3898
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.87,
+      "vision_confidence": 0.9,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "9392c53a",
+      "patch_id": 158,
+      "symbol_name": "Level Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "LI-204",
+      "tag_text_gemini": "LI-204",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5060,
+        "y1": 3532,
+        "x2": 5177,
+        "y2": 3672
+      },
+      "tag_bbox": {
+        "x1": 5070,
+        "y1": 3614,
+        "x2": 5145,
+        "y2": 3653
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "b0bd73f2",
+      "patch_id": 158,
+      "symbol_name": "Level Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "LAHH-206",
+      "tag_text_gemini": "LAHH-206",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5122,
+        "y1": 3712,
+        "x2": 5261,
+        "y2": 3852
+      },
+      "tag_bbox": {
+        "x1": 5158,
+        "y1": 3740,
+        "x2": 5224,
+        "y2": 3823
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "05ca3941",
+      "patch_id": 163,
+      "symbol_name": "Low Selector",
+      "symbol_category": "instrument",
+      "tag_text": "Y2-207",
+      "tag_text_gemini": "Y2-207",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7828,
+        "y1": 3667,
+        "x2": 7967,
+        "y2": 3809
+      },
+      "tag_bbox": {
+        "x1": 7868,
+        "y1": 3688,
+        "x2": 7925,
+        "y2": 3779
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "99faf97b",
+      "patch_id": 164,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-XS-270",
+      "tag_text_gemini": "V-XS-270",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8228,
+        "y1": 3515,
+        "x2": 8366,
+        "y2": 3654
+      },
+      "tag_bbox": {
+        "x1": 8263,
+        "y1": 3533,
+        "x2": 8330,
+        "y2": 3625
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "f8ff6cb7",
+      "patch_id": 164,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-Y2-207",
+      "tag_text_gemini": "V-Y2-207",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 7839,
+        "y1": 3669,
+        "x2": 7978,
+        "y2": 3808
+      },
+      "tag_bbox": {
+        "x1": 7874,
+        "y1": 3687,
+        "x2": 7942,
+        "y2": 3779
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "7fba09df",
+      "patch_id": 164,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-HS-205",
+      "tag_text_gemini": "V-HS-205",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8222,
+        "y1": 3841,
+        "x2": 8360,
+        "y2": 3970
+      },
+      "tag_bbox": {
+        "x1": 8257,
+        "y1": 3859,
+        "x2": 8324,
+        "y2": 3951
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "dfd9f12f",
+      "patch_id": 165,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "XS-270",
+      "tag_text_gemini": "XS-270",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8280,
+        "y1": 3514,
+        "x2": 8377,
+        "y2": 3654
+      },
+      "tag_bbox": {
+        "x1": 8280,
+        "y1": 3535,
+        "x2": 8338,
+        "y2": 3625
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "a9907229",
+      "patch_id": 165,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "SC-201",
+      "tag_text_gemini": "SC-201",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8547,
+        "y1": 3514,
+        "x2": 8686,
+        "y2": 3654
+      },
+      "tag_bbox": {
+        "x1": 8590,
+        "y1": 3535,
+        "x2": 8643,
+        "y2": 3625
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "5736bbf6",
+      "patch_id": 174,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V\u2014GV-905",
+      "tag_text_gemini": "V-GV-905",
+      "tag_text_ocr": "V\u2014GV-905",
+      "symbol_bbox": {
+        "x1": 3222,
+        "y1": 3899,
+        "x2": 3292,
+        "y2": 3935
+      },
+      "tag_bbox": {
+        "x1": 3168,
+        "y1": 3940,
+        "x2": 3355,
+        "y2": 3974
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.4,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "2078f427",
+      "patch_id": 176,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-CV-903",
+      "tag_text_gemini": "V-GV-903",
+      "tag_text_ocr": "V-CV-903",
+      "symbol_bbox": {
+        "x1": 3921,
+        "y1": 3838,
+        "x2": 3993,
+        "y2": 3875
+      },
+      "tag_bbox": {
+        "x1": 3858,
+        "y1": 3887,
+        "x2": 4044,
+        "y2": 3920
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.4,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "237126ea",
+      "patch_id": 176,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-904",
+      "tag_text_gemini": "V-GV-904",
+      "tag_text_ocr": "V-CV-903",
+      "symbol_bbox": {
+        "x1": 3921,
+        "y1": 4025,
+        "x2": 3993,
+        "y2": 4061
+      },
+      "tag_bbox": {
+        "x1": 3875,
+        "y1": 4073,
+        "x2": 4061,
+        "y2": 4106
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.4,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "79394801",
+      "patch_id": 176,
+      "symbol_name": "Control Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-LV-206",
+      "tag_text_gemini": "V-LV-206",
+      "tag_text_ocr": "V-LV-206",
+      "symbol_bbox": {
+        "x1": 4043,
+        "y1": 4155,
+        "x2": 4094,
+        "y2": 4221
+      },
+      "tag_bbox": {
+        "x1": 3990,
+        "y1": 4233,
+        "x2": 4207,
+        "y2": 4274
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.43,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "22438dcb",
+      "patch_id": 178,
+      "symbol_name": "Level Relay",
+      "symbol_category": "instrument",
+      "tag_text": "LY 206",
+      "tag_text_gemini": "LY 206",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4596,
+        "y1": 4160,
+        "x2": 4745,
+        "y2": 4316
+      },
+      "tag_bbox": {
+        "x1": 4630,
+        "y1": 4189,
+        "x2": 4705,
+        "y2": 4290
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "6a915282",
+      "patch_id": 178,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX004",
+      "tag_text_gemini": "V-GV-XX004",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4965,
+        "y1": 3921,
+        "x2": 5000,
+        "y2": 3992
+      },
+      "tag_bbox": {
+        "x1": 4834,
+        "y1": 3999,
+        "x2": 5080,
+        "y2": 4037
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.9,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "595b1a71",
+      "patch_id": 179,
+      "symbol_name": "Level Alarm High High",
+      "symbol_category": "instrument",
+      "tag_text": "LAHH-206",
+      "tag_text_gemini": "LAHH-206",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5122,
+        "y1": 4004,
+        "x2": 5330,
+        "y2": 4143
+      },
+      "tag_bbox": {
+        "x1": 5141,
+        "y1": 4022,
+        "x2": 5241,
+        "y2": 4125
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "40d60dfe",
+      "patch_id": 180,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "XI-220",
+      "tag_text_gemini": "XI-220",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5751,
+        "y1": 4224,
+        "x2": 5890,
+        "y2": 4364
+      },
+      "tag_bbox": {
+        "x1": 5791,
+        "y1": 4248,
+        "x2": 5849,
+        "y2": 4334
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f4f9028e",
+      "patch_id": 185,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "HS-205",
+      "tag_text_gemini": "HS-205",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8222,
+        "y1": 3851,
+        "x2": 8360,
+        "y2": 3990
+      },
+      "tag_bbox": {
+        "x1": 8261,
+        "y1": 3872,
+        "x2": 8319,
+        "y2": 3962
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "a63e281b",
+      "patch_id": 185,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "PIC-252A",
+      "tag_text_gemini": "PIC-252A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8222,
+        "y1": 4067,
+        "x2": 8360,
+        "y2": 4206
+      },
+      "tag_bbox": {
+        "x1": 8250,
+        "y1": 4088,
+        "x2": 8328,
+        "y2": 4178
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "8046dc3c",
+      "patch_id": 186,
+      "symbol_name": "Pressure Indicating Controller",
+      "symbol_category": "instrument",
+      "tag_text": "PIC-52A",
+      "tag_text_gemini": "PIC-52A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8280,
+        "y1": 4067,
+        "x2": 8370,
+        "y2": 4206
+      },
+      "tag_bbox": {
+        "x1": 8280,
+        "y1": 4088,
+        "x2": 8337,
+        "y2": 4175
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "21478e8f",
+      "patch_id": 186,
+      "symbol_name": "Unclassified Switch",
+      "symbol_category": "instrument",
+      "tag_text": "XS-262",
+      "tag_text_gemini": "XS-262",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8547,
+        "y1": 4214,
+        "x2": 8686,
+        "y2": 4355
+      },
+      "tag_bbox": {
+        "x1": 8587,
+        "y1": 4236,
+        "x2": 8644,
+        "y2": 4324
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "7c9d5074",
+      "patch_id": 196,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V\u2014GV-920",
+      "tag_text_gemini": "V-GV-920",
+      "tag_text_ocr": "V\u2014GV-920",
+      "symbol_bbox": {
+        "x1": 3809,
+        "y1": 4608,
+        "x2": 3878,
+        "y2": 4644
+      },
+      "tag_bbox": {
+        "x1": 3750,
+        "y1": 4656,
+        "x2": 3936,
+        "y2": 4689
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.48,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "5a87b406",
+      "patch_id": 196,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-XX001",
+      "tag_text_gemini": "V-GV-XX001",
+      "tag_text_ocr": "V-GV-XX001",
+      "symbol_bbox": {
+        "x1": 3694,
+        "y1": 4737,
+        "x2": 3729,
+        "y2": 4809
+      },
+      "tag_bbox": {
+        "x1": 3330,
+        "y1": 4760,
+        "x2": 3577,
+        "y2": 4797
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.9,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "47f5bc88",
+      "patch_id": 198,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-922",
+      "tag_text_gemini": "V-GV-922",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4180,
+        "y1": 4608,
+        "x2": 4267,
+        "y2": 4646
+      },
+      "tag_bbox": {
+        "x1": 4185,
+        "y1": 4653,
+        "x2": 4348,
+        "y2": 4688
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "9f631b60",
+      "patch_id": 200,
+      "symbol_name": "Flow Transmitter",
+      "symbol_category": "instrument",
+      "tag_text": "FZT-208",
+      "tag_text_gemini": "FZT-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5552,
+        "y1": 4666,
+        "x2": 5703,
+        "y2": 4817
+      },
+      "tag_bbox": {
+        "x1": 5596,
+        "y1": 4692,
+        "x2": 5661,
+        "y2": 4793
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "194a3d8b",
+      "patch_id": 200,
+      "symbol_name": "Flow Indicator",
+      "symbol_category": "instrument",
+      "tag_text": "FZI-208",
+      "tag_text_gemini": "FZI-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5260,
+        "y1": 4672,
+        "x2": 5399,
+        "y2": 4811
+      },
+      "tag_bbox": {
+        "x1": 5300,
+        "y1": 4697,
+        "x2": 5358,
+        "y2": 4782
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "7e297456",
+      "patch_id": 201,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-XI-220",
+      "tag_text_gemini": "V-XI-220",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5751,
+        "y1": 4234,
+        "x2": 5891,
+        "y2": 4374
+      },
+      "tag_bbox": {
+        "x1": 5791,
+        "y1": 4258,
+        "x2": 5850,
+        "y2": 4344
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "32178517",
+      "patch_id": 201,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-FY-208",
+      "tag_text_gemini": "V-FY-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6083,
+        "y1": 4681,
+        "x2": 6234,
+        "y2": 4833
+      },
+      "tag_bbox": {
+        "x1": 6126,
+        "y1": 4707,
+        "x2": 6192,
+        "y2": 4807
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "aa55b2d7",
+      "patch_id": 202,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "FY-208",
+      "tag_text_gemini": "FY-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6094,
+        "y1": 4681,
+        "x2": 6245,
+        "y2": 4833
+      },
+      "tag_bbox": {
+        "x1": 6136,
+        "y1": 4707,
+        "x2": 6203,
+        "y2": 4808
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    },
+    {
+      "candidate_id": "a92bffc2",
+      "patch_id": 206,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "252A",
+      "tag_text_gemini": "252A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8221,
+        "y1": 4140,
+        "x2": 8360,
+        "y2": 4217
+      },
+      "tag_bbox": {
+        "x1": 8251,
+        "y1": 4149,
+        "x2": 8330,
+        "y2": 4186
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "6bcb312e",
+      "patch_id": 206,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "PIC 004A",
+      "tag_text_gemini": "PIC 004A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8219,
+        "y1": 4392,
+        "x2": 8360,
+        "y2": 4533
+      },
+      "tag_bbox": {
+        "x1": 8249,
+        "y1": 4414,
+        "x2": 8327,
+        "y2": 4502
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "41c89ba1",
+      "patch_id": 207,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-XS-262",
+      "tag_text_gemini": "V-XS-262",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8547,
+        "y1": 4226,
+        "x2": 8686,
+        "y2": 4365
+      },
+      "tag_bbox": {
+        "x1": 8514,
+        "y1": 4226,
+        "x2": 8644,
+        "y2": 4336
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0a01ea08",
+      "patch_id": 218,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-922",
+      "tag_text_gemini": "V-GV-920",
+      "tag_text_ocr": "V-GV-922",
+      "symbol_bbox": {
+        "x1": 3819,
+        "y1": 4618,
+        "x2": 3890,
+        "y2": 4654
+      },
+      "tag_bbox": {
+        "x1": 3761,
+        "y1": 4666,
+        "x2": 3947,
+        "y2": 4701
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.88,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "da2d01bf",
+      "patch_id": 218,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-922",
+      "tag_text_gemini": "V-GV-921",
+      "tag_text_ocr": "V-GV-922",
+      "symbol_bbox": {
+        "x1": 3974,
+        "y1": 4730,
+        "x2": 4010,
+        "y2": 4801
+      },
+      "tag_bbox": {
+        "x1": 3932,
+        "y1": 4712,
+        "x2": 3968,
+        "y2": 4891
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.88,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "c8a06ffa",
+      "patch_id": 218,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GLV-523",
+      "tag_text_gemini": "V-GLV-523",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4163,
+        "y1": 5018,
+        "x2": 4240,
+        "y2": 5056
+      },
+      "tag_bbox": {
+        "x1": 4001,
+        "y1": 5059,
+        "x2": 4206,
+        "y2": 5094
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "70994560",
+      "patch_id": 218,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-922",
+      "tag_text_gemini": "V-GV-923",
+      "tag_text_ocr": "V-GV-922",
+      "symbol_bbox": {
+        "x1": 4250,
+        "y1": 5018,
+        "x2": 4327,
+        "y2": 5056
+      },
+      "tag_bbox": {
+        "x1": 4256,
+        "y1": 5065,
+        "x2": 4421,
+        "y2": 5100
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.88,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "1ef6274a",
+      "patch_id": 218,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "1\"-D-V006-C06B",
+      "tag_text_gemini": "1\"-D-V006-C06B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 3761,
+        "y1": 4981,
+        "x2": 4140,
+        "y2": 5026
+      },
+      "tag_bbox": {
+        "x1": 3761,
+        "y1": 4981,
+        "x2": 4140,
+        "y2": 5026
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d023271c",
+      "patch_id": 218,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "T 246A",
+      "tag_text_gemini": "T 246A",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4070,
+        "y1": 4718,
+        "x2": 4234,
+        "y2": 4882
+      },
+      "tag_bbox": {
+        "x1": 4108,
+        "y1": 4744,
+        "x2": 4196,
+        "y2": 4842
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "4f41f11d",
+      "patch_id": 219,
+      "symbol_name": "Gate Valve",
+      "symbol_category": "valve",
+      "tag_text": "V-GV-923",
+      "tag_text_gemini": "V-GV-923",
+      "tag_text_ocr": "V-GV-923",
+      "symbol_bbox": {
+        "x1": 4260,
+        "y1": 5017,
+        "x2": 4347,
+        "y2": 5058
+      },
+      "tag_bbox": {
+        "x1": 4267,
+        "y1": 5065,
+        "x2": 4432,
+        "y2": 5100
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.73,
+      "vision_confidence": 0.95,
+      "tag_source": "ocr"
+    },
+    {
+      "candidate_id": "1583b322",
+      "patch_id": 220,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-FZI-208",
+      "tag_text_gemini": "V-FZI-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4835,
+        "y1": 4682,
+        "x2": 5044,
+        "y2": 4823
+      },
+      "tag_bbox": {
+        "x1": 4945,
+        "y1": 4705,
+        "x2": 5005,
+        "y2": 4795
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "20085307",
+      "patch_id": 220,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-ZLC-208",
+      "tag_text_gemini": "V-ZLC-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4628,
+        "y1": 4907,
+        "x2": 4837,
+        "y2": 5048
+      },
+      "tag_bbox": {
+        "x1": 4730,
+        "y1": 4930,
+        "x2": 4807,
+        "y2": 5027
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "f3f869f5",
+      "patch_id": 220,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-ZLC-208",
+      "tag_text_gemini": "V-ZLC-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4978,
+        "y1": 4907,
+        "x2": 5116,
+        "y2": 5048
+      },
+      "tag_bbox": {
+        "x1": 5015,
+        "y1": 4930,
+        "x2": 5078,
+        "y2": 5020
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "0fd96338",
+      "patch_id": 220,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-ZLO-208",
+      "tag_text_gemini": "V-ZLO-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4628,
+        "y1": 5093,
+        "x2": 4837,
+        "y2": 5234
+      },
+      "tag_bbox": {
+        "x1": 4730,
+        "y1": 5116,
+        "x2": 4807,
+        "y2": 5213
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "04dece63",
+      "patch_id": 220,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-ZLO-208",
+      "tag_text_gemini": "V-ZLO-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4978,
+        "y1": 5093,
+        "x2": 5116,
+        "y2": 5234
+      },
+      "tag_bbox": {
+        "x1": 5015,
+        "y1": 5116,
+        "x2": 5078,
+        "y2": 5206
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "bd746e1c",
+      "patch_id": 221,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "FZSC-208",
+      "tag_text_gemini": "FZSC-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5552,
+        "y1": 4902,
+        "x2": 5703,
+        "y2": 5054
+      },
+      "tag_bbox": {
+        "x1": 5584,
+        "y1": 4930,
+        "x2": 5671,
+        "y2": 5026
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "87f6078d",
+      "patch_id": 221,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "FZSO-208",
+      "tag_text_gemini": "FZSO-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5552,
+        "y1": 5089,
+        "x2": 5703,
+        "y2": 5242
+      },
+      "tag_bbox": {
+        "x1": 5584,
+        "y1": 5117,
+        "x2": 5672,
+        "y2": 5214
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "41443e10",
+      "patch_id": 222,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "V-FZY-208",
+      "tag_text_gemini": "V-FZY-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5980,
+        "y1": 5162,
+        "x2": 6132,
+        "y2": 5314
+      },
+      "tag_bbox": {
+        "x1": 6024,
+        "y1": 5188,
+        "x2": 6090,
+        "y2": 5288
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "ba561f9e",
+      "patch_id": 223,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "ZY-208",
+      "tag_text_gemini": "ZY-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6277,
+        "y1": 4916,
+        "x2": 6416,
+        "y2": 5057
+      },
+      "tag_bbox": {
+        "x1": 6316,
+        "y1": 4942,
+        "x2": 6376,
+        "y2": 5032
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "a9888069",
+      "patch_id": 223,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "ZY-208",
+      "tag_text_gemini": "ZY-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 6574,
+        "y1": 4916,
+        "x2": 6714,
+        "y2": 5057
+      },
+      "tag_bbox": {
+        "x1": 6606,
+        "y1": 4934,
+        "x2": 6682,
+        "y2": 5039
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d424b383",
+      "patch_id": 237,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "10\"-ETH-V061-61440X",
+      "tag_text_gemini": "10\"-ETH-V061-61440X",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 2760,
+        "y1": 5409,
+        "x2": 3255,
+        "y2": 5454
+      },
+      "tag_bbox": {
+        "x1": 2760,
+        "y1": 5409,
+        "x2": 3255,
+        "y2": 5454
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "e6d32abc",
+      "patch_id": 240,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "T-246B",
+      "tag_text_gemini": "T-246B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4140,
+        "y1": 5186,
+        "x2": 4256,
+        "y2": 5346
+      },
+      "tag_bbox": {
+        "x1": 4140,
+        "y1": 5206,
+        "x2": 4222,
+        "y2": 5303
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "d43c3f72",
+      "patch_id": 240,
+      "symbol_name": "Instrument Bubble",
+      "symbol_category": "instrument",
+      "tag_text": "T-246C",
+      "tag_text_gemini": "T-246C",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 4256,
+        "y1": 5138,
+        "x2": 4419,
+        "y2": 5300
+      },
+      "tag_bbox": {
+        "x1": 4291,
+        "y1": 5159,
+        "x2": 4383,
+        "y2": 5256
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "80643f24",
+      "patch_id": 242,
+      "symbol_name": "Flow Valve",
+      "symbol_category": "instrument",
+      "tag_text": "V-FV-208",
+      "tag_text_gemini": "V-FV-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5651,
+        "y1": 5604,
+        "x2": 5803,
+        "y2": 5756
+      },
+      "tag_bbox": {
+        "x1": 5695,
+        "y1": 5630,
+        "x2": 5761,
+        "y2": 5726
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "a428007b",
+      "patch_id": 249,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "8\"-ETH-V066-61440X",
+      "tag_text_gemini": "8\"-ETH-V066-61440X",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8391,
+        "y1": 5396,
+        "x2": 8874,
+        "y2": 5444
+      },
+      "tag_bbox": {
+        "x1": 8391,
+        "y1": 5396,
+        "x2": 8874,
+        "y2": 5444
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "c9a015b4",
+      "patch_id": 249,
+      "symbol_name": "Piping Line Number",
+      "symbol_category": "piping",
+      "tag_text": "1\"-D-V003-C01B",
+      "tag_text_gemini": "1\"-D-V003-C01B",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 8490,
+        "y1": 5717,
+        "x2": 8873,
+        "y2": 5764
+      },
+      "tag_bbox": {
+        "x1": 8490,
+        "y1": 5717,
+        "x2": 8873,
+        "y2": 5764
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "UNSPECIFIED",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "vision"
+    },
+    {
+      "candidate_id": "ec77992b",
+      "patch_id": 264,
+      "symbol_name": "Flow Valve",
+      "symbol_category": "instrument",
+      "tag_text": "FV-208",
+      "tag_text_gemini": "FV-208",
+      "tag_text_ocr": null,
+      "symbol_bbox": {
+        "x1": 5661,
+        "y1": 5614,
+        "x2": 5814,
+        "y2": 5766
+      },
+      "tag_bbox": {
+        "x1": 5706,
+        "y1": 5644,
+        "x2": 5772,
+        "y2": 5736
+      },
+      "scope_type": "FULL_DRAWING",
+      "sow_status": "IN_SCOPE",
+      "sow_reason": "No SOW memory loaded",
+      "ocr_confidence": 0.0,
+      "vision_confidence": 0.95,
+      "tag_source": "both"
+    }
+  ]
+}

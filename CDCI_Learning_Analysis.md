@@ -270,9 +270,9 @@ python pipeline/cloud_reconstructor.py input_drawing.jpg --out debug_reconstruct
 python pipeline/diagnose_clouds.py input_drawing.jpg --truth clouds_truth.json
 
 # NEW: Combined 95%+ pipeline
-python cloud_detector_v2.py input_drawing.jpg --out output/
-python cloud_detector_v2.py input_drawing.jpg --out output/ --debug
-python cloud_detector_v2.py input_drawing.jpg --out output/ --no-gemini  # deterministic fallback
+python stages/step2b_cloud_detection.py --context output/drawing_context.json --api-key $GEMINI_KEY
+python stages/step2b_cloud_detection.py --context output/drawing_context.json --api-key $GEMINI_KEY --debug
+python stages/step2b_cloud_detection.py input_drawing.jpg --out output/ --no-gemini  # deterministic fallback
 ```
 
 ---

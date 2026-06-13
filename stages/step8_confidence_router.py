@@ -73,16 +73,25 @@ from typing import Optional
 log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
-# ── Confidence weights (Blueprint §9.1) ───────────────────────────────────────
-W_DET  = 0.25   # C_det  — symbol detection (vision_confidence)
-W_OCR  = 0.30   # C_ocr  — OCR character accuracy
+# ── Confidence weights (Blueprint §9.1, rebalanced) ───────────────────────────
+# In this pipeline the MLLM (Gemini) is the PRIMARY text source and Tesseract is
+# a secondary cross-check that is frequently silent (it reads almost no symbol
+# text on this drawing). Weighting raw OCR at 0.30 therefore collapsed C_final
+# and AUTO_REJECTed ~87% of perfectly good tags. We keep OCR in the blend but
+# (a) fall back to the model's own read confidence when OCR is silent (see
+# compute_confidence) and (b) trim the registry weight, which is only 0.5 for
+# the many legitimate tags absent from the sparse 46-row register.
+W_DET  = 0.30   # C_det  — symbol detection (vision_confidence)
+W_OCR  = 0.30   # C_ocr  — text confidence (OCR, or model read when OCR silent)
 W_GEO  = 0.15   # C_geo  — geometric association
 W_VAL  = 0.20   # C_val  — validation stage scores
-W_REG  = 0.10   # C_reg  — registry lookup (1.0=found, 0.5=not found)
+W_REG  = 0.05   # C_reg  — registry lookup (1.0=found, 0.5=not found)
 
 # ── Routing thresholds ────────────────────────────────────────────────────────
-THRESHOLD_ACCEPT = 0.85
-THRESHOLD_REVIEW = 0.60
+# Register-confirmed + validated tags auto-accept; novel tags fall to review
+# (never silently rejected). Reject is reserved for genuinely low-signal noise.
+THRESHOLD_ACCEPT = 0.80
+THRESHOLD_REVIEW = 0.55
 
 # ── Priority thresholds for HUMAN_REVIEW queue ────────────────────────────────
 OCR_LOW_CONF_THRESHOLD = 0.75
@@ -153,20 +162,26 @@ def compute_confidence(record: dict) -> dict:
     c_val = max(0.0, min(1.0, c_val))
     c_reg = max(0.0, min(1.0, c_reg))
 
+    # Effective text confidence: when Tesseract is silent (c_ocr == 0) the tag
+    # text actually came from the MLLM, so use its read confidence (lightly
+    # discounted) instead of penalising the record for a missing secondary OCR.
+    c_ocr_eff = c_ocr if c_ocr > 0 else round(0.9 * c_det, 3)
+
     c_final = (W_DET * c_det
-             + W_OCR * c_ocr
+             + W_OCR * c_ocr_eff
              + W_GEO * c_geo
              + W_VAL * c_val
              + W_REG * c_reg)
     c_final = round(max(0.0, min(1.0, c_final)), 4)
 
     return {
-        "c_det":   round(c_det, 3),
-        "c_ocr":   round(c_ocr, 3),
-        "c_geo":   round(c_geo, 3),
-        "c_val":   round(c_val, 3),
-        "c_reg":   round(c_reg, 3),
-        "c_final": c_final,
+        "c_det":     round(c_det, 3),
+        "c_ocr":     round(c_ocr, 3),
+        "c_ocr_eff": c_ocr_eff,
+        "c_geo":     round(c_geo, 3),
+        "c_val":     round(c_val, 3),
+        "c_reg":     round(c_reg, 3),
+        "c_final":   c_final,
     }
 
 
@@ -199,21 +214,22 @@ def classify_review_priority(record: dict, conf: dict) -> tuple[int, str]:
     if val_status == "FAIL":
         return 1, f"VALIDATION_FAIL: {record.get('_validation_status','')}"
 
-    # P1: Cloud scope ambiguity
-    if sow_status == "UNSPECIFIED":
-        return 1, "SOW_UNSPECIFIED: tag not in USE or DO_NOT_USE list"
-
-    # P2: Low OCR confidence
-    if c_ocr < OCR_LOW_CONF_THRESHOLD:
-        return 2, f"OCR_LOW_CONF: c_ocr={c_ocr:.2f} (threshold {OCR_LOW_CONF_THRESHOLD})"
-
     # P2: Duplicate conflict
     if "DUPLICATE" in remarks.upper() or record.get("DUPLICATE STATUS") == "YES":
         return 2, "DUPLICATE_CONFLICT: tag appears multiple times"
 
+    # P2: Low OCR confidence AND no model fallback — genuinely weak text signal
+    c_ocr_eff = conf.get("c_ocr_eff", c_ocr)
+    if c_ocr_eff < OCR_LOW_CONF_THRESHOLD:
+        return 2, f"LOW_TEXT_CONF: c_text={c_ocr_eff:.2f} (threshold {OCR_LOW_CONF_THRESHOLD})"
+
     # P3: Not in register
     if not record.get("_in_registry"):
         return 3, "NOT_IN_REGISTER: tag not found in client asset register"
+
+    # P3: Scope not defined (SOW memory absent / tag not in USE|DO_NOT_USE list)
+    if sow_status == "UNSPECIFIED":
+        return 3, "SOW_UNSPECIFIED: tag not in USE or DO_NOT_USE list"
 
     # P3: Prefix mismatch (from remarks)
     if "PREFIX_MISMATCH" in remarks.upper():

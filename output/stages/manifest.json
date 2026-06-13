@@ -1,0 +1,46 @@
+{
+  "stages": [
+    {
+      "stage": "5A_detection",
+      "image": "output/stages/5a_detection.jpg",
+      "overview": "output/stages/5a_detection_overview.jpg",
+      "count": 226,
+      "json": "output/step5a_candidates.json"
+    },
+    {
+      "stage": "SOW_detected",
+      "image": "output/stages/sow_detected.jpg",
+      "overview": "output/stages/sow_detected_overview.jpg",
+      "count": 226,
+      "json": "output/stages/sow_candidates.json",
+      "summary": {
+        "IN_SCOPE": 116,
+        "OUT_OF_SCOPE": 5,
+        "UNSPECIFIED": 105
+      }
+    },
+    {
+      "stage": "SOW_filtered",
+      "image": "output/stages/sow_filtered.jpg",
+      "overview": "output/stages/sow_filtered_overview.jpg",
+      "count": 221,
+      "json": "output/stages/sow_filtered_candidates.json"
+    },
+    {
+      "stage": "DUP_detected",
+      "image": "output/stages/dup_detected.jpg",
+      "overview": "output/stages/dup_detected_overview.jpg",
+      "count": 226,
+      "json": "output/step5d_deduped.json",
+      "primary": 209,
+      "duplicates": 17
+    },
+    {
+      "stage": "DUP_filtered",
+      "image": "output/stages/dup_filtered.jpg",
+      "overview": "output/stages/dup_filtered_overview.jpg",
+      "count": 209,
+      "json": "output/step5_final_output.json"
+    }
+  ]
+}

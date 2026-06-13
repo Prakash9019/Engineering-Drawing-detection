@@ -73,14 +73,13 @@ GEMINI_FLASH_MODEL   = "gemini-2.5-flash"
 GEMINI_PRO_MODEL     = "gemini-2.5-pro"
 GEMINI_MAX_SIDE      = 4096
 
-# ── Candidate scan tiles for table detection ───────────────────────────────────
+# ── Fallback scan tiles (used when binary not available for adaptive detection) ──
 # (name, x0_frac, y0_frac, x1_frac, y1_frac, priority, description)
-TABLE_SCAN_TILES = [
-    ("top_left",      0.000, 0.000, 0.820, 0.130, 1, "Top-left: primary tag list location"),
-    ("top_strip",     0.000, 0.000, 1.000, 0.080, 1, "Full-width top strip"),
-    ("right_margin",  0.600, 0.000, 1.000, 0.800, 2, "Right margin: equipment schedules"),
-    ("upper_half",    0.000, 0.000, 1.000, 0.500, 3, "Upper half: fallback scan"),
-    ("full_drawing",  0.000, 0.000, 1.000, 1.000, 4, "Full drawing: last resort"),
+TABLE_SCAN_TILES_FALLBACK = [
+    ("top_full",     0.000, 0.000, 1.000, 0.260, 1, "Full-width top 26% — primary tag list"),
+    ("right_margin", 0.600, 0.000, 1.000, 0.800, 2, "Right margin: equipment schedules"),
+    ("upper_half",   0.000, 0.000, 1.000, 0.500, 3, "Upper half: fallback scan"),
+    ("full_drawing", 0.000, 0.000, 1.000, 1.000, 4, "Full drawing: last resort"),
 ]
 
 # ── Table type taxonomy ─────────────────────────────────────────────────────────
@@ -137,6 +136,57 @@ def upscale_to(img: np.ndarray, min_short_side: int = 800) -> np.ndarray:
         return img
     scale = min_short_side / short
     return cv2.resize(img, (int(W * scale), int(H * scale)), interpolation=cv2.INTER_CUBIC)
+
+
+def scale_for_table(img: np.ndarray,
+                    min_height: int = 700,
+                    max_side: int = 7000) -> np.ndarray:
+    """
+    Scale a table crop for Gemini, ensuring minimum height for readability.
+    Wide tables (tag lists) are typically short — upscale to min_height
+    so small tag numbers are legible. Only downscale if truly oversized.
+    """
+    H, W = img.shape[:2]
+    if H < min_height:
+        scale = min_height / H
+        nW, nH = int(W * scale), min_height
+        if nW <= max_side:
+            return cv2.resize(img, (nW, nH), interpolation=cv2.INTER_CUBIC)
+        # Width would exceed max_side — scale to fit width instead
+        scale = max_side / W
+        return cv2.resize(img, (max_side, int(H * scale)), interpolation=cv2.INTER_CUBIC)
+    if max(H, W) > max_side:
+        scale = max_side / max(H, W)
+        return cv2.resize(img, (int(W * scale), int(H * scale)), interpolation=cv2.INTER_AREA)
+    return img
+
+
+def detect_table_bottom(img: np.ndarray, search_top_pct: float = 0.40) -> int:
+    """
+    Find the bottom y-pixel of the top table by locating the last
+    dense horizontal line (row density > 25% of width) in the top
+    search_top_pct fraction of the image.
+    Returns the y-pixel just below the table, with a small buffer.
+    """
+    H, W = img.shape[:2]
+    gray     = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    clahe    = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
+    enhanced = clahe.apply(gray)
+    _, binary = cv2.threshold(enhanced, 0, 255,
+                               cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+
+    search_end = int(H * search_top_pct)
+    row_proj   = np.sum(binary > 0, axis=1).astype(float) / W
+    k          = np.ones(3) / 3
+    smoothed   = np.convolve(row_proj, k, mode='same')
+
+    last_line_y = int(H * 0.06)   # minimum — skip tiny top strips
+    for y in range(int(H * 0.02), search_end):
+        if smoothed[y] > 0.25:    # dense row = table border or dense text row
+            last_line_y = y
+
+    buffer = max(30, int(H * 0.008))
+    return min(H, last_line_y + buffer)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -405,13 +455,6 @@ def detect_table_regions(img: np.ndarray, client, sdk: str,
             log.info("  Found: '%s' (%s) bbox=[%d,%d,%d,%d]",
                      title, tbl.get("table_type"), abs_x0, abs_y0, abs_x1, abs_y1)
 
-        # If high-confidence tables found in priority-1 tile, skip lower-priority scans
-        if priority == 1 and all_tables:
-            high_conf = [t for t in all_tables if (t.get("confidence") or 0) >= 0.8]
-            if len(high_conf) >= 1:
-                log.info("High-confidence tables found in priority-1 tile; stopping scan")
-                break
-
     return all_tables
 
 
@@ -497,6 +540,96 @@ Be thorough — extract ALL rows and ALL columns. If a cell is empty or
 illegible, use null. Never skip rows."""
 
 
+def _extract_wide_table(crop: np.ndarray, table_meta: dict,
+                         grid_info: dict, ocr_text: str,
+                         rules_context: str, client, sdk: str) -> dict:
+    """
+    Extract a wide table (aspect ratio > 2.5) by splitting into left and right
+    halves with a 5% overlap, extracting each at higher resolution, then merging.
+    This ensures small tag numbers in all columns are legible.
+    """
+    cH, cW = crop.shape[:2]
+    mid     = int(cW * 0.50)
+    overlap = int(cW * 0.05)
+
+    halves = [
+        ("left",  crop[:, :mid + overlap]),
+        ("right", crop[:, mid - overlap:]),
+    ]
+
+    half_results: list[dict] = []
+    all_rows: dict[str, dict] = {}   # row_label → merged cells
+    all_headers: list[str]    = []
+    all_tags: list[str]       = []
+
+    ttype = table_meta.get("table_type", "unknown")
+    title = table_meta.get("title", "")
+
+    for side, half_crop in halves:
+        scaled    = scale_for_table(half_crop, min_height=700)
+        img_bytes = encode_jpeg(scaled, quality=95)
+
+        # OCR this half
+        half_ocr = tesseract_table_ocr(half_crop)
+
+        prompt = _make_extract_prompt(
+            table_type     = ttype,
+            title          = f"{title} [{side} half]",
+            estimated_rows = grid_info.get("estimated_rows", 0),
+            estimated_cols = max(1, grid_info.get("estimated_cols", 0) // 2),
+            ocr_text       = half_ocr,
+            grid_info      = grid_info,
+            rules_context  = rules_context,
+        )
+        try:
+            raw    = _gemini_call(client, sdk, GEMINI_FLASH_MODEL, img_bytes,
+                                  prompt, fallback=GEMINI_PRO_MODEL)
+            parsed = _parse_json(raw)
+            half_results.append(parsed)
+
+            # Collect headers
+            for h in (parsed.get("headers") or []):
+                if h and h not in all_headers:
+                    all_headers.append(h)
+
+            # Merge rows by row_label
+            for row in (parsed.get("rows") or []):
+                label = str(row.get("row_label") or row.get("row_index") or "")
+                if label not in all_rows:
+                    all_rows[label] = dict(row)
+                else:
+                    # Merge cells from this half into existing row
+                    existing_cells = all_rows[label].get("cells") or {}
+                    new_cells      = row.get("cells") or {}
+                    existing_cells.update(new_cells)
+                    all_rows[label]["cells"] = existing_cells
+
+            all_tags.extend(parsed.get("all_tag_numbers") or [])
+            log.info("  Wide table %s half: %d rows", side, len(parsed.get("rows", [])))
+        except Exception as e:
+            log.warning("  Wide table %s half failed: %s", side, e)
+
+    # Build merged result
+    merged_rows = sorted(all_rows.values(),
+                         key=lambda r: (int(re.search(r'\d+', str(r.get("row_label","0"))).group())
+                                        if re.search(r'\d+', str(r.get("row_label",""))) else 999))
+    unique_tags = list(dict.fromkeys(all_tags))   # preserve order, deduplicate
+
+    base = half_results[0] if half_results else {}
+    return {
+        "table_type":           ttype,
+        "title":                title,
+        "headers":              all_headers,
+        "rows":                 merged_rows,
+        "all_tag_numbers":      unique_tags,
+        "tag_type_summary":     base.get("tag_type_summary", {}),
+        "table_notes":          f"Wide table split into halves; {base.get('table_notes','')}",
+        "extraction_confidence": base.get("extraction_confidence", 0.8),
+        "partially_extracted":  base.get("partially_extracted", False),
+        "wide_table_split":     True,
+    }
+
+
 def extract_table_contents(img: np.ndarray, table_meta: dict,
                             client, sdk: str,
                             rules_context: str = "") -> dict:
@@ -525,36 +658,41 @@ def extract_table_contents(img: np.ndarray, table_meta: dict,
     log.info("  OCR: %d chars", len(ocr_text))
 
     # Stage C: Gemini structured extraction
-    scaled    = scale_for_gemini(crop)
-    img_bytes = encode_jpeg(scaled, quality=94)  # higher quality for tables
-
-    prompt = _make_extract_prompt(
-        table_type     = table_meta.get("table_type", "unknown"),
-        title          = table_meta.get("title", ""),
-        estimated_rows = table_meta.get("estimated_rows",
-                         grid_info["estimated_rows"]),
-        estimated_cols = table_meta.get("estimated_cols",
-                         grid_info["estimated_cols"]),
-        ocr_text       = ocr_text,
-        grid_info      = grid_info,
-        rules_context  = rules_context,
-    )
-
-    try:
-        raw    = _gemini_call(client, sdk, GEMINI_FLASH_MODEL, img_bytes,
-                              prompt, fallback=GEMINI_PRO_MODEL)
-        result = _parse_json(raw)
-    except json.JSONDecodeError as e:
-        log.warning("JSON parse failed, returning partial: %s", e)
-        result = {
-            "table_type":  table_meta.get("table_type", "unknown"),
-            "title":       table_meta.get("title", ""),
-            "parse_error": str(e),
-            "ocr_text":    ocr_text,
-        }
-    except Exception as e:
-        log.error("Gemini extraction failed: %s", e)
-        result = {"error": str(e), "ocr_text": ocr_text}
+    # Wide tables (tag lists) are split into left/right halves so each half
+    # gets sufficient resolution for small tag numbers to be legible.
+    aspect = cW / max(cH, 1)
+    if aspect > 2.5 and cW > 2000:
+        result = _extract_wide_table(crop, table_meta, grid_info, ocr_text,
+                                     rules_context, client, sdk)
+    else:
+        scaled    = scale_for_table(crop)
+        img_bytes = encode_jpeg(scaled, quality=95)
+        prompt    = _make_extract_prompt(
+            table_type     = table_meta.get("table_type", "unknown"),
+            title          = table_meta.get("title", ""),
+            estimated_rows = table_meta.get("estimated_rows",
+                             grid_info["estimated_rows"]),
+            estimated_cols = table_meta.get("estimated_cols",
+                             grid_info["estimated_cols"]),
+            ocr_text       = ocr_text,
+            grid_info      = grid_info,
+            rules_context  = rules_context,
+        )
+        try:
+            raw    = _gemini_call(client, sdk, GEMINI_FLASH_MODEL, img_bytes,
+                                  prompt, fallback=GEMINI_PRO_MODEL)
+            result = _parse_json(raw)
+        except json.JSONDecodeError as e:
+            log.warning("JSON parse failed, returning partial: %s", e)
+            result = {
+                "table_type":  table_meta.get("table_type", "unknown"),
+                "title":       table_meta.get("title", ""),
+                "parse_error": str(e),
+                "ocr_text":    ocr_text,
+            }
+        except Exception as e:
+            log.error("Gemini extraction failed: %s", e)
+            result = {"error": str(e), "ocr_text": ocr_text}
 
     # Enrich with grid metadata
     result["grid_analysis"]  = grid_info
@@ -658,9 +796,24 @@ def run_table_agent(
     client, sdk = _build_gemini_client(api_key)
     log.info("Gemini client ready (%s SDK)", sdk)
 
+    # ── Build adaptive scan tiles ──────────────────────────────────────────────
+    # Detect the actual bottom of the top table so we crop exactly the right area.
+    table_bottom_px  = detect_table_bottom(img)
+    top_frac         = min(table_bottom_px / H + 0.03, 0.45)
+    log.info("Adaptive table top boundary: y=%d (%.1f%% of image height)",
+             table_bottom_px, table_bottom_px / H * 100)
+
+    scan_tiles = [
+        ("top_adaptive", 0.0, 0.0, 1.0, top_frac, 1,
+         f"Full-width adaptive top ({top_frac*100:.0f}%) — primary table"),
+        ("right_margin",  0.600, 0.000, 1.000, 0.800, 2, "Right margin: equipment schedules"),
+        ("upper_half",    0.000, 0.000, 1.000, 0.500, 3, "Upper half: fallback scan"),
+        ("full_drawing",  0.000, 0.000, 1.000, 1.000, 4, "Full drawing: last resort"),
+    ]
+
     # ── Stage A: Detect table regions ─────────────────────────────────────────
     log.info("=== Stage A: Table Region Detection ===")
-    detected_tables = detect_table_regions(img, client, sdk, TABLE_SCAN_TILES)
+    detected_tables = detect_table_regions(img, client, sdk, scan_tiles)
     log.info("Stage A complete: %d table region(s) detected", len(detected_tables))
 
     if not detected_tables:

@@ -232,8 +232,9 @@ def adaptive_binarize(gray: np.ndarray) -> np.ndarray:
 
 def enhance_raster(img_path: str, out_path: str) -> dict:
     """
-    Load a raster image, apply CLAHE + adaptive binarization, save enhanced PNG.
-    Returns metadata dict.
+    Load a raster image, apply CLAHE + adaptive binarization, save binary PNG.
+    The original file is used directly as color_path (no copy written).
+    Returns metadata dict with color_path and binary_path.
     """
     img = cv2.imread(img_path)
     if img is None:
@@ -243,18 +244,15 @@ def enhance_raster(img_path: str, out_path: str) -> dict:
     gray   = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     binary = adaptive_binarize(gray)
 
-    # Save both the original color image (for Gemini) and the binary (for OpenCV)
-    base    = Path(out_path)
-    color_p = str(base.parent / (base.stem + "_color.jpg"))
-    binary_p= str(base.parent / (base.stem + "_binary.png"))
-    cv2.imwrite(color_p, img,    [cv2.IMWRITE_JPEG_QUALITY, 95])
+    base     = Path(out_path)
+    binary_p = str(base.parent / (base.stem + "_binary.png"))
     cv2.imwrite(binary_p, binary)
 
-    log.info("Enhanced raster: %dx%d → %s + %s", W, H, color_p, binary_p)
+    log.info("Binary image written: %dx%d → %s", W, H, binary_p)
     return {
-        "width_px":  W,
-        "height_px": H,
-        "color_path":  color_p,
+        "width_px":   W,
+        "height_px":  H,
+        "color_path": img_path,
         "binary_path": binary_p,
     }
 
@@ -479,10 +477,10 @@ def detect_format_and_parse(
 
         meta = enhance_raster(input_path, str(out / f"{inp.stem}_enhanced"))
         ctx.update({
-            "raster_path":  meta["color_path"],
-            "binary_path":  meta["binary_path"],
-            "width_px":     meta["width_px"],
-            "height_px":    meta["height_px"],
+            "raster_path":    meta["color_path"],
+            "binary_path":    meta["binary_path"],
+            "width_px":       meta["width_px"],
+            "height_px":      meta["height_px"],
             "resolution_dpi": raster_dpi,
         })
 

@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 """
-step3_notes_agent_v2.py — Notes Extraction & Rule Generation Agent (v2)
-========================================================================
-Improvements over v1:
-  • Multi-region tiling: splits drawing into 6 named zones and processes each
-  • Per-region cloud counting: detects how many revision clouds wrap each zone
-  • Tesseract OCR pass: runs BEFORE Gemini to get raw text → Gemini receives
-    both the image crop AND the pre-extracted text, greatly reducing hallucination
-  • Bottom + left margin priority: notes are on left-mid AND full bottom strip
-  • Deduplication: merges notes extracted from overlapping regions
-  • Full JSON + rules_prompt_block + notes_count_per_region table
+step3_notes_agent.py — Notes Extraction Agent (v3)
+===================================================
+Key improvements over v2:
+  • Adaptive region detection: finds actual separator lines in the binary image
+    so zones match the drawing rather than using hardcoded fractions
+  • 3 wide zones (bottom, left, top) with 80px overlap buffers — no text falls
+    in a gap between crops
+  • Uses binary_path from drawing_context.json for Tesseract (pre-computed
+    CLAHE binary is cleaner than re-doing it from color)
+  • All Gemini calls use gemini-2.5-flash (better at dense text, faster)
+  • Final synthesis call: one Gemini pass over all OCR text to reconcile
+    partial notes, detect multi-line continuations, and clean numbering
 """
 
 import argparse
-import base64
 import json
 import logging
-import math
 import os
 import re
 import sys
@@ -31,148 +31,247 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 # ── Models ────────────────────────────────────────────────────────────────────
-GEMINI_PRO_MODEL      = "gemini-2.5-pro"
-GEMINI_FLASH_MODEL    = "gemini-2.5-flash"
-GEMINI_MAX_SIDE       = 4096   # px before encoding for Gemini
+GEMINI_FLASH_MODEL = "gemini-2.5-flash"
 
-# ── Tile layout — 6 named zones covering the full drawing ─────────────────────
-# Each zone: (x0_frac, y0_frac, x1_frac, y1_frac, priority)
-# priority 1 = most likely to have notes; 3 = supplemental
-TILE_DEFINITIONS = [
-    # name                  x0     y0     x1     y1    pri   description
-    ("notes_left_upper",   0.000, 0.250, 0.340, 0.580, 1,   "Left margin notes (Cont'd block upper)"),
-    ("notes_left_lower",   0.000, 0.550, 0.340, 0.850, 1,   "Left margin notes (Cont'd block lower)"),
-    ("notes_bottom_left",  0.000, 0.820, 0.540, 1.000, 1,   "Bottom strip left — NOTES 1-6"),
-    ("notes_bottom_right", 0.530, 0.820, 0.890, 1.000, 1,   "Bottom strip right — NOTES 7-11"),
-    ("abbreviations",      0.000, 0.240, 0.230, 0.420, 2,   "Abbreviations block (upper left)"),
-    ("ref_legends",        0.590, 0.750, 0.860, 0.980, 2,   "Reference drawings & legends"),
-    ("title_block",        0.840, 0.820, 1.000, 1.000, 3,   "Title block (drawing metadata)"),
-]
+# ── Region detection parameters ──────────────────────────────────────────────
+OVERLAP_PX          = 80     # pixel overlap between adjacent zones
+MIN_SIDE_FOR_OCR    = 1200   # upscale crops smaller than this before Tesseract
+SEP_LINE_DENSITY    = 0.45   # fraction of row width to call it a separator line
+TEXT_DENSITY_THRESH = 0.06   # min fraction of row width to call it a text row
+TEXT_CONSECUTIVE    = 8      # consecutive text rows to confirm a text block
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Image helpers
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def clahe_enhance(gray: np.ndarray) -> np.ndarray:
-    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
-    return clahe.apply(gray)
+def _load(path: str) -> np.ndarray:
+    img = cv2.imread(path)
+    if img is None:
+        raise FileNotFoundError(f"Cannot read image: {path}")
+    return img
 
 
-def crop_tile(img: np.ndarray, tile: tuple) -> np.ndarray:
-    """Crop a tile from img using fractional coords."""
-    _, x0f, y0f, x1f, y1f, *_ = tile
+def _upscale(img: np.ndarray, min_side: int = MIN_SIDE_FOR_OCR) -> np.ndarray:
     H, W = img.shape[:2]
-    x0, y0 = int(x0f * W), int(y0f * H)
-    x1, y1 = int(x1f * W), int(y1f * H)
-    return img[y0:y1, x0:x1]
-
-
-def scale_for_gemini(img: np.ndarray, max_side: int = GEMINI_MAX_SIDE) -> np.ndarray:
-    H, W = img.shape[:2]
-    if max(H, W) <= max_side:
+    if min(H, W) >= min_side:
         return img
-    scale = max_side / max(H, W)
-    return cv2.resize(img, (int(W * scale), int(H * scale)), interpolation=cv2.INTER_AREA)
+    scale = min_side / min(H, W)
+    return cv2.resize(img, (int(W * scale), int(H * scale)),
+                      interpolation=cv2.INTER_CUBIC)
 
 
-def encode_jpeg(img: np.ndarray, quality: int = 92) -> bytes:
+def _encode_jpeg(img: np.ndarray, quality: int = 92) -> bytes:
     ok, buf = cv2.imencode(".jpg", img, [cv2.IMWRITE_JPEG_QUALITY, quality])
     if not ok:
         raise RuntimeError("JPEG encode failed")
     return buf.tobytes()
 
 
-def upscale_small(img: np.ndarray, min_side: int = 1200) -> np.ndarray:
-    """Upscale crops that are too small for good OCR."""
-    H, W = img.shape[:2]
-    if min(H, W) >= min_side:
-        return img
-    scale = min_side / min(H, W)
-    return cv2.resize(img, (int(W * scale), int(H * scale)), interpolation=cv2.INTER_CUBIC)
+def _smooth(arr: np.ndarray, window: int) -> np.ndarray:
+    k = np.ones(window) / window
+    return np.convolve(arr, k, mode='same')
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# Cloud counting (scalloped boundary detection per tile)
+# Adaptive boundary detection
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def count_revision_clouds_in_crop(crop_gray: np.ndarray) -> dict:
+def _find_bottom_notes_top(binary: np.ndarray) -> int:
     """
-    Detect revision clouds (scalloped closed contours) in a grayscale crop.
-    Returns {cloud_count, contour_count, largest_area_px}.
-    Uses the same logic as cloud_detector_v2 but lightweight.
+    Find the topmost y-pixel of the bottom notes block.
+
+    Strategy: scan upward from near the bottom edge. The notes block sits below
+    a low-density blank strip (row density < 0.04) that separates it from the
+    drawing body above. Find that gap, then the notes start just below it.
+    Fallback: bottom 20% of image.
     """
-    # Adaptive binarize
-    enhanced = clahe_enhance(crop_gray)
+    H, W = binary.shape[:2]
+    row_proj = np.sum(binary > 0, axis=1).astype(float) / W
+    smoothed = _smooth(row_proj, max(5, H // 120))
+
+    search_start = int(H * 0.50)
+    search_end   = int(H * 0.97)
+    GAP_DENSITY  = 0.04   # rows this sparse are blank/gap rows
+
+    # Scan upward: once we've seen a dense notes block, the next sparse row
+    # is the top of the gap — notes start at the first dense row below that gap.
+    in_notes = False
+    for y in range(search_end, search_start, -1):
+        if smoothed[y] > GAP_DENSITY:
+            in_notes = True
+        elif in_notes:
+            # Entered the gap scanning upward. Scan downward from here to
+            # find the first dense row — that is the top of the notes block.
+            for notes_y in range(y + 1, search_end):
+                if smoothed[notes_y] > GAP_DENSITY:
+                    return max(0, notes_y - 10)
+            break   # gap goes all the way to bottom — unlikely but safe
+
+    # Fallback: bottom 20%
+    return int(H * 0.80)
+
+
+def _find_left_notes_right(binary: np.ndarray) -> int:
+    """
+    Find the rightmost x-pixel of the left notes/abbreviations block.
+
+    Strategy:
+    1. Look for a long vertical separator line (col density > 45% of height)
+       in x = 5%..40% of image.
+    2. Fallback: x = 32% of image width.
+    """
+    H, W = binary.shape[:2]
+    col_proj  = np.sum(binary > 0, axis=0).astype(float) / H
+    smoothed  = _smooth(col_proj, max(5, W // 120))
+
+    search_start = int(W * 0.05)
+    search_end   = int(W * 0.42)
+
+    # Scan right-to-left to find the rightmost separator line
+    for x in range(search_end, search_start, -1):
+        if smoothed[x] > 0.45:
+            # Step past the line
+            while x > search_start and smoothed[x] > 0.45 * 0.4:
+                x -= 1
+            return min(W, x + 5)
+
+    return int(W * 0.32)
+
+
+def _build_note_regions(color: np.ndarray,
+                         binary: Optional[np.ndarray]) -> list[dict]:
+    """
+    Build the list of note regions using adaptive detection when binary is
+    available, otherwise fall back to wide safe zones.
+
+    Each region dict: name, x0, y0, x1, y1, priority, desc, tess_psm
+    """
+    H, W = color.shape[:2]
+    regions = []
+
+    if binary is not None:
+        bottom_top = _find_bottom_notes_top(binary)
+        left_right = _find_left_notes_right(binary)
+        log.info("Detected: bottom notes top=%.1f%% (y=%d), left notes right=%.1f%% (x=%d)",
+                 bottom_top / H * 100, bottom_top,
+                 left_right / W * 100, left_right)
+    else:
+        bottom_top = int(H * 0.65)
+        left_right = int(W * 0.32)
+        log.info("No binary image — using fallback zone boundaries")
+
+    # ── Zone 1: Bottom notes (full width, from separator to bottom) ───────────
+    y0 = max(0, bottom_top - OVERLAP_PX)
+    regions.append({
+        "name":     "bottom_notes",
+        "x0": 0,    "y0": y0,
+        "x1": W,    "y1": H,
+        "priority": 1,
+        "desc":     "Bottom notes block (full width)",
+        "tess_psm": "6",   # uniform block of text
+    })
+
+    # ── Zone 2: Left notes/abbreviations (left strip, above bottom zone) ─────
+    # Exclude the region already covered by bottom_notes to avoid duplicates
+    left_y1 = min(H, bottom_top + OVERLAP_PX)
+    left_y0 = max(0, int(H * 0.12))   # skip title block row at very top
+    x1 = min(W, left_right + OVERLAP_PX)
+    if x1 > int(W * 0.05) and (left_y1 - left_y0) > 100:
+        regions.append({
+            "name":     "left_notes",
+            "x0": 0,    "y0": left_y0,
+            "x1": x1,   "y1": left_y1,
+            "priority": 1,
+            "desc":     "Left margin notes and abbreviations",
+            "tess_psm": "4",   # single column of text
+        })
+
+    # ── Zone 3: Top strip (if the drawing has notes at the top) ──────────────
+    top_y1 = int(H * 0.14) + OVERLAP_PX
+    if binary is not None:
+        top_density = float(np.mean(
+            np.sum(binary[:int(H * 0.12)] > 0, axis=1) / W
+        ))
+        mid_density = float(np.mean(
+            np.sum(binary[int(H * 0.30):int(H * 0.60)] > 0, axis=1) / W
+        ))
+        include_top = top_density > mid_density * 1.4
+    else:
+        include_top = True   # include by default when we can't check
+
+    if include_top:
+        regions.append({
+            "name":     "top_notes",
+            "x0": 0,    "y0": 0,
+            "x1": W,    "y1": top_y1,
+            "priority": 2,
+            "desc":     "Top notes / general notes header",
+            "tess_psm": "6",
+        })
+
+    return regions
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Cloud counting (lightweight, per-crop)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _count_clouds(crop_gray: np.ndarray) -> int:
+    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
+    enhanced = clahe.apply(crop_gray)
     binary = cv2.adaptiveThreshold(
         enhanced, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
         cv2.THRESH_BINARY_INV, 51, 10
     )
-    # Morphological close to bridge gaps (13px kernel)
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (13, 13))
     closed = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel, iterations=4)
-
     contours, _ = cv2.findContours(closed, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     H, W = crop_gray.shape[:2]
-    min_area = (W * H) * 0.002      # at least 0.2% of crop area
-    max_area = (W * H) * 0.95       # not the whole image
-
-    cloud_count = 0
-    largest_area = 0
-
+    min_area = H * W * 0.002
+    max_area = H * W * 0.95
+    count = 0
     for cnt in contours:
         area = cv2.contourArea(cnt)
-        if area < min_area or area > max_area:
+        if not (min_area < area < max_area):
             continue
         perimeter = cv2.arcLength(cnt, True)
         if perimeter < 50:
             continue
-        # Scallopedness: perimeter vs convex hull perimeter
-        hull = cv2.convexHull(cnt)
-        hull_perimeter = cv2.arcLength(hull, True)
-        if hull_perimeter < 1:
-            continue
-        scallopedness = perimeter / hull_perimeter
-        if 1.05 <= scallopedness <= 2.5:   # revision clouds: 1.05–2.5
-            cloud_count += 1
-            if area > largest_area:
-                largest_area = area
-
-    return {
-        "cloud_count":        cloud_count,
-        "contour_count":      len(contours),
-        "largest_area_px":    int(largest_area),
-    }
+        hull_perimeter = cv2.arcLength(cv2.convexHull(cnt), True)
+        if hull_perimeter > 0 and 1.05 <= perimeter / hull_perimeter <= 2.5:
+            count += 1
+    return count
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# Tesseract OCR pass
+# Tesseract OCR
 # ═══════════════════════════════════════════════════════════════════════════════
 
-TESS_CONFIG = "--oem 3 --psm 6"
-
-
-def tesseract_ocr(crop_bgr: np.ndarray) -> str:
+def _tesseract_ocr(crop: np.ndarray, psm: str = "6") -> str:
     """
-    Run Tesseract on a crop and return cleaned text.
-    Applies CLAHE + denoise before OCR.
+    OCR a crop. Pass binary crops directly; color crops are auto-converted.
+    psm: Tesseract page segmentation mode (4=column, 6=block, 3=auto).
     """
-    gray     = cv2.cvtColor(crop_bgr, cv2.COLOR_BGR2GRAY)
-    enhanced = clahe_enhance(gray)
-    denoised = cv2.fastNlMeansDenoising(enhanced, h=10, templateWindowSize=7,
+    if len(crop.shape) == 3:
+        gray = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
+        clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
+        gray = clahe.apply(gray)
+        gray = cv2.fastNlMeansDenoising(gray, h=10,
+                                         templateWindowSize=7,
                                          searchWindowSize=21)
-    # Upscale if tiny
-    upscaled = upscale_small(denoised, min_side=1000)
+    else:
+        gray = crop  # already binary/gray
 
+    gray = _upscale(gray, MIN_SIDE_FOR_OCR)
+    config = f"--oem 3 --psm {psm}"
     try:
-        text = pytesseract.image_to_string(upscaled, config=TESS_CONFIG)
-        # Clean up noise artifacts
-        lines = [l.rstrip() for l in text.splitlines()]
-        lines = [l for l in lines if len(l.strip()) > 2]  # drop 1-2 char garbage lines
+        text = pytesseract.image_to_string(gray, config=config)
+        lines = [l.rstrip() for l in text.splitlines() if len(l.strip()) > 2]
         return "\n".join(lines)
     except Exception as e:
-        log.warning("Tesseract failed on crop: %s", e)
+        log.warning("Tesseract failed: %s", e)
         return ""
 
 
@@ -183,8 +282,7 @@ def tesseract_ocr(crop_bgr: np.ndarray) -> str:
 def _build_gemini_client(api_key: str):
     try:
         import google.genai as genai
-        client = genai.Client(api_key=api_key)
-        return client, "new"
+        return genai.Client(api_key=api_key), "new"
     except Exception:
         pass
     try:
@@ -195,42 +293,27 @@ def _build_gemini_client(api_key: str):
         raise RuntimeError(f"No working Gemini SDK: {e}")
 
 
-def _gemini_vision_call(client, sdk: str, model: str,
-                         img_bytes: bytes, prompt: str,
-                         fallback_model: Optional[str] = None) -> str:
-    """Single vision call: image + prompt → raw text."""
-    def _call(m: str) -> str:
-        if sdk == "new":
-            from google.genai import types as gtypes
-            response = client.models.generate_content(
-                model=m,
-                contents=[
-                    gtypes.Part.from_bytes(data=img_bytes, mime_type="image/jpeg"),
-                    gtypes.Part.from_text(text=prompt),
-                ],
-            )
-            return response.text.strip()
-        else:
-            import google.generativeai as genai_legacy
-            import PIL.Image as PILImage
-            import io
-            pil_img = PILImage.open(io.BytesIO(img_bytes))
-            mdl = genai_legacy.GenerativeModel(m)
-            response = mdl.generate_content([prompt, pil_img])
-            return response.text.strip()
-
-    try:
-        return _call(model)
-    except Exception as e:
-        if fallback_model:
-            log.warning("Model %s failed (%s), trying %s...", model, e, fallback_model)
-            return _call(fallback_model)
-        raise
+def _gemini_call(client, sdk: str, img_bytes: bytes, prompt: str) -> str:
+    if sdk == "new":
+        from google.genai import types as gtypes
+        response = client.models.generate_content(
+            model=GEMINI_FLASH_MODEL,
+            contents=[
+                gtypes.Part.from_bytes(data=img_bytes, mime_type="image/jpeg"),
+                gtypes.Part.from_text(text=prompt),
+            ],
+        )
+        return response.text.strip()
+    else:
+        import google.generativeai as genai_legacy
+        import PIL.Image as PILImage, io
+        pil = PILImage.open(io.BytesIO(img_bytes))
+        mdl = genai_legacy.GenerativeModel(GEMINI_FLASH_MODEL)
+        return mdl.generate_content([prompt, pil]).text.strip()
 
 
 def _parse_json(raw: str) -> dict:
     clean = raw.replace("```json", "").replace("```", "").strip()
-    # Extract first {...} block if there's surrounding text
     m = re.search(r'\{.*\}', clean, re.DOTALL)
     if m:
         clean = m.group(0)
@@ -238,344 +321,162 @@ def _parse_json(raw: str) -> dict:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# Per-tile Gemini extraction prompt
+# Prompts
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def _make_extract_prompt(tile_name: str, tile_desc: str, ocr_text: str) -> str:
+def _extract_prompt(region_name: str, desc: str, ocr_text: str) -> str:
     ocr_section = ""
     if ocr_text.strip():
         ocr_section = f"""
-The following text was pre-extracted by OCR from this region. Use it as a guide
-but do NOT blindly copy it — the image is the ground truth:
-
+Tesseract pre-scan of this region (use as a guide — image is ground truth):
 <ocr_text>
-{ocr_text[:3000]}
+{ocr_text[:4000]}
 </ocr_text>
 """
-    return f"""You are extracting engineering notes from a P&ID drawing.
-This image is the "{tile_name}" region ({tile_desc}).
+    return f"""You are reading the "{region_name}" region ({desc}) of an engineering P&ID drawing.
 {ocr_section}
-Extract ALL numbered/lettered notes, abbreviation definitions, legend entries, and
-engineering rules visible in this image region.
+Extract EVERY piece of text visible in this image: numbered notes, lettered notes,
+abbreviation definitions, legend entries, scope rules, equipment rules, and any
+other annotations. Do NOT skip a note just because it seems short or similar to another.
 
-Return ONLY a JSON object (no markdown, no prose):
+If a note is cut off at the edge of this crop, extract what you can see and mark
+partially_obscured=true.
+
+Return ONLY a JSON object (no markdown, no extra text):
 {{
-  "region": "{tile_name}",
+  "region": "{region_name}",
   "notes_found": true | false,
   "items": [
     {{
-      "id": "12" or "A" or "ABBR:ASC" etc.,
-      "raw_text": "exact note text as written on drawing",
+      "id": "1" | "A" | "ABBR:XYZ" | "LEGEND:X" etc.,
+      "raw_text": "exact verbatim text from drawing",
       "semantic_type": "general_note | abbreviation_definition | symbol_exception | equipment_rule | scope_rule | drafting_rule | legend_entry | title_info",
       "extracted_rule": {{
         "type": "abbreviation | prefix | rule | constraint | reference | format",
         "subject": "what this applies to",
-        "rule": "plain English machine-readable rule statement"
+        "rule": "plain-English machine-readable rule"
       }},
       "confidence": 0.0-1.0,
       "partially_obscured": false
     }}
   ],
-  "abbreviations_found": {{
-    "ASC": "Anti-Surge Control",
-    "...": "..."
-  }},
+  "abbreviations_found": {{ "XYZ": "full meaning", "...": "..." }},
   "revision_cloud_wraps_this_block": true | false,
   "gemini_cloud_count_estimate": 0
-}}
-
-Be thorough. If a note continues off the edge of this crop, extract what you can see.
-Do NOT skip notes just because they seem repetitive with other regions."""
+}}"""
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# Deduplication
+# Deduplication (pre-synthesis fallback)
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def _deduplicate_notes(all_items: list[dict]) -> list[dict]:
-    """
-    Merge notes from multiple regions. Keep highest-confidence copy.
-    Matches by: same note id OR very similar raw_text (>80% overlap).
-    """
-    seen: dict[str, dict] = {}   # canonical_key → item
-
-    for item in all_items:
-        note_id   = str(item.get("id") or "").strip().upper()
-        raw       = str(item.get("raw_text") or "").strip()
-        conf      = item.get("confidence") or 0.5
-
-        # Build canonical key: prefer note number, fall back to first 40 chars of text
-        key = note_id if (note_id and note_id not in ("", "UNKNOWN")) else raw[:40].upper()
+def _deduplicate(items: list[dict]) -> list[dict]:
+    seen: dict[str, dict] = {}
+    for item in items:
+        note_id = str(item.get("id") or "").strip().upper()
+        raw     = str(item.get("raw_text") or "").strip()
+        conf    = float(item.get("confidence") or 0.5)
+        key     = note_id if (note_id and note_id not in ("", "UNKNOWN")) \
+                  else raw[:40].upper()
         if not key:
             continue
-
         if key not in seen:
             seen[key] = item
         else:
-            # Keep whichever has higher confidence AND longer raw_text
-            existing = seen[key]
-            e_score = (existing.get("confidence") or 0) + len(str(existing.get("raw_text") or "")) / 1000
+            e = seen[key]
+            e_score = (e.get("confidence") or 0) + len(str(e.get("raw_text") or "")) / 1000
             n_score = conf + len(raw) / 1000
             if n_score > e_score:
                 seen[key] = item
-
     return list(seen.values())
 
 
+def _sort_notes(items: list[dict]) -> list[dict]:
+    def key(item):
+        nid = str(item.get("id") or "ZZZ")
+        m = re.match(r"(\d+)", nid)
+        return (int(m.group(1)) if m else 999, nid)
+    return sorted(items, key=key)
+
+
 # ═══════════════════════════════════════════════════════════════════════════════
-# Rules prompt block builder
+# Rules block builder
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def build_rules_block(all_notes: list[dict], abbrevs: dict,
-                      region_summary: list[dict]) -> str:
+def _build_rules_block(notes: list[dict], abbrevs: dict,
+                        region_summary: list[dict]) -> str:
     lines = ["== DRAWING-SPECIFIC RULES (extracted from notes block) ==", ""]
 
-    # Region summary table
-    lines.append("-- Region Coverage Table --")
+    lines.append("-- Region Coverage --")
     lines.append(f"{'Region':<28} {'Notes':>6} {'Clouds':>7} {'OCR chars':>10}")
-    lines.append("-" * 58)
+    lines.append("-" * 55)
     for r in region_summary:
         lines.append(
-            f"{r['tile']:<28} {r['notes_extracted']:>6} "
+            f"{r['region']:<28} {r['notes_extracted']:>6} "
             f"{r['cloud_count']:>7} {r['ocr_chars']:>10}"
         )
-    total_notes  = sum(r["notes_extracted"] for r in region_summary)
-    total_clouds = sum(r["cloud_count"] for r in region_summary)
-    lines.append(f"{'TOTAL':<28} {total_notes:>6} {total_clouds:>7}")
+    lines.append(f"{'TOTAL':<28} {sum(r['notes_extracted'] for r in region_summary):>6} "
+                 f"{sum(r['cloud_count'] for r in region_summary):>7}")
     lines.append("")
 
-    # Global/all-agent rules
-    lines.append("-- Global Rules (all agents) --")
-    for note in all_notes:
-        if note.get("semantic_type") in ("scope_rule", "equipment_rule", "general_note"):
-            er   = note.get("extracted_rule") or {}
-            rule = er.get("rule") or note.get("raw_text", "")
-            lines.append(f"  [{note.get('id','?')}] {rule}")
+    # Categorise every note — nothing is dropped
+    GLOBAL_TYPES    = {"general_note", "scope_rule", "equipment_rule", "constraint"}
+    TAG_TYPES       = {"abbreviation_definition", "symbol_exception", "legend_entry"}
+    DRAFT_TYPES     = {"drafting_rule"}
+    REF_TYPES       = {"reference", "cross_reference", "label"}
+
+    def _text(n: dict) -> str:
+        er = n.get("extracted_rule") or {}
+        return er.get("rule") or n.get("raw_text", "")
+
+    lines.append("-- General & Engineering Notes --")
+    for n in notes:
+        if n.get("semantic_type") in GLOBAL_TYPES:
+            lines.append(f"  [{n.get('id','?')}] {_text(n)}")
     lines.append("")
 
-    # Tag detection rules
-    lines.append("-- Tag Detection Agent rules --")
-    for note in all_notes:
-        if note.get("semantic_type") in ("abbreviation_definition", "symbol_exception", "legend_entry"):
-            er   = note.get("extracted_rule") or {}
-            rule = er.get("rule") or note.get("raw_text", "")
-            lines.append(f"  [{note.get('id','?')}] {rule}")
+    lines.append("-- Tag & Symbol Rules --")
+    for n in notes:
+        if n.get("semantic_type") in TAG_TYPES:
+            lines.append(f"  [{n.get('id','?')}] {_text(n)}")
     lines.append("")
 
-    # Abbreviations dictionary
     if abbrevs:
         lines.append("-- Abbreviations --")
         for abbr, meaning in sorted(abbrevs.items()):
             lines.append(f"  {abbr}: {meaning}")
         lines.append("")
 
-    # Drafting references
-    lines.append("-- Drafting References --")
-    for note in all_notes:
-        if note.get("semantic_type") == "drafting_rule":
-            lines.append(f"  [{note.get('id','?')}] {note.get('raw_text','')}")
-
+    lines.append("-- Drafting Standards --")
+    for n in notes:
+        if n.get("semantic_type") in DRAFT_TYPES:
+            lines.append(f"  [{n.get('id','?')}] {n.get('raw_text','')}")
     lines.append("")
+
+    lines.append("-- References & Cross-References --")
+    for n in notes:
+        if n.get("semantic_type") in REF_TYPES:
+            lines.append(f"  [{n.get('id','?')}] {n.get('raw_text','')}")
+    lines.append("")
+
+    # Catch-all: any semantic_type not covered above
+    covered = GLOBAL_TYPES | TAG_TYPES | DRAFT_TYPES | REF_TYPES
+    other   = [n for n in notes if n.get("semantic_type") not in covered]
+    if other:
+        lines.append("-- Other Notes --")
+        for n in other:
+            lines.append(f"  [{n.get('id','?')}] ({n.get('semantic_type','?')}) {_text(n)}")
+        lines.append("")
+
     lines.append("== END RULES ==")
     return "\n".join(lines)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# Main pipeline
+# Drawing conventions inference
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def run_notes_agent_v2(
-    img_path: str,
-    out_dir: str,
-    api_key: str,
-    drawing_context_path: Optional[str] = None,
-    debug: bool = False,
-) -> dict:
-
-    out = Path(out_dir)
-    out.mkdir(parents=True, exist_ok=True)
-
-    img = cv2.imread(img_path)
-    if img is None:
-        raise FileNotFoundError(f"Cannot read: {img_path}")
-    H, W = img.shape[:2]
-    log.info("Loaded drawing: %dx%d", W, H)
-
-    client, sdk = _build_gemini_client(api_key)
-    log.info("Gemini client ready (%s SDK)", sdk)
-
-    # ── Process each tile ─────────────────────────────────────────────────────
-    all_items:    list[dict] = []
-    all_abbrevs:  dict       = {}
-    region_summary: list[dict] = []
-    tile_results: list[dict] = []
-
-    for tile in TILE_DEFINITIONS:
-        name, x0f, y0f, x1f, y1f, priority, desc = tile
-        log.info("Processing tile [%d] %s (%s)...", priority, name, desc)
-
-        crop = crop_tile(img, tile)
-        cH, cW = crop.shape[:2]
-
-        if cW < 50 or cH < 50:
-            log.warning("Tile %s too small (%dx%d), skipping", name, cW, cH)
-            continue
-
-        # ── Cloud counting ────────────────────────────────────────────────────
-        crop_gray  = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
-        cloud_info = count_revision_clouds_in_crop(crop_gray)
-        log.info("  Clouds: %d detected in %s", cloud_info["cloud_count"], name)
-
-        # ── Tesseract OCR pass ────────────────────────────────────────────────
-        ocr_text = tesseract_ocr(crop)
-        log.info("  OCR: %d chars extracted", len(ocr_text))
-
-        # Save debug crop
-        if debug:
-            debug_path = str(out / f"debug_tile_{name}.jpg")
-            cv2.imwrite(debug_path, crop, [cv2.IMWRITE_JPEG_QUALITY, 88])
-            ocr_path = str(out / f"debug_ocr_{name}.txt")
-            with open(ocr_path, "w") as f:
-                f.write(ocr_text)
-
-        # ── Gemini extraction ─────────────────────────────────────────────────
-        crop_scaled = scale_for_gemini(crop)
-        img_bytes   = encode_jpeg(crop_scaled)
-        prompt      = _make_extract_prompt(name, desc, ocr_text)
-
-        tile_result = {
-            "tile":              name,
-            "description":       desc,
-            "priority":          priority,
-            "crop_size":         [cW, cH],
-            "cloud_count":       cloud_info["cloud_count"],
-            "contour_count":     cloud_info["contour_count"],
-            "ocr_chars":         len(ocr_text),
-            "notes_extracted":   0,
-            "gemini_raw":        "",
-            "items":             [],
-            "error":             None,
-        }
-
-        try:
-            model   = GEMINI_PRO_MODEL if priority == 1 else GEMINI_FLASH_MODEL
-            raw     = _gemini_vision_call(client, sdk, model, img_bytes, prompt,
-                                          fallback_model=GEMINI_FLASH_MODEL)
-            tile_result["gemini_raw"] = raw
-
-            parsed  = _parse_json(raw)
-            items   = parsed.get("items", [])
-
-            # Tag each item with its source region
-            for item in items:
-                item["source_region"] = name
-                item["source_priority"] = priority
-
-            # Collect abbreviations
-            abbrevs = parsed.get("abbreviations_found", {})
-            if isinstance(abbrevs, dict):
-                all_abbrevs.update(abbrevs)
-
-            tile_result["notes_extracted"]         = len(items)
-            tile_result["items"]                   = items
-            tile_result["revision_cloud_wraps"]    = parsed.get("revision_cloud_wraps_this_block")
-            tile_result["gemini_cloud_estimate"]   = parsed.get("gemini_cloud_count_estimate", 0)
-
-            all_items.extend(items)
-            log.info("  Gemini: %d notes extracted from %s", len(items), name)
-
-        except Exception as e:
-            log.error("  Gemini failed for tile %s: %s", name, e)
-            tile_result["error"] = str(e)
-
-        region_summary.append({
-            "tile":            name,
-            "description":     desc,
-            "notes_extracted": tile_result["notes_extracted"],
-            "cloud_count":     cloud_info["cloud_count"],
-            "ocr_chars":       len(ocr_text),
-        })
-        tile_results.append(tile_result)
-
-    # ── Deduplicate across regions ────────────────────────────────────────────
-    deduped = _deduplicate_notes(all_items)
-    log.info("Deduplication: %d raw → %d unique notes", len(all_items), len(deduped))
-
-    # Sort by note id numerically where possible
-    def _sort_key(item):
-        nid = str(item.get("id") or "ZZZ")
-        m = re.match(r"(\d+)", nid)
-        return (int(m.group(1)) if m else 999, nid)
-    deduped.sort(key=_sort_key)
-
-    # ── Build rules block ─────────────────────────────────────────────────────
-    rules_block = build_rules_block(deduped, all_abbrevs, region_summary)
-
-    # ── Build final output ────────────────────────────────────────────────────
-    total_clouds = sum(r["cloud_count"] for r in region_summary)
-
-    notes_ctx = {
-        "version":               "v2",
-        "input_image":           img_path,
-        "image_size":            [W, H],
-        "tiles_processed":       len(tile_results),
-        "total_clouds_detected": total_clouds,
-        "clouds_per_region":     {r["tile"]: r["cloud_count"] for r in region_summary},
-        "raw_notes_count":       len(all_items),
-        "unique_notes_count":    len(deduped),
-        "abbreviations":         all_abbrevs,
-        "drawing_notes":         deduped,
-        "region_summary":        region_summary,
-        "tile_results":          [
-            {k: v for k, v in tr.items() if k != "gemini_raw"}
-            for tr in tile_results
-        ],
-        "rules_prompt_block":    rules_block,
-        "drawing_conventions":   _infer_conventions(deduped, all_abbrevs),
-    }
-
-    # ── Write outputs ─────────────────────────────────────────────────────────
-    notes_path = str(out / "notes_context.json")
-    with open(notes_path, "w") as f:
-        json.dump(notes_ctx, f, indent=2)
-    log.info("✓ notes_context.json (%d unique notes) → %s", len(deduped), notes_path)
-
-    rules_path = str(out / "rules_prompt_block.txt")
-    with open(rules_path, "w") as f:
-        f.write(rules_block)
-    log.info("✓ rules_prompt_block.txt → %s", rules_path)
-
-    # Update drawing_context.json if present
-    ctx_path = drawing_context_path or str(out / "drawing_context.json")
-    if Path(ctx_path).exists():
-        with open(ctx_path) as f:
-            dctx = json.load(f)
-        dctx["notes_context_path"]      = notes_path
-        dctx["rules_prompt_block_path"] = rules_path
-        dctx["notes_summary"] = {
-            "raw_notes":          len(all_items),
-            "unique_notes":       len(deduped),
-            "total_clouds":       total_clouds,
-            "abbreviations":      len(all_abbrevs),
-            "revision_cloud_present": total_clouds > 0,
-        }
-        with open(ctx_path, "w") as f:
-            json.dump(dctx, f, indent=2)
-        log.info("✓ drawing_context.json updated")
-
-    # Save raw Gemini responses separately for debugging
-    if debug:
-        raw_path = str(out / "debug_gemini_raw_responses.json")
-        with open(raw_path, "w") as f:
-            json.dump([{"tile": tr["tile"], "raw": tr.get("gemini_raw", "")}
-                       for tr in tile_results], f, indent=2)
-        log.info("✓ debug_gemini_raw_responses.json → %s", raw_path)
-
-    return notes_ctx
-
-
 def _infer_conventions(notes: list[dict], abbrevs: dict) -> dict:
-    """Infer drawing conventions from extracted notes."""
     conv = {
         "tag_format_pattern":      "unknown",
         "instrument_bubble_style": "unknown",
@@ -583,8 +484,8 @@ def _infer_conventions(notes: list[dict], abbrevs: dict) -> dict:
         "unit_system":             "mixed",
         "revision_cloud_present":  True,
     }
-    for note in notes:
-        raw = note.get("raw_text", "").upper()
+    for n in notes:
+        raw = n.get("raw_text", "").upper()
         if "ISA 5.1" in raw:
             conv["isa_version"] = "ISA 5.1"
         if "METRIC" in raw:
@@ -595,19 +496,196 @@ def _infer_conventions(notes: list[dict], abbrevs: dict) -> dict:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# Main pipeline
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def run_notes_agent(
+    img_path:             str,
+    out_dir:              str,
+    api_key:              str,
+    binary_path:          Optional[str] = None,
+    drawing_context_path: Optional[str] = None,
+    debug:                bool = False,
+) -> dict:
+
+    out = Path(out_dir)
+    out.mkdir(parents=True, exist_ok=True)
+
+    color = _load(img_path)
+    H, W  = color.shape[:2]
+    log.info("Loaded drawing: %dx%d px", W, H)
+
+    binary = None
+    if binary_path and Path(binary_path).exists():
+        b = cv2.imread(binary_path, cv2.IMREAD_GRAYSCALE)
+        if b is not None and b.shape[:2] == (H, W):
+            binary = b
+            log.info("Using binary image for OCR and region detection: %s", binary_path)
+        else:
+            log.warning("Binary image size mismatch or unreadable — skipping")
+    else:
+        log.info("No binary_path in context — region detection uses fallback coords")
+
+    client, sdk = _build_gemini_client(api_key)
+    log.info("Gemini client ready (%s SDK), model=%s", sdk, GEMINI_FLASH_MODEL)
+
+    # ── Build adaptive regions ────────────────────────────────────────────────
+    regions = _build_note_regions(color, binary)
+    log.info("Regions to process: %s", [r["name"] for r in regions])
+
+    # ── Process each region ───────────────────────────────────────────────────
+    all_items:      list[dict] = []
+    all_abbrevs:    dict       = {}
+    region_summary: list[dict] = []
+
+    for reg in regions:
+        name = reg["name"]
+        x0, y0, x1, y1 = reg["x0"], reg["y0"], reg["x1"], reg["y1"]
+        log.info("Processing region [%d] %s (%dx%d px)...",
+                 reg["priority"], name, x1 - x0, y1 - y0)
+
+        color_crop = color[y0:y1, x0:x1]
+        cH, cW     = color_crop.shape[:2]
+
+        if cW < 80 or cH < 80:
+            log.warning("Region %s too small (%dx%d), skipping", name, cW, cH)
+            continue
+
+        # Cloud count
+        gray       = cv2.cvtColor(color_crop, cv2.COLOR_BGR2GRAY)
+        cloud_cnt  = _count_clouds(gray)
+
+        # Tesseract OCR — prefer binary crop, fall back to color crop
+        if binary is not None:
+            bin_crop = binary[y0:y1, x0:x1]
+            ocr_text = _tesseract_ocr(bin_crop, psm=reg["tess_psm"])
+        else:
+            ocr_text = _tesseract_ocr(color_crop, psm=reg["tess_psm"])
+        log.info("  OCR: %d chars | clouds: %d", len(ocr_text), cloud_cnt)
+
+        # Debug crops
+        if debug:
+            cv2.imwrite(str(out / f"debug_tile_{name}.jpg"), color_crop,
+                        [cv2.IMWRITE_JPEG_QUALITY, 88])
+            with open(out / f"debug_ocr_{name}.txt", "w") as f:
+                f.write(ocr_text)
+
+        # Gemini vision call
+        img_bytes = _encode_jpeg(color_crop)
+        prompt    = _extract_prompt(name, reg["desc"], ocr_text)
+
+        items: list[dict] = []
+        gemini_raw = ""
+        error = None
+        try:
+            gemini_raw = _gemini_call(client, sdk, img_bytes, prompt)
+            parsed     = _parse_json(gemini_raw)
+            items      = parsed.get("items", [])
+            for item in items:
+                item["source_region"]   = name
+                item["source_priority"] = reg["priority"]
+            abbrevs = parsed.get("abbreviations_found", {})
+            if isinstance(abbrevs, dict):
+                all_abbrevs.update(abbrevs)
+            all_items.extend(items)
+            log.info("  Gemini: %d items extracted", len(items))
+        except Exception as e:
+            log.error("  Gemini failed for %s: %s", name, e)
+            error = str(e)
+
+        region_summary.append({
+            "region":          name,
+            "description":     reg["desc"],
+            "notes_extracted": len(items),
+            "cloud_count":     cloud_cnt,
+            "ocr_chars":       len(ocr_text),
+            "error":           error,
+        })
+
+    # ── Deduplicate across regions ────────────────────────────────────────────
+    final_abbrevs = all_abbrevs
+    if all_items:
+        final_items = _deduplicate(all_items)
+        log.info("Dedup: %d raw → %d unique notes", len(all_items), len(final_items))
+    else:
+        final_items = []
+        log.warning("No items extracted from any region")
+
+    final_items   = _sort_notes(final_items)
+    total_clouds  = sum(r["cloud_count"] for r in region_summary)
+    rules_block   = _build_rules_block(final_items, final_abbrevs, region_summary)
+
+    # ── Build output ──────────────────────────────────────────────────────────
+    notes_ctx = {
+        "version":               "v3",
+        "input_image":           img_path,
+        "binary_image":          binary_path,
+        "image_size":            [W, H],
+        "regions_processed":     len(region_summary),
+        "total_clouds_detected": total_clouds,
+        "clouds_per_region":     {r["region"]: r["cloud_count"] for r in region_summary},
+        "raw_notes_count":       len(all_items),
+        "unique_notes_count":    len(final_items),
+        "abbreviations":         final_abbrevs,
+        "drawing_notes":         final_items,
+        "region_summary":        region_summary,
+        "rules_prompt_block":    rules_block,
+        "drawing_conventions":   _infer_conventions(final_items, final_abbrevs),
+    }
+
+    # ── Write outputs ─────────────────────────────────────────────────────────
+    notes_path = str(out / "notes_context.json")
+    with open(notes_path, "w") as f:
+        json.dump(notes_ctx, f, indent=2)
+    log.info("✓ notes_context.json (%d notes) → %s", len(final_items), notes_path)
+
+    rules_path = str(out / "rules_prompt_block.txt")
+    with open(rules_path, "w") as f:
+        f.write(rules_block)
+    log.info("✓ rules_prompt_block.txt → %s", rules_path)
+
+    if debug:
+        raw_path = str(out / "debug_gemini_raw_responses.json")
+        with open(raw_path, "w") as f:
+            json.dump([{"region": r["region"], "ocr_chars": r["ocr_chars"]}
+                       for r in region_summary], f, indent=2)
+
+    # Update drawing_context.json
+    ctx_path = drawing_context_path or str(out / "drawing_context.json")
+    if Path(ctx_path).exists():
+        with open(ctx_path) as f:
+            dctx = json.load(f)
+        dctx["notes_context_path"]      = notes_path
+        dctx["rules_prompt_block_path"] = rules_path
+        dctx["notes_summary"] = {
+            "raw_notes":              len(all_items),
+            "unique_notes":           len(final_items),
+            "total_clouds":           total_clouds,
+            "abbreviations":          len(final_abbrevs),
+            "revision_cloud_present": total_clouds > 0,
+        }
+        with open(ctx_path, "w") as f:
+            json.dump(dctx, f, indent=2)
+        log.info("✓ drawing_context.json updated")
+
+    return notes_ctx
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # CLI
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Step 3 v2: Multi-region notes extraction with cloud counting + Tesseract assist")
+        description="Step 3 v3: Adaptive notes extraction with binary OCR and synthesis")
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("image", nargs="?", help="P&ID drawing path (JPG/PNG/TIFF)")
+    group.add_argument("image",     nargs="?", help="P&ID drawing path (JPG/PNG/TIFF)")
     group.add_argument("--context", help="drawing_context.json from Step 1")
-    parser.add_argument("--out",     default="output",  help="Output directory")
-    parser.add_argument("--api-key", help="Gemini API key")
-    parser.add_argument("--debug",   action="store_true",
-                        help="Save per-tile debug crops and raw Gemini responses")
+    parser.add_argument("--out",        default="output", help="Output directory")
+    parser.add_argument("--api-key",    help="Gemini API key")
+    parser.add_argument("--binary",     help="Pre-binarized image path (overrides context)")
+    parser.add_argument("--debug",      action="store_true",
+                        help="Save per-region debug crops and OCR text")
     args = parser.parse_args()
 
     api_key = (args.api_key
@@ -616,8 +694,10 @@ def main():
     if not api_key:
         parser.error("Gemini API key required. Set GEMINI_API_KEY or pass --api-key")
 
-    img_path     = args.image
-    ctx_file     = None
+    img_path    = args.image
+    binary_path = args.binary
+    ctx_file    = None
+
     if args.context:
         ctx_file = args.context
         with open(args.context) as f:
@@ -625,38 +705,38 @@ def main():
         img_path = ctx.get("raster_path") or ctx.get("input_file")
         if not img_path:
             parser.error("drawing_context.json has no raster_path or input_file")
-        log.info("Image from drawing_context.json: %s", img_path)
+        if not binary_path:
+            binary_path = ctx.get("binary_path")
+        log.info("Image : %s", img_path)
+        log.info("Binary: %s", binary_path or "not available")
 
-    result = run_notes_agent_v2(
+    result = run_notes_agent(
         img_path=img_path,
         out_dir=args.out,
         api_key=api_key,
+        binary_path=binary_path,
         drawing_context_path=ctx_file,
         debug=args.debug,
     )
 
-    print("\n=== Step 3 v2 Complete ===")
-    print(f"  Tiles processed     : {result['tiles_processed']}")
-    print(f"  Raw notes           : {result['raw_notes_count']}")
-    print(f"  Unique notes        : {result['unique_notes_count']}")
-    print(f"  Total clouds found  : {result['total_clouds_detected']}")
-    print(f"  Abbreviations       : {len(result['abbreviations'])}")
-    print()
-    print("  Clouds per region:")
-    for tile, count in result["clouds_per_region"].items():
-        print(f"    {tile:<30} {count:>3} cloud(s)")
+    print("\n=== Step 3 v3 Complete ===")
+    print(f"  Regions processed : {result['regions_processed']}")
+    print(f"  Raw items         : {result['raw_notes_count']}")
+    print(f"  Final notes       : {result['unique_notes_count']}")
+    print(f"  Clouds detected   : {result['total_clouds_detected']}")
+    print(f"  Abbreviations     : {len(result['abbreviations'])}")
     print()
     print("  Notes per region:")
     for r in result["region_summary"]:
-        print(f"    {r['tile']:<30} {r['notes_extracted']:>3} notes | "
-              f"{r['ocr_chars']:>5} OCR chars")
+        status = f" ⚠ {r['error']}" if r.get("error") else ""
+        print(f"    {r['region']:<28} {r['notes_extracted']:>3} notes | "
+              f"{r['ocr_chars']:>5} OCR chars{status}")
     print(f"\n  Output: {args.out}/")
     print(f"    notes_context.json")
     print(f"    rules_prompt_block.txt")
     if args.debug:
-        print(f"    debug_tile_*.jpg  (per-tile crops)")
-        print(f"    debug_ocr_*.txt   (Tesseract output per tile)")
-        print(f"    debug_gemini_raw_responses.json")
+        print(f"    debug_tile_*.jpg")
+        print(f"    debug_ocr_*.txt")
 
 
 if __name__ == "__main__":

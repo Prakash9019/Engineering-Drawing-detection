@@ -39,7 +39,7 @@ For our drawings, which are scanned JPG images, it applies a technique called **
 
 **Run command:**
 ```bash
-python step1_format_detect.py input_drawing.jpg --out output/ --api-key $GEMINI_KEY
+python stages/step1_format_detect.py input_drawing.jpg --out output/ --api-key $GEMINI_KEY
 ```
 
 ---
@@ -65,7 +65,7 @@ After reading those fields it makes a programmatic decision (no AI, just logic):
 
 **Run command:**
 ```bash
-python step2_title_block.py --context output/drawing_context.json --api-key $GEMINI_KEY --debug
+python stages/step2_title_block.py --context output/drawing_context.json --api-key $GEMINI_KEY --debug
 ```
 
 ---
@@ -82,7 +82,7 @@ The cloud detector itself uses two methods: it sends the drawing to Gemini to ro
 
 **Run command:**
 ```bash
-python step2b_cloud_detection.py --context output/drawing_context.json --api-key $GEMINI_KEY
+python stages/step2b_cloud_detection.py --context output/drawing_context.json --api-key $GEMINI_KEY
 ```
 
 ---
@@ -101,7 +101,7 @@ The result is a file called `rules_prompt_block.txt` which is injected as contex
 
 **Run command:**
 ```bash
-python step3_notes_agent_v2.py --context output/drawing_context.json --api-key $GEMINI_KEY --debug
+python stages/step3_notes_agent.py --context output/drawing_context.json --api-key $GEMINI_KEY --debug
 ```
 
 ---
@@ -121,10 +121,10 @@ The output is a file called `sow_symbol_memory.json`. Every downstream agent che
 **Run command:**
 ```bash
 # Fast (no vision, text-only):
-python step4_sow_agent.py build --excel ANNEXURE-2.xlsx --out output/ --skip-vision
+python stages/step4_sow_agent.py build --excel ANNEXURE-2.xlsx --out output/ --skip-vision
 
 # Full (with symbol image understanding):
-python step4_sow_agent.py build --excel ANNEXURE-2.xlsx --out output/ --api-key $GEMINI_KEY
+python stages/step4_sow_agent.py build --excel ANNEXURE-2.xlsx --out output/ --api-key $GEMINI_KEY
 ```
 
 ---
@@ -157,7 +157,7 @@ Then two filters are applied. The **revision cloud filter** checks whether each 
 
 **Run command:**
 ```bash
-python step5a_candidate_extraction.py --context output/drawing_context.json \
+python stages/step5a_candidate_extraction.py --context output/drawing_context.json \
     --api-key $GEMINI_KEY --workers 8 --debug
 ```
 
@@ -175,7 +175,7 @@ Based on these geometric calculations it assigns each candidate a spatial relati
 
 **Run command:**
 ```bash
-python step5b_geometric_association.py --candidates output/step5a_candidates.json \
+python stages/step5b_geometric_association.py --candidates output/step5a_candidates.json \
     --image input_drawing.jpg --out output/ --debug
 ```
 
@@ -189,7 +189,7 @@ python step5b_geometric_association.py --candidates output/step5a_candidates.jso
 
 **Run command:**
 ```bash
-python step5c_validation_engine.py --associations output/step5b_associations.json \
+python stages/step5c_validation_engine.py --associations output/step5b_associations.json \
     --register ANNEXURE-4.xlsx --notes output/notes_context.json --out output/
 ```
 
@@ -212,7 +212,7 @@ The key design principle is that the bounding boxes are thin (2 pixels) and the 
 
 **Run command:**
 ```bash
-python step5_visualizer.py --candidates output/step5a_candidates.json \
+python stages/step5_visualizer.py --candidates output/step5a_candidates.json \
     --deduped output/step5d_deduped.json --image input_drawing.jpg --out output/
 ```
 
@@ -228,7 +228,7 @@ It also fills in the other 14 fields that the Annexure-4 output template require
 
 **Run command:**
 ```bash
-python step7_cedm_normalizer.py --final output/step5_final_output.json \
+python stages/step7_cedm_normalizer.py --final output/step5_final_output.json \
     --context output/drawing_context.json --out output/ --project CDCI
 ```
 
@@ -255,7 +255,7 @@ The final deliverable is `final_tags.xlsx` — an Excel file matching the Annexu
 
 **Run command:**
 ```bash
-python step8_confidence_router.py --cedm output/step7_cedm_output.json \
+python stages/step8_confidence_router.py --cedm output/step7_cedm_output.json \
     --context output/drawing_context.json --out output/
 ```
 
@@ -295,32 +295,32 @@ export GEMINI_KEY="your-key-here"
 export DRAWING="input_drawing.jpg"
 
 # Phase 1: Understand the drawing (one-time per drawing)
-python step1_format_detect.py   $DRAWING --out output/ --api-key $GEMINI_KEY
-python step2_title_block.py     --context output/drawing_context.json --api-key $GEMINI_KEY
-python step2b_cloud_detection.py --context output/drawing_context.json --api-key $GEMINI_KEY
-python step3_notes_agent_v2.py  --context output/drawing_context.json --api-key $GEMINI_KEY
-python step4_sow_agent.py build --excel ANNEXURE-2.xlsx --out output/ --skip-vision
-python step6_table_agent.py     --context output/drawing_context.json --api-key $GEMINI_KEY
+python stages/step1_format_detect.py   $DRAWING --out output/ --api-key $GEMINI_KEY
+python stages/step2_title_block.py     --context output/drawing_context.json --api-key $GEMINI_KEY
+python stages/step2b_cloud_detection.py --context output/drawing_context.json --api-key $GEMINI_KEY
+python stages/step3_notes_agent.py  --context output/drawing_context.json --api-key $GEMINI_KEY
+python stages/step4_sow_agent.py build --excel ANNEXURE-2.xlsx --out output/ --skip-vision
+python stages/step6_table_agent.py     --context output/drawing_context.json --api-key $GEMINI_KEY
 
 # Phase 2: Extract tags (~117 Gemini calls, ~2-5 minutes)
-python step5a_candidate_extraction.py --context output/drawing_context.json \
+python stages/step5a_candidate_extraction.py --context output/drawing_context.json \
     --api-key $GEMINI_KEY --workers 8
 
 # Phase 3: Process results (no API, under 30 seconds total)
-python step5b_geometric_association.py --candidates output/step5a_candidates.json \
+python stages/step5b_geometric_association.py --candidates output/step5a_candidates.json \
     --image $DRAWING --out output/
-python step5c_validation_engine.py --associations output/step5b_associations.json \
+python stages/step5c_validation_engine.py --associations output/step5b_associations.json \
     --register ANNEXURE-4.xlsx --notes output/notes_context.json --out output/
-python step5d_duplicate_resolution.py --validated output/step5c_validated.json --out output/
+python stages/step5d_duplicate_resolution.py --validated output/step5c_validated.json --out output/
 
 # Phase 4: Generate output (no API, under 10 seconds)
-python step7_cedm_normalizer.py --final output/step5_final_output.json \
+python stages/step7_cedm_normalizer.py --final output/step5_final_output.json \
     --context output/drawing_context.json --out output/
-python step8_confidence_router.py --cedm output/step7_cedm_output.json \
+python stages/step8_confidence_router.py --cedm output/step7_cedm_output.json \
     --context output/drawing_context.json --out output/
 
 # Phase 5: Human review images (no API)
-python step5_visualizer.py --candidates output/step5a_candidates.json \
+python stages/step5_visualizer.py --candidates output/step5a_candidates.json \
     --deduped output/step5d_deduped.json --image $DRAWING --out output/
 ```
 

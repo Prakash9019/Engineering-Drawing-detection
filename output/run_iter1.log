@@ -1,0 +1,383 @@
+INFO Drawing: 9934x7017 | clouds=0 | revision=False | workers=8
+INFO Gemini client ready (new SDK)
+INFO SAHI: 117 patches from 9934x7017 drawing (patch=1024, overlap=25%)
+INFO Patches sorted centre-out (117 total)
+INFO Starting parallel extraction: 117 patches, 8 workers
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  59/116  [5376,3072]  Tesseract=0  Gemini=1  1 instrument detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  70/116  [3840,3840]  Tesseract=3  Gemini=3  3 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  44/116  [3840,2304]  Tesseract=3  Gemini=3  3 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  57/116  [3840,3072]  Tesseract=1  Gemini=4  2 instruments, 1 valve, 1 equipment detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  45/116  [4608,2304]  Tesseract=1  Gemini=4  1 instrument, 3 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  56/116  [3072,3072]  Tesseract=1  Gemini=7  7 valves, 1 instrument detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  71/116  [4608,3840]  Tesseract=1  Gemini=6  4 instruments, 2 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  60/116  [6144,3072]  Tesseract=0  Gemini=1  1 instrument detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  46/116  [5376,2304]  Tesseract=0  Gemini=3  2 instruments, 1 piping line number detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  32/116  [4608,1536]  Tesseract=1  Gemini=7  5 instruments, 1 valve, 1 piping line number detected
+INFO Progress: 10/117 patches done | 39 candidates so far
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  58/116  [4608,3072]  Tesseract=1  Gemini=11  8 instruments, 2 valves, 1 piping line number detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  72/116  [5376,3840]  Tesseract=0  Gemini=7  7 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  83/116  [3840,4608]  Tesseract=1  Gemini=1  1 valve detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  84/116  [4608,4608]  Tesseract=0  Gemini=7  7 instruments detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  55/116  [2304,3072]  Tesseract=0  Gemini=3  2 instruments, 1 valve detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  43/116  [3072,2304]  Tesseract=0  Gemini=4  1 piping line number, 2 valves, 1 vessel detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  31/116  [3840,1536]  Tesseract=0  Gemini=8  5 instruments, 3 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  69/116  [3072,3840]  Tesseract=2  Gemini=7  1 instrument, 6 valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  73/116  [6144,3840]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  97/116  [4608,5376]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO Progress: 20/117 patches done | 82 candidates so far
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  61/116  [6912,3072]  Tesseract=0  Gemini=2  2 instruments detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  19/116  [4608,768]  Tesseract=0  Gemini=6  3 valves, 3 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  33/116  [5376,1536]  Tesseract=0  Gemini=5  4 instruments, 1 valve, 1 piping line number detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  30/116  [3072,1536]  Tesseract=1  Gemini=1  1 valve detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  85/116  [5376,4608]  Tesseract=0  Gemini=7  6 instruments, 1 valve detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  68/116  [2304,3840]  Tesseract=0  Gemini=1  1 valve detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  96/116  [3840,5376]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  47/116  [6144,2304]  Tesseract=1  Gemini=4  1 piping line number, 3 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  82/116  [3072,4608]  Tesseract=1  Gemini=1  1 valve detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  42/116  [2304,2304]  Tesseract=1  Gemini=4  2 instruments, 2 valves detected
+INFO Progress: 30/117 patches done | 113 candidates so far
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 110/116  [4608,6144]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  54/116  [1536,3072]  Tesseract=0  Gemini=5  5 symbols detected: 3 valves, 2 instruments
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  74/116  [6912,3840]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  18/116  [3840,768]  Tesseract=1  Gemini=10  10 instruments and valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  48/116  [6912,2304]  Tesseract=0  Gemini=3  3 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  20/116  [5376,768]  Tesseract=0  Gemini=4  3 instruments, 1 equipment detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  34/116  [6144,1536]  Tesseract=0  Gemini=5  4 instruments, 1 piping line number detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch   6/116  [4608,0]  Tesseract=0  Gemini=3  2 instruments, 1 valve detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  86/116  [6144,4608]  Tesseract=0  Gemini=3  3 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  98/116  [5376,5376]  Tesseract=0  Gemini=1  1 valve detected
+INFO Progress: 40/117 patches done | 147 candidates so far
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  62/116  [7680,3072]  Tesseract=0  Gemini=5  5 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 109/116  [3840,6144]  Tesseract=2  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  67/116  [1536,3840]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch   5/116  [3840,0]  Tesseract=0  Gemini=5  4 instruments, 1 valve detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  81/116  [2304,4608]  Tesseract=1  Gemini=1  1 piping line number detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  53/116  [768,3072]  Tesseract=1  Gemini=2  1 piping line number, 1 valve detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  95/116  [3072,5376]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  29/116  [2304,1536]  Tesseract=0  Gemini=6  6 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch   7/116  [5376,0]  Tesseract=0  Gemini=3  2 instruments, 1 equipment detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  41/116  [1536,2304]  Tesseract=0  Gemini=8  4 instrument bubbles, 2 instrument diamonds, 2 ball valves detected
+INFO Progress: 50/117 patches done | 174 candidates so far
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  63/116  [8448,3072]  Tesseract=1  Gemini=1  1 instrument detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  49/116  [7680,2304]  Tesseract=1  Gemini=3  3 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 111/116  [5376,6144]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  21/116  [6144,768]  Tesseract=1  Gemini=4  2 instruments, 2 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  87/116  [6912,4608]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  99/116  [6144,5376]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  16/116  [2304,768]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  17/116  [3072,768]  Tesseract=0  Gemini=10  10 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 108/116  [3072,6144]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  75/116  [7680,3840]  Tesseract=0  Gemini=4  4 instruments detected
+INFO Progress: 60/117 patches done | 192 candidates so far
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  52/116  [0,3072]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected. The patch contains only notes and drawing references.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch   4/116  [3072,0]  Tesseract=0  Gemini=3  3 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  40/116  [768,2304]  Tesseract=0  Gemini=3  1 instrument, 2 valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  35/116  [6912,1536]  Tesseract=1  Gemini=9  9 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  94/116  [2304,5376]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO Patch  66/116  [768,3840]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO Patch  80/116  [1536,4608]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  64/116  [9216,3072]  Tesseract=4  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 112/116  [6144,6144]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  50/116  [8448,2304]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO Progress: 70/117 patches done | 206 candidates so far
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch   8/116  [6144,0]  Tesseract=0  Gemini=3  1 reducer, 1 instrument, 1 equipment detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  88/116  [7680,4608]  Tesseract=2  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  28/116  [1536,1536]  Tesseract=0  Gemini=8  8 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  76/116  [8448,3840]  Tesseract=0  Gemini=1  1 instrument detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch   3/116  [2304,0]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected. The patch contains only text describing equipment specifications (K-V-201 ETHANE GAS COMPRESSOR).
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 100/116  [6912,5376]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  36/116  [7680,1536]  Tesseract=1  Gemini=4  2 instruments, 2 piping line numbers detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  39/116  [0,2304]  Tesseract=0  Gemini=1  1 piping line number detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 107/116  [2304,6144]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  65/116  [0,3840]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO Progress: 80/117 patches done | 221 candidates so far
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  79/116  [768,4608]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  93/116  [1536,5376]  Tesseract=2  Gemini=0  0 instruments, 0 valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  51/116  [9216,2304]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  77/116  [9216,3840]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  15/116  [1536,768]  Tesseract=0  Gemini=4  4 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  22/116  [6912,768]  Tesseract=0  Gemini=9  1 motor, 8 instruments detected
+INFO Patch 113/116  [6912,6144]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO Patch  27/116  [768,1536]  Tesseract=0  Gemini=5  5 instruments detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  37/116  [8448,1536]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  89/116  [8448,4608]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO Progress: 90/117 patches done | 236 candidates so far
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 101/116  [7680,5376]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch   9/116  [6912,0]  Tesseract=0  Gemini=2  2 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch   2/116  [1536,0]  Tesseract=0  Gemini=0  No valid engineering symbols found
+INFO Patch  26/116  [0,1536]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 106/116  [1536,6144]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  78/116  [0,4608]  Tesseract=2  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  14/116  [768,768]  Tesseract=0  Gemini=2  2 instruments detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  92/116  [768,5376]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO Patch  90/116  [9216,4608]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected. The patch contains only text from a revision block or notes section, including drawing reference numbers and general information, which are explicitly excluded by the instructions.
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 114/116  [7680,6144]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO Progress: 100/117 patches done | 239 candidates so far
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  38/116  [9216,1536]  Tesseract=1  Gemini=0  No valid engineering symbols found. The image contains text related to equipment descriptions and drawing references, but no extractable tags based on the provided rules.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  24/116  [8448,768]  Tesseract=0  Gemini=1  1 piping line number detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  23/116  [7680,768]  Tesseract=2  Gemini=6  2 instruments, 4 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 102/116  [8448,5376]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  13/116  [0,768]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  91/116  [0,5376]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO Patch 105/116  [768,6144]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  25/116  [9216,768]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO AFC is enabled with max remote calls: 10.
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch   1/116  [768,0]  Tesseract=0  Gemini=1  1 piping line number detected
+INFO AFC is enabled with max remote calls: 10.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 103/116  [9216,5376]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO Progress: 110/117 patches done | 247 candidates so far
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 104/116  [0,6144]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 115/116  [8448,6144]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  11/116  [8448,0]  Tesseract=0  Gemini=1  1 instrument detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  12/116  [9216,0]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch 116/116  [9216,6144]  Tesseract=1  Gemini=0  0 instruments, 0 valves detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch  10/116  [7680,0]  Tesseract=0  Gemini=5  3 instruments, 2 piping specs detected
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent "HTTP/1.1 200 OK"
+INFO Patch   0/116  [0,0]  Tesseract=0  Gemini=0  0 instruments, 0 valves detected
+INFO Progress: 117/117 patches done | 251 candidates so far
+INFO === Step 5A Complete ===
+INFO Patches total    : 117
+INFO Gemini calls     : 117  (skipped 0 by pre-filter)
+INFO Total candidates : 251
+INFO Intra-step dedup (recall-safe): removed 70 exact SAHI duplicates (251 → 181 candidates)
+INFO ✓ step5a_candidates.json → output/step5a_candidates.json
+
+=== Step 5A Complete ===
+  Candidates extracted: 181
+    instrument            118
+    valve                  45
+    piping                 13
+    equipment               5
+
+  Output: output/step5a_candidates.json

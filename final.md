@@ -596,7 +596,7 @@ cloud_detector_v2.py — Combined 95%+ pipeline implementing the proven fix:
 │ P4 IoU NMS        │ Merge all sources     │ Deduplication across detectors                           │
 └───────────────────┴───────────────────────┴──────────────────────────────────────────────────────────┘
 
-Run it: python cloud_detector_v2.py input_drawing.jpg --out output_v2/ --debug
+Run it: python stages/step2b_cloud_detection.py --context output/drawing_context.json --api-key $GEMINI_KEY --debug
 
 
 O/p:
@@ -624,71 +624,71 @@ INFO Saved: output_v2/overlay_v2.jpg  output_v2/cloud_mask_v2.png  output_v2/out
 
 
 
-  python step6_table_agent.py --context output/drawing_context.json --api-key "AQ.Ab8RN6IDMnKvzzAK32jLUD5NfviIaP9lrrN91tAYrmO-LJ2Zbw" --debug
+  python stages/step6_table_agent.py --context output/drawing_context.json --api-key "AQ.Ab8RN6IDMnKvzzAK32jLUD5NfviIaP9lrrN91tAYrmO-LJ2Zbw" --debug
 
 
-  python step1_format_detect.py sample_table.jpg --out output/
+  python stages/step1_format_detect.py sample_table.jpg --out output/
 
 
 
   Step 4 : 
 
   # Build memory (with vision enrichment — ~132 Gemini calls):
-python step4_sow_agent.py build \
+python stages/step4_sow_agent.py build \
   --excel ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx \
   --out output/ --api-key YOUR_KEY
 
 # Text-only (fast, no API):
-python step4_sow_agent.py build \
+python stages/step4_sow_agent.py build \
   --excel ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx \
   --out output/ --skip-vision
 
 # Classify one symbol:
-python step4_sow_agent.py classify \
+python stages/step4_sow_agent.py classify \
   --memory output/sow_symbol_memory.json \
   --symbol "BALL VALVE"
 
 # Filter Step 6 tag list against SOW:
-python step4_sow_agent.py filter \
+python stages/step4_sow_agent.py filter \
   --memory output/sow_symbol_memory.json \
   --tags output/master_tags.json \
   --out output/
 
 
-python step5a_candidate_extraction.py input_drawing.jpg --out output/ --api-key "AQ.Ab8RN6IDMnKvzzAK32jLUD5NfviIaP9lrrN91tAYrmO-LJ2Zbw" --debug
+python stages/step5a_candidate_extraction.py input_drawing.jpg --out output/ --api-key "AQ.Ab8RN6IDMnKvzzAK32jLUD5NfviIaP9lrrN91tAYrmO-LJ2Zbw" --debug
 
 
-python step5a_candidate_extraction.py --context output/drawing_context.json --api-key "AQ.Ab8RN6IDMnKvzzAK32jLUD5NfviIaP9lrrN91tAYrmO-LJ2Zbw" --patch 5
+python stages/step5a_candidate_extraction.py --context output/drawing_context.json --api-key "AQ.Ab8RN6IDMnKvzzAK32jLUD5NfviIaP9lrrN91tAYrmO-LJ2Zbw" --patch 5
 
 
 
 # Default: 8 workers
-python step5a_candidate_extraction.py input_drawing.jpg --out output/ --api-key "AQ.Ab8RN6IDMnKvzzAK32jLUD5NfviIaP9lrrN91tAYrmO-LJ2Zbw"
+python stages/step5a_candidate_extraction.py input_drawing.jpg --out output/ --api-key "AQ.Ab8RN6IDMnKvzzAK32jLUD5NfviIaP9lrrN91tAYrmO-LJ2Zbw"
 
 # Free-tier key (5 RPM limit): use 1 worker to avoid 429
-python step5a_candidate_extraction.py drawing.jpg --out output/ --api-key KEY --workers 1
+python stages/step5a_candidate_extraction.py drawing.jpg --out output/ --api-key KEY --workers 1
 
 # Paid tier: push harder
-python step5a_candidate_extraction.py drawing.jpg --out output/ --api-key "AQ.Ab8RN6IDMnKvzzAK32jLUD5NfviIaP9lrrN91tAYrmO-LJ2Zbw" --workers 12
+python stages/step5a_candidate_extraction.py drawing.jpg --out output/ --api-key "AQ.Ab8RN6IDMnKvzzAK32jLUD5NfviIaP9lrrN91tAYrmO-LJ2Zbw" --workers 12
 
 
 # After 5A completes (before dedup):
-python step5_visualizer.py \
+python stages/step5_visualizer.py \
     --candidates output/step5a_candidates.json \
     --image input_drawing.jpg --out output/
 
 # After full pipeline (5A → 5D):
-python step5_visualizer.py \
+python stages/step5_visualizer.py \
     --candidates output/step5a_candidates.json \
     --deduped    output/step5d_deduped.json \
     --image      input_drawing.jpg --out output/
 
 # Auto-detect everything from context:
-python step5_visualizer.py \
+python stages/step5_visualizer.py \
     --context output/drawing_context.json
 
 # Larger tiles for deep zoom:
-python step5_visualizer.py \
+python stages/step5_visualizer.py \
     --candidates output/step5a_candidates.json \
     --image input_drawing.jpg --out output/ \
     --tile-size 1500 --overview-width 4000
@@ -696,25 +696,25 @@ python step5_visualizer.py \
 
 
     # Step 5B — geometry (pure OpenCV, instant)
-python step5b_geometric_association.py \
+python stages/step5b_geometric_association.py \
     --candidates output/step5a_candidates.json \
     --image input_drawing.jpg \
     --out output/ --debug
 
 # Step 5C — validation (pure programmatic, instant)
-python step5c_validation_engine.py \
+python stages/step5c_validation_engine.py \
     --associations output/step5b_associations.json \
     --register ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx \
     --notes output/notes_context.json \
     --out output/
 
 # Step 5D — dedup (pure programmatic, instant)
-python step5d_duplicate_resolution.py \
+python stages/step5d_duplicate_resolution.py \
     --validated output/step5c_validated.json \
     --out output/
 
 # Visualizer — bbox images for human review
-python step5_visualizer.py \
+python stages/step5_visualizer.py \
     --candidates output/step5a_candidates.json \
     --deduped output/step5d_deduped.json \
     --image input_drawing.jpg \
@@ -723,22 +723,48 @@ python step5_visualizer.py \
 
 
 # After Step 1:
-python step2_title_block.py \
+python stages/step2_title_block.py \
     --context output/drawing_context.json \
     --api-key YOUR_KEY --debug
 
 # Or directly:
-python step2_title_block.py input_drawing.jpg \
+python stages/step2_title_block.py input_drawing.jpg \
 
 
 
 # After step7:
-python step7_cedm_normalizer.py \
+python stages/step7_cedm_normalizer.py \
     --final output/step5_final_output.json \
     --context output/drawing_context.json \
     --out output/
 
-python step8_confidence_router.py \
+python stages/step8_confidence_router.py \
     --cedm output/step7_cedm_output.json \
     --context output/drawing_context.json \
     --out output/
+
+
+The $GEMINI_KEY environment variable isn't set in this shell session — you'll need to run it yourself with your key. Here's the command:
+
+python stages/step6_table_agent.py sample_table.jpg --out output/ --api-key $GEMINI_KEY
+
+Here's a summary of all changes made and why:
+
+Problem 1: Right columns cut off
+- Old: top_left tile covered x=0–82% → right 18% (columns 13–16) were never seen by Gemini
+- Fix: Replaced with top_adaptive tile covering x=0–100% (full width)
+
+Problem 2: Table rows cut off at bottom
+- Old: Fixed top_strip at y=0–8% and top_left at y=0–13% — if table extends to 15%, bottom rows were cropped
+- Fix: Added detect_table_bottom() which scans the binary image upward and finds the last dense horizontal line (the table's bottom border). The crop is set to detected_bottom + 3% buffer, so it adapts to any drawing
+
+Problem 3: Extraction resolution too low
+- Old: scale_for_gemini() capped at 4096px on the longest side → a 4967×500px table became 4096×412px — too short to read small tag numbers
+- Fix: Added scale_for_table() which scales UP to ensure minimum 700px height before capping
+
+Problem 4: Wide tables — columns still hard to read
+- New: For tables with aspect ratio > 2.5 (wider than 2.5× their height), _extract_wide_table() splits into left and right halves with 5% overlap, extracts each at full resolution, then merges rows by their slot label. This means each half gets twice the pixel density for Gemini.
+
+Problem 5: Early stopping
+- Old: After finding 1 high-confidence table, it stopped scanning all remaining tiles — other tables were never checked
+- Fix: Removed the early stop entirely

@@ -108,9 +108,10 @@ ISA_PATTERNS = {
     "E":    re.compile(r'^E-[A-Z]{1,3}-?\d{3,6}[A-Z]?$',    re.I),
     "P":    re.compile(r'^P-[A-Z]{1,3}-?\d{3,6}[A-Z]?$',    re.I),
     "S":    re.compile(r'^S-[A-Z]{1,3}-?\d{3,6}[A-Z]?$',    re.I),
-    # Pipeline tags
+    # Pipeline tags — size may be written 10", 10IN or 10 followed by a hyphen;
+    # accepts an optional trailing spec suffix (-PP, -X, -PT ...).
     "LINE": re.compile(
-        r'^\d{1,4}["\-][A-Z]{2,5}-[A-Z0-9]+-[A-Z0-9]+(-PP|-X)?$', re.I),
+        r'^\d{1,4}(IN|")?-[A-Z]{2,5}-[A-Z0-9]+-[A-Z0-9]+(-[A-Z]{1,3})?$', re.I),
     # Generic ISA fallback
     "GENERIC": re.compile(
         r'^[A-Z]{0,3}-?[A-Z]{1,5}-?\d{2,6}[A-Z]?$', re.I),
@@ -141,7 +142,12 @@ def check_tag_format(tag_text: str) -> dict:
         return {"pass": False, "rule": "TAG_FORMAT",
                 "message": "Empty or null tag text"}
 
+    # Fold unicode dashes/quotes to ASCII so piping line numbers written with
+    # typographic characters (4”—ETH-…) still match the LINE pattern.
     tag = tag_text.strip()
+    for d in ("—", "–", "―", "−"):
+        tag = tag.replace(d, "-")
+    tag = tag.replace("“", '"').replace("”", '"').replace("’", "'")
 
     # Try each ISA pattern
     for prefix, pattern in ISA_PATTERNS.items():
@@ -231,10 +237,20 @@ def check_asset_registry(tag_text: str, registry: dict) -> dict:
                 "in_registry": True,
                 "registry_entry": entry}
 
-    # Try normalised match (remove vendor prefix like V-)
-    stripped = re.sub(r'^[A-Z]-', '', tag)
+    # Aggressive normalised match: fold unicode, inch marker (10"==10IN) and the
+    # leading area/unit prefix (V-) so drawing text reconciles with the register.
+    def _rn(t: str) -> str:
+        s = str(t or "").upper()
+        for d in ("—", "–", "―", "−"):
+            s = s.replace(d, "-")
+        s = re.sub(r'[\s\.“”‘’"\'\-]+', '', s)
+        return s.replace("IN", "")
+
+    tag_n = _rn(tag)
+    tag_np = re.sub(r'^[A-Z]', '', tag_n)   # also drop a single leading area letter
     for reg_tag, entry in registry.items():
-        if stripped == re.sub(r'^[A-Z]-', '', reg_tag):
+        reg_n = _rn(reg_tag)
+        if tag_n == reg_n or tag_np == re.sub(r'^[A-Z]', '', reg_n):
             return {"pass": True, "rule": "REGISTRY",
                     "message": f"Registry match (normalised): {reg_tag}",
                     "in_registry": True,

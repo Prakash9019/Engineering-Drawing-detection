@@ -93,18 +93,18 @@ DRAWING=$1; OUT=$2; KEY=$3
 
 checkpoint() { [ -f "$OUT/$1" ] && echo "SKIP $1 (exists)" && return 0; return 1; }
 
-checkpoint drawing_context.json || python step1_format_detect.py "$DRAWING" --out "$OUT" --api-key "$KEY"
-checkpoint title_block_context.json || python step2_title_block.py --context "$OUT/drawing_context.json" --api-key "$KEY"
-checkpoint notes_context.json || python step3_notes_agent_v2.py --context "$OUT/drawing_context.json" --api-key "$KEY"
-checkpoint sow_symbol_memory.json || python step4_sow_agent.py build --excel $SOW_EXCEL --out "$OUT" --api-key "$KEY" --skip-vision
-checkpoint master_tags.json || python step6_table_agent.py --context "$OUT/drawing_context.json" --api-key "$KEY"
-checkpoint step5a_candidates.json || python step5a_candidate_extraction.py --context "$OUT/drawing_context.json" --api-key "$KEY" --workers 8
-checkpoint step5b_associations.json || python step5b_geometric_association.py --candidates "$OUT/step5a_candidates.json" --image "$DRAWING" --out "$OUT"
-checkpoint step5c_validated.json || python step5c_validation_engine.py --associations "$OUT/step5b_associations.json" --register $REG_EXCEL --notes "$OUT/notes_context.json" --out "$OUT"
-checkpoint step5_final_output.json || python step5d_duplicate_resolution.py --validated "$OUT/step5c_validated.json" --out "$OUT"
-checkpoint step7_cedm_output.json || python step7_cedm_normalizer.py --final "$OUT/step5_final_output.json" --context "$OUT/drawing_context.json" --out "$OUT"
-checkpoint final_tags.xlsx || python step8_confidence_router.py --cedm "$OUT/step7_cedm_output.json" --context "$OUT/drawing_context.json" --out "$OUT"
-python step5_visualizer.py --candidates "$OUT/step5a_candidates.json" --deduped "$OUT/step5d_deduped.json" --image "$DRAWING" --out "$OUT"
+checkpoint drawing_context.json || python stages/step1_format_detect.py "$DRAWING" --out "$OUT" --api-key "$KEY"
+checkpoint title_block_context.json || python stages/step2_title_block.py --context "$OUT/drawing_context.json" --api-key "$KEY"
+checkpoint notes_context.json || python stages/step3_notes_agent.py --context "$OUT/drawing_context.json" --api-key "$KEY"
+checkpoint sow_symbol_memory.json || python stages/step4_sow_agent.py build --excel $SOW_EXCEL --out "$OUT" --api-key "$KEY" --skip-vision
+checkpoint master_tags.json || python stages/step6_table_agent.py --context "$OUT/drawing_context.json" --api-key "$KEY"
+checkpoint step5a_candidates.json || python stages/step5a_candidate_extraction.py --context "$OUT/drawing_context.json" --api-key "$KEY" --workers 8
+checkpoint step5b_associations.json || python stages/step5b_geometric_association.py --candidates "$OUT/step5a_candidates.json" --image "$DRAWING" --out "$OUT"
+checkpoint step5c_validated.json || python stages/step5c_validation_engine.py --associations "$OUT/step5b_associations.json" --register $REG_EXCEL --notes "$OUT/notes_context.json" --out "$OUT"
+checkpoint step5_final_output.json || python stages/step5d_duplicate_resolution.py --validated "$OUT/step5c_validated.json" --out "$OUT"
+checkpoint step7_cedm_output.json || python stages/step7_cedm_normalizer.py --final "$OUT/step5_final_output.json" --context "$OUT/drawing_context.json" --out "$OUT"
+checkpoint final_tags.xlsx || python stages/step8_confidence_router.py --cedm "$OUT/step7_cedm_output.json" --context "$OUT/drawing_context.json" --out "$OUT"
+python stages/step5_visualizer.py --candidates "$OUT/step5a_candidates.json" --deduped "$OUT/step5d_deduped.json" --image "$DRAWING" --out "$OUT"
 
 echo "DONE → $OUT/final_tags.xlsx"
 ```

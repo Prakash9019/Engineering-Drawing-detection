@@ -1,0 +1,2909 @@
+{
+  "version": "v1",
+  "source_excel": "/Users/suryprakash/Downloads/cdci_extractor_final/ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx",
+  "build_timestamp": "2026-06-13T05:43:24.808749",
+  "total_symbols": 132,
+  "allow_count": 100,
+  "block_count": 32,
+  "category_breakdown": {
+    "ALLOW": {
+      "Valve": 16,
+      "Transmitter": 11,
+      "Switch": 8,
+      "Gauge": 6,
+      "Element": 5,
+      "Pump": 5,
+      "Safety/Shutdown": 4,
+      "Heat Transfer": 4,
+      "Indicator": 3,
+      "Control Valve": 3,
+      "Utility": 3,
+      "Pipeline Pigging": 3,
+      "Corrosion Monitoring": 2,
+      "Converter": 2,
+      "Filter/Strainer": 2,
+      "Indication": 2,
+      "Tank": 2,
+      "Chemical Injection": 1,
+      "Compressor": 1,
+      "Analyzer": 1,
+      "Position": 1,
+      "Rotating": 1,
+      "Safety": 1,
+      "Alarm": 1,
+      "Electrical": 1,
+      "Flow Element": 1,
+      "Mixing": 1,
+      "Temperature": 1,
+      "Vessel": 1,
+      "Separation": 1,
+      "Cooling": 1,
+      "Pipeline": 1,
+      "Process": 1,
+      "Heater": 1,
+      "Totaliser": 1,
+      "Instrument Accessory": 1
+    },
+    "BLOCK": {
+      "Signal/Logic": 19,
+      "Piping": 5,
+      "Drawing Annotation": 2,
+      "Non-Maintainable": 1,
+      "Logic/Control": 1,
+      "Piping Annotation": 1,
+      "Vessel Accessory": 1,
+      "Tie-In": 1,
+      "Instrument Accessory": 1
+    }
+  },
+  "symbols": [
+    {
+      "sno": 1,
+      "symbol_name": "CORROSION COUPON",
+      "symbol_name_normalized": "CORROSION COUPON",
+      "symbol_category": "Corrosion Monitoring",
+      "typical_tag_prefix": "CC",
+      "symbol_description": "CORROSION COUPON \u2014 Corrosion Monitoring instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "box with CC or CP",
+        "inline probe symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 2,
+      "symbol_name": "CORROSION PROBE",
+      "symbol_name_normalized": "CORROSION PROBE",
+      "symbol_category": "Corrosion Monitoring",
+      "typical_tag_prefix": "CP",
+      "symbol_description": "CORROSION PROBE \u2014 Corrosion Monitoring instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "box with CC or CP",
+        "inline probe symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 3,
+      "symbol_name": "ANALYZER ELEMENT",
+      "symbol_name_normalized": "ANALYZER ELEMENT",
+      "symbol_category": "Element",
+      "typical_tag_prefix": "AE",
+      "symbol_description": "ANALYZER ELEMENT \u2014 Element instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle or small symbol",
+        "element shape",
+        "field instrument"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 4,
+      "symbol_name": "FLOW ELEMENT",
+      "symbol_name_normalized": "FLOW ELEMENT",
+      "symbol_category": "Element",
+      "typical_tag_prefix": "FE",
+      "symbol_description": "FLOW ELEMENT \u2014 Element instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle or small symbol",
+        "element shape",
+        "field instrument"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 5,
+      "symbol_name": "LEVEL ELEMENT",
+      "symbol_name_normalized": "LEVEL ELEMENT",
+      "symbol_category": "Element",
+      "typical_tag_prefix": "LE",
+      "symbol_description": "LEVEL ELEMENT \u2014 Element instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle or small symbol",
+        "element shape",
+        "field instrument"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 6,
+      "symbol_name": "TEMPERATURE ELEMENT",
+      "symbol_name_normalized": "TEMPERATURE ELEMENT",
+      "symbol_category": "Element",
+      "typical_tag_prefix": "TE",
+      "symbol_description": "TEMPERATURE ELEMENT \u2014 Element instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle or small symbol",
+        "element shape",
+        "field instrument"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 7,
+      "symbol_name": "DIFFERENTIAL PRESSURE GAUGE",
+      "symbol_name_normalized": "DIFFERENTIAL PRESSURE GAUGE",
+      "symbol_category": "Gauge",
+      "typical_tag_prefix": "PG",
+      "symbol_description": "DIFFERENTIAL PRESSURE GAUGE \u2014 Gauge instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 8,
+      "symbol_name": "FLOW GAUGE",
+      "symbol_name_normalized": "FLOW GAUGE",
+      "symbol_category": "Gauge",
+      "typical_tag_prefix": "FG",
+      "symbol_description": "FLOW GAUGE \u2014 Gauge instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 9,
+      "symbol_name": "LEVEL GAUGE",
+      "symbol_name_normalized": "LEVEL GAUGE",
+      "symbol_category": "Gauge",
+      "typical_tag_prefix": "LG",
+      "symbol_description": "LEVEL GAUGE \u2014 Gauge instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 10,
+      "symbol_name": "PRESSURE GAUGE",
+      "symbol_name_normalized": "PRESSURE GAUGE",
+      "symbol_category": "Gauge",
+      "typical_tag_prefix": "PG",
+      "symbol_description": "PRESSURE GAUGE \u2014 Gauge instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 11,
+      "symbol_name": "TEMPERATURE GAUGE",
+      "symbol_name_normalized": "TEMPERATURE GAUGE",
+      "symbol_category": "Gauge",
+      "typical_tag_prefix": "TG",
+      "symbol_description": "TEMPERATURE GAUGE \u2014 Gauge instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 12,
+      "symbol_name": "INJECTION QUILL",
+      "symbol_name_normalized": "INJECTION QUILL",
+      "symbol_category": "Chemical Injection",
+      "typical_tag_prefix": "QU",
+      "symbol_description": "INJECTION QUILL \u2014 Chemical Injection instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 13,
+      "symbol_name": "LEVEL SWITCH",
+      "symbol_name_normalized": "LEVEL SWITCH",
+      "symbol_category": "Switch",
+      "typical_tag_prefix": "LS",
+      "symbol_description": "LEVEL SWITCH \u2014 Switch instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "S prefix or letter"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 14,
+      "symbol_name": "LIMIT SWITCH",
+      "symbol_name_normalized": "LIMIT SWITCH",
+      "symbol_category": "Switch",
+      "typical_tag_prefix": "LS",
+      "symbol_description": "LIMIT SWITCH \u2014 Switch instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "S prefix or letter"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 15,
+      "symbol_name": "LIMIT SWITCH CLOSE",
+      "symbol_name_normalized": "LIMIT SWITCH CLOSE",
+      "symbol_category": "Switch",
+      "typical_tag_prefix": "LSC",
+      "symbol_description": "LIMIT SWITCH CLOSE \u2014 Switch instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "S prefix or letter",
+        "closed position indicator"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 16,
+      "symbol_name": "LIMIT SWITCH OPEN",
+      "symbol_name_normalized": "LIMIT SWITCH OPEN",
+      "symbol_category": "Switch",
+      "typical_tag_prefix": "LSO",
+      "symbol_description": "LIMIT SWITCH OPEN \u2014 Switch instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "S prefix or letter",
+        "open position indicator"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 17,
+      "symbol_name": "PRESSURE SWITCH",
+      "symbol_name_normalized": "PRESSURE SWITCH",
+      "symbol_category": "Switch",
+      "typical_tag_prefix": "PS",
+      "symbol_description": "PRESSURE SWITCH \u2014 Switch instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "S prefix or letter"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 18,
+      "symbol_name": "SELECTOR SWITCH",
+      "symbol_name_normalized": "SELECTOR SWITCH",
+      "symbol_category": "Switch",
+      "typical_tag_prefix": "SS",
+      "symbol_description": "SELECTOR SWITCH \u2014 Switch instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "S prefix or letter"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 19,
+      "symbol_name": "HAND SWITCH OPEN",
+      "symbol_name_normalized": "HAND SWITCH OPEN",
+      "symbol_category": "Switch",
+      "typical_tag_prefix": "HSO",
+      "symbol_description": "HAND SWITCH OPEN \u2014 Switch instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "S prefix or letter",
+        "open position indicator"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 20,
+      "symbol_name": "HAND SWITCH CLOSE",
+      "symbol_name_normalized": "HAND SWITCH CLOSE",
+      "symbol_category": "Switch",
+      "typical_tag_prefix": "HSC",
+      "symbol_description": "HAND SWITCH CLOSE \u2014 Switch instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "S prefix or letter",
+        "closed position indicator"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 21,
+      "symbol_name": "FLOW TRANSMITTER",
+      "symbol_name_normalized": "FLOW TRANSMITTER",
+      "symbol_category": "Transmitter",
+      "typical_tag_prefix": "FT",
+      "symbol_description": "FLOW TRANSMITTER \u2014 Transmitter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle",
+        "line below"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 22,
+      "symbol_name": "LEVEL TRANSMITTER",
+      "symbol_name_normalized": "LEVEL TRANSMITTER",
+      "symbol_category": "Transmitter",
+      "typical_tag_prefix": "LT",
+      "symbol_description": "LEVEL TRANSMITTER \u2014 Transmitter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle",
+        "line below"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 23,
+      "symbol_name": "PRESSURE TRANSMITTER",
+      "symbol_name_normalized": "PRESSURE TRANSMITTER",
+      "symbol_category": "Transmitter",
+      "typical_tag_prefix": "PT",
+      "symbol_description": "PRESSURE TRANSMITTER \u2014 Transmitter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle",
+        "line below"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 24,
+      "symbol_name": "TEMPERATURE TRANSMITTER",
+      "symbol_name_normalized": "TEMPERATURE TRANSMITTER",
+      "symbol_category": "Transmitter",
+      "typical_tag_prefix": "TT",
+      "symbol_description": "TEMPERATURE TRANSMITTER \u2014 Transmitter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle",
+        "line below"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 25,
+      "symbol_name": "DIFFERENTIAL PRESSURE INDICATING TRANSMITTER",
+      "symbol_name_normalized": "DIFFERENTIAL PRESSURE INDICATING TRANSMITTER",
+      "symbol_category": "Transmitter",
+      "typical_tag_prefix": "PIT",
+      "symbol_description": "DIFFERENTIAL PRESSURE INDICATING TRANSMITTER \u2014 Transmitter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle",
+        "line below",
+        "indicating (I letter in tag)"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 26,
+      "symbol_name": "FLOW INDICATING TRANSMITTER",
+      "symbol_name_normalized": "FLOW INDICATING TRANSMITTER",
+      "symbol_category": "Transmitter",
+      "typical_tag_prefix": "FIT",
+      "symbol_description": "FLOW INDICATING TRANSMITTER \u2014 Transmitter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle",
+        "line below",
+        "indicating (I letter in tag)"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 27,
+      "symbol_name": "LEVEL INDICATING TRANSMITTER",
+      "symbol_name_normalized": "LEVEL INDICATING TRANSMITTER",
+      "symbol_category": "Transmitter",
+      "typical_tag_prefix": "LIT",
+      "symbol_description": "LEVEL INDICATING TRANSMITTER \u2014 Transmitter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle",
+        "line below",
+        "indicating (I letter in tag)"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 28,
+      "symbol_name": "PRESSURE INDICATING TRANSMITTER",
+      "symbol_name_normalized": "PRESSURE INDICATING TRANSMITTER",
+      "symbol_category": "Transmitter",
+      "typical_tag_prefix": "PIT",
+      "symbol_description": "PRESSURE INDICATING TRANSMITTER \u2014 Transmitter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle",
+        "line below",
+        "indicating (I letter in tag)"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 29,
+      "symbol_name": "TEMPERATURE INDICATING TRANSMITTER",
+      "symbol_name_normalized": "TEMPERATURE INDICATING TRANSMITTER",
+      "symbol_category": "Transmitter",
+      "typical_tag_prefix": "TIT",
+      "symbol_description": "TEMPERATURE INDICATING TRANSMITTER \u2014 Transmitter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle",
+        "line below",
+        "indicating (I letter in tag)"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 30,
+      "symbol_name": "LEVEL INDICATOR",
+      "symbol_name_normalized": "LEVEL INDICATOR",
+      "symbol_category": "Indicator",
+      "typical_tag_prefix": "LI",
+      "symbol_description": "LEVEL INDICATOR \u2014 Indicator instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "indicator letters"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 31,
+      "symbol_name": "PRESSURE INDICATOR",
+      "symbol_name_normalized": "PRESSURE INDICATOR",
+      "symbol_category": "Indicator",
+      "typical_tag_prefix": "PI",
+      "symbol_description": "PRESSURE INDICATOR \u2014 Indicator instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "indicator letters"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 32,
+      "symbol_name": "TEMPERATURE INDICATOR",
+      "symbol_name_normalized": "TEMPERATURE INDICATOR",
+      "symbol_category": "Indicator",
+      "typical_tag_prefix": "TI",
+      "symbol_description": "TEMPERATURE INDICATOR \u2014 Indicator instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "indicator letters"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 33,
+      "symbol_name": "BALL VALVE",
+      "symbol_name_normalized": "BALL VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "BV",
+      "symbol_description": "BALL VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 34,
+      "symbol_name": "3-WAY SOLENOID VALVE",
+      "symbol_name_normalized": "3-WAY SOLENOID VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "SV",
+      "symbol_description": "3-WAY SOLENOID VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol",
+        "three-port valve body"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 35,
+      "symbol_name": "BUTTERFLY VALVE",
+      "symbol_name_normalized": "BUTTERFLY VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "XV",
+      "symbol_description": "BUTTERFLY VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 36,
+      "symbol_name": "DOUBLE BLOCK AND BLEED VALVE",
+      "symbol_name_normalized": "DOUBLE BLOCK AND BLEED VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "DBBV",
+      "symbol_description": "DOUBLE BLOCK AND BLEED VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 37,
+      "symbol_name": "EMERGENCY SHUTDOWN VALVE",
+      "symbol_name_normalized": "EMERGENCY SHUTDOWN VALVE",
+      "symbol_category": "Safety/Shutdown",
+      "typical_tag_prefix": "XV",
+      "symbol_description": "EMERGENCY SHUTDOWN VALVE \u2014 Safety/Shutdown instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": false,
+      "image_count": 0,
+      "symbol_visual_features": [
+        "valve with actuator",
+        "spring symbol",
+        "safety marker"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 38,
+      "symbol_name": "FLOAT VALVE",
+      "symbol_name_normalized": "FLOAT VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "FV",
+      "symbol_description": "FLOAT VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 39,
+      "symbol_name": "GATE VALVE",
+      "symbol_name_normalized": "GATE VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "GV",
+      "symbol_description": "GATE VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 40,
+      "symbol_name": "GLOBE VALVE",
+      "symbol_name_normalized": "GLOBE VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "XV",
+      "symbol_description": "GLOBE VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 41,
+      "symbol_name": "WING VALVE",
+      "symbol_name_normalized": "WING VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "WV",
+      "symbol_description": "WING VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 42,
+      "symbol_name": "MOTOR OPERATED VALVE",
+      "symbol_name_normalized": "MOTOR OPERATED VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "MOV",
+      "symbol_description": "MOTOR OPERATED VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 43,
+      "symbol_name": "NEEDLE VALVE",
+      "symbol_name_normalized": "NEEDLE VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "NV",
+      "symbol_description": "NEEDLE VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 44,
+      "symbol_name": "NON RETURN VALVE",
+      "symbol_name_normalized": "NON RETURN VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "NRV",
+      "symbol_description": "NON RETURN VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 45,
+      "symbol_name": "PLUG VALVE",
+      "symbol_name_normalized": "PLUG VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "PV",
+      "symbol_description": "PLUG VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 46,
+      "symbol_name": "PRESSURE SAFETY VALVE",
+      "symbol_name_normalized": "PRESSURE SAFETY VALVE",
+      "symbol_category": "Safety/Shutdown",
+      "typical_tag_prefix": "PSV",
+      "symbol_description": "PRESSURE SAFETY VALVE \u2014 Safety/Shutdown instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve with actuator",
+        "spring symbol",
+        "safety marker"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 47,
+      "symbol_name": "SAFETY RELIEF VALVE",
+      "symbol_name_normalized": "SAFETY RELIEF VALVE",
+      "symbol_category": "Safety/Shutdown",
+      "typical_tag_prefix": "SRV",
+      "symbol_description": "SAFETY RELIEF VALVE \u2014 Safety/Shutdown instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve with actuator",
+        "spring symbol",
+        "safety marker"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 48,
+      "symbol_name": "QUICK EXHAUST VALVE",
+      "symbol_name_normalized": "QUICK EXHAUST VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "QEV",
+      "symbol_description": "QUICK EXHAUST VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 49,
+      "symbol_name": "SHUTDOWN VALVE",
+      "symbol_name_normalized": "SHUTDOWN VALVE",
+      "symbol_category": "Safety/Shutdown",
+      "typical_tag_prefix": "XV",
+      "symbol_description": "SHUTDOWN VALVE \u2014 Safety/Shutdown instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve with actuator",
+        "spring symbol",
+        "safety marker"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 50,
+      "symbol_name": "SOLENOID VALVE",
+      "symbol_name_normalized": "SOLENOID VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "SV",
+      "symbol_description": "SOLENOID VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 51,
+      "symbol_name": "CHOKE VALVE",
+      "symbol_name_normalized": "CHOKE VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "CV",
+      "symbol_description": "CHOKE VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 3,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 52,
+      "symbol_name": "ON OFF VALVE",
+      "symbol_name_normalized": "ON OFF VALVE",
+      "symbol_category": "Valve",
+      "typical_tag_prefix": "XV",
+      "symbol_description": "ON OFF VALVE \u2014 Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "valve body shape",
+        "line through symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 53,
+      "symbol_name": "PRESSURE CONTROL VALVE",
+      "symbol_name_normalized": "PRESSURE CONTROL VALVE",
+      "symbol_category": "Control Valve",
+      "typical_tag_prefix": "PC",
+      "symbol_description": "PRESSURE CONTROL VALVE \u2014 Control Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "bow-tie shape",
+        "triangle",
+        "actuator on top",
+        "valve body"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 54,
+      "symbol_name": "TEMPERATURE CONTROL VALVE",
+      "symbol_name_normalized": "TEMPERATURE CONTROL VALVE",
+      "symbol_category": "Control Valve",
+      "typical_tag_prefix": "TC",
+      "symbol_description": "TEMPERATURE CONTROL VALVE \u2014 Control Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "bow-tie shape",
+        "triangle",
+        "actuator on top",
+        "valve body"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 55,
+      "symbol_name": "FLOW CONTROL VALVE",
+      "symbol_name_normalized": "FLOW CONTROL VALVE",
+      "symbol_category": "Control Valve",
+      "typical_tag_prefix": "FC",
+      "symbol_description": "FLOW CONTROL VALVE \u2014 Control Valve instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "bow-tie shape",
+        "triangle",
+        "actuator on top",
+        "valve body"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 56,
+      "symbol_name": "AIR COMPRESSOR",
+      "symbol_name_normalized": "AIR COMPRESSOR",
+      "symbol_category": "Compressor",
+      "typical_tag_prefix": "KC",
+      "symbol_description": "AIR COMPRESSOR \u2014 Compressor instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "diamond or rectangle",
+        "rotating machinery"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 57,
+      "symbol_name": "AIR COOLER",
+      "symbol_name_normalized": "AIR COOLER",
+      "symbol_category": "Heat Transfer",
+      "typical_tag_prefix": "E",
+      "symbol_description": "AIR COOLER \u2014 Heat Transfer instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "zigzag lines",
+        "shell and tube symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 58,
+      "symbol_name": "AIR DRYER",
+      "symbol_name_normalized": "AIR DRYER",
+      "symbol_category": "Utility",
+      "typical_tag_prefix": "AD",
+      "symbol_description": "AIR DRYER \u2014 Utility instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 59,
+      "symbol_name": "AIR RECEIVER",
+      "symbol_name_normalized": "AIR RECEIVER",
+      "symbol_category": "Utility",
+      "typical_tag_prefix": "AR",
+      "symbol_description": "AIR RECEIVER \u2014 Utility instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 60,
+      "symbol_name": "ANALYZER",
+      "symbol_name_normalized": "ANALYZER",
+      "symbol_category": "Analyzer",
+      "typical_tag_prefix": "AT",
+      "symbol_description": "ANALYZER \u2014 Analyzer instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 61,
+      "symbol_name": "BI-DIRECTIONAL POSITION INDICATOR",
+      "symbol_name_normalized": "BI-DIRECTIONAL POSITION INDICATOR",
+      "symbol_category": "Position",
+      "typical_tag_prefix": "ZIT",
+      "symbol_description": "BI-DIRECTIONAL POSITION INDICATOR \u2014 Position instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 62,
+      "symbol_name": "BLOWER",
+      "symbol_name_normalized": "BLOWER",
+      "symbol_category": "Rotating",
+      "typical_tag_prefix": "BL",
+      "symbol_description": "BLOWER \u2014 Rotating instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 63,
+      "symbol_name": "CORROSION ELEMENT",
+      "symbol_name_normalized": "CORROSION ELEMENT",
+      "symbol_category": "Element",
+      "typical_tag_prefix": "CE",
+      "symbol_description": "CORROSION ELEMENT \u2014 Element instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle or small symbol",
+        "element shape",
+        "field instrument"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 64,
+      "symbol_name": "CORROSION TRANSMITTER",
+      "symbol_name_normalized": "CORROSION TRANSMITTER",
+      "symbol_category": "Transmitter",
+      "typical_tag_prefix": "CT",
+      "symbol_description": "CORROSION TRANSMITTER \u2014 Transmitter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle",
+        "line below"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 65,
+      "symbol_name": "ELECTRO-PNEUMATIC CONVERTER",
+      "symbol_name_normalized": "ELECTRO-PNEUMATIC CONVERTER",
+      "symbol_category": "Converter",
+      "typical_tag_prefix": "EP",
+      "symbol_description": "ELECTRO-PNEUMATIC CONVERTER \u2014 Converter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 66,
+      "symbol_name": "EXHAUST SILENCER",
+      "symbol_name_normalized": "EXHAUST SILENCER",
+      "symbol_category": "Utility",
+      "typical_tag_prefix": "SIL",
+      "symbol_description": "EXHAUST SILENCER \u2014 Utility instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 67,
+      "symbol_name": "FILTER STRAINER",
+      "symbol_name_normalized": "FILTER STRAINER",
+      "symbol_category": "Filter/Strainer",
+      "typical_tag_prefix": "STR",
+      "symbol_description": "FILTER STRAINER \u2014 Filter/Strainer instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "Y-shape or mesh symbol",
+        "filter body"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 68,
+      "symbol_name": "FLAME ARRESTER",
+      "symbol_name_normalized": "FLAME ARRESTER",
+      "symbol_category": "Safety",
+      "typical_tag_prefix": "FA",
+      "symbol_description": "FLAME ARRESTER \u2014 Safety instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 69,
+      "symbol_name": "HEAT EXCHANGER ONE PASS TUBE",
+      "symbol_name_normalized": "HEAT EXCHANGER ONE PASS TUBE",
+      "symbol_category": "Heat Transfer",
+      "typical_tag_prefix": "E",
+      "symbol_description": "HEAT EXCHANGER ONE PASS TUBE \u2014 Heat Transfer instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "zigzag lines",
+        "shell and tube symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 70,
+      "symbol_name": "HEAT EXCHANGER TWO PASS TUBE",
+      "symbol_name_normalized": "HEAT EXCHANGER TWO PASS TUBE",
+      "symbol_category": "Heat Transfer",
+      "typical_tag_prefix": "E",
+      "symbol_description": "HEAT EXCHANGER TWO PASS TUBE \u2014 Heat Transfer instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "zigzag lines",
+        "shell and tube symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 71,
+      "symbol_name": "INDICATION LAMP CLOSE",
+      "symbol_name_normalized": "INDICATION LAMP CLOSE",
+      "symbol_category": "Indication",
+      "typical_tag_prefix": "IL",
+      "symbol_description": "INDICATION LAMP CLOSE \u2014 Indication instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 72,
+      "symbol_name": "INDICATION LAMP OPEN",
+      "symbol_name_normalized": "INDICATION LAMP OPEN",
+      "symbol_category": "Indication",
+      "typical_tag_prefix": "IL",
+      "symbol_description": "INDICATION LAMP OPEN \u2014 Indication instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 73,
+      "symbol_name": "I/P CONVERTER",
+      "symbol_name_normalized": "I/P CONVERTER",
+      "symbol_category": "Converter",
+      "typical_tag_prefix": "IP",
+      "symbol_description": "I/P CONVERTER \u2014 Converter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 74,
+      "symbol_name": "LIGHT ALARM",
+      "symbol_name_normalized": "LIGHT ALARM",
+      "symbol_category": "Alarm",
+      "typical_tag_prefix": "LA",
+      "symbol_description": "LIGHT ALARM \u2014 Alarm instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 75,
+      "symbol_name": "MOTOR",
+      "symbol_name_normalized": "MOTOR",
+      "symbol_category": "Electrical",
+      "typical_tag_prefix": "M",
+      "symbol_description": "MOTOR \u2014 Electrical instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 76,
+      "symbol_name": "PIG LAUNCHER",
+      "symbol_name_normalized": "PIG LAUNCHER",
+      "symbol_category": "Pipeline Pigging",
+      "typical_tag_prefix": "PL",
+      "symbol_description": "PIG LAUNCHER \u2014 Pipeline Pigging instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "arrow in pipe",
+        "pig symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 77,
+      "symbol_name": "PIG RECEIVER",
+      "symbol_name_normalized": "PIG RECEIVER",
+      "symbol_category": "Pipeline Pigging",
+      "typical_tag_prefix": "PR",
+      "symbol_description": "PIG RECEIVER \u2014 Pipeline Pigging instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "arrow in pipe",
+        "pig symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 78,
+      "symbol_name": "PIG SIGNALER",
+      "symbol_name_normalized": "PIG SIGNALER",
+      "symbol_category": "Pipeline Pigging",
+      "typical_tag_prefix": "PS",
+      "symbol_description": "PIG SIGNALER \u2014 Pipeline Pigging instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "arrow in pipe",
+        "pig symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 79,
+      "symbol_name": "RESTRICTION ORIFICE",
+      "symbol_name_normalized": "RESTRICTION ORIFICE",
+      "symbol_category": "Flow Element",
+      "typical_tag_prefix": "RO",
+      "symbol_description": "RESTRICTION ORIFICE \u2014 Flow Element instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 80,
+      "symbol_name": "SIGHT GLASS",
+      "symbol_name_normalized": "SIGHT GLASS",
+      "symbol_category": "Gauge",
+      "typical_tag_prefix": "SG",
+      "symbol_description": "SIGHT GLASS \u2014 Gauge instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 81,
+      "symbol_name": "STATIC MIXER",
+      "symbol_name_normalized": "STATIC MIXER",
+      "symbol_category": "Mixing",
+      "typical_tag_prefix": "MX",
+      "symbol_description": "STATIC MIXER \u2014 Mixing instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": false,
+      "image_count": 0,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 82,
+      "symbol_name": "TANK",
+      "symbol_name_normalized": "TANK",
+      "symbol_category": "Tank",
+      "typical_tag_prefix": "TK",
+      "symbol_description": "TANK \u2014 Tank instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "wide rectangle",
+        "tank outline"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 83,
+      "symbol_name": "THERMOWELL",
+      "symbol_name_normalized": "THERMOWELL",
+      "symbol_category": "Temperature",
+      "typical_tag_prefix": "TW",
+      "symbol_description": "THERMOWELL \u2014 Temperature instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 84,
+      "symbol_name": "VESSEL",
+      "symbol_name_normalized": "VESSEL",
+      "symbol_category": "Vessel",
+      "typical_tag_prefix": "V",
+      "symbol_description": "VESSEL \u2014 Vessel instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "tall rectangle",
+        "vessel outline"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 85,
+      "symbol_name": "Y-TYPE FILTER STRAINER",
+      "symbol_name_normalized": "Y-TYPE FILTER STRAINER",
+      "symbol_category": "Filter/Strainer",
+      "typical_tag_prefix": "STR",
+      "symbol_description": "Y-TYPE FILTER STRAINER \u2014 Filter/Strainer instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "Y-shape or mesh symbol",
+        "filter body"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 86,
+      "symbol_name": "CENTRIFUGAL PUMP",
+      "symbol_name_normalized": "CENTRIFUGAL PUMP",
+      "symbol_category": "Pump",
+      "typical_tag_prefix": "P",
+      "symbol_description": "CENTRIFUGAL PUMP \u2014 Pump instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle with arrow",
+        "rotating symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 87,
+      "symbol_name": "RECIPROCATING PUMP",
+      "symbol_name_normalized": "RECIPROCATING PUMP",
+      "symbol_category": "Pump",
+      "typical_tag_prefix": "P",
+      "symbol_description": "RECIPROCATING PUMP \u2014 Pump instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle with arrow",
+        "rotating symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 88,
+      "symbol_name": "ROTOR PUMP",
+      "symbol_name_normalized": "ROTOR PUMP",
+      "symbol_category": "Pump",
+      "typical_tag_prefix": "P",
+      "symbol_description": "ROTOR PUMP \u2014 Pump instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle with arrow",
+        "rotating symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 89,
+      "symbol_name": "VERTICAL PUMP",
+      "symbol_name_normalized": "VERTICAL PUMP",
+      "symbol_category": "Pump",
+      "typical_tag_prefix": "P",
+      "symbol_description": "VERTICAL PUMP \u2014 Pump instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle with arrow",
+        "rotating symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 90,
+      "symbol_name": "VERTICAL SUMP PUMP",
+      "symbol_name_normalized": "VERTICAL SUMP PUMP",
+      "symbol_category": "Pump",
+      "typical_tag_prefix": "P",
+      "symbol_description": "VERTICAL SUMP PUMP \u2014 Pump instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle with arrow",
+        "rotating symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 91,
+      "symbol_name": "COALESCER",
+      "symbol_name_normalized": "COALESCER",
+      "symbol_category": "Separation",
+      "typical_tag_prefix": "S",
+      "symbol_description": "COALESCER \u2014 Separation instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 92,
+      "symbol_name": "COOLING FAN OR MIXER",
+      "symbol_name_normalized": "COOLING FAN OR MIXER",
+      "symbol_category": "Cooling",
+      "typical_tag_prefix": "CF",
+      "symbol_description": "COOLING FAN OR MIXER \u2014 Cooling instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 93,
+      "symbol_name": "FLOATING ROOF TANK",
+      "symbol_name_normalized": "FLOATING ROOF TANK",
+      "symbol_category": "Tank",
+      "typical_tag_prefix": "TK",
+      "symbol_description": "FLOATING ROOF TANK \u2014 Tank instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "wide rectangle",
+        "tank outline"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 94,
+      "symbol_name": "HEAT EXCHANGER",
+      "symbol_name_normalized": "HEAT EXCHANGER",
+      "symbol_category": "Heat Transfer",
+      "typical_tag_prefix": "E",
+      "symbol_description": "HEAT EXCHANGER \u2014 Heat Transfer instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "zigzag lines",
+        "shell and tube symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 95,
+      "symbol_name": "DENSITY INDICATING TRANSMITTER",
+      "symbol_name_normalized": "DENSITY INDICATING TRANSMITTER",
+      "symbol_category": "Transmitter",
+      "typical_tag_prefix": "DIT",
+      "symbol_description": "DENSITY INDICATING TRANSMITTER \u2014 Transmitter instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "circle",
+        "bubble",
+        "letter code inside circle",
+        "line below",
+        "indicating (I letter in tag)"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 96,
+      "symbol_name": "PIPELINE TAG",
+      "symbol_name_normalized": "PIPELINE TAG",
+      "symbol_category": "Pipeline",
+      "typical_tag_prefix": "LINE",
+      "symbol_description": "PIPELINE TAG \u2014 Pipeline instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 97,
+      "symbol_name": "INDUCTOR/EJECTOR",
+      "symbol_name_normalized": "INDUCTOR/EJECTOR",
+      "symbol_category": "Process",
+      "typical_tag_prefix": "EJ",
+      "symbol_description": "INDUCTOR/EJECTOR \u2014 Process instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 98,
+      "symbol_name": "FIRED HEATER",
+      "symbol_name_normalized": "FIRED HEATER",
+      "symbol_category": "Heater",
+      "typical_tag_prefix": "H",
+      "symbol_description": "FIRED HEATER \u2014 Heater instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 99,
+      "symbol_name": "FLOW TOTALISER",
+      "symbol_name_normalized": "FLOW TOTALISER",
+      "symbol_category": "Totaliser",
+      "typical_tag_prefix": "FQI",
+      "symbol_description": "FLOW TOTALISER \u2014 Totaliser instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 100,
+      "symbol_name": "CALIBRATION POT",
+      "symbol_name_normalized": "CALIBRATION POT",
+      "symbol_category": "Instrument Accessory",
+      "typical_tag_prefix": "CAL",
+      "symbol_description": "CALIBRATION POT \u2014 Instrument Accessory instrument/equipment",
+      "sheet_source": "USE",
+      "status": "ALLOW",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 1,
+      "symbol_name": "COMPUTER FUNCTION,SIGNAL TAG",
+      "symbol_name_normalized": "COMPUTER FUNCTION,SIGNAL TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "FC",
+      "symbol_description": "COMPUTER FUNCTION,SIGNAL TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 2,
+      "symbol_name": "DCS,SIGNAL TAG",
+      "symbol_name_normalized": "DCS,SIGNAL TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "FC",
+      "symbol_description": "DCS,SIGNAL TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 3,
+      "symbol_name": "PLC,SIGNAL TAG",
+      "symbol_name_normalized": "PLC,SIGNAL TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "FC",
+      "symbol_description": "PLC,SIGNAL TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 4,
+      "symbol_name": "NON MAINTAINABLE TAGS",
+      "symbol_name_normalized": "NON MAINTAINABLE TAGS",
+      "symbol_category": "Non-Maintainable",
+      "typical_tag_prefix": "",
+      "symbol_description": "NON MAINTAINABLE TAGS \u2014 Non-Maintainable instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 5,
+      "symbol_name": "DESTINATION ARROW OFF",
+      "symbol_name_normalized": "DESTINATION ARROW OFF",
+      "symbol_category": "Drawing Annotation",
+      "typical_tag_prefix": "",
+      "symbol_description": "DESTINATION ARROW OFF \u2014 Drawing Annotation instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 6,
+      "symbol_name": "INSULATING COUPLING",
+      "symbol_name_normalized": "INSULATING COUPLING",
+      "symbol_category": "Piping",
+      "typical_tag_prefix": "",
+      "symbol_description": "INSULATING COUPLING \u2014 Piping instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "line annotation",
+        "piping fitting symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 7,
+      "symbol_name": "FLANGE",
+      "symbol_name_normalized": "FLANGE",
+      "symbol_category": "Piping",
+      "typical_tag_prefix": "",
+      "symbol_description": "FLANGE \u2014 Piping instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 2,
+      "symbol_visual_features": [
+        "line annotation",
+        "piping fitting symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 8,
+      "symbol_name": "TUNDISH",
+      "symbol_name_normalized": "TUNDISH",
+      "symbol_category": "Piping",
+      "typical_tag_prefix": "",
+      "symbol_description": "TUNDISH \u2014 Piping instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": false,
+      "image_count": 0,
+      "symbol_visual_features": [
+        "line annotation",
+        "piping fitting symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 9,
+      "symbol_name": "REDUCER",
+      "symbol_name_normalized": "REDUCER",
+      "symbol_category": "Piping",
+      "typical_tag_prefix": "",
+      "symbol_description": "REDUCER \u2014 Piping instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "line annotation",
+        "piping fitting symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 10,
+      "symbol_name": "CAUSE AND EFFECTS SYSTEM NUMBER",
+      "symbol_name_normalized": "CAUSE AND EFFECTS SYSTEM NUMBER",
+      "symbol_category": "Logic/Control",
+      "typical_tag_prefix": "",
+      "symbol_description": "CAUSE AND EFFECTS SYSTEM NUMBER \u2014 Logic/Control instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 11,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 12,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 13,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 14,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 15,
+      "symbol_name": "INSULATION",
+      "symbol_name_normalized": "INSULATION",
+      "symbol_category": "Piping Annotation",
+      "typical_tag_prefix": "",
+      "symbol_description": "INSULATION \u2014 Piping Annotation instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 16,
+      "symbol_name": "BARRED TEE",
+      "symbol_name_normalized": "BARRED TEE",
+      "symbol_category": "Piping",
+      "typical_tag_prefix": "",
+      "symbol_description": "BARRED TEE \u2014 Piping instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "line annotation",
+        "piping fitting symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 17,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 18,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 19,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 20,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 21,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 22,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 23,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 24,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 25,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 26,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 27,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 28,
+      "symbol_name": "SOFT TAG",
+      "symbol_name_normalized": "SOFT TAG",
+      "symbol_category": "Signal/Logic",
+      "typical_tag_prefix": "",
+      "symbol_description": "SOFT TAG \u2014 Signal/Logic instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "hexagon",
+        "diamond",
+        "dashed box",
+        "logic symbol"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 29,
+      "symbol_name": "MANWAY",
+      "symbol_name_normalized": "MANWAY",
+      "symbol_category": "Vessel Accessory",
+      "typical_tag_prefix": "",
+      "symbol_description": "MANWAY \u2014 Vessel Accessory instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 30,
+      "symbol_name": "TIE-IN",
+      "symbol_name_normalized": "TIE-IN",
+      "symbol_category": "Tie-In",
+      "typical_tag_prefix": "",
+      "symbol_description": "TIE-IN \u2014 Tie-In instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 31,
+      "symbol_name": "DIAPHRAGM SEAL",
+      "symbol_name_normalized": "DIAPHRAGM SEAL",
+      "symbol_category": "Instrument Accessory",
+      "typical_tag_prefix": "",
+      "symbol_description": "DIAPHRAGM SEAL \u2014 Instrument Accessory instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 1,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    },
+    {
+      "sno": 32,
+      "symbol_name": "REVISION TRIANGLE",
+      "symbol_name_normalized": "REVISION TRIANGLE",
+      "symbol_category": "Drawing Annotation",
+      "typical_tag_prefix": "",
+      "symbol_description": "REVISION TRIANGLE \u2014 Drawing Annotation instrument/equipment",
+      "sheet_source": "DO_NOT_USE",
+      "status": "BLOCK",
+      "has_image": true,
+      "image_count": 3,
+      "symbol_visual_features": [
+        "unknown shape"
+      ],
+      "gemini_visual_description": null
+    }
+  ],
+  "name_index": [
+    "CORROSION COUPON",
+    "CORROSION PROBE",
+    "ANALYZER ELEMENT",
+    "FLOW ELEMENT",
+    "LEVEL ELEMENT",
+    "TEMPERATURE ELEMENT",
+    "DIFFERENTIAL PRESSURE GAUGE",
+    "FLOW GAUGE",
+    "LEVEL GAUGE",
+    "PRESSURE GAUGE",
+    "TEMPERATURE GAUGE",
+    "INJECTION QUILL",
+    "LEVEL SWITCH",
+    "LIMIT SWITCH",
+    "LIMIT SWITCH CLOSE",
+    "LIMIT SWITCH OPEN",
+    "PRESSURE SWITCH",
+    "SELECTOR SWITCH",
+    "HAND SWITCH OPEN",
+    "HAND SWITCH CLOSE",
+    "FLOW TRANSMITTER",
+    "LEVEL TRANSMITTER",
+    "PRESSURE TRANSMITTER",
+    "TEMPERATURE TRANSMITTER",
+    "DIFFERENTIAL PRESSURE INDICATING TRANSMITTER",
+    "FLOW INDICATING TRANSMITTER",
+    "LEVEL INDICATING TRANSMITTER",
+    "PRESSURE INDICATING TRANSMITTER",
+    "TEMPERATURE INDICATING TRANSMITTER",
+    "LEVEL INDICATOR",
+    "PRESSURE INDICATOR",
+    "TEMPERATURE INDICATOR",
+    "BALL VALVE",
+    "3-WAY SOLENOID VALVE",
+    "BUTTERFLY VALVE",
+    "DOUBLE BLOCK AND BLEED VALVE",
+    "EMERGENCY SHUTDOWN VALVE",
+    "FLOAT VALVE",
+    "GATE VALVE",
+    "GLOBE VALVE",
+    "WING VALVE",
+    "MOTOR OPERATED VALVE",
+    "NEEDLE VALVE",
+    "NON RETURN VALVE",
+    "PLUG VALVE",
+    "PRESSURE SAFETY VALVE",
+    "SAFETY RELIEF VALVE",
+    "QUICK EXHAUST VALVE",
+    "SHUTDOWN VALVE",
+    "SOLENOID VALVE",
+    "CHOKE VALVE",
+    "ON OFF VALVE",
+    "PRESSURE CONTROL VALVE",
+    "TEMPERATURE CONTROL VALVE",
+    "FLOW CONTROL VALVE",
+    "AIR COMPRESSOR",
+    "AIR COOLER",
+    "AIR DRYER",
+    "AIR RECEIVER",
+    "ANALYZER",
+    "BI-DIRECTIONAL POSITION INDICATOR",
+    "BLOWER",
+    "CORROSION ELEMENT",
+    "CORROSION TRANSMITTER",
+    "ELECTRO-PNEUMATIC CONVERTER",
+    "EXHAUST SILENCER",
+    "FILTER STRAINER",
+    "FLAME ARRESTER",
+    "HEAT EXCHANGER ONE PASS TUBE",
+    "HEAT EXCHANGER TWO PASS TUBE",
+    "INDICATION LAMP CLOSE",
+    "INDICATION LAMP OPEN",
+    "I/P CONVERTER",
+    "LIGHT ALARM",
+    "MOTOR",
+    "PIG LAUNCHER",
+    "PIG RECEIVER",
+    "PIG SIGNALER",
+    "RESTRICTION ORIFICE",
+    "SIGHT GLASS",
+    "STATIC MIXER",
+    "TANK",
+    "THERMOWELL",
+    "VESSEL",
+    "Y-TYPE FILTER STRAINER",
+    "CENTRIFUGAL PUMP",
+    "RECIPROCATING PUMP",
+    "ROTOR PUMP",
+    "VERTICAL PUMP",
+    "VERTICAL SUMP PUMP",
+    "COALESCER",
+    "COOLING FAN OR MIXER",
+    "FLOATING ROOF TANK",
+    "HEAT EXCHANGER",
+    "DENSITY INDICATING TRANSMITTER",
+    "PIPELINE TAG",
+    "INDUCTOR/EJECTOR",
+    "FIRED HEATER",
+    "FLOW TOTALISER",
+    "CALIBRATION POT",
+    "COMPUTER FUNCTION,SIGNAL TAG",
+    "DCS,SIGNAL TAG",
+    "PLC,SIGNAL TAG",
+    "NON MAINTAINABLE TAGS",
+    "DESTINATION ARROW OFF",
+    "INSULATING COUPLING",
+    "FLANGE",
+    "TUNDISH",
+    "REDUCER",
+    "CAUSE AND EFFECTS SYSTEM NUMBER",
+    "SOFT TAG",
+    "INSULATION",
+    "BARRED TEE",
+    "MANWAY",
+    "TIE-IN",
+    "DIAPHRAGM SEAL",
+    "REVISION TRIANGLE"
+  ],
+  "blocked_names": [
+    "COMPUTER FUNCTION,SIGNAL TAG",
+    "DCS,SIGNAL TAG",
+    "PLC,SIGNAL TAG",
+    "NON MAINTAINABLE TAGS",
+    "DESTINATION ARROW OFF",
+    "INSULATING COUPLING",
+    "FLANGE",
+    "TUNDISH",
+    "REDUCER",
+    "CAUSE AND EFFECTS SYSTEM NUMBER",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "INSULATION",
+    "BARRED TEE",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "SOFT TAG",
+    "MANWAY",
+    "TIE-IN",
+    "DIAPHRAGM SEAL",
+    "REVISION TRIANGLE"
+  ],
+  "allowed_names": [
+    "CORROSION COUPON",
+    "CORROSION PROBE",
+    "ANALYZER ELEMENT",
+    "FLOW ELEMENT",
+    "LEVEL ELEMENT",
+    "TEMPERATURE ELEMENT",
+    "DIFFERENTIAL PRESSURE GAUGE",
+    "FLOW GAUGE",
+    "LEVEL GAUGE",
+    "PRESSURE GAUGE",
+    "TEMPERATURE GAUGE",
+    "INJECTION QUILL",
+    "LEVEL SWITCH",
+    "LIMIT SWITCH",
+    "LIMIT SWITCH CLOSE",
+    "LIMIT SWITCH OPEN",
+    "PRESSURE SWITCH",
+    "SELECTOR SWITCH",
+    "HAND SWITCH OPEN",
+    "HAND SWITCH CLOSE",
+    "FLOW TRANSMITTER",
+    "LEVEL TRANSMITTER",
+    "PRESSURE TRANSMITTER",
+    "TEMPERATURE TRANSMITTER",
+    "DIFFERENTIAL PRESSURE INDICATING TRANSMITTER",
+    "FLOW INDICATING TRANSMITTER",
+    "LEVEL INDICATING TRANSMITTER",
+    "PRESSURE INDICATING TRANSMITTER",
+    "TEMPERATURE INDICATING TRANSMITTER",
+    "LEVEL INDICATOR",
+    "PRESSURE INDICATOR",
+    "TEMPERATURE INDICATOR",
+    "BALL VALVE",
+    "3-WAY SOLENOID VALVE",
+    "BUTTERFLY VALVE",
+    "DOUBLE BLOCK AND BLEED VALVE",
+    "EMERGENCY SHUTDOWN VALVE",
+    "FLOAT VALVE",
+    "GATE VALVE",
+    "GLOBE VALVE",
+    "WING VALVE",
+    "MOTOR OPERATED VALVE",
+    "NEEDLE VALVE",
+    "NON RETURN VALVE",
+    "PLUG VALVE",
+    "PRESSURE SAFETY VALVE",
+    "SAFETY RELIEF VALVE",
+    "QUICK EXHAUST VALVE",
+    "SHUTDOWN VALVE",
+    "SOLENOID VALVE",
+    "CHOKE VALVE",
+    "ON OFF VALVE",
+    "PRESSURE CONTROL VALVE",
+    "TEMPERATURE CONTROL VALVE",
+    "FLOW CONTROL VALVE",
+    "AIR COMPRESSOR",
+    "AIR COOLER",
+    "AIR DRYER",
+    "AIR RECEIVER",
+    "ANALYZER",
+    "BI-DIRECTIONAL POSITION INDICATOR",
+    "BLOWER",
+    "CORROSION ELEMENT",
+    "CORROSION TRANSMITTER",
+    "ELECTRO-PNEUMATIC CONVERTER",
+    "EXHAUST SILENCER",
+    "FILTER STRAINER",
+    "FLAME ARRESTER",
+    "HEAT EXCHANGER ONE PASS TUBE",
+    "HEAT EXCHANGER TWO PASS TUBE",
+    "INDICATION LAMP CLOSE",
+    "INDICATION LAMP OPEN",
+    "I/P CONVERTER",
+    "LIGHT ALARM",
+    "MOTOR",
+    "PIG LAUNCHER",
+    "PIG RECEIVER",
+    "PIG SIGNALER",
+    "RESTRICTION ORIFICE",
+    "SIGHT GLASS",
+    "STATIC MIXER",
+    "TANK",
+    "THERMOWELL",
+    "VESSEL",
+    "Y-TYPE FILTER STRAINER",
+    "CENTRIFUGAL PUMP",
+    "RECIPROCATING PUMP",
+    "ROTOR PUMP",
+    "VERTICAL PUMP",
+    "VERTICAL SUMP PUMP",
+    "COALESCER",
+    "COOLING FAN OR MIXER",
+    "FLOATING ROOF TANK",
+    "HEAT EXCHANGER",
+    "DENSITY INDICATING TRANSMITTER",
+    "PIPELINE TAG",
+    "INDUCTOR/EJECTOR",
+    "FIRED HEATER",
+    "FLOW TOTALISER",
+    "CALIBRATION POT"
+  ],
+  "prefix_index": {
+    "CC": [
+      "CORROSION COUPON"
+    ],
+    "CP": [
+      "CORROSION PROBE"
+    ],
+    "AE": [
+      "ANALYZER ELEMENT"
+    ],
+    "FE": [
+      "FLOW ELEMENT"
+    ],
+    "LE": [
+      "LEVEL ELEMENT"
+    ],
+    "TE": [
+      "TEMPERATURE ELEMENT"
+    ],
+    "PG": [
+      "DIFFERENTIAL PRESSURE GAUGE",
+      "PRESSURE GAUGE"
+    ],
+    "FG": [
+      "FLOW GAUGE"
+    ],
+    "LG": [
+      "LEVEL GAUGE"
+    ],
+    "TG": [
+      "TEMPERATURE GAUGE"
+    ],
+    "QU": [
+      "INJECTION QUILL"
+    ],
+    "LS": [
+      "LEVEL SWITCH",
+      "LIMIT SWITCH"
+    ],
+    "LSC": [
+      "LIMIT SWITCH CLOSE"
+    ],
+    "LSO": [
+      "LIMIT SWITCH OPEN"
+    ],
+    "PS": [
+      "PRESSURE SWITCH",
+      "PIG SIGNALER"
+    ],
+    "SS": [
+      "SELECTOR SWITCH"
+    ],
+    "HSO": [
+      "HAND SWITCH OPEN"
+    ],
+    "HSC": [
+      "HAND SWITCH CLOSE"
+    ],
+    "FT": [
+      "FLOW TRANSMITTER"
+    ],
+    "LT": [
+      "LEVEL TRANSMITTER"
+    ],
+    "PT": [
+      "PRESSURE TRANSMITTER"
+    ],
+    "TT": [
+      "TEMPERATURE TRANSMITTER"
+    ],
+    "PIT": [
+      "DIFFERENTIAL PRESSURE INDICATING TRANSMITTER",
+      "PRESSURE INDICATING TRANSMITTER"
+    ],
+    "FIT": [
+      "FLOW INDICATING TRANSMITTER"
+    ],
+    "LIT": [
+      "LEVEL INDICATING TRANSMITTER"
+    ],
+    "TIT": [
+      "TEMPERATURE INDICATING TRANSMITTER"
+    ],
+    "LI": [
+      "LEVEL INDICATOR"
+    ],
+    "PI": [
+      "PRESSURE INDICATOR"
+    ],
+    "TI": [
+      "TEMPERATURE INDICATOR"
+    ],
+    "BV": [
+      "BALL VALVE"
+    ],
+    "SV": [
+      "3-WAY SOLENOID VALVE",
+      "SOLENOID VALVE"
+    ],
+    "XV": [
+      "BUTTERFLY VALVE",
+      "EMERGENCY SHUTDOWN VALVE",
+      "GLOBE VALVE",
+      "SHUTDOWN VALVE",
+      "ON OFF VALVE"
+    ],
+    "DBBV": [
+      "DOUBLE BLOCK AND BLEED VALVE"
+    ],
+    "FV": [
+      "FLOAT VALVE"
+    ],
+    "GV": [
+      "GATE VALVE"
+    ],
+    "WV": [
+      "WING VALVE"
+    ],
+    "MOV": [
+      "MOTOR OPERATED VALVE"
+    ],
+    "NV": [
+      "NEEDLE VALVE"
+    ],
+    "NRV": [
+      "NON RETURN VALVE"
+    ],
+    "PV": [
+      "PLUG VALVE"
+    ],
+    "PSV": [
+      "PRESSURE SAFETY VALVE"
+    ],
+    "SRV": [
+      "SAFETY RELIEF VALVE"
+    ],
+    "QEV": [
+      "QUICK EXHAUST VALVE"
+    ],
+    "CV": [
+      "CHOKE VALVE"
+    ],
+    "PC": [
+      "PRESSURE CONTROL VALVE"
+    ],
+    "TC": [
+      "TEMPERATURE CONTROL VALVE"
+    ],
+    "FC": [
+      "FLOW CONTROL VALVE",
+      "COMPUTER FUNCTION,SIGNAL TAG",
+      "DCS,SIGNAL TAG",
+      "PLC,SIGNAL TAG"
+    ],
+    "KC": [
+      "AIR COMPRESSOR"
+    ],
+    "E": [
+      "AIR COOLER",
+      "HEAT EXCHANGER ONE PASS TUBE",
+      "HEAT EXCHANGER TWO PASS TUBE",
+      "HEAT EXCHANGER"
+    ],
+    "AD": [
+      "AIR DRYER"
+    ],
+    "AR": [
+      "AIR RECEIVER"
+    ],
+    "AT": [
+      "ANALYZER"
+    ],
+    "ZIT": [
+      "BI-DIRECTIONAL POSITION INDICATOR"
+    ],
+    "BL": [
+      "BLOWER"
+    ],
+    "CE": [
+      "CORROSION ELEMENT"
+    ],
+    "CT": [
+      "CORROSION TRANSMITTER"
+    ],
+    "EP": [
+      "ELECTRO-PNEUMATIC CONVERTER"
+    ],
+    "SIL": [
+      "EXHAUST SILENCER"
+    ],
+    "STR": [
+      "FILTER STRAINER",
+      "Y-TYPE FILTER STRAINER"
+    ],
+    "FA": [
+      "FLAME ARRESTER"
+    ],
+    "IL": [
+      "INDICATION LAMP CLOSE",
+      "INDICATION LAMP OPEN"
+    ],
+    "IP": [
+      "I/P CONVERTER"
+    ],
+    "LA": [
+      "LIGHT ALARM"
+    ],
+    "M": [
+      "MOTOR"
+    ],
+    "PL": [
+      "PIG LAUNCHER"
+    ],
+    "PR": [
+      "PIG RECEIVER"
+    ],
+    "RO": [
+      "RESTRICTION ORIFICE"
+    ],
+    "SG": [
+      "SIGHT GLASS"
+    ],
+    "MX": [
+      "STATIC MIXER"
+    ],
+    "TK": [
+      "TANK",
+      "FLOATING ROOF TANK"
+    ],
+    "TW": [
+      "THERMOWELL"
+    ],
+    "V": [
+      "VESSEL"
+    ],
+    "P": [
+      "CENTRIFUGAL PUMP",
+      "RECIPROCATING PUMP",
+      "ROTOR PUMP",
+      "VERTICAL PUMP",
+      "VERTICAL SUMP PUMP"
+    ],
+    "S": [
+      "COALESCER"
+    ],
+    "CF": [
+      "COOLING FAN OR MIXER"
+    ],
+    "DIT": [
+      "DENSITY INDICATING TRANSMITTER"
+    ],
+    "LINE": [
+      "PIPELINE TAG"
+    ],
+    "EJ": [
+      "INDUCTOR/EJECTOR"
+    ],
+    "H": [
+      "FIRED HEATER"
+    ],
+    "FQI": [
+      "FLOW TOTALISER"
+    ],
+    "CAL": [
+      "CALIBRATION POT"
+    ]
+  },
+  "classification_rules": {
+    "ALLOW": "Symbol in USE sheet \u2192 extract=true, scope_status=IN_SCOPE",
+    "BLOCK": "Symbol in DO_NOT_USE sheet \u2192 extract=false, scope_status=OUT_OF_SCOPE",
+    "UNSPECIFIED": "Symbol not found in either \u2192 extract=true, scope_status=UNSPECIFIED, flag=NO_SCOPE_DEFINITION_FOUND"
+  },
+  "downstream_usage": {
+    "tag_detection": "Filter detected symbols against blocked_names before OCR",
+    "ocr_agent": "Skip OCR for BLOCK symbols, mark as OUT_OF_SCOPE",
+    "validation_agent": "Validate tag prefixes against prefix_index",
+    "assembly_agent": "Drop OUT_OF_SCOPE tags from final output"
+  }
+}

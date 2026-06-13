@@ -118,9 +118,18 @@ def merge_bboxes(boxes: list[dict]) -> dict:
 # Tag similarity
 # ═══════════════════════════════════════════════════════════════════════════════
 
+_CONFUSABLES = str.maketrans("0O1I5S8B", "OOII5S8B")
+
+
 def _normalise_tag(tag: str) -> str:
-    """Normalise tag for comparison: uppercase, collapse spaces/hyphens."""
-    return re.sub(r'[\s\-\.]+', '', str(tag or "").upper().strip())
+    """Normalise tag for comparison: uppercase, unify unicode dashes/quotes,
+    collapse spaces/hyphens/dots, and fold the inch marker so 10" == 10IN."""
+    s = str(tag or "").upper().strip()
+    for d in ("—", "–", "―", "−"):
+        s = s.replace(d, "-")
+    s = re.sub(r'[\s\-\.“”‘’"\']+', '', s)
+    s = s.replace("IN", "")          # 10IN / 10"(stripped) -> 10
+    return s
 
 
 def tag_similarity(tag_a: str, tag_b: str) -> float:
@@ -166,49 +175,47 @@ def tag_similarity(tag_a: str, tag_b: str) -> float:
 
 def smm_should_merge(a: dict, b: dict) -> bool:
     """
-    SMM: merge two candidates if their bboxes overlap significantly
-    OR if one partially overlaps the other AND they share the same tag text
-    (fragmented detection along thin lines — classic SAHI failure mode).
+    RECALL-SAFE Spatial Mask Merging.
 
-    Per Gemini Strategy doc: "SMM integrates pixel-level overlap and
-    boundary distance metrics to merge fragmented detections."
+    The ONLY legitimate purpose of this step is to collapse the SAME physical
+    tag detected by overlapping SAHI patches. It must NEVER merge two DIFFERENT
+    tags, because the loser of a merge is DISCARDED (permanently lost). The old
+    "iou >= 0.20 for ANY tags" rule and the fuzzy char-overlap similarity used
+    to silently delete sequential neighbours (V-BV-2245 vs V-BV-2246) and
+    stacked switch pairs (V-FZSC-208 vs V-FZSO-208, which sit ~187px apart).
+
+    Therefore a merge now requires the two candidates to carry the SAME tag
+    text (exact after normalisation, or identical under OCR character
+    confusion). Spatial overlap alone is not sufficient.
     """
-    iou  = bbox_iou(a.get("symbol_bbox", {}), b.get("symbol_bbox", {}))
-    dist = center_dist(a.get("symbol_bbox", {}), b.get("symbol_bbox", {}))
-    tsim = tag_similarity(a.get("tag_text", ""), b.get("tag_text", ""))
+    sa, sb = a.get("symbol_bbox", {}), b.get("symbol_bbox", {})
+    ta = a.get("tag_bbox") or sa
+    tb = b.get("tag_bbox") or sb
+    iou_sym = bbox_iou(sa, sb)
+    iou_tag = bbox_iou(ta, tb)
+    dist    = center_dist(sa, sb)
 
-    # Rule 0: EXACT same tag text within 400px → ALWAYS merge (highest priority)
-    # This catches SAHI duplicates where Gemini returns different bboxes
-    # for the same physical tag from adjacent patches
-    tag_a = _normalise_tag(a.get("tag_text", ""))
-    tag_b = _normalise_tag(b.get("tag_text", ""))
-    if tag_a and tag_b and tag_a == tag_b and dist <= EXACT_TAG_MERGE_DIST_PX:
+    na = _normalise_tag(a.get("tag_text", ""))
+    nb = _normalise_tag(b.get("tag_text", ""))
+    exact   = bool(na and nb and na == nb)
+    confus  = bool(na and nb and na.translate(_CONFUSABLES) == nb.translate(_CONFUSABLES))
+
+    # Rule 0: exact same tag within EXACT_TAG_MERGE_DIST_PX → same physical tag
+    # seen from adjacent patches.
+    if exact and dist <= EXACT_TAG_MERGE_DIST_PX:
         return True
 
-    # Rule 1: Strong IoU overlap (any tags)
-    if iou >= IOU_MERGE_THRESHOLD:
+    # Rule 1: OCR-confusable variant of the same tag AND real spatial overlap
+    # (same symbol, one patch slightly misread a character).
+    if (exact or confus) and (iou_sym >= IOU_MERGE_THRESHOLD
+                              or iou_tag >= IOU_MERGE_THRESHOLD
+                              or dist <= 120):
         return True
 
-    # Rule 2: Moderate proximity + similar tag text
-    if dist <= DIST_MERGE_THRESHOLD_PX and tsim >= TAG_SIM_THRESHOLD:
+    # Rule 2: one detection has NO tag text but overlaps the other heavily —
+    # the same symbol detected with and without a readable tag.
+    if (not na or not nb) and max(iou_sym, iou_tag) >= 0.5:
         return True
-
-    # SMM: partial overlap + tag text match (fragmented detection)
-    ba = a.get("symbol_bbox", {})
-    bb = b.get("symbol_bbox", {})
-    area_a = bbox_area(ba)
-    area_b = bbox_area(bb)
-    if area_a > 0 and area_b > 0:
-        ix1 = max(ba.get("x1",0), bb.get("x1",0))
-        iy1 = max(ba.get("y1",0), bb.get("y1",0))
-        ix2 = min(ba.get("x2",0), bb.get("x2",0))
-        iy2 = min(ba.get("y2",0), bb.get("y2",0))
-        inter = max(0, ix2 - ix1) * max(0, iy2 - iy1)
-        overlap_a = inter / area_a
-        overlap_b = inter / area_b
-        if (max(overlap_a, overlap_b) >= SMM_OVERLAP_THRESHOLD
-                and tsim >= 0.7):
-            return True
 
     return False
 
@@ -277,10 +284,20 @@ def resolve_duplicates(candidates: list[dict]) -> list[dict]:
             primary_count += 1
             continue
 
-        # Multiple candidates in group → select PRIMARY
+        # Multiple candidates in group → select PRIMARY.
+        # A registry-confirmed spelling outranks everything else: when two
+        # patches disagree on an OCR-confusable character (V012 vs VO12), keep
+        # the variant that matches the client asset register.
+        def _in_registry(cand: dict) -> bool:
+            for d in (cand.get("validation_details") or []):
+                if d.get("rule") == "REGISTRY" and d.get("in_registry"):
+                    return True
+            return False
+
         def _score(idx: int) -> float:
             cand = candidates[idx]
             return (
+                (1.0 if _in_registry(cand) else 0) +
                 float(cand.get("vision_confidence") or 0) * 0.4 +
                 float(cand.get("ocr_confidence")    or 0) * 0.3 +
                 float(cand.get("association_confidence") or 0) * 0.2 +
@@ -300,18 +317,20 @@ def resolve_duplicates(candidates: list[dict]) -> list[dict]:
         primary["merged_from"]  = [candidates[m]["candidate_id"] for m in merged_idxs]
         primary["merged_count"] = len(merged_idxs)
 
-        # Use highest OCR-confidence tag text
-        best_tag  = primary.get("tag_text", "")
-        best_conf = float(primary.get("ocr_confidence") or 0)
-        for m in merged_idxs:
-            c = candidates[m]
-            c_conf = float(c.get("ocr_confidence") or 0)
-            c_tag  = str(c.get("tag_text") or "")
-            if c_conf > best_conf and c_tag:
-                best_tag  = c_tag
-                best_conf = c_conf
-        primary["tag_text"]       = best_tag
-        primary["ocr_confidence"] = round(best_conf, 3)
+        # Keep the PRIMARY's tag text when it is registry-confirmed; otherwise
+        # adopt the highest OCR-confidence spelling from the group.
+        if not _in_registry(candidates[primary_idx]):
+            best_tag  = primary.get("tag_text", "")
+            best_conf = float(primary.get("ocr_confidence") or 0)
+            for m in merged_idxs:
+                c = candidates[m]
+                c_conf = float(c.get("ocr_confidence") or 0)
+                c_tag  = str(c.get("tag_text") or "")
+                if c_conf > best_conf and c_tag:
+                    best_tag  = c_tag
+                    best_conf = c_conf
+            primary["tag_text"]       = best_tag
+            primary["ocr_confidence"] = round(best_conf, 3)
 
         results.append(primary)
         primary_count += 1
@@ -355,6 +374,9 @@ def build_final_step5_output(deduped: list[dict]) -> list[dict]:
             "sow_reason":         cand.get("sow_reason", ""),
             "validation_status":  cand.get("validation_status", "WARN"),
             "validation_reason":  cand.get("validation_reason", ""),
+            # Carry validation_details so Step 7 can recover the matched registry
+            # entry (descriptions, size/rating, discipline) for confirmed tags.
+            "validation_details": cand.get("validation_details", []),
             "duplicate_status":   "PRIMARY",
             "merged_count":       cand.get("merged_count", 0),
             "ocr_confidence":     cand.get("ocr_confidence", 0.0),

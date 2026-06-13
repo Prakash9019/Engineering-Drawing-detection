@@ -1,0 +1,644 @@
+{
+  "version": "v3",
+  "input_image": "output/input_drawing_enhanced_color.jpg",
+  "binary_image": "output/input_drawing_enhanced_binary.png",
+  "image_size": [
+    9934,
+    7017
+  ],
+  "regions_processed": 2,
+  "total_clouds_detected": 5,
+  "clouds_per_region": {
+    "bottom_notes": 2,
+    "left_notes": 3
+  },
+  "raw_notes_count": 42,
+  "unique_notes_count": 42,
+  "abbreviations": {
+    "P&ID": "Piping and Instrumentation Diagram",
+    "REV": "Revision",
+    "VSD": "Variable Speed Drive",
+    "K.O.": "Knock-Out",
+    "OEM": "Original Equipment Manufacturer",
+    "FIT": "Flow Transmitter",
+    "TW": "Thermowell",
+    "TT": "Temperature Transmitter",
+    "DWG": "Drawing",
+    "NO.": "Number",
+    "ASC": "ANTI-SURGE CONTROL",
+    "ASV": "ANTI-SURGE VALVE",
+    "HISEL": "HIGH SELECTOR",
+    "LOSEL": "LOW SELECTOR",
+    "HGBV": "HOT GAS BYPASS VALVE",
+    "HS": "HIGH SPPED",
+    "LS": "LOW SPEED"
+  },
+  "drawing_notes": [
+    {
+      "id": "1",
+      "raw_text": "1. FOR SYMBOLS AND ABBREVIATIONS REFER TO ES.D.10.",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "symbols and abbreviations",
+        "rule": "Refer to ES.D.10."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "2",
+      "raw_text": "2. ALL DRAWINGS ARE PREPARED IN COMPLIANCE WITH COMPANY ENGINEERING STANDARD CORP-ENG-STD-018 REV. 01 (DRAUGHTING), CORP-ENG-STD-021 REV. 01 (ENGINEERING DATA CODING SYSTEM), ES.0.07.0028 REV.D (TAG NUMBERING AND EQUIPMENT IDENTIFIERS), 4224-MGDTY-6-50-2001 (STANDARD SYMBOLS MULTI-DISCIPLINE).",
+      "semantic_type": "drafting_rule",
+      "extracted_rule": {
+        "type": "compliance",
+        "subject": "all drawings preparation",
+        "rule": "All drawings must be prepared in compliance with company engineering standards: CORP-ENG-STD-018 REV. 01 (Draughting), CORP-ENG-STD-021 REV. 01 (Engineering Data Coding System), ES.0.07.0028 REV.D (Tag Numbering and Equipment Identifiers), and 4224-MGDTY-6-50-2001 (Standard Symbols Multi-Discipline)."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "3",
+      "raw_text": "3. COMPRESSORS ARE VARIABLE SPEED MOTOR DRIVEN. NEW MOTOR (COMPLETE WITH VSD SYSTEM) SHALL BE PROVIDED.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "equipment_specification",
+        "subject": "compressors",
+        "rule": "Compressors are variable speed motor driven. A new motor (complete with VSD system) must be provided."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "4",
+      "raw_text": "4. EXISTING ETHANE COMPRESSOR SHALL BE MODIFIED FOR NEW PROCESS CONDITIONS DEFINED IN THE PROCESS DATASHEET. ADEQUACY OF ALL EXISTING ASSOCIATED EQUIPMENT SUCH AS SUCTION & DISCHARGE K.O. DRUMS, DISCHARGE GAS COOLER, ANTI-SURGE CONTROL VALVES, AUXILIARIES AND OTHER AS APPLICABLE HAS BEEN VERIFIED BY OEM HITACHI.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "modification_and_verification",
+        "subject": "existing ethane compressor and associated equipment",
+        "rule": "The existing ethane compressor must be modified for new process conditions defined in the process datasheet. Adequacy of all existing associated equipment (suction & discharge K.O. drums, discharge gas cooler, anti-surge control valves, auxiliaries, and other applicable items) has been verified by OEM Hitachi."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "5",
+      "raw_text": "5. LOAD SHARING SHALL BE PROVIDED BY ETHANE COMPRESSOR VENDOR TO SHARE FLOW RATE EQUALLY ACROSS BOTH OPERATING UNITS.",
+      "semantic_type": "scope_rule",
+      "extracted_rule": {
+        "type": "operational_constraint",
+        "subject": "ethane compressor load sharing",
+        "rule": "Load sharing must be provided by the ethane compressor vendor to share flow rate equally across both operating units."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "6",
+      "raw_text": "6. EXISTING DISCHARGE GAS COOLER E-V-201 WAS PART OF THIS P&ID, NOW IT IS SHOWN IN NEW DWG. NO. 4224-MGDV-6-50-2004-002 ALONG WITH NEW DISCHARGE GAS COOLER.",
+      "semantic_type": "scope_rule",
+      "extracted_rule": {
+        "type": "drawing_reference_update",
+        "subject": "existing discharge gas cooler E-V-201",
+        "rule": "The existing discharge gas cooler E-V-201, previously part of this P&ID, is now shown in new drawing no. 4224-MGDV-6-50-2004-002, along with a new discharge gas cooler."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "7",
+      "raw_text": "7. EXISTING RECYCLE ANTI-SURGE VALVE (INCLUDING ALL ITS ACCESSORIES SUCH AS POSITIONER, ACTUATOR, LIMIT SWITCHES, POSITION TRANSMITTER, VOLUME TANKS AS APPLICABLE) SHALL BE REPLACED WITH NEW BY HITACHI.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "replacement_rule",
+        "subject": "existing recycle anti-surge valve and accessories",
+        "rule": "The existing recycle anti-surge valve (including all its accessories: positioner, actuator, limit switches, position transmitter, and applicable volume tanks) must be replaced with new by Hitachi."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "8",
+      "raw_text": "8. EXISTING (V-RO-213) SHALL BE DEMOLISHED & REPLACED WITH NEW FLOW ELEMENT (V-FE-224) BY EPIC CONTRACTOR AND FLOW TRANSMITTER (FIT) SHALL BE RETAINED.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "demolition_and_replacement_rule",
+        "subject": "existing V-RO-213 and flow transmitter",
+        "rule": "Existing V-RO-213 must be demolished and replaced with a new flow element (V-FE-224) by Epic Contractor. The flow transmitter (FIT) must be retained."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "9",
+      "raw_text": "9. ARRIVAL TEMPERATURE SIGNAL WILL BE USED BY ETHANE COMPRESSOR CONTROL SYSTEM FOR CALCULATING MAXIMUM ALLOWABLE ARRIVAL PRESSURE BASED ON ETHANE FLUID DEW POINT. THE CALCULATION FUNCTION BLOCK TO COMPUTE THE MAXIMUM PRESSURE SET POINT FOR THE ETHANE COMPRESSOR HIGH PRESSURE OVERRIDE FUNCTION SHALL BE PART OF THE ETHANE COMPRESSOR CONTROL SYSTEM. BASED ON EQUATION 1, DEFINED IN OPERATING & CONTROL PHILOSOPHY DOCUMENT NO. 4224-MGDTY-6-03-2001.",
+      "semantic_type": "scope_rule",
+      "extracted_rule": {
+        "type": "control_system_logic",
+        "subject": "ethane compressor control system logic",
+        "rule": "The arrival temperature signal will be used by the ethane compressor control system to calculate the maximum allowable arrival pressure based on the ethane fluid dew point. The calculation function block to compute the maximum pressure set point for the ethane compressor high pressure override function must be part of the ethane compressor control system. This is based on Equation 1, as defined in Operating & Control Philosophy Document No. 4224-MGDTY-6-03-2001."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "10",
+      "raw_text": "10. THERMOWELL (TW), TEMPERATURE ELEMENT AND TEMPERATURE TRANSMITTER (TT) TO BE REPLACED. REFER ADEQUACY REPORT FOR THERMOWELL (4224-MGDTY-4-17-2001).",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "replacement_rule",
+        "subject": "thermowell (TW), temperature element, and temperature transmitter (TT)",
+        "rule": "Thermowell (TW), temperature element, and temperature transmitter (TT) must be replaced. Refer to the adequacy report for thermowell (4224-MGDTY-4-17-2001)."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "11",
+      "raw_text": "11. EXISTING SUCTION K.O. DRUM INTERNALS VANE PACK (VENDOR FORAIN) SHALL BE REPLACED WITH NEW BY HITACHI.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "replacement_rule",
+        "subject": "existing suction K.O. drum internals vane pack",
+        "rule": "The existing suction K.O. drum internals vane pack (vendor Forain) must be replaced with new by Hitachi."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "A",
+      "raw_text": "A. FOR STANDARD P&ID SYMBOLS, EQUIPMENT SYMBOLS AND DESCRIPTION REFER TO STANDARD DRAWING ES.0.07.0100 REV.B",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "standard P&ID symbols, equipment symbols and description",
+        "rule": "Refer to standard drawing ES.0.07.0100 REV.B."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "bottom_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:ASC",
+      "raw_text": "ASC : ANTI-SURGE CONTROL",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "ASC",
+        "rule": "ANTI-SURGE CONTROL"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:ASV",
+      "raw_text": "ASV : ANTI-SURGE VALVE",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "ASV",
+        "rule": "ANTI-SURGE VALVE"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:HGBV",
+      "raw_text": "HGBV : HOT GAS BYPASS VALVE",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "HGBV",
+        "rule": "HOT GAS BYPASS VALVE"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:HISEL",
+      "raw_text": "HISEL : HIGH SELECTOR",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "HISEL",
+        "rule": "HIGH SELECTOR"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:HS",
+      "raw_text": "HS : HIGH SPPED",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "HS",
+        "rule": "HIGH SPPED"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:LOSEL",
+      "raw_text": "LOSEL : LOW SELECTOR",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "LOSEL",
+        "rule": "LOW SELECTOR"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "ABBR:LS",
+      "raw_text": "LS : LOW SPEED",
+      "semantic_type": "abbreviation_definition",
+      "extracted_rule": {
+        "type": "abbreviation",
+        "subject": "LS",
+        "rule": "LOW SPEED"
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "LABEL:FROM_COMPRESSOR_SUCTION_HEADER",
+      "raw_text": "FROM COMPRESSOR SUCTION HEADER",
+      "semantic_type": "label",
+      "extracted_rule": null,
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "LABEL:FROM_V-XV-202",
+      "raw_text": "FROM V-XV-202",
+      "semantic_type": "label",
+      "extracted_rule": null,
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "LABEL:NOTE_18",
+      "raw_text": "NOTE-18",
+      "semantic_type": "cross_reference",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "ESDV 209",
+        "rule": "Refer to Note 18 for information regarding ESDV 209."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "LABEL:NOTE_21",
+      "raw_text": "NOTE 21",
+      "semantic_type": "cross_reference",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "V-NRV-748",
+        "rule": "Refer to Note 21 for information regarding V-NRV-748."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "LABEL:RCI_NOTE_17",
+      "raw_text": "RCI\n(NOTE-17)",
+      "semantic_type": "cross_reference",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "RCI module",
+        "rule": "Refer to Note 17 for information regarding RCI."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:12",
+      "raw_text": "12. COMPRESSOR UNIT CONTROL PANEL (UCP) BEING REPLACED UNDER THIS PROJECT. ALL EXISTING\nINSTRUMENT CONNECTIVITIES, FUNCTIONS, INTERLOCKS, ALARMS, SHALL BE CONFIGURED IN THE\nNEWLY SUPPLY PLC BASED UCP. ALL SIGNALS IN THE UCP SHALL ALSO BE AVAILABLE IN THE\nEXISTING GDS SCADA INLINE WITH EXISTING PHILOSOPHY.",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Compressor Unit Control Panel (UCP)",
+        "rule": "The Compressor Unit Control Panel (UCP) is being replaced under this project. All existing instrument connectivities, functions, interlocks, and alarms shall be configured in the newly supplied PLC-based UCP. All signals in the UCP shall also be available in the existing GDS SCADA in line with existing philosophy."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:13",
+      "raw_text": "13. NEW SAFETY RELIEF VALVE SHALL BE PROVIDED TO SAFEGUARD SYSTEM AGAINST OVERPRESSURE\n(BLOCKED DISCHARGE CONDITION). ISOLATION VALVES SHALL BE PROVIDED WITH NEW PLATFORM FOR\nOPERATION.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "New Safety Relief Valve",
+        "rule": "A new safety relief valve shall be provided to safeguard the system against overpressure (blocked discharge condition). Isolation valves shall be provided with a new platform for operation."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:14",
+      "raw_text": "14. COMMON WARE HOUSE SPARE RV SHALL BE PROVIDED (ONE NO. FOR 3 COMPRESSOR).",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Common Ware House Spare RV",
+        "rule": "One common ware house spare RV shall be provided (one number) for 3 compressors."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:15",
+      "raw_text": "15. THERE IS NO INTERLOCKING FOR ISOLATION VALVE ON SINGLE RV.",
+      "semantic_type": "constraint",
+      "extracted_rule": {
+        "type": "constraint",
+        "subject": "Isolation Valve on Single RV",
+        "rule": "There is no interlocking for the isolation valve on a single RV."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:16",
+      "raw_text": "16. NEW PROPOSED MOTOR ENCLOSURE (ATEX, EX\u2019P\u2019 TYPE) REQUIRES INSTRUMENT AIR.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "New Proposed Motor Enclosure",
+        "rule": "The new proposed motor enclosure (ATEX, Ex'P' type) requires instrument air."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:17",
+      "raw_text": "17. EXISTING RCI MODULE SHALL BE REMOVED FROM THE EXISTING UCP PANEL AND SHALL BE RE-USED\nINSIDE THE NEW UCP PANEL.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Existing RCI Module",
+        "rule": "The existing RCI module shall be removed from the existing UCP panel and shall be re-used inside the new UCP panel."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:18",
+      "raw_text": "18. COMPRESSOR SUCTION ESD VALVE (V-ESDV-209) IS RETAINED.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Compressor Suction ESD Valve (V-ESDV-209)",
+        "rule": "The Compressor Suction ESD Valve (V-ESDV-209) is retained."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:19",
+      "raw_text": "19. ONE (COMMON FOR ALL THREE TRAINS) TEMPORARY SUCTION STRAINER SHALL BE SUPPLIED BY OEM\n(MS. HITACHI). AFTER SUCCESSFULL COMMISSIONING, THE STRAINER SHALL BE REMOVED, AND REPLACED\nWITH A FABRICATED SPOOL PIECE BY EPIC CONTRACTOR.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Temporary Suction Strainer",
+        "rule": "One temporary suction strainer (common for all three trains) shall be supplied by the OEM (MS. HITACHI). After successful commissioning, the strainer shall be removed and replaced with a fabricated spool piece by the EPIC contractor."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:20",
+      "raw_text": "20. COMPRESSOR LOWER DESIGN TEMPERATURE (\u2014)29 DEGC, EXCEPT FOR DRY GAS SEAL O-RING, WHICH IS\n0 DEGC. COMPRESSOR UPPER DESIGN TEMPERATURE 150 DEGC, HOWEVER, SINCE ASME PTC10 TYPE 2\nTEST SHALL BE CONDUCTED, THEREFORE, COMPRESSOR CASING SHALL BE DESIGNED TO 170 DEGC\nWHICH IS REQUIRED DUE TO THE USE OF CO2 AS TEST GAS. ULTIMATELY NAME PLATE RATING FOR THIS\nUNIT USING ETHANE GAS IS 150 DEGC.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Compressor Design Temperatures",
+        "rule": "The compressor lower design temperature is -29 DEGC, except for the dry gas seal O-ring, which is 0 DEGC. The compressor upper design temperature is 150 DEGC. However, since ASME PTC10 Type 2 test shall be conducted, the compressor casing shall be designed to 170 DEGC, which is required due to the use of CO2 as test gas. Ultimately, the name plate rating for this unit using ethane gas is 150 DEGC."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:21",
+      "raw_text": "21. HIGH PERFORMANCE (CLASS\u20141) NON-RETURN VALVE (NON-SLAM TYPE), WITH LOW CRACK OPEN DP\nSHALL BE SELECTED FOR THIS APPLICATION. (PURPOSE: AVOID REVERSE FLOW / SURGE ISSUES DURING\nDYNAMIC SCENARIO OF COMPRESSOR TRIP).",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Non-Return Valve",
+        "rule": "A high performance (Class-1) non-return valve (non-slam type), with low crack open DP, shall be selected for this application. Its purpose is to avoid reverse flow / surge issues during dynamic scenarios of compressor trip."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:22",
+      "raw_text": "22. EXISTING SUCTION & DISCHARGE COMPRESSOR INLET & OUTLET SPOOL SHALL BE DISMANTLED TO\nFACILITATE COMPRESSOR MODIFICATION, AND THEN RE-INSTATED.",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Compressor Inlet & Outlet Spool",
+        "rule": "Existing suction and discharge compressor inlet and outlet spool shall be dismantled to facilitate compressor modification, and then re-instated."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:23",
+      "raw_text": "23. SOFT HAND SWITCH SHALL BE CONFIGURED IN UCP HMI TO ENABLE/ DISABLE STATION S HIGH PRESSURE\nCONTROLLER (%) WHICH IS REPEATED FROM LOAD SHARING PANEL.",
+      "semantic_type": "general_note",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Soft Hand Switch",
+        "rule": "A soft hand switch shall be configured in the UCP HMI to enable/disable Station's high pressure controller (%), which is repeated from the load sharing panel."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:24",
+      "raw_text": "24. RECLOSURE OF XV\u2014202 (NORMAL SHUTDOWN DEPRESSURING VALVE) SHALL BE PERFORMED BY UCP, ONCE\nV-PAL-214 IS OBTAINED (@ 18 barg) OR AFTER 20 MINUTES TIME DELAY FROM OPENING OF XV\u2014202\nWHICHEVER COMES FIRST. (NOTE: PAL-214 SHALL BE CONSIDERED AN EVENT, NOT ALARM).",
+      "semantic_type": "equipment_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Reclosure of XV-202",
+        "rule": "Reclosure of XV-202 (normal shutdown depressuring valve) shall be performed by UCP, once V-PAL-214 is obtained (@ 18 barg) or after 20 minutes time delay from opening of XV-202, whichever comes first. PAL-214 shall be considered an event, not an alarm."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "NOTE:25",
+      "raw_text": "25. FOR INTERLOCK DETAILS, REFER TO SYMBOLS & LEGENDS DRAWING NO. 4224-MGDTY-6-50-2001-003.",
+      "semantic_type": "reference",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "Interlock Details",
+        "rule": "For interlock details, refer to Symbols & Legends Drawing No. 4224-MGDTY-6-50-2001-003."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "REF:4224-MGDV-6-50-2002-001",
+      "raw_text": "4224-MGDV-6-50-2002-001",
+      "semantic_type": "reference",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "drawing number",
+        "rule": "Refers to drawing 4224-MGDV-6-50-2002-001."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "REF:4224-MGDV-6-50-2004-003",
+      "raw_text": "4224-MGDV-6-50-2004-003",
+      "semantic_type": "reference",
+      "extracted_rule": {
+        "type": "reference",
+        "subject": "drawing number",
+        "rule": "Refers to drawing 4224-MGDV-6-50-2004-003."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "SCOPE:HITACHI_EPIC_CONTRACTOR",
+      "raw_text": "HITACHI EPIC CONTRACTOR",
+      "semantic_type": "scope_rule",
+      "extracted_rule": {
+        "type": "rule",
+        "subject": "Scope of Supply",
+        "rule": "HITACHI EPIC CONTRACTOR is part of the scope of supply."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    },
+    {
+      "id": "SLOPE",
+      "raw_text": "SLOPE 1: 200",
+      "semantic_type": "drafting_rule",
+      "extracted_rule": {
+        "type": "format",
+        "subject": "slope",
+        "rule": "The slope is 1 to 200."
+      },
+      "confidence": 1.0,
+      "partially_obscured": false,
+      "source_region": "left_notes",
+      "source_priority": 1
+    }
+  ],
+  "region_summary": [
+    {
+      "region": "bottom_notes",
+      "description": "Bottom notes block (full width)",
+      "notes_extracted": 12,
+      "cloud_count": 2,
+      "ocr_chars": 2883,
+      "error": null
+    },
+    {
+      "region": "left_notes",
+      "description": "Left margin notes and abbreviations",
+      "notes_extracted": 30,
+      "cloud_count": 3,
+      "ocr_chars": 2804,
+      "error": null
+    }
+  ],
+  "rules_prompt_block": "== DRAWING-SPECIFIC RULES (extracted from notes block) ==\n\n-- Region Coverage --\nRegion                        Notes  Clouds  OCR chars\n-------------------------------------------------------\nbottom_notes                     12       2       2883\nleft_notes                       30       3       2804\nTOTAL                            42       5\n\n-- Global Rules --\n  [1] Refer to ES.D.10.\n  [3] Compressors are variable speed motor driven. A new motor (complete with VSD system) must be provided.\n  [4] The existing ethane compressor must be modified for new process conditions defined in the process datasheet. Adequacy of all existing associated equipment (suction & discharge K.O. drums, discharge gas cooler, anti-surge control valves, auxiliaries, and other applicable items) has been verified by OEM Hitachi.\n  [5] Load sharing must be provided by the ethane compressor vendor to share flow rate equally across both operating units.\n  [6] The existing discharge gas cooler E-V-201, previously part of this P&ID, is now shown in new drawing no. 4224-MGDV-6-50-2004-002, along with a new discharge gas cooler.\n  [7] The existing recycle anti-surge valve (including all its accessories: positioner, actuator, limit switches, position transmitter, and applicable volume tanks) must be replaced with new by Hitachi.\n  [8] Existing V-RO-213 must be demolished and replaced with a new flow element (V-FE-224) by Epic Contractor. The flow transmitter (FIT) must be retained.\n  [9] The arrival temperature signal will be used by the ethane compressor control system to calculate the maximum allowable arrival pressure based on the ethane fluid dew point. The calculation function block to compute the maximum pressure set point for the ethane compressor high pressure override function must be part of the ethane compressor control system. This is based on Equation 1, as defined in Operating & Control Philosophy Document No. 4224-MGDTY-6-03-2001.\n  [10] Thermowell (TW), temperature element, and temperature transmitter (TT) must be replaced. Refer to the adequacy report for thermowell (4224-MGDTY-4-17-2001).\n  [11] The existing suction K.O. drum internals vane pack (vendor Forain) must be replaced with new by Hitachi.\n  [A] Refer to standard drawing ES.0.07.0100 REV.B.\n  [NOTE:12] The Compressor Unit Control Panel (UCP) is being replaced under this project. All existing instrument connectivities, functions, interlocks, and alarms shall be configured in the newly supplied PLC-based UCP. All signals in the UCP shall also be available in the existing GDS SCADA in line with existing philosophy.\n  [NOTE:13] A new safety relief valve shall be provided to safeguard the system against overpressure (blocked discharge condition). Isolation valves shall be provided with a new platform for operation.\n  [NOTE:14] One common ware house spare RV shall be provided (one number) for 3 compressors.\n  [NOTE:16] The new proposed motor enclosure (ATEX, Ex'P' type) requires instrument air.\n  [NOTE:17] The existing RCI module shall be removed from the existing UCP panel and shall be re-used inside the new UCP panel.\n  [NOTE:18] The Compressor Suction ESD Valve (V-ESDV-209) is retained.\n  [NOTE:19] One temporary suction strainer (common for all three trains) shall be supplied by the OEM (MS. HITACHI). After successful commissioning, the strainer shall be removed and replaced with a fabricated spool piece by the EPIC contractor.\n  [NOTE:20] The compressor lower design temperature is -29 DEGC, except for the dry gas seal O-ring, which is 0 DEGC. The compressor upper design temperature is 150 DEGC. However, since ASME PTC10 Type 2 test shall be conducted, the compressor casing shall be designed to 170 DEGC, which is required due to the use of CO2 as test gas. Ultimately, the name plate rating for this unit using ethane gas is 150 DEGC.\n  [NOTE:21] A high performance (Class-1) non-return valve (non-slam type), with low crack open DP, shall be selected for this application. Its purpose is to avoid reverse flow / surge issues during dynamic scenarios of compressor trip.\n  [NOTE:22] Existing suction and discharge compressor inlet and outlet spool shall be dismantled to facilitate compressor modification, and then re-instated.\n  [NOTE:23] A soft hand switch shall be configured in the UCP HMI to enable/disable Station's high pressure controller (%), which is repeated from the load sharing panel.\n  [NOTE:24] Reclosure of XV-202 (normal shutdown depressuring valve) shall be performed by UCP, once V-PAL-214 is obtained (@ 18 barg) or after 20 minutes time delay from opening of XV-202, whichever comes first. PAL-214 shall be considered an event, not an alarm.\n  [SCOPE:HITACHI_EPIC_CONTRACTOR] HITACHI EPIC CONTRACTOR is part of the scope of supply.\n\n-- Tag Detection Rules --\n  [ABBR:ASC] ANTI-SURGE CONTROL\n  [ABBR:ASV] ANTI-SURGE VALVE\n  [ABBR:HGBV] HOT GAS BYPASS VALVE\n  [ABBR:HISEL] HIGH SELECTOR\n  [ABBR:HS] HIGH SPPED\n  [ABBR:LOSEL] LOW SELECTOR\n  [ABBR:LS] LOW SPEED\n\n-- Abbreviations --\n  ASC: ANTI-SURGE CONTROL\n  ASV: ANTI-SURGE VALVE\n  DWG: Drawing\n  FIT: Flow Transmitter\n  HGBV: HOT GAS BYPASS VALVE\n  HISEL: HIGH SELECTOR\n  HS: HIGH SPPED\n  K.O.: Knock-Out\n  LOSEL: LOW SELECTOR\n  LS: LOW SPEED\n  NO.: Number\n  OEM: Original Equipment Manufacturer\n  P&ID: Piping and Instrumentation Diagram\n  REV: Revision\n  TT: Temperature Transmitter\n  TW: Thermowell\n  VSD: Variable Speed Drive\n\n-- Drafting References --\n  [2] 2. ALL DRAWINGS ARE PREPARED IN COMPLIANCE WITH COMPANY ENGINEERING STANDARD CORP-ENG-STD-018 REV. 01 (DRAUGHTING), CORP-ENG-STD-021 REV. 01 (ENGINEERING DATA CODING SYSTEM), ES.0.07.0028 REV.D (TAG NUMBERING AND EQUIPMENT IDENTIFIERS), 4224-MGDTY-6-50-2001 (STANDARD SYMBOLS MULTI-DISCIPLINE).\n  [SLOPE] SLOPE 1: 200\n\n== END RULES ==",
+  "drawing_conventions": {
+    "tag_format_pattern": "unknown",
+    "instrument_bubble_style": "unknown",
+    "isa_version": "ISA 5.1",
+    "unit_system": "mixed",
+    "revision_cloud_present": true
+  }
+}
