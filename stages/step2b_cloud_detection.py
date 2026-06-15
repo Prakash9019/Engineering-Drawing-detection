@@ -39,7 +39,7 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 # ── Detection parameters ──────────────────────────────────────────────────────
-GEMINI_MODEL          = "gemini-2.5-pro"
+GEMINI_MODEL          = "gemini-3.1-pro-preview"
 GEMINI_MAX_SCALE      = 3072          # max longest side when sending to Gemini
 SNAP_PAD              = 60            # px to pad around Gemini bbox before crop
 MORPH_CLOSE_K         = 13            # kernel size — bridges junction gaps 5–50px

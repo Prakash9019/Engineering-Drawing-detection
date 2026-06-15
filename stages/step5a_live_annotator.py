@@ -138,6 +138,44 @@ def _is_false_positive(tag: str) -> bool:
     return False
 
 
+# ── Tag normalization (post-OCR clean-up) ──────────────────────────────────────
+# Double-prime / inch marks that may appear after a pipe size digit. Includes the
+# straight ASCII forms ("" and ") plus the unicode prime / quote variants that
+# OCR and copy-paste frequently emit.
+_INCH_MARKS = r"(?:''|\"|''|´´|′′|″|”|’’)"
+_INCH_RE = re.compile(r'(\d+(?:\.\d+)?)\s*' + _INCH_MARKS)
+
+
+def _normalize_tag(tag: str) -> str:
+    """
+    Deterministic post-OCR normalization for an extracted tag string.
+
+    Applies, in order:
+      3. Inch notation   — 2'' / 2" / 6'' → 2IN / 6IN (double-prime = inches)
+      4. Dash collapse   — FZ--208 / V---FZ-208 → FZ-208 / V-FZ-208
+      5. Consistent form — uppercase, single dash separators, no stray spaces
+
+    NOTE: removal of false OCR characters (e.g. the spurious "I" in V-FZI-208 that
+    comes from the square symbol border) and inclusion of the leading "V" unit
+    prefix are handled at the Gemini-prompt level — "I" is a legitimate ISA letter
+    (FI, PI, FIT) so it can never be blindly stripped here without losing real tags.
+    """
+    if not tag:
+        return tag
+    t = tag.strip().upper()
+    # 3. Inch notation → IN
+    t = _INCH_RE.sub(r'\1IN', t)
+    # 5. Normalize separators: collapse whitespace around dashes into a dash
+    t = re.sub(r'\s*-\s*', '-', t)
+    # join a leading unit letter that lost its dash, e.g. "V FZ-208" → "V-FZ-208"
+    t = re.sub(r'^([A-Z])\s+(?=[A-Z])', r'\1-', t)
+    # 4. Collapse runs of dashes into one
+    t = re.sub(r'-{2,}', '-', t)
+    # tidy: drop leading/trailing dashes and collapse remaining whitespace
+    t = re.sub(r'\s+', ' ', t).strip().strip('-')
+    return t
+
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # SAHI tiler (identical to step5a)
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -265,6 +303,20 @@ DETECT:
 FOR EACH SYMBOL: find the tag text visually nearest to it (leader line or direct label).
 Record BOTH the symbol bounding box AND the tag text bounding box separately.
 The tag_bbox must be around the actual text letters — not the symbol shape.
+
+READING THE TAG TEXT — avoid these common mistakes:
+  - Read ONLY the printed letters/digits INSIDE the symbol. The square, diamond
+    or circle OUTLINE strokes are NOT characters. A vertical box edge next to
+    "FZ" is often misread as an extra "I" (giving "FZI"); a diagonal as "T"; a
+    corner as "L". Do NOT append such border-induced letters. e.g. a flow switch
+    reading "FZ / 208" inside a boxed diamond is "FZ-208", never "FZI-208".
+  - LEADING UNIT PREFIX: many tags have a separate "V" symbol/letter immediately
+    to the LEFT of the instrument bubble. This "V" is the unit/area prefix and is
+    PART of the tag. Always include it: read "V-FZ-208", not "FZ-208"; read
+    "V-FZD-208", not "FZD-208". If this drawing's unit prefix is "V-" and the
+    bubble shows only "FZ / 208", prepend it → "V-FZ-208".
+  - Pipe sizes use inches: write the double-prime as IN (2'' → 2IN, 6'' → 6IN).
+  - Use a single dash between segments (PREFIX-CODE-NUMBER), never "--".
 
 IGNORE — do NOT extract:
   - Notes and annotations
@@ -534,6 +586,8 @@ def _process_patch_live(
                     best_score, best_ocr, ocr_conf = pm, ot_text, ot["ocr_conf"]
 
         final_tag = best_ocr if (best_ocr and best_score >= 0.8) else gemini_tag
+        # Deterministic clean-up: inch notation, dash collapse, consistent format
+        final_tag = _normalize_tag(final_tag)
 
         # ── SOW filter ─────────────────────────────────────────────────────────
         symbol_name = str(raw.get("symbol_name") or "").strip()

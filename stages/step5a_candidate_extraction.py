@@ -340,6 +340,14 @@ FOR EACH DETECTED SYMBOL:
   3. PRESERVE the full tag exactly as written, INCLUDING any area/unit prefix
      such as "V-" (e.g. read "V-FZSC-208", not "FZSC 208"). If the bubble shows
      only "FZSC / 208" but this drawing's unit prefix is "V-", prepend it.
+     The leading "V" is often a SEPARATE symbol/letter just to the LEFT of the
+     bubble — it is part of the tag, always include it (read "V-FZ-208", never
+     "FZ-208"; "V-FZD-208", never "FZD-208").
+  3b. Read ONLY the printed characters INSIDE the symbol. The square / diamond /
+     circle OUTLINE strokes are NOT letters. A vertical box edge next to "FZ" is
+     commonly misread as an extra "I" (giving "FZI"); a diagonal as "T"; a corner
+     as "L". Do NOT append such border-induced letters: a boxed "FZ / 208" flow
+     switch is "FZ-208", never "FZI-208".
   4. Record bounding box coordinates [x1, y1, x2, y2] within THIS patch. The
      tag_bbox MUST tightly enclose the TAG TEXT characters (not the symbol).
 
@@ -487,6 +495,36 @@ def _is_false_positive(tag_text: str) -> bool:
     return False
 
 
+# ── Tag normalization (post-OCR clean-up) ──────────────────────────────────────
+# Double-prime / inch marks that may follow a pipe size digit (ASCII + unicode).
+_INCH_MARKS = r"(?:''|\"|''|´´|′′|″|”|’’)"
+_INCH_RE = re.compile(r'(\d+(?:\.\d+)?)\s*' + _INCH_MARKS)
+
+
+def _normalize_tag(tag: str) -> str:
+    """
+    Deterministic post-OCR normalization for an extracted tag string.
+
+      3. Inch notation   — 2'' / 2" / 6'' → 2IN / 6IN (double-prime = inches)
+      4. Dash collapse   — FZ--208 / V---FZ-208 → FZ-208 / V-FZ-208
+      5. Consistent form — uppercase, single dash separators, no stray spaces
+
+    Removal of false OCR characters (e.g. the spurious "I" in V-FZI-208 from the
+    square symbol border) and inclusion of the leading "V" unit prefix are handled
+    at the Gemini-prompt level — "I" is a legitimate ISA letter (FI, PI, FIT) so it
+    can never be blindly stripped here without losing real tags.
+    """
+    if not tag:
+        return tag
+    t = tag.strip().upper()
+    t = _INCH_RE.sub(r'\1IN', t)                 # 3. inches → IN
+    t = re.sub(r'\s*-\s*', '-', t)               # 5. tidy dash spacing
+    t = re.sub(r'^([A-Z])\s+(?=[A-Z])', r'\1-', t)  # "V FZ-208" → "V-FZ-208"
+    t = re.sub(r'-{2,}', '-', t)                 # 4. collapse dash runs
+    t = re.sub(r'\s+', ' ', t).strip().strip('-')
+    return t
+
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # Post-process: convert patch-local coords to global + apply filters
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -573,6 +611,8 @@ def process_patch_candidates(patch_result: dict,
 
         # OCR is ground truth for text when confidence is high
         final_tag = best_ocr if (best_ocr and best_score >= 0.8) else gemini_tag
+        # Deterministic clean-up: inch notation, dash collapse, consistent format
+        final_tag = _normalize_tag(final_tag)
 
         # ── SOW filter ────────────────────────────────────────────────────────
         symbol_name = str(raw.get("symbol_name") or "").strip()
