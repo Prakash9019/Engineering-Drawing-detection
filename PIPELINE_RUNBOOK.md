@@ -142,35 +142,22 @@ python3 stages/step2b_cloud_detection.py input_drawing.jpg --out output/ --api-k
 ```
 
 ### Architecture (how cloud detection flows)
-- **step2b** uses Gemini 2.5 Pro to localize each cloud bbox, then OpenCV morphology to trace the scalloped contour precisely. Falls back to pure OpenCV if no API key (`--no-gemini`).
-- **step5a** has full cloud-filter code (`filter_by_revision_cloud()`, `point_in_any_cloud()`) that can restrict extraction to symbols inside cloud boundaries.
-- **Current mode: FULL_EXTRACTION** — step5a deliberately does NOT activate the cloud filter. `cloud_regions = []` is hardcoded (line ~1045). This was a June 2026 tuning decision: injecting the cloud-only note made Gemini skip valid center/edge symbols, reducing recall from 26→44 of 46 tags.
+- **step2b** uses Gemini 2.5 Pro to localize each cloud bbox, then OpenCV morphology to trace the scalloped contour precisely. Falls back to pure OpenCV if no API key (`--no-gemini`). Writes `output/outer_clouds_v2.json`.
+- **step5a** auto-detects `outer_clouds_v2.json` in the output directory at startup. If the file exists and contains cloud regions, cloud-filter mode activates automatically — only tags whose symbol center falls inside a cloud bbox are kept. If the file is absent or has zero regions, full-drawing extraction runs instead.
 
-### Cloud filter code exists but is off
-| Stage | Cloud-aware code? | Active? | Reason |
-|-------|-------------------|---------|--------|
+### Cloud filter status per stage
+| Stage | Cloud-aware? | Active? | How |
+|-------|-------------|---------|-----|
 | step2b | YES — detects clouds | YES | Runs, writes `outer_clouds_v2.json` |
-| step5a | YES — has filter functions | **NO** (FULL_EXTRACTION mode) | Disabled for recall; cloud_regions never loaded |
-| step5b | NO | — | Geometry-only; no spatial filtering |
+| step5a | YES — `filter_by_revision_cloud()` | **AUTO** | On if `outer_clouds_v2.json` exists with regions |
+| step5b | NO | — | Geometry-only; operates on already-filtered candidates |
 | step5c | NO | — | Format/registry validation only |
 | step5d | NO | — | Dedup only |
 | step7 | NO | — | Normalization only |
 | step8 | NO | — | Scoring/routing only |
 
-### To re-enable cloud filtering (if needed for a cloud-only drawing)
-In `stages/step5a_candidate_extraction.py`, around line 1045–1060, change:
-```python
-cloud_regions: list = []          # ← hardcoded empty
-revision_cloud_present = bool(cloud_regions) and ctx.get(...)
-```
-to:
-```python
-cloud_regions = ctx.get("cloud_regions", [])
-revision_cloud_present = bool(cloud_regions) and ctx.get(
-    "notes_summary", {}).get("revision_cloud_present", False)
-```
-But note: `step2b` writes to `outer_clouds_v2.json`, NOT to `drawing_context.json`.
-You would also need step2b to merge its output into `drawing_context.json["cloud_regions"]`.
+### To force full-drawing extraction even when clouds exist
+Simply don't run step2b, or delete `output/outer_clouds_v2.json` before running step5a.
 
 ---
 

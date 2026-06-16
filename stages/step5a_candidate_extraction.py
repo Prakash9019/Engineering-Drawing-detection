@@ -1032,6 +1032,8 @@ def main():
                         help="Process single patch ID only (for testing)")
     parser.add_argument("--workers",   type=int, default=8,
                         help="Parallel Gemini workers (default: 8; use 1 for free-tier keys)")
+    parser.add_argument("--clouds",    default=None,
+                        help="Path to outer_clouds_v2.json from step2b (auto-detected if omitted)")
     args = parser.parse_args()
 
     api_key = (args.api_key or os.environ.get("GEMINI_API_KEY")
@@ -1050,13 +1052,6 @@ def main():
         with open(args.context) as f:
             ctx = json.load(f)
         img_path = ctx.get("raster_path") or ctx.get("input_file")
-        # FULL EXTRACTION mode: we want EVERY tag on the drawing, not just the
-        # ones inside revision clouds. cloud_regions is empty here, so the
-        # post-filter drops nothing anyway — but we must also avoid injecting
-        # the "only extract inside cloud boundaries" note into the prompt,
-        # which makes Gemini conservative and skips valid center symbols.
-        revision_cloud_present = bool(cloud_regions) and ctx.get(
-            "notes_summary", {}).get("revision_cloud_present", False)
         # Load SOW memory from context path if not explicitly given
         if not args.sow and ctx.get("sow_memory_path"):
             with open(ctx["sow_memory_path"]) as f:
@@ -1065,6 +1060,29 @@ def main():
         if not args.rules and ctx.get("rules_prompt_block_path"):
             with open(ctx["rules_prompt_block_path"]) as f:
                 drawing_rules = f.read()
+
+    # ── Load cloud regions from step2b output ─────────────────────────────────
+    # Auto-detect outer_clouds_v2.json in the output directory, or use --clouds.
+    clouds_path = args.clouds
+    if not clouds_path:
+        auto = os.path.join(args.out, "outer_clouds_v2.json")
+        if os.path.exists(auto):
+            clouds_path = auto
+    if clouds_path and os.path.exists(clouds_path):
+        with open(clouds_path) as f:
+            cloud_data = json.load(f)
+        # Convert step2b "bbox": [x0,y0,x1,y1] list → {x0,y0,x1,y1} dict
+        for entry in cloud_data.get("clouds", []):
+            bbox = entry.get("bbox", [])
+            if len(bbox) == 4:
+                cloud_regions.append({"x0": bbox[0], "y0": bbox[1],
+                                      "x1": bbox[2], "y1": bbox[3]})
+        if cloud_regions:
+            revision_cloud_present = True
+            log.info("Cloud filter ON: %d cloud regions loaded from %s",
+                     len(cloud_regions), clouds_path)
+        else:
+            log.info("Cloud file found but contains no regions — full-drawing extraction")
 
     if args.sow:
         with open(args.sow) as f:
@@ -1087,6 +1105,8 @@ def main():
     )
 
     print(f"\n=== Step 5A Complete ===")
+    mode = f"CLOUD_FILTER ({len(cloud_regions)} regions)" if revision_cloud_present else "FULL_DRAWING"
+    print(f"  Mode: {mode}")
     print(f"  Candidates extracted: {len(candidates)}")
     by_cat = {}
     for c in candidates:

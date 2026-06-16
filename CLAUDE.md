@@ -32,7 +32,7 @@ Excel register matching the client's Annexure-4 format.
 ## Key Architecture Points
 
 - **`drawing_context.json` is the spine** — never delete mid-pipeline
-- **step5a runs in FULL_EXTRACTION mode** — cloud filter code exists but is intentionally OFF (recall fix June 2026). step2b still detects clouds and writes `output/outer_clouds_v2.json`, but step5a doesn't consume it.
+- **step5a auto-detects cloud regions** — if `output/outer_clouds_v2.json` exists (written by step2b), cloud-filter mode activates and only tags inside cloud boundaries are kept. If the file is absent, full-drawing extraction runs.
 - **Active extraction script:** `stages/step5a_candidate_extraction.py` (not `step5a_live_annotator.py`)
 - **Active notes agent:** `stages/step3_notes_agent.py` (not any root-level copy)
 - **`core/gemini_client.py` and `core/confidence.py` import `settings.py`** — keep settings.py
