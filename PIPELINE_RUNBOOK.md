@@ -1,297 +1,464 @@
 # CDCI P&ID Tag Extraction Pipeline — Runbook
-> Single source of truth. All commands are verified and copy-paste ready. Last updated June 2026.
+
+> **Single source of truth.** All commands below are copy-paste ready.  
+> **Last updated:** June 2026 (reflects step2b border filtering, step5a cloud-mask gating, compare tool).
 
 ---
 
-## What this pipeline produces
+## What you get at the end
 
-From one scanned P&ID drawing:
-- `output/step5a_candidates.json` — every tag detected (with bounding boxes)
-- `output/final_tags.xlsx` — client deliverable in Annexure-4 format (AUTO_ACCEPT / HUMAN_REVIEW / SUMMARY sheets)
-- `output/stages/` — per-stage annotated images + JSON for review UI
+| Deliverable | Path | Purpose |
+|-------------|------|---------|
+| **Client Excel** | `output/final_tags.xlsx` | Annexure-4 format — `AUTO_ACCEPT`, `HUMAN_REVIEW`, `SUMMARY` sheets |
+| **Review queue** | `output/human_review_queue.json` | Tags routed for human review (P1–P4 priority) |
+| **Audit log** | `output/audit_log.json` | Auto-rejected records (usually empty) |
+| **Coverage report** | `output/eval_coverage_report.json` | Recall vs Annexure-4 ground truth |
+| **Comparison Excel** | `output/final_tags_vs_annexure4.xlsx` | Pipeline output vs Annexure-4 (4 comparison sheets) |
+| **Annotated drawing** | `output/step5a_eval_annotated_fullres.jpg` | Every detected tag boxed (green = in register) |
 
-**Result on test drawing (`input_drawing.jpg`):**
-`44/46` Annexure-4 tags extracted (the other 2 — `V-ZSC-203`, `V-ZSO-203` — are **not drawn** on the sheet),
-`226` total tags detected, `AUTO_ACCEPT 160 (76.6%)`, `AUTO_REJECT 0`.
+### Benchmark on test drawing (`input_drawing.jpg`, Rev C)
 
----
+Two extraction modes matter — pick the one that matches your goal:
 
-## Project Structure
+| Mode | Command flag | Annexure-4 recall | Candidates | Use when |
+|------|--------------|-------------------|------------|----------|
+| **Full sheet** | `--force-full-drawing` | **42/46 (91%)** | ~239 | Compare against full Annexure-4 register |
+| **Cloud scope** | *(default for `CLOUD_ONLY` drawings)* | **~2–25/46** | ~25 | Drawing says "clouded areas only" |
 
-```
-cdci_extractor_final/
-├── CLAUDE.md                              ← Claude Code project memory
-├── PIPELINE_RUNBOOK.md                    ← THIS FILE — single source of truth
-├── input_drawing.jpg                      ← test P&ID drawing (9934×7017px)
-├── ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx   ← SOW scope (100 ALLOW + 32 BLOCK)
-├── ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx       ← asset register (46 tags, ground truth)
-├── settings.py                            ← model names, thresholds (imported by core/)
-├── requirements.txt
-├── .env                                   ← GEMINI_KEY lives here
-│
-├── core/                                  ← shared utilities (gemini_client, isa_decode, etc.)
-│
-├── stages/
-│   ├── step1_format_detect.py
-│   ├── step2_title_block.py
-│   ├── step2b_cloud_detection.py          ← detects revision clouds (writes outer_clouds_v2.json)
-│   ├── step3_notes_agent.py
-│   ├── step4_sow_agent.py
-│   ├── step5a_candidate_extraction.py     ← MAIN extraction (FULL_EXTRACTION mode, cloud filter off)
-│   ├── step5a_live_annotator.py           ← alternative annotator (kept for reference)
-│   ├── step5b_geometric_association.py
-│   ├── step5c_validation_engine.py
-│   ├── step5d_duplicate_resolution.py
-│   ├── step5_visualizer.py
-│   ├── step6_table_agent.py
-│   ├── step7_cedm_normalizer.py
-│   ├── step8_confidence_router.py
-│   ├── eval_coverage.py                   ← recall vs ground truth
-│   ├── stage_visualizer.py               ← detect/filter stage images
-│   └── cloud_detection_v2_claude.py      ← standalone cloud detector (Gemini, not Anthropic)
-│
-└── output/                                ← all pipeline outputs (JSON + images + xlsx)
-```
+The 2 tags never on this sheet: `V-ZSC-203`, `V-ZSO-203` (in register, not drawn).
+
+Latest full-sheet run stats: `AUTO_ACCEPT 142/198 (71.7%)`, `AUTO_REJECT 0`, avg confidence `0.813`.
 
 ---
 
-## Prerequisites (run once)
+## Prerequisites (run once per machine)
 
 ```bash
 cd /Users/suryprakash/Downloads/cdci_extractor_final
+python3 -m venv .venv          # skip if already exists
 source .venv/bin/activate
-brew install tesseract                     # if not already installed
-export $(grep GEMINI_KEY .env | xargs)    # load GEMINI_KEY from .env
-echo $GEMINI_KEY                          # verify — should print your key
-```
+pip install -r requirements.txt
+brew install tesseract         # macOS OCR dependency
+export $(grep -v '^#' .env | xargs)
+echo $GEMINI_KEY               # must print your key
 
-- **Gemini model:** `gemini-3.1-pro-preview` (set in `stages/step5a_candidate_extraction.py` line ~72)
-- **Free-tier key (5 req/min):** add `--workers 1` to the step5a command to avoid HTTP 429
-
----
-
-## Full Pipeline — Copy-Paste
-
-```bash
-cd /Users/suryprakash/Downloads/cdci_extractor_final
-source .venv/bin/activate
-export $(grep GEMINI_KEY .env | xargs)
 export DRAWING="input_drawing.jpg"
+export REGISTER="ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx"
 
-# ── Phase 1: context (run once per drawing) ───────────────────────────────────
+```
+
+| Setting | Value |
+|---------|-------|
+| Gemini model (step5a, step2b) | `gemini-3.1-pro-preview` |
+| SAHI patch size / overlap | `768 px` / `40%` |
+| Free-tier API key (5 RPM) | add `--workers 1` to step5a |
+
+---
+
+## Full pipeline — all commands in one place
+
+```bash
+cd /Users/suryprakash/Downloads/cdci_extractor_final
+source .venv/bin/activate
+export $(grep -v '^#' .env | xargs)
+export DRAWING="input_drawing.jpg"
+export REGISTER="ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx"
+export SOW="ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PHASE 1 — Context (run once per drawing, ~2–4 min, Gemini API)
+# ══════════════════════════════════════════════════════════════════════════════
+
 python3 stages/step1_format_detect.py  $DRAWING --out output/ --api-key $GEMINI_KEY
 python3 stages/step2_title_block.py    --context output/drawing_context.json --api-key $GEMINI_KEY
 python3 stages/step2b_cloud_detection.py $DRAWING --out output/ --api-key $GEMINI_KEY
 python3 stages/step3_notes_agent.py    --context output/drawing_context.json --api-key $GEMINI_KEY
-python3 stages/step4_sow_agent.py build --excel ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx --out output/ --skip-vision
+python3 stages/step4_sow_agent.py build --excel $SOW --out output/ --skip-vision
 python3 stages/step6_table_agent.py    --context output/drawing_context.json --api-key $GEMINI_KEY
 
-# ── Phase 2: extraction (~4 min, 315 Gemini calls) ────────────────────────────
-python3 stages/step5a_candidate_extraction.py --context output/drawing_context.json --api-key $GEMINI_KEY --workers 8
+# ══════════════════════════════════════════════════════════════════════════════
+# PHASE 2 — Tag extraction (~1–5 min depending on mode, Gemini API)
+# ══════════════════════════════════════════════════════════════════════════════
 
-# ── Phase 3: post-processing (no API, < 30s) ──────────────────────────────────
-python3 stages/step5b_geometric_association.py --candidates output/step5a_candidates.json --image $DRAWING --out output/
-python3 stages/step5c_validation_engine.py     --associations output/step5b_associations.json --register ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx --notes output/notes_context.json --out output/
-python3 stages/step5d_duplicate_resolution.py  --validated output/step5c_validated.json --out output/
+# Option A — FULL SHEET (best Annexure-4 recall, recommended for register comparison)
+python3 stages/step5a_candidate_extraction.py \
+  --context output/drawing_context.json --api-key $GEMINI_KEY --workers 8 \
+  --force-full-drawing
 
-# ── Phase 4: output (no API, < 10s) ───────────────────────────────────────────
-python3 stages/step7_cedm_normalizer.py  --final output/step5_final_output.json --context output/drawing_context.json --out output/ --project CDCI
-python3 stages/step8_confidence_router.py --cedm output/step7_cedm_output.json --context output/drawing_context.json --out output/
+# Option B — CLOUD SCOPE ONLY (default when drawing_context has extraction_scope=CLOUD_ONLY)
+python3 stages/step5a_candidate_extraction.py \
+  --context output/drawing_context.json --api-key $GEMINI_KEY --workers 8
 
-# ── Reporting / visuals (optional, no API) ────────────────────────────────────
-python3 stages/eval_coverage.py    --candidates output/step5a_candidates.json --register ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx --image $DRAWING --out output/
-python3 stages/stage_visualizer.py --candidates output/step5a_candidates.json --deduped output/step5d_deduped.json --sow output/sow_symbol_memory.json --image $DRAWING --out output/stages/
-```
+# ══════════════════════════════════════════════════════════════════════════════
+# PHASE 3 — Post-processing (no API, < 30 s)
+# ══════════════════════════════════════════════════════════════════════════════
 
-> **Resume after failure:** every step writes one JSON file. Delete that file and re-run only from that step forward. Phase 1 outputs rarely change — usually only re-run Phase 2→4.
+python3 stages/step5b_geometric_association.py \
+  --candidates output/step5a_candidates.json --image $DRAWING --out output/
 
----
+python3 stages/step5c_validation_engine.py \
+  --associations output/step5b_associations.json \
+  --register $REGISTER --notes output/notes_context.json --out output/
 
-## What Each Step Does
+python3 stages/step5d_duplicate_resolution.py \
+  --validated output/step5c_validated.json --out output/
 
-| # | Script | Reads | Writes | Purpose |
-|---|--------|-------|--------|---------|
-| 1 | `step1_format_detect.py` | drawing | `drawing_context.json`, enhanced images | Detect raster/PDF, CLAHE enhance |
-| 2 | `step2_title_block.py` | context | `title_block_context.json` | Read title block (dwg no, sheet, rev) |
-| 2B | `step2b_cloud_detection.py` | drawing | `outer_clouds_v2.json`, `overlay_v2.jpg`, `cloud_mask_v2.png` | Find revision-cloud boundaries |
-| 3 | `step3_notes_agent.py` | context | `notes_context.json`, `rules_prompt_block.txt` | Extract notes → drawing-specific rules |
-| 4 | `step4_sow_agent.py build` | ANNEXURE-2 xlsx | `sow_symbol_memory.json` | Build 100-USE / 32-DO-NOT-USE scope memory |
-| 6 | `step6_table_agent.py` | context | `master_tags.json`, `tables_context.json` | Extract tag-list tables |
-| **5A** | `step5a_candidate_extraction.py` | context, sow, rules | `step5a_candidates.json` | **Detect every tag** (SAHI patches + Gemini + Tesseract) |
-| 5B | `step5b_geometric_association.py` | 5a json, drawing | `step5b_associations.json` | Link tags to pipes/equipment (geometry) |
-| 5C | `step5c_validation_engine.py` | 5b json, register, notes | `step5c_validated.json` | ISA-5.1 format + registry lookup |
-| 5D | `step5d_duplicate_resolution.py` | 5c json | `step5d_deduped.json`, `step5_final_output.json` | Flag SAHI duplicates (recall-safe) |
-| 7 | `step7_cedm_normalizer.py` | 5d final, context | `step7_cedm_output.json` | Normalise tags, fill 15 Annexure-4 fields |
-| 8 | `step8_confidence_router.py` | step7 json, context | `final_tags.xlsx`, review queue, audit log | Score + route → Excel deliverable |
-| — | `eval_coverage.py` | 5a json, ANNEXURE-4 | annotated images, coverage report | Measure recall vs ground truth |
-| — | `stage_visualizer.py` | 5a json, 5d json, sow | `output/stages/*` | Per-stage detect/filter images + JSON |
+# ══════════════════════════════════════════════════════════════════════════════
+# PHASE 4 — Deliverable (no API, < 10 s)
+# ══════════════════════════════════════════════════════════════════════════════
 
----
+python3 stages/step7_cedm_normalizer.py \
+  --final output/step5_final_output.json \
+  --context output/drawing_context.json --out output/ --project CDCI
 
-## Cloud Detection — Status and Architecture
+python3 stages/step8_confidence_router.py \
+  --cedm output/step7_cedm_output.json \
+  --context output/drawing_context.json --out output/
 
-### What runs and what it produces
-```bash
-# step2b detects revision clouds on the drawing
-python3 stages/step2b_cloud_detection.py input_drawing.jpg --out output/ --api-key $GEMINI_KEY
+# ══════════════════════════════════════════════════════════════════════════════
+# PHASE 5 — Reporting / QA (optional, no API)
+# ══════════════════════════════════════════════════════════════════════════════
 
-# Outputs:
-#   output/outer_clouds_v2.json   ← cloud bounding boxes (list of {x0,y0,x1,y1,...})
-#   output/overlay_v2.jpg         ← annotated image showing detected clouds
-#   output/cloud_mask_v2.png      ← binary mask
-```
-
-### Architecture (how cloud detection flows)
-- **step2b** uses Gemini 2.5 Pro to localize each cloud bbox, then OpenCV morphology to trace the scalloped contour precisely. Falls back to pure OpenCV if no API key (`--no-gemini`). Writes `output/outer_clouds_v2.json`.
-- **step5a** auto-detects `outer_clouds_v2.json` in the output directory at startup. If the file exists and contains cloud regions, cloud-filter mode activates automatically — only tags whose symbol center falls inside a cloud bbox are kept. If the file is absent or has zero regions, full-drawing extraction runs instead.
-
-### Cloud filter status per stage
-| Stage | Cloud-aware? | Active? | How |
-|-------|-------------|---------|-----|
-| step2b | YES — detects clouds | YES | Runs, writes `outer_clouds_v2.json` |
-| step5a | YES — `filter_by_revision_cloud()` | **AUTO** | On if `outer_clouds_v2.json` exists with regions |
-| step5b | NO | — | Geometry-only; operates on already-filtered candidates |
-| step5c | NO | — | Format/registry validation only |
-| step5d | NO | — | Dedup only |
-| step7 | NO | — | Normalization only |
-| step8 | NO | — | Scoring/routing only |
-
-### To force full-drawing extraction even when clouds exist
-Simply don't run step2b, or delete `output/outer_clouds_v2.json` before running step5a.
-
----
-
-## Quick Checks
-
-```bash
-# Recall vs ground truth (how many Annexure-4 tags did we find?)
 python3 stages/eval_coverage.py \
-    --candidates output/step5a_candidates.json \
-    --register ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx \
-    --image input_drawing.jpg \
-    --out output/
+  --candidates output/step5a_candidates.json \
+  --register $REGISTER --image $DRAWING --out output/
 
-# Routing distribution (accept / review / reject counts)
+python3 stages/compare_final_vs_annexure4.py \
+  --final output/final_tags.xlsx --register $REGISTER \
+  --out output/final_tags_vs_annexure4.xlsx
+
+python3 stages/stage_visualizer.py \
+  --candidates output/step5a_candidates.json \
+  --deduped output/step5d_deduped.json \
+  --sow output/sow_symbol_memory.json \
+  --image $DRAWING --out output/stages/
+```
+
+**Resume after failure:** each step writes its own output file. Delete that file and re-run from that step forward. Never delete `output/drawing_context.json` mid-pipeline.
+
+---
+
+## Output folder structure
+
+After a full run, `output/` looks like this:
+
+```
+output/
+│
+├── drawing_context.json              ← MASTER SPINE — every step reads/updates this
+├── title_block_context.json          ← full title-block extraction detail
+│
+├── input_drawing_enhanced_binary.png ← step1 CLAHE + binarize (for OCR)
+│
+├── outer_clouds_v2.json              ← step2b cloud polygons + bboxes
+├── overlay_v2.jpg                    ← step2b visual QA (green=outer, cyan=inner)
+├── cloud_mask_v2.png                 ← step2b filled cloud mask
+├── border_filter.jpg                 ← step2b debug: rejected border candidates (red)
+│
+├── notes_context.json                ← step3 structured notes
+├── rules_prompt_block.txt            ← step3 rules injected into ALL Gemini prompts
+├── sow_symbol_memory.json            ← step4 SOW scope (100 ALLOW + 32 BLOCK)
+├── sow_scope_summary.txt             ← step4 human-readable SOW summary
+├── master_tags.json                  ← step6 tag-list table rows (may be empty on sheet 001)
+├── tables_context.json               ← step6 table metadata
+│
+├── step5a_candidates.json            ← ★ raw detected tags + bboxes (main extraction output)
+├── step5a_eval_annotated_fullres.jpg ← eval_coverage: full-res tag boxes
+├── step5a_eval_annotated.jpg         ← eval_coverage: scaled overview
+├── step5b_associations.json          ← geometry: pipe/equipment links per tag
+├── step5c_validated.json             ← ISA-5.1 + registry validation per tag
+├── step5d_deduped.json               ← all records incl. DISCARDED duplicates
+├── step5_final_output.json           ← PRIMARY candidates only (feeds step7/8)
+├── step7_cedm_output.json            ← normalised Annexure-4 field records
+├── step8_routing_summary.json        ← accept/review/reject counts + confidence stats
+│
+├── final_tags.xlsx                   ← ★ CLIENT DELIVERABLE
+├── human_review_queue.json           ← tags needing human review
+├── audit_log.json                    ← auto-rejected tags
+├── eval_coverage_report.json         ← found/missing vs Annexure-4
+├── final_tags_vs_annexure4.xlsx      ← 4-sheet pipeline vs register comparison
+│
+├── stages/                           ← stage_visualizer QA images
+│   ├── manifest.json
+│   ├── 5a_detection.jpg              ← all detected tags
+│   ├── sow_detected.jpg / sow_filtered.jpg
+│   └── dup_detected.jpg / dup_filtered.jpg
+│
+└── debug_crops/                      ← step2b --debug per-crop binarize images
+```
+
+---
+
+## Step-by-step reference
+
+### Phase 1 — Context
+
+| Step | Command | API? | Time | Key outputs | What the command does |
+|------|---------|------|------|-------------|----------------------|
+| **1** | `step1_format_detect.py $DRAWING` | optional | ~10s | `drawing_context.json`, `*_enhanced_binary.png` | Detect raster/PDF, set `raster_path`, `width_px`, `height_px`, document type |
+| **2** | `step2_title_block.py --context …` | yes | ~30s | updates `drawing_context.json`, `title_block_context.json` | Read dwg no, sheet, rev, title; set `revision_mode`, `extraction_scope`, `project_mode` |
+| **2B** | `step2b_cloud_detection.py $DRAWING` | yes | ~20–60s | `outer_clouds_v2.json`, `overlay_v2.jpg`, `cloud_mask_v2.png`, `border_filter.jpg` | Gemini localizes cloud bboxes → OpenCV traces scalloped polygons; rejects drawing borders |
+| **3** | `step3_notes_agent.py --context …` | yes | ~1–2m | `notes_context.json`, `rules_prompt_block.txt` | Extract notes/abbreviations; build drawing-specific prompt rules |
+| **4** | `step4_sow_agent.py build --excel $SOW` | no* | ~5s | `sow_symbol_memory.json`, `sow_scope_summary.txt` | Build 100-ALLOW / 32-BLOCK symbol scope memory (*vision optional) |
+| **6** | `step6_table_agent.py --context …` | yes | ~30s | `master_tags.json`, `tables_context.json` | Find tag-list tables on drawing (may be 0 tags on sheet 001) |
+
+**Console output to expect (step2b):**
+```
+Outer clouds: 23
+Inner clouds: 20
+Total:        43
+Overlay:      output/overlay_v2.jpg
+JSON:         output/outer_clouds_v2.json
+```
+
+**`drawing_context.json` fields added across Phase 1:**
+
+| Field | Set by | Meaning |
+|-------|--------|---------|
+| `raster_path` | step1 | Image path for all downstream steps |
+| `width_px`, `height_px` | step1 | Drawing dimensions |
+| `drawing_number`, `sheet_number`, `revision_code` | step2 | Title block identity |
+| `revision_mode` | step2 | `CLOUD_SCOPE_MODE` / `REVISION_DRAWING` / `NEW_DRAWING` |
+| `extraction_scope` | step2 | `CLOUD_ONLY` / `CLOUD_PRIORITY` / `FULL_DRAWING` |
+| `revision_cloud_required` | step2 | `true` → step5a applies cloud filter |
+| `project_mode` | step2 | `FULL_EXTRACTION` or `COUNT_ONLY` (LC/GC vs LT/GT prefix) |
+| `rules_prompt_block_path` | step3 | Path to injected Gemini rules |
+| `sow_memory_path` | step4 | Path to SOW scope memory |
+| `master_tags_path` | step6 | Path to table-extracted tags |
+
+---
+
+### Phase 2 — Extraction (step5a)
+
+```bash
+python3 stages/step5a_candidate_extraction.py \
+  --context output/drawing_context.json \
+  --api-key $GEMINI_KEY \
+  --workers 8 \
+  [--force-full-drawing]   # add this for full-sheet extraction
+```
+
+| | |
+|--|--|
+| **Reads** | `drawing_context.json`, `outer_clouds_v2.json`, `cloud_mask_v2.png`, `sow_symbol_memory.json`, `rules_prompt_block.txt` |
+| **Writes** | `step5a_candidates.json`, `step5a_patches/` (with `--debug`) |
+| **API calls** | ~53 patches (cloud scope) or ~315 patches (full sheet) |
+| **Time** | ~1 min (cloud) / ~4 min (full, 8 workers) |
+
+**How cloud gating works (step2b → step5a):**
+
+```
+step2b outer_clouds_v2.json + cloud_mask_v2.png
+        ↓
+step5a loads cloud regions (skips single clouds ≥85% of sheet area)
+        ↓
+If extraction_scope=CLOUD_ONLY and revision_cloud_required=true:
+  → only SAHI patches overlapping cloud mask are sent to Gemini
+  → only candidates whose centre falls inside cloud mask are kept
+        ↓
+If --force-full-drawing:
+  → all patches processed, no cloud post-filter
+  → best for Annexure-4 register comparison
+```
+
+**Console output to expect:**
+```
+Mode: CLOUD_FILTER (N step2b regions, polygon gate)   # cloud scope
+  OR
+Mode: FULL_DRAWING (step2b loaded N regions, filter off)  # --force-full-drawing
+
+Candidates extracted: <count>
+  instrument   <n>
+  valve        <n>
+  piping       <n>
+```
+
+**`step5a_candidates.json` schema (per candidate):**
+`candidate_id`, `tag_text`, `symbol_name`, `symbol_category`, `symbol_bbox`, `tag_bbox`, `scope_type`, `ocr_confidence`, `vision_confidence`, `functional_context`, `sow_status`
+
+---
+
+### Phase 3 — Post-processing
+
+| Step | Command | Writes | What it does |
+|------|---------|--------|--------------|
+| **5B** | `step5b_geometric_association.py` | `step5b_associations.json` | OpenCV: link tags to pipes, leader lines, equipment (`ATTACHED_TO`, `CONTAINED_WITHIN`) |
+| **5C** | `step5c_validation_engine.py` | `step5c_validated.json` | ISA-5.1 regex validation + Annexure-4 registry lookup; adds `validation_details` |
+| **5D** | `step5d_duplicate_resolution.py` | `step5d_deduped.json`, `step5_final_output.json` | Recall-safe dedup: merges same tag from overlapping patches only; `step5_final_output.json` = PRIMARY only |
+
+**Candidate count shrinks through Phase 3** (example full-sheet run):
+`step5a: 239` → `step5d PRIMARY: ~198` (duplicates discarded)
+
+---
+
+### Phase 4 — Deliverable
+
+| Step | Command | Writes | What it does |
+|------|---------|--------|--------------|
+| **7** | `step7_cedm_normalizer.py` | `step7_cedm_output.json` | Normalise tag text; fill all 15 Annexure-4 columns; description priority: registry → `functional_context` → ontology |
+| **8** | `step8_confidence_router.py` | `final_tags.xlsx`, `human_review_queue.json`, `audit_log.json`, `step8_routing_summary.json` | Score each tag; route to AUTO_ACCEPT / HUMAN_REVIEW / AUTO_REJECT |
+
+**`final_tags.xlsx` sheets:**
+
+| Sheet | Contents |
+|-------|----------|
+| `AUTO_ACCEPT` | High-confidence tags (≥ 0.80) — ready for client |
+| `HUMAN_REVIEW` | Medium-confidence tags with `C_FINAL`, `REVIEW_PRIORITY`, `REVIEW_REASON` |
+| `SUMMARY` | Run statistics |
+
+---
+
+### Phase 5 — Reporting / QA
+
+| Tool | Command | Writes | What you learn |
+|------|---------|--------|----------------|
+| `eval_coverage.py` | see full block above | `eval_coverage_report.json`, annotated JPGs | `FOUND x/46` vs Annexure-4; lists missing tags |
+| `compare_final_vs_annexure4.py` | see full block above | `final_tags_vs_annexure4.xlsx` | 4 sheets: AUTO_ACCEPT in/not-in A4, HUMAN_REVIEW in/not-in A4 |
+| `stage_visualizer.py` | see full block above | `output/stages/*.jpg` + `manifest.json` | Visual detect vs SOW-filter vs dedup stages |
+
+**`final_tags_vs_annexure4.xlsx` sheets:**
+
+| Sheet | Meaning |
+|-------|---------|
+| `AUTO_ACCEPT_In_A4` | Auto-accepted tags that match Annexure-4 |
+| `AUTO_ACCEPT_Not_In_A4` | Auto-accepted tags not in register |
+| `HUMAN_REVIEW_In_A4` | Review-queue tags that match Annexure-4 |
+| `HUMAN_REVIEW_Not_In_A4` | Review-queue tags not in register |
+
+---
+
+## Quick health checks
+
+```bash
+cd /Users/suryprakash/Downloads/cdci_extractor_final
+source .venv/bin/activate
+
+# Candidate counts at each stage
+python3 -c "import json; d=json.load(open('output/step5a_candidates.json')); print('step5a:', len(d['candidates']))"
+python3 -c "import json; d=json.load(open('output/step5_final_output.json')); print('step5d PRIMARY:', len(d['candidates']))"
+
+# Annexure-4 recall
+python3 -c "
+import json
+d=json.load(open('output/eval_coverage_report.json'))
+print(f'FOUND {len(d[\"found\"])}/{d[\"ground_truth_count\"]}  missing={len(d[\"missing\"])}  extra={d[\"extra_count\"]}')
+"
+
+# Routing distribution
 python3 -c "import json; d=json.load(open('output/step8_routing_summary.json')); print(d['totals']); print(d['rates'])"
 
-# Duplicate counts (PRIMARY vs flagged duplicates)
-python3 -c "import json; d=json.load(open('output/step5d_deduped.json')); print('PRIMARY', d['primary_count'], 'DUPLICATE', d['discarded_count'])"
+# Cloud detection stats
+python3 -c "import json; d=json.load(open('output/outer_clouds_v2.json')); print(d['stats'])"
 
-# Count candidates at each stage
-python3 -c "import json; d=json.load(open('output/step5a_candidates.json')); print('step5a:', len(d['candidates']))"
-python3 -c "import json; d=json.load(open('output/step5_final_output.json')); print('step5d:', len(d['candidates']))"
+# Drawing scope from context
+python3 -c "import json; c=json.load(open('output/drawing_context.json')); print(c['extraction_scope'], c['revision_cloud_required'], c['project_mode'])"
 
-# Check cloud regions from step2b
-python3 -c "import json; d=json.load(open('output/outer_clouds_v2.json')); print('clouds:', d['stats'])"
+# Duplicate rate
+python3 -c "
+import json; d=json.load(open('output/step5d_deduped.json'))
+p=sum(1 for r in d['all_records'] if r['duplicate_status']=='PRIMARY')
+x=sum(1 for r in d['all_records'] if r['duplicate_status']=='DISCARDED')
+print(f'PRIMARY={p} DISCARDED={x} dup_rate={x/(p+x)*100:.1f}%')
+"
+```
 
-# Check what's in output folder
-ls -lh output/*.json | awk '{print $5, $9}'
+---
 
-# Test single SAHI patch (patch 19 is dense, good for testing)
+## Re-run shortcuts
+
+```bash
+# Re-run extraction only (skip Phase 1)
+rm -f output/step5a_candidates.json
 python3 stages/step5a_candidate_extraction.py \
-    --context output/drawing_context.json \
-    --api-key $GEMINI_KEY \
-    --patch 19 --debug
+  --context output/drawing_context.json --api-key $GEMINI_KEY --workers 8 --force-full-drawing
+# then Phase 3 + 4 commands above
+
+# Re-run from dedup onwards (cheapest)
+python3 stages/step5d_duplicate_resolution.py --validated output/step5c_validated.json --out output/
+python3 stages/step7_cedm_normalizer.py --final output/step5_final_output.json --context output/drawing_context.json --out output/ --project CDCI
+python3 stages/step8_confidence_router.py --cedm output/step7_cedm_output.json --context output/drawing_context.json --out output/
+
+# Re-run cloud detection only
+python3 stages/step2b_cloud_detection.py input_drawing.jpg --out output/ --api-key $GEMINI_KEY
+# inspect output/overlay_v2.jpg before running step5a
+
+# Test a single SAHI patch (debug)
+python3 stages/step5a_candidate_extraction.py \
+  --context output/drawing_context.json --api-key $GEMINI_KEY --patch 19 --debug
 ```
 
 ---
 
-## Reporting Tools
-
-### `eval_coverage.py` — did we get the ground-truth tags?
-```bash
-python3 stages/eval_coverage.py \
-    --candidates output/step5a_candidates.json \
-    --register   ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx \
-    --image      input_drawing.jpg \
-    --out        output/
-```
-Prints `FOUND x/46`, lists missing tags, and writes:
-- `output/step5a_eval_annotated_fullres.jpg` — every tag boxed (green = in register, orange = extra)
-- `output/step5a_eval_annotated.jpg` — scaled overview
-- `output/eval_coverage_report.json`
-
-Tag matching folds `10"` == `10IN` and ignores unicode dashes/quotes.
-
-### `stage_visualizer.py` — detect-vs-filter images for UI
-```bash
-python3 stages/stage_visualizer.py \
-    --candidates output/step5a_candidates.json \
-    --deduped    output/step5d_deduped.json \
-    --sow        output/sow_symbol_memory.json \
-    --image      input_drawing.jpg \
-    --out        output/stages/
-```
-Produces in `output/stages/` (each = full-res `.jpg` + `_overview.jpg` + JSON):
-
-| Image | Meaning |
-|-------|---------|
-| `5a_detection` | all detected tags (green) |
-| `sow_detected` | in-scope (green) / do-not-use (red) / unspecified (white) |
-| `sow_filtered` | after SOW filter — do-not-use tags removed |
-| `dup_detected` | duplicates kept and flagged (purple), linked to primary (green) |
-| `dup_filtered` | after duplicate filter — primaries only |
-
-`output/stages/manifest.json` lists every image, overview, count, and JSON path.
-
----
-
-## Confidence Formula (Step 8)
+## Confidence routing (step8)
 
 ```
 C_final = 0.30 × C_detect      (Gemini vision_confidence)
-        + 0.30 × C_ocr          (Tesseract OCR; falls back to model read confidence if silent)
-        + 0.15 × C_geometry     (association_confidence from step5b)
-        + 0.20 × C_validation   (ISA check scores from step5c)
-        + 0.05 × C_registry     (1.0 if in register, 0.5 if not)
+        + 0.30 × C_text          (Tesseract OCR; falls back to model read if silent)
+        + 0.15 × C_geometry      (association_confidence from step5b)
+        + 0.20 × C_validation      (ISA check scores from step5c)
+        + 0.05 × C_registry      (1.0 if in register, 0.5 if not)
 
 ≥ 0.80 → AUTO_ACCEPT
-0.55–0.80 → HUMAN_REVIEW  (P1 = validation fail, P2 = weak text, P3 = novel/scope)
+0.55–0.80 → HUMAN_REVIEW  (P1=validation fail, P2=weak text, P3=novel/scope)
 < 0.55 → AUTO_REJECT
 ```
 
 ---
 
-## What Changed in June 2026 Tuning
+## Architecture notes (June 2026)
 
-### step5a (recall 26 → 44 / 46)
-- **FULL_EXTRACTION mode:** disabled the "only extract inside revision clouds" prompt injection — it made Gemini skip valid center/edge symbols.
-- **Prompt:** now includes piping line numbers (`10IN-ETH-V061-61440X`, …); added "extract EVERY valve in a bank / both switches in a pair"; preserve the `V-` prefix.
-- **Tiling:** SAHI `768 px / 40% overlap` (was 1024 / 25%); small patches upscaled to 1024 before Gemini so tiny valves become legible.
-- **Dedup:** intra-step dedup merges only exact-same text, never sequential neighbours (`V-BV-2245` vs `2246`).
+### Active scripts — use these
 
-### step5c
-- `LINE` regex now accepts `IN` / `"` / unicode quotes & dashes.
-- Registry matching folds the inch marker (`10"` == `10IN`) and the `V-` area prefix → 39/46 register tags reconcile.
+| Script | Status |
+|--------|--------|
+| `stages/step5a_candidate_extraction.py` | **ACTIVE** extraction |
+| `stages/step3_notes_agent.py` | **ACTIVE** notes agent |
+| `stages/step2b_cloud_detection.py` | **ACTIVE** cloud detector |
+| `stages/step5a_live_annotator.py` | reference only — do not use for pipeline runs |
 
-### step5d
-- Merges only the *same* tag (exact or OCR-confusable like `0`↔`O`). The old `IoU≥0.2 merges ANY tags` rule was deleting different-but-nearby tags (e.g. `FZSC-208`/`FZSO-208` switch pair).
-- Primary selection prefers the register-matching spelling (keeps `V012`, not `VO12`).
-- Carries `validation_details` into final output so step7 can recover registry descriptions.
+### Key tuning applied
 
-### step7
-- Converts `10"` → `10IN` so piping canonical tags match Annexure-4 style.
+**step2b (cloud detection)**
+- Gemini bbox localization → per-crop morphological boundary recovery
+- Border/frame rejection (`border_filter.jpg` shows what was removed)
+- Line-artifact rejection (extent, compactness, edge-touch)
+- Stage-1 OpenCV for additional small-cloud coverage
+- Outputs outer + inner clouds in JSON; step5a uses `cloud_mask_v2.png` for gating
 
-### step8 (AUTO_ACCEPT 0% → 76.6%)
-- **Root cause fixed:** formula weighted Tesseract OCR at 0.30, but Tesseract is silent (Gemini reads text), dragging scores down. Now when OCR is silent, text-confidence falls back to model read confidence.
-- Rebalanced weights (`W_DET 0.30`, `W_REG 0.05`); `THRESHOLD_ACCEPT 0.85→0.80`, `THRESHOLD_REVIEW 0.60→0.55`.
+**step5a (extraction)**
+- No Gemini cloud prompt (Gemini guesses wrong on small patches)
+- SAHI `768 px / 40% overlap`; patches upscaled to 1024 px before Gemini
+- Cloud mask gating when `extraction_scope=CLOUD_ONLY`
+- `--force-full-drawing` bypasses cloud filter for full register recall
+- Valve-bank + switch-pair prompt; `functional_context` field for descriptions
+- Intra-step dedup: exact-same tag only (never merges sequential neighbours)
+
+**step5d (dedup)**
+- Merges same tag only (exact or OCR-confusable `0`↔`O`)
+- Fragment merge rule for split OCR tags within 300 px
+- Carries `validation_details` to step7 for registry descriptions
+
+**step7 (normalisation)**
+- Description priority: Annexure-4 registry → `functional_context` → ontology
+- `10"` → `10IN` canonical tag normalisation
 
 ---
 
-## Known Limitations
+## Known limitations
 
-- **`V-ZSC-203` / `V-ZSO-203`** — in the Annexure-4 register but **not drawn** on this sheet. Cannot be extracted from text that isn't there.
-- **SOW scope:** ~105 tags are `UNSPECIFIED` because extracted symbol-name strings don't always phrase-match ANNEXURE-2. Tightening the SOW name-matcher would reduce this.
-- The 46-tag register is sparse vs 226 detected tags — most novel tags route to HUMAN_REVIEW by design.
+- `V-ZSC-203` / `V-ZSO-203` are in Annexure-4 but **not drawn** on sheet 001 — cannot be extracted.
+- Tag-list table lives on companion sheet 002 — step6 returns 0 tags on sheet 001 (expected).
+- 46-tag register is sparse vs ~200+ detected tags — most novel tags route to HUMAN_REVIEW by design.
+- Cloud-scoped extraction (`CLOUD_ONLY`) will miss tags outside revision clouds even if they are in Annexure-4.
+- Cloud detection quality depends on drawing scan quality; always inspect `output/overlay_v2.jpg` before trusting cloud-scoped extraction.
 
 ---
 
-## What NOT to Do
+## What NOT to do
 
-- Do NOT use `step5a_live_annotator.py` for pipeline runs — use `step5a_candidate_extraction.py`
-- Do NOT use any old root-level step3 copy — use `stages/step3_notes_agent.py`
-- Do NOT delete `output/drawing_context.json` mid-pipeline — it is the shared state spine
-- Do NOT run step5a without step2 having run first (needs `raster_path` in context)
-- Do NOT skip step6 before step5c — `master_tags.json` feeds ISA validation
-- Do NOT use `--workers > 1` on free-tier Gemini keys (429 rate limit)
-- Do NOT modify `stages/step2b_cloud_detection.py` internals — cloud detector is self-contained there
+- Do NOT use `step5a_live_annotator.py` for pipeline runs
+- Do NOT delete `output/drawing_context.json` mid-pipeline
+- Do NOT run step5a before step1 (needs `raster_path` in context)
+- Do NOT skip step6 before step5c (`master_tags.json` feeds validation)
+- Do NOT use `--workers > 1` on free-tier Gemini keys (HTTP 429)
+- Do NOT compare Annexure-4 recall using cloud-scoped mode — use `--force-full-drawing`

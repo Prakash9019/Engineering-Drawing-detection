@@ -1,7 +1,7 @@
 {
   "version": "v1",
   "source_excel": "/Users/suryprakash/Downloads/cdci_extractor_final/ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx",
-  "build_timestamp": "2026-06-13T05:43:24.808749",
+  "build_timestamp": "2026-06-17T11:19:12.152404",
   "total_symbols": 132,
   "allow_count": 100,
   "block_count": 32,

@@ -140,11 +140,146 @@ def generate_sahi_patches(img: np.ndarray,
 # Revision cloud filtering
 # ═══════════════════════════════════════════════════════════════════════════════
 
+# ── Revision cloud geometry (from step2b outer_clouds_v2.json) ───────────────
+# step2b already validates every cloud (scallopedness + solidity + frame rejection),
+# so step5a must TRUST big revision clouds — the old 5% cap silently discarded the
+# large clouds (e.g. the 27%-of-sheet right cloud), so every tag inside them was
+# dropped. Only skip a near-full-image degenerate blob.
+MEGA_CLOUD_AREA_RATIO = 0.85   # skip only if a single cloud covers ≥85% of the sheet
+
+# Authoritative cloud coverage = step2b's filled mask (cloud_mask_v2.png). Set once
+# before the threaded run; read-only afterwards. When present it is the source of
+# truth for "is this point/patch inside a revision cloud", which correctly includes
+# the big clouds and avoids unreliable point-in-polygon on complex weld outlines.
+_CLOUD_MASK = None                 # np.ndarray (H×W, uint8) or None
+CLOUD_MASK_DILATE_PX = 110         # grow cloud region so tags on the boundary are kept
+                                   # (≥66px needed for TE-212/TW-212, whose cloud step2b under-traced)
+
+
+def set_cloud_mask(mask) -> None:
+    """Install the step2b cloud mask (optionally dilated) for inside-cloud tests."""
+    global _CLOUD_MASK
+    if mask is None:
+        _CLOUD_MASK = None
+        return
+    if CLOUD_MASK_DILATE_PX > 0:
+        k = cv2.getStructuringElement(
+            cv2.MORPH_ELLIPSE, (CLOUD_MASK_DILATE_PX, CLOUD_MASK_DILATE_PX))
+        mask = cv2.dilate(mask, k)
+    _CLOUD_MASK = mask
+
+
+def load_cloud_regions_from_step2b(clouds_path: str,
+                                    img_w: int, img_h: int) -> list[dict]:
+    """
+    Load revision cloud regions written by step2b.
+    Keeps polygon + bbox for every real cloud (incl. large ones); only a
+    near-full-image degenerate blob is skipped.
+    """
+    with open(clouds_path) as f:
+        cloud_data = json.load(f)
+    img_area = img_w * img_h
+    regions: list[dict] = []
+    for entry in cloud_data.get("clouds", []):
+        bbox = entry.get("bbox", [])
+        if len(bbox) != 4:
+            continue
+        cloud_area = (bbox[2] - bbox[0]) * (bbox[3] - bbox[1])
+        if cloud_area / img_area > MEGA_CLOUD_AREA_RATIO:
+            log.info("Skipping degenerate cloud #%s (%.1f%% of image)",
+                     entry.get("id", "?"), cloud_area / img_area * 100)
+            continue
+        poly = entry.get("polygon") or []
+        regions.append({
+            "id":     entry.get("id"),
+            "tag":    entry.get("tag", "outer"),
+            "x0":     bbox[0], "y0": bbox[1],
+            "x1":     bbox[2], "y1": bbox[3],
+            "polygon": poly,
+        })
+    return regions
+
+
+def build_cloud_mask_from_regions(cloud_regions: list[dict],
+                                  img_w: int, img_h: int):
+    """Rasterize cloud polygons into a filled mask (fallback when the PNG is absent)."""
+    import numpy as np
+    mask = np.zeros((img_h, img_w), dtype=np.uint8)
+    for c in cloud_regions:
+        poly = c.get("polygon")
+        if poly and len(poly) >= 3:
+            cnt = np.array(poly, dtype=np.int32).reshape(-1, 1, 2)
+            cv2.fillPoly(mask, [cnt], 255)
+        else:
+            cv2.rectangle(mask, (int(c["x0"]), int(c["y0"])),
+                          (int(c["x1"]), int(c["y1"])), 255, -1)
+    return mask
+
+
+def should_apply_cloud_filter(ctx: dict,
+                               cloud_regions: list[dict],
+                               force_full_drawing: bool = False) -> bool:
+    """
+    Decide whether step5a must keep only symbols inside step2b cloud boundaries.
+
+    Uses drawing_context from step2 (NOT project_mode — LC/GC FULL_EXTRACTION
+  is orthogonal to CLOUD_ONLY scope on revision drawings).
+    """
+    if force_full_drawing or not cloud_regions:
+        return False
+    scope = str(ctx.get("extraction_scope") or "").upper()
+    if scope == "FULL_DRAWING":
+        return False
+    if ctx.get("revision_cloud_required"):
+        return True
+    if scope in ("CLOUD_ONLY", "CLOUD_PRIORITY"):
+        return True
+    if str(ctx.get("revision_mode") or "").upper() == "CLOUD_SCOPE_MODE":
+        return True
+    return False
+
+
+def _rects_overlap(ax0, ay0, ax1, ay1, bx0, by0, bx1, by1) -> bool:
+    return ax0 < bx1 and ax1 > bx0 and ay0 < by1 and ay1 > by0
+
+
+def patch_overlaps_any_cloud(patch: dict, cloud_regions: list[dict]) -> bool:
+    """True if a SAHI patch intersects any revision cloud region."""
+    px0, py0 = patch["x_offset"], patch["y_offset"]
+    px1, py1 = patch["x1"], patch["y1"]
+    # Authoritative: any cloud pixel inside the patch (covers the big clouds too).
+    if _CLOUD_MASK is not None:
+        import numpy as np
+        h, w = _CLOUD_MASK.shape[:2]
+        sub = _CLOUD_MASK[max(0, py0):min(h, py1), max(0, px0):min(w, px1)]
+        return sub.size > 0 and bool(np.any(sub))
+    for cloud in cloud_regions:
+        if _rects_overlap(px0, py0, px1, py1,
+                          cloud["x0"], cloud["y0"], cloud["x1"], cloud["y1"]):
+            return True
+    return False
+
+
 def point_in_any_cloud(px: float, py: float,
                         cloud_regions: list[dict]) -> bool:
-    """Check if a point (global coords) falls inside any revision cloud bbox."""
+    """Check if a point (global coords) falls inside any revision cloud."""
+    import numpy as np
+    # Authoritative: step2b filled mask (dilated). Includes big clouds and is
+    # robust where point-in-polygon on a complex weld outline would not be.
+    if _CLOUD_MASK is not None:
+        h, w = _CLOUD_MASK.shape[:2]
+        ix, iy = int(round(px)), int(round(py))
+        if 0 <= iy < h and 0 <= ix < w:
+            return bool(_CLOUD_MASK[iy, ix])
+        return False
+    pt = (float(px), float(py))
     for cloud in cloud_regions:
-        if (cloud.get("x0", 0) <= px <= cloud.get("x1", 0) and
+        poly = cloud.get("polygon")
+        if poly and len(poly) >= 3:
+            cnt = np.array(poly, dtype=np.int32).reshape(-1, 1, 2)
+            if cv2.pointPolygonTest(cnt, pt, False) >= 0:
+                return True
+        elif (cloud.get("x0", 0) <= px <= cloud.get("x1", 0) and
                 cloud.get("y0", 0) <= py <= cloud.get("y1", 0)):
             return True
     return False
@@ -294,12 +429,11 @@ def _make_extraction_prompt(drawing_rules: str, ocr_tags: list[dict],
             + drawing_rules[:800] + "\n\n"
         )
 
+    # Cloud filtering is done by point_in_any_cloud() AFTER extraction.
+    # Do NOT tell Gemini about clouds — it guesses wrong on small patches.
+    # See PIPELINE_RUNBOOK: "disabled the only-extract-inside-revision-clouds
+    # prompt injection — it made Gemini skip valid center/edge symbols."
     cloud_note = ""
-    if revision_cloud_present:
-        cloud_note = (
-            "NOTE: This is a REVISION DRAWING. "
-            "Only extract symbols inside revision cloud boundaries.\n\n"
-        )
 
     return f"""You are an expert P&ID data extraction agent (ISA 5.1).
 Your ONLY function: identify engineering symbols and extract their tags.
@@ -333,6 +467,24 @@ CRITICAL — DENSE CLUSTERS (this is where tags are most often missed):
     V-ZSO-203, V-FZSC-208 with V-FZSO-208). If you see one, the other is right
     next to it — extract BOTH.
   Count the symbols you see, then make sure you returned one candidate per symbol.
+
+MULTI-LINE BUBBLE TAGS (critical — this is the #1 cause of dropped tags):
+  - An instrument bubble shows the FUNCTION letters on the TOP line and the
+    LOOP NUMBER on the BOTTOM line, stacked inside the circle. You MUST combine
+    them into ONE tag "FUNCTION-NUMBER".
+      • a bubble showing "FE" over "224"  → "FE-224"  (with unit prefix "V-FE-224")
+      • "TE" over "212"  → "TE-212";   "TW" over "212"  → "TW-212"
+      • "TIT" over "212" → "TIT-212";  "PIC" over "210" → "PIC-210"
+  - NEVER return just the function letters ("FE", "TE", "TW", "PI"): a bubble
+    ALWAYS has a loop number on the second line — read it. If you genuinely
+    cannot see a number, still report the symbol but say so in notes.
+  - Returning "TE" instead of "TE-212" makes the tag look like a 2-letter
+    fragment and it is discarded — so ALWAYS attach the number.
+
+COMPLETE LINE / TAG NUMBERS (do not truncate):
+  - Read the ENTIRE alphanumeric string including every trailing block and the
+    spec suffix. Read "2IN-GV-V273-11502X" in full, never "2IN-GV-V273-11".
+    Read "10IN-ETH-V061-61440X" in full. Long strings are still one tag.
 
 FOR EACH DETECTED SYMBOL:
   1. Identify its exact visual shape and classification.
@@ -373,6 +525,7 @@ Return ONLY a JSON object (no markdown):
       "tag_bbox":    {{"x1": 125, "y1": 82, "x2": 155, "y2": 98}},
       "vision_confidence": 0.95,
       "tag_source": "ocr|vision|both",
+      "functional_context": "what this tag connects to or controls, from context in this patch",
       "notes": ""
     }}
   ],
@@ -641,6 +794,7 @@ def process_patch_candidates(patch_result: dict,
             "ocr_confidence":     round(ocr_conf, 3),
             "vision_confidence":  float(raw.get("vision_confidence") or 0.0) if raw.get("vision_confidence") is not None else 0.0,
             "tag_source":         str(raw.get("tag_source") or "vision"),
+            "functional_context": str(raw.get("functional_context") or "").strip(),
         }
         candidates.append(candidate)
 
@@ -807,6 +961,81 @@ def _fuzzy_match(tag1: str, tag2: str) -> float:
     """Return a similarity ratio between 0.0 and 1.0 for two tags."""
     return SequenceMatcher(None, tag1, tag2).ratio()
 
+_PIPING_RE = re.compile(r'(\dIN-|\d"|GV-|ETH-|-V\d|61440|11502|C06B)', re.I)
+
+
+def _overlap_concat(a: str, b: str, min_overlap: int = 4):
+    """If a's suffix equals b's prefix (or vice-versa, ≥ min_overlap chars),
+    return the stitched string. Also handle full containment. Else None."""
+    if not a or not b:
+        return None
+    for s in range(min(len(a), len(b)), min_overlap - 1, -1):
+        if a[-s:] == b[:s]:
+            return a + b[s:]
+        if b[-s:] == a[:s]:
+            return b + a[s:]
+    if a in b:
+        return b
+    if b in a:
+        return a
+    return None
+
+
+def _stitch_split_line_numbers(candidates: list[dict]) -> list[dict]:
+    """
+    Reconstruct piping line numbers split across a SAHI patch boundary.
+
+    A long line number (e.g. 2IN-GV-V273-11502X, ~360px wide) is wider than the
+    SAHI overlap, so no single patch contains it whole — patch N reads
+    '2IN-GV-V273-11' and patch N+1 reads 'GV-V273-11502X'. Neither is complete.
+    When two piping candidates are on the same horizontal line and their texts
+    overlap-merge into a longer string, replace them with the full tag.
+    """
+    out = list(candidates)
+    changed = True
+    while changed:
+        changed = False
+        for i in range(len(out)):
+            ci = out[i]
+            ti = (ci.get("tag_text") or "").upper()
+            if not _PIPING_RE.search(ti):
+                continue
+            bi = ci.get("tag_bbox") or ci.get("symbol_bbox") or {}
+            cyi = (bi.get("y1", 0) + bi.get("y2", 0)) / 2
+            for j in range(i + 1, len(out)):
+                cj = out[j]
+                tj = (cj.get("tag_text") or "").upper()
+                if not _PIPING_RE.search(tj):
+                    continue
+                bj = cj.get("tag_bbox") or cj.get("symbol_bbox") or {}
+                cyj = (bj.get("y1", 0) + bj.get("y2", 0)) / 2
+                # same text line, horizontally near
+                if abs(cyi - cyj) > 30:
+                    continue
+                gap = max(bi.get("x1", 0), bj.get("x1", 0)) - min(bi.get("x2", 0), bj.get("x2", 0))
+                if gap > 120:
+                    continue
+                merged = _overlap_concat(ti.replace(" ", ""), tj.replace(" ", ""))
+                if merged and len(merged) > max(len(ti), len(tj)):
+                    # keep the higher-confidence record, give it the full text + union bbox
+                    base = ci if (ci.get("vision_confidence") or 0) >= (cj.get("vision_confidence") or 0) else cj
+                    base["tag_text"] = merged
+                    base["tag_bbox"] = {
+                        "x1": min(bi.get("x1", 0), bj.get("x1", 0)),
+                        "y1": min(bi.get("y1", 0), bj.get("y1", 0)),
+                        "x2": max(bi.get("x2", 0), bj.get("x2", 0)),
+                        "y2": max(bi.get("y2", 0), bj.get("y2", 0)),
+                    }
+                    base["notes"] = (base.get("notes") or "") + " [stitched across patch boundary]"
+                    out = [c for k, c in enumerate(out) if k not in (i, j)] + [base]
+                    log.info("Stitched split line number: '%s' + '%s' → '%s'", ti, tj, merged)
+                    changed = True
+                    break
+            if changed:
+                break
+    return out
+
+
 def _intra_step_dedup(candidates: list[dict]) -> list[dict]:
     """
     Merge duplicate tags resulting from SAHI patch overlap.
@@ -910,6 +1139,13 @@ def run_candidate_extraction(
         patches = priority_sort_patches(patches, H, W)
         log.info("Patches sorted centre-out (%d total)", len(patches))
 
+    # ── Cloud patch gate: only call Gemini on patches overlapping step2b clouds ─
+    patches_before_cloud_gate = len(patches)
+    if revision_cloud_present and cloud_regions:
+        patches = [p for p in patches if patch_overlaps_any_cloud(p, cloud_regions)]
+        log.info("Cloud patch gate (step2b): %d → %d patches overlap revision clouds",
+                 patches_before_cloud_gate, len(patches))
+
     # Thread-safe result accumulator
     all_candidates:    list[dict] = []
     results_lock = threading.Lock()
@@ -989,6 +1225,9 @@ def run_candidate_extraction(
              total_gemini_calls, total_skipped)
     log.info("Total candidates : %d", len(all_candidates))
 
+    # ── Stitch line numbers split across patch boundaries (before dedup) ──────
+    all_candidates = _stitch_split_line_numbers(all_candidates)
+
     # ── Intra-step dedup (IoU + Fuzzy Match) ──────────────────────────────────
     # This catches SAHI duplicates at the source before step5d sees them
     all_candidates = _intra_step_dedup(all_candidates)
@@ -1007,6 +1246,8 @@ def run_candidate_extraction(
             "gemini_calls":         total_gemini_calls,
             "patches_skipped":      total_skipped,
             "max_workers":          max_workers,
+            "revision_cloud_filter": revision_cloud_present,
+            "cloud_regions_used":   len(cloud_regions or []),
             "total_candidates":     len(all_candidates),
             "candidates":           all_candidates,
         }, f, indent=2)
@@ -1034,6 +1275,8 @@ def main():
                         help="Parallel Gemini workers (default: 8; use 1 for free-tier keys)")
     parser.add_argument("--clouds",    default=None,
                         help="Path to outer_clouds_v2.json from step2b (auto-detected if omitted)")
+    parser.add_argument("--force-full-drawing", action="store_true",
+                        help="Ignore revision clouds — extract entire drawing (debug/recall)")
     args = parser.parse_args()
 
     api_key = (args.api_key or os.environ.get("GEMINI_API_KEY")
@@ -1046,6 +1289,7 @@ def main():
     drawing_rules = ""
     cloud_regions: list = []
     revision_cloud_present = False
+    ctx: dict = {}
 
     # Load from context if provided
     if args.context:
@@ -1061,28 +1305,55 @@ def main():
             with open(ctx["rules_prompt_block_path"]) as f:
                 drawing_rules = f.read()
 
-    # ── Load cloud regions from step2b output ─────────────────────────────────
-    # Auto-detect outer_clouds_v2.json in the output directory, or use --clouds.
+    # ── Load cloud regions from step2b (outer_clouds_v2.json) ─────────────────
     clouds_path = args.clouds
+    if not clouds_path:
+        clouds_path = ctx.get("outer_clouds_v2_path")
     if not clouds_path:
         auto = os.path.join(args.out, "outer_clouds_v2.json")
         if os.path.exists(auto):
             clouds_path = auto
     if clouds_path and os.path.exists(clouds_path):
-        with open(clouds_path) as f:
-            cloud_data = json.load(f)
-        # Convert step2b "bbox": [x0,y0,x1,y1] list → {x0,y0,x1,y1} dict
-        for entry in cloud_data.get("clouds", []):
-            bbox = entry.get("bbox", [])
-            if len(bbox) == 4:
-                cloud_regions.append({"x0": bbox[0], "y0": bbox[1],
-                                      "x1": bbox[2], "y1": bbox[3]})
+        img_w = ctx.get("width_px") or 9934
+        img_h = ctx.get("height_px") or 7017
+        cloud_regions = load_cloud_regions_from_step2b(clouds_path, img_w, img_h)
+        revision_cloud_present = should_apply_cloud_filter(
+            ctx, cloud_regions, force_full_drawing=args.force_full_drawing,
+        )
+        # Install the authoritative cloud coverage mask (step2b cloud_mask_v2.png).
+        # This is what makes the BIG revision clouds count: every tag whose centre
+        # falls in the filled+dilated cloud area is kept, and every patch touching
+        # it is sent to Gemini.
+        if revision_cloud_present and cloud_regions:
+            mask_path = (ctx.get("cloud_mask_v2_path")
+                         or os.path.join(args.out, "cloud_mask_v2.png"))
+            mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE) if os.path.exists(mask_path) else None
+            if mask is None:
+                log.info("cloud_mask_v2.png not found — rasterizing mask from %d regions",
+                         len(cloud_regions))
+                mask = build_cloud_mask_from_regions(
+                    cloud_regions, ctx.get("width_px") or 9934, ctx.get("height_px") or 7017)
+            set_cloud_mask(mask)
+            import numpy as np
+            cover = float(np.count_nonzero(_CLOUD_MASK)) / _CLOUD_MASK.size * 100
+            log.info("Cloud mask installed (dilate=%dpx) — %.1f%% of sheet inside clouds",
+                     CLOUD_MASK_DILATE_PX, cover)
+
         if cloud_regions:
-            revision_cloud_present = True
-            log.info("Cloud filter ON: %d cloud regions loaded from %s",
-                     len(cloud_regions), clouds_path)
+            if revision_cloud_present:
+                log.info("Cloud filter ON (step2b): %d regions from %s | scope=%s",
+                         len(cloud_regions), clouds_path,
+                         ctx.get("extraction_scope", "?"))
+            else:
+                log.info("Cloud regions loaded (%d) but filter OFF — scope=%s project_mode=%s",
+                         len(cloud_regions),
+                         ctx.get("extraction_scope", "?"),
+                         ctx.get("project_mode", "?"))
         else:
-            log.info("Cloud file found but contains no regions — full-drawing extraction")
+            log.info("Cloud file found but no regions after mega-cloud filter")
+    elif ctx.get("revision_cloud_required"):
+        log.warning("revision_cloud_required=true but outer_clouds_v2.json not found — "
+                    "run step2b first; falling back to full-drawing extraction")
 
     if args.sow:
         with open(args.sow) as f:
@@ -1105,7 +1376,12 @@ def main():
     )
 
     print(f"\n=== Step 5A Complete ===")
-    mode = f"CLOUD_FILTER ({len(cloud_regions)} regions)" if revision_cloud_present else "FULL_DRAWING"
+    if revision_cloud_present:
+        mode = f"CLOUD_FILTER ({len(cloud_regions)} step2b regions, polygon gate)"
+    elif cloud_regions:
+        mode = f"FULL_DRAWING (step2b loaded {len(cloud_regions)} regions, filter off)"
+    else:
+        mode = "FULL_DRAWING (no step2b clouds)"
     print(f"  Mode: {mode}")
     print(f"  Candidates extracted: {len(candidates)}")
     by_cat = {}

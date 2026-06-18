@@ -205,6 +205,11 @@ def smm_should_merge(a: dict, b: dict) -> bool:
     if exact and dist <= EXACT_TAG_MERGE_DIST_PX:
         return True
 
+    # Rule 0.5: Fragment merge — one tag is a substring of the other (split OCR)
+    if len(na) >= 6 and len(nb) >= 6:
+        if (na in nb or nb in na) and dist <= 300:
+            return True
+
     # Rule 1: OCR-confusable variant of the same tag AND real spatial overlap
     # (same symbol, one patch slightly misread a character).
     if (exact or confus) and (iou_sym >= IOU_MERGE_THRESHOLD
@@ -318,10 +323,13 @@ def resolve_duplicates(candidates: list[dict]) -> list[dict]:
         primary["merged_count"] = len(merged_idxs)
 
         # Keep the PRIMARY's tag text when it is registry-confirmed; otherwise
-        # adopt the highest OCR-confidence spelling from the group.
+        # adopt the highest OCR-confidence spelling from the group, preferring
+        # the longer tag when one is a substring fragment of another.
         if not _in_registry(candidates[primary_idx]):
             best_tag  = primary.get("tag_text", "")
             best_conf = float(primary.get("ocr_confidence") or 0)
+            all_tags  = [str(candidates[m].get("tag_text") or "") for m in members]
+            all_tags  = [t for t in all_tags if t]
             for m in merged_idxs:
                 c = candidates[m]
                 c_conf = float(c.get("ocr_confidence") or 0)
@@ -329,6 +337,13 @@ def resolve_duplicates(candidates: list[dict]) -> list[dict]:
                 if c_conf > best_conf and c_tag:
                     best_tag  = c_tag
                     best_conf = c_conf
+            # Fragment merge: prefer longer tag when one is substring of another
+            na_best = _normalise_tag(best_tag)
+            for t in all_tags:
+                nt = _normalise_tag(t)
+                if len(nt) > len(na_best) and (na_best in nt or nt in na_best):
+                    best_tag = t
+                    na_best  = nt
             primary["tag_text"]       = best_tag
             primary["ocr_confidence"] = round(best_conf, 3)
 
@@ -384,6 +399,7 @@ def build_final_step5_output(deduped: list[dict]) -> list[dict]:
             "association_confidence": cand.get("association_confidence", 0.0),
             "patch_id":           cand.get("patch_id"),
             "scope_type":         cand.get("scope_type", "FULL_DRAWING"),
+            "functional_context": cand.get("functional_context", ""),
         })
     return final
 

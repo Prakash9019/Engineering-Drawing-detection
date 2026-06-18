@@ -320,10 +320,11 @@ def classify_discipline(canonical_tag: str, symbol_category: str,
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def standardise_description(symbol_name: str, canonical_tag: str,
-                              registry_entry: Optional[dict] = None) -> tuple[str, str]:
+                              registry_entry: Optional[dict] = None,
+                              functional_context: str = "") -> tuple[str, str]:
     """
     Returns (tag_description, equipment_description) in CEDM format.
-    Priority: registry lookup > ontology mapping > fallback.
+    Priority: registry lookup > functional_context > ontology mapping > fallback.
     """
     # Priority 1: registry lookup
     if registry_entry:
@@ -332,7 +333,12 @@ def standardise_description(symbol_name: str, canonical_tag: str,
         if reg_desc:
             return reg_desc.upper(), reg_equip.upper()
 
-    # Priority 2: ontology mapping
+    # Priority 2: Gemini functional_context from step5a patch extraction
+    fc = str(functional_context or "").strip()
+    if fc:
+        return fc.upper(), (symbol_name or canonical_tag).upper()
+
+    # Priority 3: ontology mapping
     name = symbol_name or ""
     for pattern, equip_desc, prefix in _ONTOLOGY:
         if pattern.search(name):
@@ -431,7 +437,8 @@ def normalise_candidate(cand: dict,
 
     # ── Step 2: Descriptions ──────────────────────────────────────────────────
     tag_description, equip_description = standardise_description(
-        symbol_name, canonical_tag, registry_entry
+        symbol_name, canonical_tag, registry_entry,
+        functional_context=str(cand.get("functional_context") or ""),
     )
 
     # ── Step 3: Discipline ────────────────────────────────────────────────────
