@@ -1,7 +1,7 @@
 # CDCI P&ID Tag Extraction Pipeline — Runbook
 
 > **Single source of truth.** All commands below are copy-paste ready.  
-> **Last updated:** June 2026 (reflects step2b border filtering, step5a cloud-mask gating, compare tool).
+> **Last updated:** June 2026 (adds step5b2 hierarchy/flow/control-loops in Phase 3 + step7 enrichment & stale-hierarchy guard; step2b border filtering, step5a cloud-mask gating, compare tool).
 
 ---
 
@@ -72,6 +72,14 @@ export SOW="ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx"
 python3 stages/step1_format_detect.py  $DRAWING --out output/ --api-key $GEMINI_KEY
 python3 stages/step2_title_block.py    --context output/drawing_context.json --api-key $GEMINI_KEY
 python3 stages/step2b_cloud_detection.py $DRAWING --out output/ --api-key $GEMINI_KEY
+
+# OPTIONAL — step2c: human review & correction of revision clouds (browser, no API).
+# Skip it and step5a falls back to step2b output automatically (pipeline still runs).
+python3 step2c_cloud_editor/step2c_cloud_editor.py \
+  --image $DRAWING --clouds output/outer_clouds_v2.json \
+  --overlay output/overlay_v2.jpg --out output/
+# edit clouds in browser → click Done → writes approved_clouds.json + cloud_mask_approved.png + overlay_approved.jpg, then exits
+
 python3 stages/step3_notes_agent.py    --context output/drawing_context.json --api-key $GEMINI_KEY
 python3 stages/step4_sow_agent.py build --excel $SOW --out output/ --skip-vision
 python3 stages/step6_table_agent.py    --context output/drawing_context.json --api-key $GEMINI_KEY
@@ -95,6 +103,17 @@ python3 stages/step5a_candidate_extraction.py \
 
 python3 stages/step5b_geometric_association.py \
   --candidates output/step5a_candidates.json --image $DRAWING --out output/
+
+# step5b2 — connectivity graph + hierarchy + flow direction (Track B) + control
+# loops (Track C). Side-branch off step5b; REQUIRED before step7 — step7 reads
+# step5b2_hierarchy.json for PARENT_EQUIP / FLOW / CONTROL_LOOP / isolation
+# enrichment. MUST be re-run whenever step5a/step5b change, or step7 silently
+# uses a STALE hierarchy (candidate_ids won't match → zero enrichment).
+# Deterministic by default; add --gemini-flow-fallback for category-D flow (~6
+# Gemini calls, cached in gemini_flow_cache.json).
+python3 stages/step5b2_hierarchy.py \
+  --associations output/step5b_associations.json --image $DRAWING --out output/
+  # optional: --gemini-flow-fallback --api-key $GEMINI_KEY
 
 python3 stages/step5c_validation_engine.py \
   --associations output/step5b_associations.json \
@@ -155,6 +174,10 @@ output/
 ├── cloud_mask_v2.png                 ← step2b filled cloud mask
 ├── border_filter.jpg                 ← step2b debug: rejected border candidates (red)
 │
+├── approved_clouds.json              ← step2c (OPTIONAL) human-approved clouds — step5a prefers this
+├── cloud_mask_approved.png           ← step2c human-approved filled mask
+├── overlay_approved.jpg              ← step2c visual verification
+│
 ├── notes_context.json                ← step3 structured notes
 ├── rules_prompt_block.txt            ← step3 rules injected into ALL Gemini prompts
 ├── sow_symbol_memory.json            ← step4 SOW scope (100 ALLOW + 32 BLOCK)
@@ -166,6 +189,8 @@ output/
 ├── step5a_eval_annotated_fullres.jpg ← eval_coverage: full-res tag boxes
 ├── step5a_eval_annotated.jpg         ← eval_coverage: scaled overview
 ├── step5b_associations.json          ← geometry: pipe/equipment links per tag
+├── step5b2_hierarchy.json            ← graph + hierarchy + flow + control_loops[] (feeds step7)
+├── gemini_flow_cache.json            ← step5b2 --gemini-flow-fallback cache (optional)
 ├── step5c_validated.json             ← ISA-5.1 + registry validation per tag
 ├── step5d_deduped.json               ← all records incl. DISCARDED duplicates
 ├── step5_final_output.json           ← PRIMARY candidates only (feeds step7/8)
@@ -198,6 +223,7 @@ output/
 | **1** | `step1_format_detect.py $DRAWING` | optional | ~10s | `drawing_context.json`, `*_enhanced_binary.png` | Detect raster/PDF, set `raster_path`, `width_px`, `height_px`, document type |
 | **2** | `step2_title_block.py --context …` | yes | ~30s | updates `drawing_context.json`, `title_block_context.json` | Read dwg no, sheet, rev, title; set `revision_mode`, `extraction_scope`, `project_mode` |
 | **2B** | `step2b_cloud_detection.py $DRAWING` | yes | ~20–60s | `outer_clouds_v2.json`, `overlay_v2.jpg`, `cloud_mask_v2.png`, `border_filter.jpg` | Gemini localizes cloud bboxes → OpenCV traces scalloped polygons; rejects drawing borders |
+| **2C** *(optional)* | `step2c_cloud_editor/step2c_cloud_editor.py --image $DRAWING --clouds output/outer_clouds_v2.json` | no (browser) | manual | `approved_clouds.json`, `cloud_mask_approved.png`, `overlay_approved.jpg` | Human reviews step2b clouds in a browser (add/delete/merge/extend/edit), approves geometry → writes approved files, then exits |
 | **3** | `step3_notes_agent.py --context …` | yes | ~1–2m | `notes_context.json`, `rules_prompt_block.txt` | Extract notes/abbreviations; build drawing-specific prompt rules |
 | **4** | `step4_sow_agent.py build --excel $SOW` | no* | ~5s | `sow_symbol_memory.json`, `sow_scope_summary.txt` | Build 100-ALLOW / 32-BLOCK symbol scope memory (*vision optional) |
 | **6** | `step6_table_agent.py --context …` | yes | ~30s | `master_tags.json`, `tables_context.json` | Find tag-list tables on drawing (may be 0 tags on sheet 001) |
@@ -210,6 +236,49 @@ Total:        43
 Overlay:      output/overlay_v2.jpg
 JSON:         output/outer_clouds_v2.json
 ```
+
+#### Step 2C — interactive cloud editor (OPTIONAL)
+
+A browser-based human-in-the-loop editor that sits **between step2b and step3**. Use it when you want a person to verify/fix the revision-cloud geometry before extraction.
+
+```bash
+python3 step2c_cloud_editor/step2c_cloud_editor.py \
+  --image $DRAWING \
+  --clouds output/outer_clouds_v2.json \
+  --overlay output/overlay_v2.jpg \
+  --out output/
+# flags: --port N (default 8765, auto-tries +10 if busy), --no-browser
+```
+
+| | |
+|--|--|
+| **Reads** | `$DRAWING`, `outer_clouds_v2.json` (step2b), optional `overlay_v2.jpg` |
+| **Writes** | `approved_clouds.json`, `cloud_mask_approved.png`, `overlay_approved.jpg` |
+
+**What success looks like:**
+- Browser opens to the editor showing every step2b *outer* cloud overlaid on the drawing.
+- You add/delete/merge/extend/edit clouds, then click **Done → Save & Exit**.
+- Terminal prints:
+  ```
+  ============================================================
+    Approved clouds saved to: output/
+      approved_clouds.json   (21 clouds)
+      cloud_mask_approved.png
+      overlay_approved.jpg
+  ============================================================
+  ```
+  and the script exits (server shuts down). The 3 files now exist in `output/`.
+- `approved_clouds.json` is in **JSON space** (`stats.image_size = [9934, 7017]`) and backward-compatible with step5a; `cloud_mask_approved.png` is grayscale (0/255) at full image resolution.
+
+**If you skip step2c (no human review):** nothing breaks. step5a's `resolve_cloud_inputs()` prefers `approved_clouds.json` only when it exists; otherwise it uses step2b's `outer_clouds_v2.json` + `cloud_mask_v2.png`. step5a logs which source it chose at startup:
+```
+Cloud source: approved (human-verified, step2c)      # step2c was run
+  OR
+Cloud source: auto-detected (step2b, no human review)  # step2c skipped
+```
+Only step5a loads cloud data; downstream stages (5b/5c/5d, eval) inherit the scope from step5a's filtered output, so no other stage needs the fallback.
+
+> **Re-running:** delete `output/approved_clouds.json` (and `cloud_mask_approved.png`) to make step5a revert to step2b's auto-detected clouds.
 
 **`drawing_context.json` fields added across Phase 1:**
 
@@ -240,7 +309,7 @@ python3 stages/step5a_candidate_extraction.py \
 
 | | |
 |--|--|
-| **Reads** | `drawing_context.json`, `outer_clouds_v2.json`, `cloud_mask_v2.png`, `sow_symbol_memory.json`, `rules_prompt_block.txt` |
+| **Reads** | `drawing_context.json`, `approved_clouds.json`+`cloud_mask_approved.png` **if present (step2c)**, else `outer_clouds_v2.json`+`cloud_mask_v2.png` (step2b), `sow_symbol_memory.json`, `rules_prompt_block.txt` |
 | **Writes** | `step5a_candidates.json`, `step5a_patches/` (with `--debug`) |
 | **API calls** | ~53 patches (cloud scope) or ~315 patches (full sheet) |
 | **Time** | ~1 min (cloud) / ~4 min (full, 8 workers) |
@@ -248,9 +317,11 @@ python3 stages/step5a_candidate_extraction.py \
 **How cloud gating works (step2b → step5a):**
 
 ```
-step2b outer_clouds_v2.json + cloud_mask_v2.png
+step2c approved_clouds.json + cloud_mask_approved.png   (preferred if step2c was run)
+  └─ else → step2b outer_clouds_v2.json + cloud_mask_v2.png
         ↓
-step5a loads cloud regions (skips single clouds ≥85% of sheet area)
+step5a loads cloud regions (skips a single cloud ≥85% of sheet area,
+        measured in JSON space via stats.image_size)
         ↓
 If extraction_scope=CLOUD_ONLY and revision_cloud_required=true:
   → only SAHI patches overlapping cloud mask are sent to Gemini
@@ -283,11 +354,14 @@ Candidates extracted: <count>
 | Step | Command | Writes | What it does |
 |------|---------|--------|--------------|
 | **5B** | `step5b_geometric_association.py` | `step5b_associations.json` | OpenCV: link tags to pipes, leader lines, equipment (`ATTACHED_TO`, `CONTAINED_WITHIN`) |
+| **5B2** | `step5b2_hierarchy.py` | `step5b2_hierarchy.json` | Connectivity graph + hierarchy + Track B flow direction + Track C control loops. **Side-branch off 5B; feeds step7 enrichment.** Optional `--gemini-flow-fallback`. |
 | **5C** | `step5c_validation_engine.py` | `step5c_validated.json` | ISA-5.1 regex validation + Annexure-4 registry lookup; adds `validation_details` |
 | **5D** | `step5d_duplicate_resolution.py` | `step5d_deduped.json`, `step5_final_output.json` | Recall-safe dedup: merges same tag from overlapping patches only; `step5_final_output.json` = PRIMARY only |
 
 **Candidate count shrinks through Phase 3** (example full-sheet run):
 `step5a: 239` → `step5d PRIMARY: ~198` (duplicates discarded)
+
+> ⚠️ **step5b2 must be re-run on every fresh extraction.** step7 reads `step5b2_hierarchy.json` for connectivity enrichment (`PARENT_EQUIP` / `FLOW` / `CONTROL_LOOP` / isolation). It joins by `candidate_id`, which changes whenever step5a/5b re-run. A stale hierarchy → **0 matches → silent loss of all enrichment** (step7 now logs a `STALE hierarchy` warning when this happens).
 
 ---
 

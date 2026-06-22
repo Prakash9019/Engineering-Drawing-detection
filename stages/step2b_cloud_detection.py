@@ -25,6 +25,7 @@ Usage:
 """
 
 import argparse
+import hashlib
 import json
 import logging
 import os
@@ -40,6 +41,9 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 # ── Detection parameters ──────────────────────────────────────────────────────
 GEMINI_MODEL          = "gemini-3.1-pro-preview"
+GEMINI_TEMPERATURE    = 0.0           # deterministic decoding (best-effort)
+GEMINI_SEED           = 42            # fixed seed for reproducible sampling
+GEMINI_CACHE_NAME     = "gemini_cloud_cache.json"  # content-hash response cache
 GEMINI_MAX_SCALE      = 3072          # max longest side when sending to Gemini
 SNAP_PAD              = 60            # px to pad around Gemini bbox before crop
 MORPH_CLOSE_K         = 13            # kernel size — bridges junction gaps 5–50px
@@ -462,6 +466,10 @@ def _gemini_call(img_bgr: np.ndarray, api_key: str, retries: int = 2) -> List[di
                     gtypes.Part.from_bytes(data=img_bytes, mime_type="image/jpeg"),
                     _GEMINI_PROMPT,
                 ],
+                config=gtypes.GenerateContentConfig(
+                    temperature=GEMINI_TEMPERATURE,
+                    seed=GEMINI_SEED,
+                ),
             )
             parsed = json.loads(_strip_fences(resp.text))
             if parsed:
@@ -479,7 +487,10 @@ def _gemini_call(img_bgr: np.ndarray, api_key: str, retries: int = 2) -> List[di
             genai_legacy.configure(api_key=api_key)
             model = genai_legacy.GenerativeModel(GEMINI_MODEL)
             pil_img = PIL.Image.open(io.BytesIO(img_bytes))
-            resp = model.generate_content([pil_img, _GEMINI_PROMPT])
+            resp = model.generate_content(
+                [pil_img, _GEMINI_PROMPT],
+                generation_config={"temperature": GEMINI_TEMPERATURE},
+            )
             parsed = json.loads(_strip_fences(resp.text))
             if parsed:
                 return parsed
@@ -495,10 +506,54 @@ def _gemini_call(img_bgr: np.ndarray, api_key: str, retries: int = 2) -> List[di
     return []
 
 
-def locate_with_gemini(img_bgr: np.ndarray, api_key: str) -> List[dict]:
+def _cache_key(img_bytes: bytes) -> str:
+    """Stable key over the exact bytes sent + model + prompt + decode params.
+
+    Identical image + identical request → identical key → cache hit, so a
+    re-run reuses the previous Gemini answer instead of sampling a new
+    (different) one. The model/prompt/seed are folded in so changing any of
+    them correctly invalidates the cache.
+    """
+    h = hashlib.sha256()
+    h.update(img_bytes)
+    h.update(GEMINI_MODEL.encode())
+    h.update(_GEMINI_PROMPT.encode())
+    h.update(f"t={GEMINI_TEMPERATURE};seed={GEMINI_SEED}".encode())
+    return h.hexdigest()
+
+
+def _load_cache(cache_path: Optional[str]) -> dict:
+    if cache_path and os.path.exists(cache_path):
+        try:
+            with open(cache_path) as f:
+                return json.load(f)
+        except Exception as e:
+            log.warning("Could not read Gemini cache %s: %s", cache_path, e)
+    return {}
+
+
+def _save_cache(cache_path: Optional[str], cache: dict) -> None:
+    if not cache_path:
+        return
+    try:
+        with open(cache_path, "w") as f:
+            json.dump(cache, f)
+    except Exception as e:
+        log.warning("Could not write Gemini cache %s: %s", cache_path, e)
+
+
+def locate_with_gemini(img_bgr: np.ndarray, api_key: str,
+                       cache_path: Optional[str] = None,
+                       use_cache: bool = True) -> List[dict]:
     """
     Scale image to max GEMINI_MAX_SCALE, call Gemini, map coords back to orig.
     Returns list of {x0, y0, x1, y1, confidence} in original pixel coords.
+
+    A content-hash cache makes re-runs on an unchanged image deterministic:
+    the raw Gemini response is keyed by the exact bytes sent. On a hit, the API
+    is not called at all, so the output is bit-for-bit identical to the prior
+    run. This is the hard guarantee — temperature=0/seed reduce, but do not
+    eliminate, Gemini's run-to-run variation.
     """
     H, W = img_bgr.shape[:2]
     scale = min(1.0, GEMINI_MAX_SCALE / max(H, W))
@@ -507,7 +562,22 @@ def locate_with_gemini(img_bgr: np.ndarray, api_key: str) -> List[dict]:
     else:
         send_img = img_bgr
 
-    raw = _gemini_call(send_img, api_key)
+    # Encode once so the cache key matches the exact bytes that would be sent.
+    ok, buf = cv2.imencode(".jpg", send_img, [cv2.IMWRITE_JPEG_QUALITY, 90])
+    key = _cache_key(buf.tobytes()) if ok else None
+
+    cache = _load_cache(cache_path) if use_cache else {}
+    if use_cache and key and key in cache:
+        raw = cache[key]
+        log.info("Gemini cache HIT (%s…) — %d cached bboxes, no API call",
+                 key[:12], len(raw))
+    else:
+        raw = _gemini_call(send_img, api_key)
+        if use_cache and key and raw:
+            cache[key] = raw
+            _save_cache(cache_path, cache)
+            log.info("Gemini cache MISS — stored %d bboxes under %s…",
+                     len(raw), key[:12])
     if not raw:
         return []
 
@@ -786,13 +856,15 @@ def polys_to_json(polys: List[dict]) -> list:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def detect_all(img_path: str, api_key: Optional[str] = None,
-               out_dir: str = "output_v2", debug: bool = False) -> dict:
+               out_dir: str = "output_v2", debug: bool = False,
+               use_cache: bool = True) -> dict:
     """
     Full pipeline. Returns dict with outer_count, inner_count, total_count, output files.
     """
     out_path = Path(out_dir)
     out_path.mkdir(parents=True, exist_ok=True)
     debug_dir = out_path / "debug_crops" if debug else None
+    cache_path = str(out_path / GEMINI_CACHE_NAME)
 
     img_bgr = cv2.imread(img_path)
     if img_bgr is None:
@@ -814,7 +886,8 @@ def detect_all(img_path: str, api_key: Optional[str] = None,
     bboxes = []
     if api_key:
         try:
-            bboxes = locate_with_gemini(img_bgr, api_key)
+            bboxes = locate_with_gemini(img_bgr, api_key,
+                                        cache_path=cache_path, use_cache=use_cache)
         except Exception as e:
             log.warning("Gemini localization error: %s — using fallback", e)
 
@@ -919,7 +992,17 @@ def main():
     parser.add_argument("--debug", action="store_true", help="Save per-crop debug images")
     parser.add_argument("--no-gemini", action="store_true", help="Skip Gemini, use deterministic only")
     parser.add_argument("--api-key", help="Gemini API key (overrides env)")
+    parser.add_argument("--no-cache", action="store_true",
+                        help="Bypass the Gemini response cache (force a fresh API call)")
+    parser.add_argument("--refresh-cache", action="store_true",
+                        help="Delete any cached Gemini response before running")
     args = parser.parse_args()
+
+    if args.refresh_cache:
+        cp = Path(args.out) / GEMINI_CACHE_NAME
+        if cp.exists():
+            cp.unlink()
+            log.info("Removed Gemini cache: %s", cp)
 
     api_key = None
     if not args.no_gemini:
@@ -929,7 +1012,8 @@ def main():
         if not api_key:
             log.warning("No GEMINI_API_KEY found — using deterministic fallback")
 
-    result = detect_all(args.image, api_key=api_key, out_dir=args.out, debug=args.debug)
+    result = detect_all(args.image, api_key=api_key, out_dir=args.out, debug=args.debug,
+                        use_cache=not args.no_cache)
     print(f"\n=== Detection complete ===")
     print(f"  Outer clouds: {result['outer_count']}")
     print(f"  Inner clouds: {result['inner_count']}")

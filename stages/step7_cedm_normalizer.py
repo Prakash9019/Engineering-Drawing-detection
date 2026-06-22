@@ -418,11 +418,17 @@ def _extract_validation_confidence(validation_details: list) -> float:
 
 def normalise_candidate(cand: dict,
                          drawing_meta: dict,
-                         project_id: str) -> dict:
+                         project_id: str,
+                         connectivity: Optional[dict] = None) -> dict:
     """
     Apply full CEDM normalisation to a single candidate record.
     Returns an enriched record with all 15 Annexure-4 fields.
+
+    `connectivity` is the optional per-candidate dict from
+    load_connectivity_map() (step5b2_hierarchy.json). When absent, no
+    connectivity fields/remarks are added — behaviour is unchanged.
     """
+    conn = connectivity or {}
     raw_tag            = str(cand.get("tag_text") or "")
     symbol_name        = str(cand.get("symbol_name") or "")
     symbol_category    = str(cand.get("symbol_category") or "")
@@ -482,6 +488,23 @@ def normalise_candidate(cand: dict,
     if scope_type == "REVISION_CLOUD":
         remarks_parts.append("WITHIN_REVISION_CLOUD")
 
+    # ── Connectivity (step5b2 hierarchy) ──────────────────────────────────────
+    cinfo = conn.get(cand.get("candidate_id", ""), {})
+    parent_equip    = cinfo.get("parent_equipment") or cinfo.get("connected_equipment") or ""
+    is_isolated     = bool(cinfo.get("is_isolated", False))
+    connected_lines = int(cinfo.get("connected_lines", 0))
+    flow_direction  = cinfo.get("flow_direction", "")
+    flow_evidence   = cinfo.get("flow_evidence", "")
+    control_loop    = cinfo.get("control_loop", "")
+    if parent_equip:
+        remarks_parts.append(f"PARENT_EQUIP: {parent_equip}")
+    if is_isolated:
+        remarks_parts.append("ISOLATED_DETECTION")
+    if flow_direction:
+        remarks_parts.append(f"FLOW: {flow_direction}")
+    if control_loop:
+        remarks_parts.append(f"CONTROL_LOOP: {control_loop}")
+
     # ── Confidence signal (C_val) ─────────────────────────────────────────────
     c_val = _extract_validation_confidence(validation_details)
     if not registry_entry:
@@ -527,8 +550,159 @@ def normalise_candidate(cand: dict,
         "_c_reg":               c_reg,
         "_patch_id":            cand.get("patch_id"),
         "_scope_type":          scope_type,
+
+        # --- Connectivity provenance (from step5b2_hierarchy.json, step8 reads these) ---
+        "_hier_is_isolated":      is_isolated,
+        "_hier_parent_equipment": parent_equip,
+        "_hier_connected_lines":  connected_lines,
+        "_hier_flow_direction":   flow_direction,
+        "_hier_flow_evidence":    flow_evidence,
+        "_hier_control_loop":     control_loop,
     }
     return cedm
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Connectivity / hierarchy loader  (step5b2_hierarchy.json — OPTIONAL)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def load_connectivity_map(out_dir: str,
+                          hierarchy_path: Optional[str] = None) -> dict:
+    """
+    Read step5b2_hierarchy.json (if present) and return a per-candidate
+    connectivity summary keyed by candidate_id:
+
+        { candidate_id: {
+            "is_isolated":         bool,   # no graph edge to any pipeline/equipment
+            "parent_equipment":    str,    # tag of nearest equipment ancestor ('' if none)
+            "connected_equipment": str,    # tag of directly-bound equipment ('' if none)
+            "connected_lines":     int,    # # of pipelines this candidate links to
+            "flow_direction":      str,    # 'upstream'|'downstream'|'' (relative to candidate)
+            "flow_evidence":       str,    # how the pipeline direction was determined ('' if none)
+            "control_loop":        str,    # Track C control-loop id ('' if none / over-merge cluster)
+        } }
+
+    Flow direction is read from the candidate's connected pipeline in
+    step5b2_hierarchy.json (Track B). For the connected pipeline whose
+    inlet/outlet endpoint the candidate sits nearest:
+        candidate near OUTLET  -> flow goes TO it     -> 'downstream'
+        candidate near INLET   -> flow comes FROM it  -> 'upstream'
+    Only set when the pipeline direction is known (!= 'unknown') and the
+    evidence is real (!= 'none'). All 51 directed pipelines qualify —
+    including equipment_convention and topology_dead_end.
+
+    This file is produced by step5b2_hierarchy.py, a side-branch post-processor
+    off step5b. It is OPTIONAL: if absent, step7 behaves exactly as before and
+    returns an empty map (all lookups fall back to neutral defaults).
+    """
+    path = hierarchy_path or str(Path(out_dir) / "step5b2_hierarchy.json")
+    if not Path(path).exists():
+        log.info("No step5b2_hierarchy.json — skipping connectivity enrichment")
+        return {}
+
+    with open(path) as f:
+        H = json.load(f)
+
+    hier  = H.get("hierarchy", [])
+    enr   = {e["candidate_id"]: e for e in H.get("enriched_candidates", [])}
+    graph = H.get("graph", {})
+
+    # id → (kind, tag, bbox) for resolving ancestor / connected node ids
+    id_kind = {n["node_id"]: n.get("kind", "")      for n in graph.get("nodes", [])}
+    id_tag  = {n["node_id"]: n.get("tag_text", "")  for n in graph.get("nodes", [])}
+    id_bbox = {n["node_id"]: n.get("bbox", {})      for n in graph.get("nodes", [])}
+
+    # pipeline_id → flow + endpoints (Track B direction)
+    pl_by_id = {p["pipeline_id"]: p for p in H.get("pipelines", [])}
+
+    # candidate_id → control-loop id (Track C, valid loops only — size-capped;
+    # over-merge clusters are NOT loops and are intentionally excluded)
+    node_to_loop = {}
+    for lp in H.get("control_loops", []):
+        for mid in lp.get("member_ids", []):
+            node_to_loop[mid] = lp["loop_id"]
+
+    def _center(bb):
+        if not bb:
+            return None
+        return ((bb["x1"] + bb["x2"]) / 2.0, (bb["y1"] + bb["y2"]) / 2.0)
+
+    def _dist(a, b):
+        return ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2) ** 0.5
+
+    # candidate → set of pipelines it links to (MONITORS / CONNECTED_TO edges)
+    from collections import defaultdict
+    cand_lines: dict = defaultdict(set)
+    for e in graph.get("edges", []):
+        f_id, t_id = e.get("from"), e.get("to")
+        kf, kt = id_kind.get(f_id), id_kind.get(t_id)
+        if kf == "pipeline" and kt in ("instrument", "valve", "piping", "equipment"):
+            cand_lines[t_id].add(f_id)
+        elif kt == "pipeline" and kf in ("instrument", "valve", "piping", "equipment"):
+            cand_lines[f_id].add(t_id)
+
+    conn: dict = {}
+    for h in hier:
+        cid = h["node_id"]
+        # nearest equipment ancestor (excluding the node itself)
+        parent_equip = ""
+        for anc in h.get("ancestor_path", []):
+            if anc != cid and id_kind.get(anc) == "equipment":
+                parent_equip = id_tag.get(anc, "")
+                break
+        # directly-bound equipment (enriched connected_equipment is a candidate id).
+        # Only trust it when the resolved node is actually equipment-kind — step5b's
+        # binding can point at a size label or instrument, which is not a parent.
+        ce_id = (enr.get(cid, {}) or {}).get("connected_equipment", "")
+        connected_equip = (id_tag.get(ce_id, "")
+                           if ce_id and id_kind.get(ce_id) == "equipment" else "")
+
+        # Flow direction (Track B): among the candidate's connected pipelines with
+        # a KNOWN direction, pick the one whose inlet/outlet endpoint the candidate
+        # is nearest, then label upstream/downstream relative to the candidate.
+        flow_direction = ""
+        flow_evidence  = ""
+        cc = _center(id_bbox.get(cid, {}))
+        if cc is not None:
+            best = None   # (dist_to_nearest_endpoint, direction, evidence)
+            for pid in cand_lines.get(cid, ()):
+                p = pl_by_id.get(pid)
+                if not p:
+                    continue
+                fl = p.get("flow", {}) or {}
+                d, ev = fl.get("direction"), fl.get("evidence")
+                if d in (None, "unknown") or ev in (None, "none"):
+                    continue
+                ip, op = p.get("inlet_point"), p.get("outlet_point")
+                if not ip or not op:
+                    continue
+                di, do = _dist(cc, ip), _dist(cc, op)
+                # near OUTLET => flow goes TO candidate => downstream; else upstream
+                direction = "downstream" if do <= di else "upstream"
+                dmin = min(di, do)
+                if best is None or dmin < best[0]:
+                    best = (dmin, direction, ev)
+            if best is not None:
+                flow_direction, flow_evidence = best[1], best[2]
+
+        conn[cid] = {
+            "is_isolated":         bool(h.get("is_isolated", False)),
+            "parent_equipment":    parent_equip,
+            "connected_equipment": connected_equip,
+            "connected_lines":     len(cand_lines.get(cid, ())),
+            "flow_direction":      flow_direction,
+            "flow_evidence":       flow_evidence,
+            "control_loop":        node_to_loop.get(cid, ""),
+        }
+
+    n_iso  = sum(1 for v in conn.values() if v["is_isolated"])
+    n_eq   = sum(1 for v in conn.values() if v["parent_equipment"] or v["connected_equipment"])
+    n_flow = sum(1 for v in conn.values() if v["flow_direction"])
+    n_loop = sum(1 for v in conn.values() if v["control_loop"])
+    log.info("Connectivity map: %d candidates (%d isolated, %d with equipment link, "
+             "%d with flow direction, %d in a control loop)",
+             len(conn), n_iso, n_eq, n_flow, n_loop)
+    return conn
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -600,6 +774,7 @@ def run_cedm_normalizer(
     out_dir:             str,
     drawing_context_path:Optional[str] = None,
     project_id:          str           = "CDCI",
+    hierarchy_path:      Optional[str] = None,
 ) -> list[dict]:
 
     out = Path(out_dir)
@@ -621,12 +796,27 @@ def run_cedm_normalizer(
     log.info("Drawing: %s  Sht=%s  Rev=%s",
              meta["drawing_number"], meta["sheet_number"], meta["revision_code"])
 
+    # Load optional connectivity map (step5b2_hierarchy.json)
+    connectivity = load_connectivity_map(out_dir, hierarchy_path)
+
+    # Staleness guard: if a hierarchy was loaded but almost none of the current
+    # candidates' ids appear in it, the hierarchy is from a PRIOR extraction
+    # (step5a/5b re-ran → new candidate_ids). Enrichment would silently be ~0.
+    if connectivity:
+        matched = sum(1 for c in candidates
+                      if c.get("candidate_id") in connectivity)
+        if candidates and matched / len(candidates) < 0.5:
+            log.warning("STALE hierarchy: only %d/%d candidates match "
+                        "step5b2_hierarchy.json — connectivity enrichment will be "
+                        "near-empty. Re-run step5b2_hierarchy.py on the current "
+                        "step5b_associations.json.", matched, len(candidates))
+
     # Normalise all candidates
     cedm_records: list[dict] = []
     transform_counts: dict[str, int] = {}
 
     for i, cand in enumerate(candidates):
-        record = normalise_candidate(cand, meta, project_id)
+        record = normalise_candidate(cand, meta, project_id, connectivity)
         record["SLNO"] = i + 1
         cedm_records.append(record)
 
@@ -690,6 +880,7 @@ def main():
     parser.add_argument("--context",  help="drawing_context.json")
     parser.add_argument("--out",      default="output")
     parser.add_argument("--project",  default="CDCI", help="Project ID for canonical hash")
+    parser.add_argument("--hierarchy", help="step5b2_hierarchy.json (optional connectivity enrichment)")
     args = parser.parse_args()
 
     final_path = args.final or str(Path(args.out) / "step5_final_output.json")
@@ -704,6 +895,7 @@ def main():
         out_dir=args.out,
         drawing_context_path=args.context,
         project_id=args.project,
+        hierarchy_path=args.hierarchy,
     )
 
     print(f"\n=== Step 7 Complete — CEDM Normalisation ===")

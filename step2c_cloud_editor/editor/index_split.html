@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revision Cloud Editor — Step 2C</title>
+<style>
+  :root {
+    --bg: #14151a;
+    --panel: #1b1d24;
+    --panel-2: #22252e;
+    --border: #2c303a;
+    --text: #e4e6eb;
+    --muted: #8a90a0;
+    --accent: #e94560;
+    --blue: #4fc3f7;
+    --green: #2ecc71;
+    --orange: #f39c12;
+    --purple: #9b59b6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--text);
+    display: flex; flex-direction: column; height: 100vh; overflow: hidden;
+    font-size: 13px;
+  }
+
+  /* Header */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--panel); border-bottom: 1px solid var(--border);
+    padding: 8px 14px; flex-shrink: 0;
+  }
+  .header h1 { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: .3px; }
+  .header .sub { font-size: 11px; color: var(--muted); margin-left: 10px; }
+  .header-right { display: flex; gap: 8px; align-items: center; }
+  .stats { display: flex; gap: 14px; margin-right: 8px; }
+  .stat { font-size: 12px; color: var(--muted); }
+  .stat b { color: var(--blue); font-variant-numeric: tabular-nums; }
+  .stat.added b { color: var(--green); }
+  .stat.del b { color: var(--accent); }
+  .stat.mod b { color: var(--orange); }
+
+  /* Buttons */
+  .btn {
+    padding: 6px 13px; border: 1px solid var(--border); border-radius: 7px;
+    background: var(--panel-2); color: var(--text); cursor: pointer;
+    font-size: 12px; font-weight: 500; transition: all .13s; white-space: nowrap;
+  }
+  .btn:hover { background: #2c303a; border-color: var(--blue); }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #c93651; border-color: #c93651; }
+  .btn-success { background: var(--green); border-color: var(--green); color: #fff; }
+  .btn-success:hover { background: #27ae60; border-color: #27ae60; }
+
+  /* Main */
+  .main { display: flex; flex: 1; overflow: hidden; }
+
+  /* Toolbar */
+  .toolbar {
+    width: 50px; background: var(--panel); border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: center; padding: 8px 0; gap: 3px;
+    flex-shrink: 0;
+  }
+  .tool {
+    position: relative; width: 38px; height: 38px; border: 1px solid transparent;
+    border-radius: 8px; background: transparent; color: var(--muted);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 17px; transition: all .12s;
+  }
+  .tool:hover { background: var(--panel-2); color: var(--text); }
+  .tool.active { background: var(--accent); color: #fff; }
+  .tool .key { position: absolute; bottom: 1px; right: 3px; font-size: 8px; opacity: .6; }
+  .tool[data-tip]:hover::after {
+    content: attr(data-tip); position: absolute; left: 46px; top: 50%;
+    transform: translateY(-50%); background: #000; color: #fff; padding: 5px 9px;
+    border-radius: 5px; font-size: 11px; white-space: nowrap; z-index: 999;
+    pointer-events: none;
+  }
+  .tool-sep { width: 30px; height: 1px; background: var(--border); margin: 5px 0; }
+
+  /* Canvas */
+  .canvas-wrap { flex: 1; position: relative; overflow: hidden; background: #0c0d11; }
+  #canvas { position: absolute; top: 0; left: 0; display: block; }
+  .hud {
+    position: absolute; top: 10px; left: 10px; background: rgba(20,21,26,.92);
+    border: 1px solid var(--border); border-radius: 8px; padding: 7px 11px;
+    font-size: 11px; color: var(--muted); z-index: 5; max-width: 360px; line-height: 1.5;
+  }
+  .hud b { color: var(--blue); }
+  .zoombar {
+    position: absolute; bottom: 12px; right: 12px; display: flex; gap: 4px; z-index: 5;
+  }
+  .zoombar button {
+    width: 32px; height: 32px; border: 1px solid var(--border); border-radius: 7px;
+    background: rgba(27,29,36,.95); color: var(--text); cursor: pointer; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .zoombar button:hover { border-color: var(--blue); }
+  .zoombar .lvl { width: auto; padding: 0 10px; font-size: 11px; cursor: default; }
+
+  /* Sidebar */
+  .sidebar {
+    width: 290px; background: var(--panel); border-left: 1px solid var(--border);
+    display: flex; flex-direction: column; flex-shrink: 0; overflow: hidden;
+  }
+  .sb-head {
+    padding: 10px 12px; border-bottom: 1px solid var(--border);
+    font-size: 13px; font-weight: 600; display: flex; justify-content: space-between;
+    align-items: center;
+  }
+  .sb-head .mini { padding: 3px 8px; font-size: 11px; }
+  .cloud-list { flex: 1; overflow-y: auto; padding: 4px; }
+  .ci {
+    padding: 7px 10px; margin: 2px 0; border-radius: 7px; cursor: pointer;
+    border: 1px solid transparent; display: flex; justify-content: space-between;
+    align-items: center; transition: all .1s;
+  }
+  .ci:hover { background: var(--panel-2); }
+  .ci.sel { background: #2a1d24; border-color: var(--accent); }
+  .ci.mergesel { background: #2a2436; border-color: var(--purple); }
+  .ci-left { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .dot.auto { background: var(--blue); }
+  .dot.added { background: var(--green); }
+  .dot.mod { background: var(--orange); }
+  .dot.merged { background: var(--purple); }
+  .ci-id { font-weight: 600; }
+  .ci-src { font-size: 10px; color: var(--muted); }
+  .ci-del {
+    width: 22px; height: 22px; border: none; background: transparent; color: var(--accent);
+    cursor: pointer; font-size: 15px; border-radius: 4px; opacity: 0;
+    display: flex; align-items: center; justify-content: center; transition: opacity .1s;
+  }
+  .ci:hover .ci-del { opacity: 1; }
+  .ci-del:hover { background: var(--accent); color: #fff; }
+  .ci.deleted { opacity: .45; }
+  .ci.deleted .ci-id { text-decoration: line-through; }
+
+  .sb-section {
+    padding: 6px 12px; font-size: 11px; color: var(--muted); text-transform: uppercase;
+    letter-spacing: .5px; border-top: 1px solid var(--border); display: flex;
+    justify-content: space-between; align-items: center;
+  }
+
+  .info {
+    border-top: 1px solid var(--border); padding: 11px 12px; background: var(--panel-2);
+    font-size: 12px;
+  }
+  .info .row { display: flex; justify-content: space-between; margin: 3px 0; }
+  .info .row span:first-child { color: var(--muted); }
+  .info .actions { display: flex; gap: 6px; margin-top: 9px; }
+  .info .actions .btn { flex: 1; padding: 5px; font-size: 11px; text-align: center; }
+  .info-empty { color: var(--muted); font-style: italic; text-align: center; padding: 16px 0; }
+
+  /* Status bar */
+  .statusbar {
+    background: var(--panel); border-top: 1px solid var(--border);
+    padding: 6px 14px; font-size: 11px; color: var(--muted);
+    display: flex; justify-content: space-between; flex-shrink: 0;
+  }
+  .statusbar .pos { font-variant-numeric: tabular-nums; }
+
+  /* Modal */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    padding: 22px; width: 90%; max-width: 540px; max-height: 86vh; overflow-y: auto;
+  }
+  .modal h2 { font-size: 16px; color: var(--accent); margin-bottom: 12px; }
+  .modal p { font-size: 13px; color: var(--text); margin-bottom: 10px; line-height: 1.5; }
+  .modal .summary { background: var(--panel-2); border-radius: 8px; padding: 12px; margin: 12px 0; }
+  .modal .summary .row { display: flex; justify-content: space-between; margin: 4px 0; font-size: 12px; }
+  .modal .summary .row span:first-child { color: var(--muted); }
+  .modal .warn { background: #3a2a14; border: 1px solid var(--orange); border-radius: 8px;
+    padding: 10px; margin: 10px 0; font-size: 12px; color: #ffd591; }
+  .modal .err { background: #3a1418; border: 1px solid var(--accent); border-radius: 8px;
+    padding: 10px; margin: 10px 0; font-size: 12px; color: #ffb3bd; }
+  .modal textarea {
+    width: 100%; height: 180px; background: #0c0d11; border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text); font-family: ui-monospace, monospace;
+    font-size: 11px; padding: 10px; resize: vertical; margin-top: 8px;
+  }
+  .modal .btn-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div style="display:flex;align-items:center;">
+      <h1>⊕ Cloud Editor</h1>
+      <span class="sub">Step 2C · Human-in-the-loop correction</span>
+    </div>
+    <div class="header-right">
+      <div class="stats">
+        <span class="stat">Clouds <b id="st-count">0</b></span>
+        <span class="stat added">Added <b id="st-added">0</b></span>
+        <span class="stat mod">Mod <b id="st-mod">0</b></span>
+        <span class="stat del">Del <b id="st-del">0</b></span>
+      </div>
+      <button class="btn" id="btn-undo" onclick="EDITOR.undo()" disabled>↶ Undo</button>
+      <button class="btn" id="btn-redo" onclick="EDITOR.redo()" disabled>↷ Redo</button>
+      <button class="btn" onclick="EDITOR.reset()">Reset</button>
+      <button class="btn btn-success" onclick="EDITOR.showDone()">✓ Done</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="toolbar">
+      <button class="tool active" id="tool-pan" data-tip="Pan (1)" onclick="EDITOR.setTool('pan')">✋<span class="key">1</span></button>
+      <button class="tool" id="tool-select" data-tip="Select (2)" onclick="EDITOR.setTool('select')">☞<span class="key">2</span></button>
+      <div class="tool-sep"></div>
+      <button class="tool" id="tool-add_rect" data-tip="Add Rectangle → Cloud (3)" onclick="EDITOR.setTool('add_rect')">▭<span class="key">3</span></button>
+      <button class="tool" id="tool-add_lasso" data-tip="Add Lasso → Cloud (4)" onclick="EDITOR.setTool('add_lasso')">✎<span class="key">4</span></button>
+      <button class="tool" id="tool-add_poly" data-tip="Add Polygon (5)" onclick="EDITOR.setTool('add_poly')">⬠<span class="key">5</span></button>
+      <div class="tool-sep"></div>
+      <button class="tool" id="tool-edit" data-tip="Edit / Pull Boundary (6)" onclick="EDITOR.setTool('edit')">↔<span class="key">6</span></button>
+      <button class="tool" id="tool-merge" data-tip="Merge Clouds (7)" onclick="EDITOR.setTool('merge')">⊕<span class="key">7</span></button>
+      <button class="tool" id="tool-extend" data-tip="Extend Cloud (8)" onclick="EDITOR.setTool('extend')">⤢<span class="key">8</span></button>
+      <div class="tool-sep"></div>
+      <button class="tool" id="tool-remove_poly" data-tip="Remove Region − draw area to subtract (R)" onclick="EDITOR.setTool('remove_poly')">⊟<span class="key">R</span></button>
+      <button class="tool" id="tool-erase" data-tip="Eraser — remove region (E)" onclick="EDITOR.setTool('erase')">⌫<span class="key">E</span></button>
+      <button class="tool" id="tool-cut" data-tip="Cut — slice off a tail (X)" onclick="EDITOR.setTool('cut')">✂<span class="key">X</span></button>
+      <div class="tool-sep"></div>
+      <button class="tool" id="tool-delete" data-tip="Delete (9)" onclick="EDITOR.setTool('delete')">🗑<span class="key">9</span></button>
+      <div class="tool-sep"></div>
+      <button class="tool" data-tip="Fit (F)" onclick="EDITOR.fitToView()">⊡</button>
+      <button class="tool" id="tool-overlay" data-tip="Toggle Overlay (O)" onclick="EDITOR.toggleOverlay()">👁</button>
+    </div>
+
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="canvas"></canvas>
+      <div class="hud" id="hud"><b>Pan:</b> drag · <b>Zoom:</b> scroll · <b>Select:</b> press 2</div>
+      <div class="zoombar">
+        <button onclick="EDITOR.zoomOut()">−</button>
+        <button class="lvl" id="zoomLvl">100%</button>
+        <button onclick="EDITOR.zoomIn()">+</button>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="sb-head">
+        <span>Clouds (<span id="sb-count">0</span>)</span>
+        <button class="btn mini" onclick="EDITOR.toggleAllVisible()">Hide/Show</button>
+      </div>
+      <div class="cloud-list" id="cloudList"></div>
+      <div id="mergePanel" style="display:none;padding:8px 12px;border-top:1px solid var(--border);">
+        <button class="btn btn-primary" style="width:100%" onclick="EDITOR.executeMerge()">
+          Merge Selected (<span id="mergeCount">0</span>)
+        </button>
+      </div>
+      <div class="info" id="infoPanel">
+        <div class="info-empty">No cloud selected</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="statusbar">
+    <span id="statusText">Loading…</span>
+    <span class="pos" id="cursorPos">x: 0, y: 0</span>
+  </div>
+
+  <!-- Done modal -->
+  <div class="overlay" id="doneModal" style="display:none;">
+    <div class="modal">
+      <h2>✓ Finalize Cloud Geometry</h2>
+      <div id="modalWarnings"></div>
+      <div class="summary" id="modalSummary"></div>
+      <p style="font-size:12px;color:var(--muted);">Output: <code>approved_clouds.json</code>, <code>cloud_mask_approved.png</code>, <code>overlay_approved.jpg</code></p>
+      <details>
+        <summary style="cursor:pointer;font-size:12px;color:var(--blue);">Preview JSON</summary>
+        <textarea id="jsonPreview" readonly></textarea>
+      </details>
+      <div class="btn-row">
+        <button class="btn" onclick="EDITOR.closeDone()">Continue Editing</button>
+        <button class="btn" onclick="EDITOR.copyJson()">Copy JSON</button>
+        <button class="btn btn-success" id="saveBtn" onclick="EDITOR.save()">✓ Save &amp; Exit</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="editor.js"></script>
+</body>
+</html>

@@ -162,6 +162,17 @@ def compute_confidence(record: dict) -> dict:
     c_val = max(0.0, min(1.0, c_val))
     c_reg = max(0.0, min(1.0, c_reg))
 
+    # Connectivity penalty (step5b2_hierarchy.json, via step7's _hier_* fields):
+    # an ISOLATED detection has no graph edge to any pipeline or equipment — the
+    # global connectivity view found nothing corroborating it. This is the classic
+    # detached-label / false-positive signature, so we discount geometric
+    # confidence. Applied only when the hierarchy was actually run (key present),
+    # otherwise behaviour is unchanged.
+    c_geo_raw = c_geo
+    isolated  = bool(record.get("_hier_is_isolated", False))
+    if "_hier_is_isolated" in record and isolated:
+        c_geo = round(c_geo * 0.5, 3)
+
     # Effective text confidence: when Tesseract is silent (c_ocr == 0) the tag
     # text actually came from the MLLM, so use its read confidence (lightly
     # discounted) instead of penalising the record for a missing secondary OCR.
@@ -179,6 +190,8 @@ def compute_confidence(record: dict) -> dict:
         "c_ocr":     round(c_ocr, 3),
         "c_ocr_eff": c_ocr_eff,
         "c_geo":     round(c_geo, 3),
+        "c_geo_raw": round(c_geo_raw, 3),
+        "isolated":  isolated,
         "c_val":     round(c_val, 3),
         "c_reg":     round(c_reg, 3),
         "c_final":   c_final,
@@ -222,6 +235,10 @@ def classify_review_priority(record: dict, conf: dict) -> tuple[int, str]:
     c_ocr_eff = conf.get("c_ocr_eff", c_ocr)
     if c_ocr_eff < OCR_LOW_CONF_THRESHOLD:
         return 2, f"LOW_TEXT_CONF: c_text={c_ocr_eff:.2f} (threshold {OCR_LOW_CONF_THRESHOLD})"
+
+    # P3: Isolated detection — hierarchy found no pipe/equipment connectivity
+    if conf.get("isolated"):
+        return 3, "ISOLATED_DETECTION: no pipe/equipment connectivity (possible stray label)"
 
     # P3: Not in register
     if not record.get("_in_registry"):

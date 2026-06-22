@@ -156,6 +156,25 @@ CLOUD_MASK_DILATE_PX = 110         # grow cloud region so tags on the boundary a
                                    # (≥66px needed for TE-212/TW-212, whose cloud step2b under-traced)
 
 
+def resolve_cloud_inputs(out_dir: str) -> tuple[str, str, str]:
+    """
+    Prefer human-approved clouds (step2c) over raw auto-detection (step2b).
+
+    Returns (clouds_json_path, mask_png_path, source_label).
+    """
+    approved_json = os.path.join(out_dir, "approved_clouds.json")
+    approved_mask = os.path.join(out_dir, "cloud_mask_approved.png")
+    raw_json = os.path.join(out_dir, "outer_clouds_v2.json")
+    raw_mask = os.path.join(out_dir, "cloud_mask_v2.png")
+
+    if os.path.exists(approved_json):
+        clouds_path = approved_json
+        mask_path = approved_mask if os.path.exists(approved_mask) else raw_mask
+        return clouds_path, mask_path, "approved (human-verified, step2c)"
+
+    return raw_json, raw_mask, "auto-detected (step2b, no human review)"
+
+
 def set_cloud_mask(mask) -> None:
     """Install the step2b cloud mask (optionally dilated) for inside-cloud tests."""
     global _CLOUD_MASK
@@ -178,7 +197,13 @@ def load_cloud_regions_from_step2b(clouds_path: str,
     """
     with open(clouds_path) as f:
         cloud_data = json.load(f)
-    img_area = img_w * img_h
+    stats_size = (cloud_data.get("stats") or {}).get("image_size")
+    if stats_size and len(stats_size) == 2:
+        # Bboxes/polygons are in JSON space (e.g. 9934×7017); use that for area ratio
+        area_w, area_h = int(stats_size[0]), int(stats_size[1])
+    else:
+        area_w, area_h = img_w, img_h
+    img_area = area_w * area_h
     regions: list[dict] = []
     for entry in cloud_data.get("clouds", []):
         bbox = entry.get("bbox", [])
@@ -1305,31 +1330,38 @@ def main():
             with open(ctx["rules_prompt_block_path"]) as f:
                 drawing_rules = f.read()
 
-    # ── Load cloud regions from step2b (outer_clouds_v2.json) ─────────────────
+    # ── Load cloud regions (step2c approved preferred, else step2b) ───────────
     clouds_path = args.clouds
+    mask_path = None
+    cloud_source = None
+    if not clouds_path:
+        clouds_path, mask_path, cloud_source = resolve_cloud_inputs(args.out)
     if not clouds_path:
         clouds_path = ctx.get("outer_clouds_v2_path")
     if not clouds_path:
         auto = os.path.join(args.out, "outer_clouds_v2.json")
         if os.path.exists(auto):
-            clouds_path = auto
+            clouds_path, mask_path, cloud_source = resolve_cloud_inputs(args.out)
     if clouds_path and os.path.exists(clouds_path):
+        if cloud_source is None:
+            _, mask_path, cloud_source = resolve_cloud_inputs(args.out)
+        log.info("Cloud source: %s", cloud_source)
+        log.info("  clouds: %s", clouds_path)
+        log.info("  mask:   %s", mask_path)
         img_w = ctx.get("width_px") or 9934
         img_h = ctx.get("height_px") or 7017
         cloud_regions = load_cloud_regions_from_step2b(clouds_path, img_w, img_h)
         revision_cloud_present = should_apply_cloud_filter(
             ctx, cloud_regions, force_full_drawing=args.force_full_drawing,
         )
-        # Install the authoritative cloud coverage mask (step2b cloud_mask_v2.png).
-        # This is what makes the BIG revision clouds count: every tag whose centre
-        # falls in the filled+dilated cloud area is kept, and every patch touching
-        # it is sent to Gemini.
+        # Install the authoritative cloud coverage mask (step2c approved or step2b).
         if revision_cloud_present and cloud_regions:
-            mask_path = (ctx.get("cloud_mask_v2_path")
-                         or os.path.join(args.out, "cloud_mask_v2.png"))
-            mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE) if os.path.exists(mask_path) else None
+            if not mask_path:
+                mask_path = (ctx.get("cloud_mask_v2_path")
+                             or os.path.join(args.out, "cloud_mask_v2.png"))
+            mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE) if mask_path and os.path.exists(mask_path) else None
             if mask is None:
-                log.info("cloud_mask_v2.png not found — rasterizing mask from %d regions",
+                log.info("Cloud mask PNG not found — rasterizing mask from %d regions",
                          len(cloud_regions))
                 mask = build_cloud_mask_from_regions(
                     cloud_regions, ctx.get("width_px") or 9934, ctx.get("height_px") or 7017)
@@ -1341,7 +1373,8 @@ def main():
 
         if cloud_regions:
             if revision_cloud_present:
-                log.info("Cloud filter ON (step2b): %d regions from %s | scope=%s",
+                log.info("Cloud filter ON (%s): %d regions from %s | scope=%s",
+                         cloud_source or "step2b",
                          len(cloud_regions), clouds_path,
                          ctx.get("extraction_scope", "?"))
             else:

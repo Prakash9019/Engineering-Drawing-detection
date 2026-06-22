@@ -1,0 +1,26 @@
+{
+  "clouds": [],
+  "stats": {
+    "total": 0,
+    "outer": 0,
+    "inner": 0,
+    "image_size": [
+      9934,
+      7017
+    ]
+  },
+  "edit_metadata": {
+    "workflow": "human_in_the_loop",
+    "editor_version": "2c-v1.0",
+    "original_auto_detected": 23,
+    "approved_unchanged": 0,
+    "deleted": 23,
+    "added": 0,
+    "modified": 0,
+    "merged": 0,
+    "image_file_size": [
+      9934,
+      7017
+    ]
+  }
+}

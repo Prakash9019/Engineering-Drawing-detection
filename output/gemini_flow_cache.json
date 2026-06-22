@@ -1,0 +1,58 @@
+{
+  "0ea6541732c3758aa1271705a12e6352b4e5702a181412416c4c5a19380c5e4a": {
+    "1": "right_to_left",
+    "2": "right_to_left"
+  },
+  "745b5ff6611112809d4e6b37d6986b7b2d7d37b47d2d9376cb040968d208b27e": {
+    "1": "left_to_right",
+    "2": "unknown",
+    "3": "left_to_right"
+  },
+  "3f21c65cf9b2e3b2b700f7e3c9af8e54d791aebe85a752eba4b7dc41ae011fd3": {
+    "1": "unknown",
+    "2": "left_to_right"
+  },
+  "7d91e6ffef614dcdd9192f2dbcfbdc87be19db45771c14d43fb8a6ee89d35982": {
+    "1": "left_to_right",
+    "2": "left_to_right",
+    "3": "bottom_to_top"
+  },
+  "12771dd84edd10da47a72c0499775d7d2d2778b1297ef84175169e07724ac0ef": {
+    "1": "right_to_left",
+    "2": "left_to_right",
+    "3": "left_to_right"
+  },
+  "c9afe59c89dd27f1a7df414fbaa6ad0759a3e3981a7a704cbbaeb7fd4760d587": {
+    "1": "left_to_right",
+    "2": "top_to_bottom"
+  },
+  "e4f1fd3532afe443a3ab997c9156c4e3090910ddb43a7e04144f1ff38810504e": {
+    "1": "left_to_right",
+    "2": "left_to_right",
+    "3": "left_to_right",
+    "4": "left_to_right",
+    "5": "top_to_bottom"
+  },
+  "38066c44e393fcd174608573bc53cf2f772da923f0c1d3af2098573f5ee93b6f": {
+    "1": "left_to_right",
+    "2": "unknown",
+    "3": "left_to_right",
+    "4": "bottom_to_top"
+  },
+  "9b97c6ea7ef3a9c05b3090be5056aa558346d738231811852b7dcf2dda253e61": {
+    "1": "unknown",
+    "2": "left_to_right",
+    "3": "left_to_right"
+  },
+  "5ef1d6305d5eedf67b0a48c585c05827a39bdfc9a8c78c5a36a2a0d215191617": {
+    "1": "left_to_right",
+    "2": "left_to_right",
+    "3": "bottom_to_top"
+  },
+  "3d3ed652c545b9ad009374dd2ea42f3470d1ef778f4e1bdb026f4e3ffba2d92f": {
+    "1": "right_to_left"
+  },
+  "69d49722dbd4f3027e71145352db7a0c3de9818518aa13e09b9c69d6ee616e8e": {
+    "1": "unknown"
+  }
+}
