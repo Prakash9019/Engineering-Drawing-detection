@@ -112,7 +112,11 @@ python3 stages/step5b_geometric_association.py \
 # Deterministic by default; add --gemini-flow-fallback for category-D flow (~6
 # Gemini calls, cached in gemini_flow_cache.json).
 python3 stages/step5b2_hierarchy.py \
-  --associations output/step5b_associations.json --image $DRAWING --out output/
+  --associations output/step5b_associations_full.json --image $DRAWING --out output/
+  # default --associations is step5b_associations_full.json (FULL drawing).
+  # If absent, falls back to step5b_associations.json WITH A WARNING (hierarchy
+  # may be cloud-incomplete). See "Hierarchy pipeline" section above.
+  # Writes step5b2_hierarchy_full.json (primary) + step5b2_hierarchy.json (alias).
   # optional: --gemini-flow-fallback --api-key $GEMINI_KEY
 
 python3 stages/step5c_validation_engine.py \
@@ -157,6 +161,85 @@ python3 stages/stage_visualizer.py \
 
 ---
 
+## Hierarchy pipeline — ALWAYS full drawing
+
+The connectivity / hierarchy chain (step5b2 → step7 enrichment) must consume
+**FULL_DRAWING** extraction, never cloud-filtered output. A cloud-scoped
+instrument can have a parent equipment that was only detected outside the
+cloud, so the hierarchy must see the whole sheet. The revision *deliverable*
+still uses cloud extraction (Phase 2 Option B) — these are two separate chains.
+
+```bash
+# ── Hierarchy extraction (ALWAYS full drawing) ────────────────────────────────
+# 1. step5a — FULL extraction. step5a's --out is a directory (writes
+#    step5a_candidates.json); copy it to the *_full name the hierarchy expects.
+python3 stages/step5a_candidate_extraction.py \
+  --context output/drawing_context.json \
+  --api-key $GEMINI_KEY \
+  --workers 8 \
+  --force-full-drawing \
+  --out output/
+cp output/step5a_candidates.json output/step5a_candidates_full.json
+
+# 2. step5b — associations off the FULL candidates (same dir; copy to *_full).
+python3 stages/step5b_geometric_association.py \
+  --candidates output/step5a_candidates_full.json \
+  --image $DRAWING --out output/
+cp output/step5b_associations.json output/step5b_associations_full.json
+
+# 3. step5b2 — hierarchy. Defaults to step5b_associations_full.json and writes
+#    step5b2_hierarchy_full.json (primary) + step5b2_hierarchy.json (alias).
+python3 stages/step5b2_hierarchy.py \
+  --associations output/step5b_associations_full.json \
+  --image $DRAWING --out output/
+
+# 4. step9 — engineer-friendly deliverables from step5b2_hierarchy_full.json:
+#    final_hierarchy.xlsx, hierarchy_viewer.html, hierarchy_graph.html,
+#    hierarchy_validation_report.xlsx  (no API; Excel + self-contained HTML).
+python3 stages/step9_hierarchy_deliverables.py \
+  --hierarchy output/step5b2_hierarchy_full.json \
+  --context output/drawing_context.json --out output/
+```
+
+### Hierarchy review deliverables (step9)
+
+`step9_hierarchy_deliverables.py` turns the JSON hierarchy into auditable,
+presentation-ready artefacts for CDCI engineering review:
+
+| File | What it is |
+|------|-----------|
+| `final_hierarchy.xlsx` | 6 sheets: Equipment Hierarchy, Parent-Child Relationships, Functional Location, Cross-Drawing References, Orphan Nodes, Hierarchy Statistics |
+| `hierarchy_viewer.html` | Interactive **tree** (expand/collapse, search by tag/equipment/functional-location, highlight parent/children, full path) + **Relationship Explorer** tab (parent/grandparent/children/controls/monitors/connected-to for any tag) |
+| `hierarchy_graph.html` | Self-contained colour-coded force-directed graph (blue=equipment, green=instrument, orange=control device, purple=virtual, red=orphan); drag/zoom/click — no CDN/internet needed |
+| `hierarchy_validation_report.xlsx` | Validation checks: multiple parents, cyclic hierarchy, missing parent/system/FL, broken references, duplicate nodes, invalid depth, disconnected subgraphs — with severity + suggested fix |
+
+**Data-provenance (honest mapping — the P&ID has no native Plant/Area/FL codes):**
+- **Plant / Area / Unit** are derived from the drawing number (`4224-MGDV-6-50-2004` → Plant `MGDV`, Area `6-50`, Unit `001`).
+- **System** = the node's root equipment; **Functional Location** = synthesised dotted path.
+- **Parent** comes from step5b2 `direct_parent`, `MOUNTED_ON` (instrument→equipment), or — when a node sits on a process line that touches exactly one equipment — that equipment (Source = `via_line:<PL>`). Nodes on shared headers are shown as `LINE:<PL>` (connected, not orphaned).
+- **Cross-drawing references** are detected heuristically; empty on a single-sheet extraction (expected).
+
+> **Why the `cp` steps?** `step5a_candidate_extraction.py` and
+> `step5b_geometric_association.py` are frozen — their `--out` is a directory,
+> not a file path, so the `_full` filenames are produced by copy. step5b2 owns
+> the `_full` convention: it defaults to `step5b_associations_full.json` and, if
+> that file is missing, falls back to `step5b_associations.json` with a loud
+> warning (the hierarchy may then be cloud-incomplete).
+
+> **Ordering vs the cloud deliverable:** run the full hierarchy extraction
+> **first** and copy to `_full` immediately. If you then run a cloud-scoped
+> step5a for the revision deliverable, it overwrites the plain
+> `step5a_candidates.json` / `step5b_associations.json` names — but the `_full`
+> copies (and `step5b2_hierarchy_full.json`) are preserved for the hierarchy.
+
+> **step7 reads `_full`:** `step7_cedm_normalizer.py` auto-loads
+> `step5b2_hierarchy_full.json` (falls back to `step5b2_hierarchy.json` with a
+> warning). This is correct even when step7 processes cloud-filtered candidates
+> for the revision deliverable — `PARENT_EQUIP` / `FLOW` / `CONTROL_LOOP` always
+> come from the full-drawing context.
+
+---
+
 ## Output folder structure
 
 After a full run, `output/` looks like this:
@@ -188,8 +271,16 @@ output/
 ├── step5a_candidates.json            ← ★ raw detected tags + bboxes (main extraction output)
 ├── step5a_eval_annotated_fullres.jpg ← eval_coverage: full-res tag boxes
 ├── step5a_eval_annotated.jpg         ← eval_coverage: scaled overview
+├── step5a_candidates_full.json       ← FULL-drawing extraction (hierarchy input)
 ├── step5b_associations.json          ← geometry: pipe/equipment links per tag
-├── step5b2_hierarchy.json            ← graph + hierarchy + flow + control_loops[] (feeds step7)
+├── step5b_associations_full.json     ← associations off FULL candidates (hierarchy input)
+├── step5b2_hierarchy_full.json       ← ★ PRIMARY hierarchy (FULL drawing) — feeds step7 + step9
+├── step5b2_hierarchy.json            ← backward-compatible alias of *_full (feeds step7)
+│
+├── final_hierarchy.xlsx              ← step9: engineer hierarchy register (6 sheets)
+├── hierarchy_viewer.html             ← step9: interactive tree + relationship explorer
+├── hierarchy_graph.html              ← step9: colour-coded force-directed graph
+├── hierarchy_validation_report.xlsx  ← step9: hierarchy validation issues
 ├── gemini_flow_cache.json            ← step5b2 --gemini-flow-fallback cache (optional)
 ├── step5c_validated.json             ← ISA-5.1 + registry validation per tag
 ├── step5d_deduped.json               ← all records incl. DISCARDED duplicates
@@ -389,6 +480,32 @@ Candidates extracted: <count>
 | `eval_coverage.py` | see full block above | `eval_coverage_report.json`, annotated JPGs | `FOUND x/46` vs Annexure-4; lists missing tags |
 | `compare_final_vs_annexure4.py` | see full block above | `final_tags_vs_annexure4.xlsx` | 4 sheets: AUTO_ACCEPT in/not-in A4, HUMAN_REVIEW in/not-in A4 |
 | `stage_visualizer.py` | see full block above | `output/stages/*.jpg` + `manifest.json` | Visual detect vs SOW-filter vs dedup stages |
+| `validate_full_vs_cloud.py` | see "Simplification gate" below | `validation_summary.json`, `validation_report.txt`, `critical_misses.json`, `prefix_discrepancies.json` | Is FULL→FILTER a safe replacement for DIRECT_CLOUD extraction? |
+
+#### Simplification gate — `validate_full_vs_cloud.py`
+
+Compares two ways of getting cloud-scoped tags: **DIRECT_CLOUD** (step5a run in
+CLOUD_FILTER mode) vs **FULL→FILTER** (step5a full, then filtered to cloud
+scope). Answers: can we drop the DIRECT_CLOUD path? Build now, run across a
+validation set (50–100 drawings) later.
+
+```bash
+python3 stages/validate_full_vs_cloud.py \
+  --full-candidates  output/step5a_candidates_full.json \
+  --cloud-candidates output/step5a_candidates_cloud.json \
+  --cloud-regions    output/approved_clouds.json \
+  --register $REGISTER \
+  --out output/
+# --cloud-candidates = a DIRECT step5a CLOUD_FILTER run (no --force-full-drawing).
+# --register optional: omit to compare the two modes against each other only.
+```
+
+**Acceptance gate (must hold on EVERY drawing in the set to approve removal of DIRECT_CLOUD):**
+- Recall ≥ 99% (both modes)
+- Critical misses = 0 (tags DIRECT_CLOUD found that FULL→FILTER missed)
+- Prefix-resolution discrepancies = 0 (modes disagree on resolved tag text)
+
+If any threshold fails on any drawing → **keep both extraction modes**.
 
 **`final_tags_vs_annexure4.xlsx` sheets:**
 

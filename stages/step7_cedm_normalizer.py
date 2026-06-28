@@ -595,9 +595,27 @@ def load_connectivity_map(out_dir: str,
     off step5b. It is OPTIONAL: if absent, step7 behaves exactly as before and
     returns an empty map (all lookups fall back to neutral defaults).
     """
-    path = hierarchy_path or str(Path(out_dir) / "step5b2_hierarchy.json")
+    # Hierarchy enrichment must ALWAYS come from the full-drawing context
+    # (step5b2_hierarchy_full.json): a cloud-scoped candidate can have a parent
+    # equipment that was only detected on the full drawing. Prefer the _full
+    # file; fall back to the plain alias with a warning if it is missing.
+    if hierarchy_path:
+        path = hierarchy_path
+    else:
+        full_path = Path(out_dir) / "step5b2_hierarchy_full.json"
+        plain_path = Path(out_dir) / "step5b2_hierarchy.json"
+        if full_path.exists():
+            path = str(full_path)
+        elif plain_path.exists():
+            log.warning("step5b2_hierarchy_full.json not found — falling back to "
+                        "step5b2_hierarchy.json. Hierarchy enrichment may be "
+                        "incomplete; re-run step5b2 on full-drawing step5b output.")
+            path = str(plain_path)
+        else:
+            path = str(full_path)
+
     if not Path(path).exists():
-        log.info("No step5b2_hierarchy.json — skipping connectivity enrichment")
+        log.info("No step5b2 hierarchy file — skipping connectivity enrichment")
         return {}
 
     with open(path) as f:

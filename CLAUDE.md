@@ -56,6 +56,43 @@ Phase 5  reporting   eval_coverage, compare_final_vs_annexure4, stage_visualizer
 
 ---
 
+## Two-track extraction decision (READ THIS FIRST)
+
+The pipeline deliberately runs **two extraction chains**. They are NOT unified —
+unifying them requires validation we do not yet have.
+
+| Track | Extraction | Used for | Status |
+|-------|-----------|----------|--------|
+| **Hierarchy** | **FULL** drawing (`--force-full-drawing`) | step5b2 connectivity/hierarchy → step7 `PARENT_EQUIP`/`FLOW`/`CONTROL_LOOP` enrichment | **Implemented** |
+| **Revision deliverable** | **CLOUD** scope (cloud-filtered step5a) | `final_tags.xlsx` for the revision | **Unchanged** |
+
+**Why the hierarchy must use FULL extraction:** a cloud-scoped instrument can
+have a parent equipment that was only detected *outside* the cloud. Hierarchy
+enrichment must always come from the full-drawing context, even when step7 is
+normalising cloud-filtered candidates for the deliverable. (Verified: `V-FV-208`
+inside a cloud → `PARENT_EQUIP: V-V-03`, where `V-V-03` is outside the cloud and
+absent from the cloud-filtered candidate set.)
+
+**File convention (hierarchy chain):**
+- `step5a_candidates_full.json` ← full extraction (copy of `--force-full-drawing` step5a output)
+- `step5b_associations_full.json` ← step5b off the full candidates
+- `step5b2_hierarchy_full.json` ← **primary** hierarchy; `step5b2_hierarchy.json` is a backward-compatible alias
+- step5b2 defaults to `step5b_associations_full.json`, falls back to `step5b_associations.json` with a warning
+- step7 loads `step5b2_hierarchy_full.json`, falls back to `step5b2_hierarchy.json` with a warning
+- See `PIPELINE_RUNBOOK.md` → "Hierarchy pipeline — ALWAYS full drawing"
+
+**Simplification gate — when can DIRECT_CLOUD be removed?**
+`stages/validate_full_vs_cloud.py` compares DIRECT_CLOUD vs FULL→FILTER. The
+FULL→FILTER simplification (replacing direct cloud extraction with full + post-filter)
+is approved **only** when, across a validation set of **50–100 drawings**:
+- Recall ≥ 99% (both modes)
+- Critical misses = 0 (tags DIRECT_CLOUD found that FULL→FILTER missed)
+- Prefix-resolution discrepancies = 0
+
+Until then, **keep both extraction modes**. Do not collapse step5a into a single run.
+
+---
+
 ## Key Architecture
 
 ### `drawing_context.json` is the spine
@@ -109,10 +146,15 @@ Never delete mid-pipeline. Holds `raster_path`, title block fields, `extraction_
 - **step8:** confidence scoring → `final_tags.xlsx` routing (AUTO_ACCEPT / HUMAN_REVIEW)
 
 ### step5b2 connectivity enrichment (run after 5B, before 7 — additive)
-- `step5b2_hierarchy.py` (post-processor off step5b, no API unless `--gemini-flow-fallback`) writes `output/step5b2_hierarchy.json`: connectivity graph, process hierarchy, **Track B** flow direction (arrowheads/check-valves/propagation/equipment-convention/topology-dead-leg, + optional Gemini fallback `evidence=gemini_vision`), and **Track C** control loops (dashed signal-line edges → `control_loops[]`, over-merges quarantined as `signal_clusters`). Pass-through `associations`/`enriched_candidates` are byte-identical to its step5b input.
-- **step7 auto-loads it** (`load_connectivity_map`, or `--hierarchy <path>`): adds `PARENT_EQUIP: <tag>` / `ISOLATED_DETECTION` / `FLOW: upstream|downstream` / `CONTROL_LOOP: <id>` to `REMARKS` and `_hier_*` provenance. Absent → step7 behaves exactly as before.
+- `step5b2_hierarchy.py` (post-processor off step5b, no API unless `--gemini-flow-fallback`) writes `output/step5b2_hierarchy_full.json` (**primary**) and `output/step5b2_hierarchy.json` (**alias**). Default input is `step5b_associations_full.json` (FULL drawing — see "Two-track extraction decision"); falls back to `step5b_associations.json` with a warning. Content: connectivity graph, process hierarchy, **Track B** flow direction (arrowheads/check-valves/propagation/equipment-convention/topology-dead-leg, + optional Gemini fallback `evidence=gemini_vision`), and **Track C** control loops (dashed signal-line edges → `control_loops[]`, over-merges quarantined as `signal_clusters`). Pass-through `associations`/`enriched_candidates` are byte-identical to its step5b input.
+- **step7 auto-loads it** — prefers `step5b2_hierarchy_full.json`, falls back to `step5b2_hierarchy.json` with a warning (`load_connectivity_map`, or `--hierarchy <path>`): adds `PARENT_EQUIP: <tag>` / `ISOLATED_DETECTION` / `FLOW: upstream|downstream` / `CONTROL_LOOP: <id>` to `REMARKS` and `_hier_*` provenance. Absent → step7 behaves exactly as before.
 - **step8** reads `_hier_is_isolated`: isolated detections (no pipe/equipment/signal edge) get `c_geo × 0.5` → HUMAN_REVIEW (P3 `ISOLATED_DETECTION`). Signal edges (Track C) fix `is_isolated` via Option A (graph degree over all edges); they are excluded from the process rooting BFS (Decision A2).
 - ⚠️ **Re-run step5b2 on every fresh extraction.** step7 joins by `candidate_id`, which changes when step5a/5b re-run. A stale `step5b2_hierarchy.json` → 0 matches → silent loss of all enrichment. step7 now logs a `STALE hierarchy` warning when <50% of candidates match.
+
+### step9 hierarchy deliverables (engineer-facing, off step5b2_hierarchy_full.json — additive)
+- `stages/step9_hierarchy_deliverables.py` (no API) turns the JSON hierarchy into review-ready artefacts: `final_hierarchy.xlsx` (Equipment Hierarchy / Parent-Child / Functional Location / Cross-Drawing / Orphan Nodes / Statistics), `hierarchy_viewer.html` (interactive tree + search + **Relationship Explorer** tab), `hierarchy_graph.html` (self-contained colour-coded force graph, no CDN), `hierarchy_validation_report.xlsx` (multiple-parents / cyclic / missing-parent/system/FL / broken-ref / duplicate / depth / disconnected, with severity + fix).
+- **Parent resolution:** `direct_parent` (real component) → `MOUNTED_ON` equipment → single-equipment process line (`via_line:<PL>`); shared-header nodes shown as `LINE:<PL>` (connected, NOT orphaned). Pipelines/junctions are virtual connector nodes, collapsed out of the business hierarchy.
+- **Derived fields (honest):** Plant/Area/Unit from drawing number; System = root equipment; Functional Location = synthesised dotted path. Cross-drawing refs heuristic (empty on single-sheet). Run AFTER step5b2; reads `step5b2_hierarchy_full.json` (falls back to alias).
 
 See [`STEP7_NORMALIZATION.md`](STEP7_NORMALIZATION.md) for full normalization analysis.
 
@@ -165,7 +207,12 @@ Clouds (step2b):      ~23 outer + ~20 inner → see overlay_v2.jpg
 | `drawing_context.json` | 1–6 | Shared pipeline state |
 | `outer_clouds_v2.json` | 2B | Cloud polygons + bboxes |
 | `step5a_candidates.json` | 5A | Raw detected tags + bboxes |
-| `step5b2_hierarchy.json` | 5B2 | Graph, hierarchy, flow direction, `control_loops[]` — feeds step7 enrichment |
+| `step5b2_hierarchy_full.json` | 5B2 | **Primary** hierarchy (FULL drawing): graph, hierarchy, flow, `control_loops[]` — feeds step7 |
+| `step5b2_hierarchy.json` | 5B2 | Backward-compatible alias of `_full` |
+| `final_hierarchy.xlsx` | 9 | Engineer hierarchy register (6 sheets) |
+| `hierarchy_viewer.html` | 9 | Interactive tree + relationship explorer |
+| `hierarchy_graph.html` | 9 | Colour-coded force-directed graph |
+| `hierarchy_validation_report.xlsx` | 9 | Hierarchy validation issues |
 | `step5_final_output.json` | 5D | PRIMARY candidates only |
 | `step7_cedm_output.json` | 7 | Normalised Annexure-4 records |
 | `final_tags.xlsx` | 8 | **Client deliverable** |

@@ -58,6 +58,8 @@ This module does NOT modify step5b_associations.json.
 """
 
 import argparse
+import concurrent.futures
+import copy as _copy_mod
 import hashlib
 import json
 import logging
@@ -65,6 +67,8 @@ import math
 import os
 import re
 import sys
+import threading
+import time
 from collections import defaultdict, deque
 from pathlib import Path
 
@@ -88,10 +92,16 @@ JUNCTION_MIN_DEG   = 3      # segment-endpoints meeting at a point => junction
 SYMBOL_PIPE_RADIUS = 60     # px: symbol edge within this of a pipeline => connected
 EQUIP_PIPE_RADIUS  = 90     # px: equipment binds to EVERY pipeline within this (hub)
 MOUNTED_ON_RADIUS  = 200    # px: instrument edge-gap to equipment => MOUNTED_ON edge
-GAP_BRIDGE_PX      = 40     # px: 2nd-pass merge of pipeline endpoints across drawing gaps
+GAP_BRIDGE_PX      = 100    # px: 2nd-pass merge of pipeline endpoints; raised from 40 to bridge instrument-symbol gaps
 MECH_TRAIN_GAP     = 700    # px: max edge-gap between drive-train equipment
 MECH_TRAIN_ALIGN   = 90     # px: center offset on shared axis for alignment
 MIN_PIPE_LEN       = 60     # px: ignore tiny pipe fragments when building pipelines
+
+# ── Entity resolution (duplicate-detection merge, FIX 1) ─────────────────────
+DUP_MAX_DIST_PX    = 1500   # px: same-tag detections whose centroids are farther
+                            # apart than this are genuinely different instances of
+                            # the same tag on different parts of the drawing — never
+                            # merged. Different symbol_category is also never merged.
 
 # ── Track B: flow-direction (arrowhead) tuning ──────────────────────────────
 ARROWHEAD_MIN_AREA      = 200    # px²: smallest filled triangle to accept
@@ -116,6 +126,26 @@ GEMINI_FLOW_MAX_SIDE   = 1024   # longest side of the crop sent to Gemini
 GEMINI_FLOW_TEMP       = 0.0    # deterministic
 CAND_KINDS             = ("instrument", "valve", "piping", "equipment")
 
+# ── Phase 1: Gemini instrument attachment (gated on --gemini-attach) ─────────
+# For instruments/valves that the CV graph could not bind to equipment, ask
+# Gemini what each connects to. One image crop per spatial cluster of such
+# instruments. Cached by crop content hash (same pattern as gemini_flow_fallback).
+GEMINI_ATTACH_MODEL        = GEMINI_FLOW_MODEL   # gemini-3.1-pro-preview
+GEMINI_ATTACH_CLUSTER_PX   = 800     # greedy x-sorted cluster radius (centroid-to-centroid)
+GEMINI_ATTACH_CROP_PAD_PX  = 500     # image-space padding around a cluster's union bbox before
+                                     # cropping (raised from 250 → 500 so pipe routing to distant
+                                     # equipment is visible in-frame)
+GEMINI_ATTACH_MAX_SIDE     = 1024    # longest side of the crop sent to Gemini
+GEMINI_ATTACH_TEMP         = 0.0     # deterministic
+GEMINI_ATTACH_CONF_HIGH    = 0.85    # edge confidence for a Gemini "high" attachment
+GEMINI_ATTACH_CONF_MEDIUM  = 0.65    # edge confidence for a Gemini "medium" attachment
+# Rough pre-flight cost estimate (gemini-3.1-pro-preview; adjust if pricing changes).
+# Same model as the flow fallback — figures are approximate, for the cost gate only.
+GEMINI_ATTACH_EST_INPUT_TOK   = 1100   # ~1024px crop + prompt per call
+GEMINI_ATTACH_EST_OUTPUT_TOK  = 350    # small JSON answer per call
+GEMINI_PRO_USD_PER_MTOK_IN    = 2.00   # approx input price per 1e6 tokens
+GEMINI_PRO_USD_PER_MTOK_OUT   = 12.00  # approx output price per 1e6 tokens
+
 # ── Track C: signal-line (dashed) detection + control-loop hierarchy ─────────
 # Proximity-gated STRICT path-probing (the "probe2" prototype). A signal edge is
 # accepted only when an orthogonal path between two nearby bubbles is fully on a
@@ -136,6 +166,14 @@ SIGNAL_LOOP_MAX_SIZE = 15     # signal components larger than this = over-merge 
 SPATIAL_WINDOW_PX  = 700    # only relate candidates within this center distance
 SPATIAL_TOPK       = 5      # cap per-direction spatial lists
 OVERLAP_FRAC       = 0.0    # >0 bbox intersection area => OVERLAPPING
+
+# ── Symbol-size guards (pre-hierarchy filter, prevents text-mention detections
+#    in notes / title blocks / tables from becoming hierarchy nodes)
+MIN_SYMBOL_HEIGHT_PX      = 30   # image space — minimum bbox height for a real symbol
+MIN_SYMBOL_WIDTH_PX       = 30   # image space — minimum bbox width for a real symbol
+EQUIPMENT_MAX_ASPECT      = 3.5  # equipment bbox wider/taller than this ratio = text label
+IS_LABEL_ONLY_CONF_CAP    = 0.4  # Gemini attachment confidence cap for label-only equipment
+MOTOR_PROXY_RADIUS_PX     = 400  # px: MOTOR box within this of a filtered KM label → proxy
 
 # Category rank for picking an undirected hierarchy root (higher = closer to root)
 CATEGORY_RANK = {
@@ -172,6 +210,338 @@ class UnionFind:
         self.p[rb] = ra
         if self.r[ra] == self.r[rb]:
             self.r[ra] += 1
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 0a. Symbol-size pre-filter — remove text-mention candidates before graph
+# ═══════════════════════════════════════════════════════════════════════════
+
+def is_real_symbol(candidate, display_scale: float = 1.0) -> tuple:
+    """Return (is_real, reason).
+
+    A candidate is a real symbol if its symbol_bbox has physical extent on the
+    drawing matching its symbol type. Text mentions that Gemini found in notes,
+    title blocks, or tables typically have a tiny or zero-height bbox and are
+    rejected here — before they can become false hierarchy nodes.
+
+    display_scale: factor to convert bbox coords to image-space pixels.
+    For step5b enriched_candidates (already in full-image pixel coords) use 1.0.
+    """
+    bbox = candidate.get("symbol_bbox") or {}
+    x1 = bbox.get("x1", 0)
+    y1 = bbox.get("y1", 0)
+    x2 = bbox.get("x2", 0)
+    y2 = bbox.get("y2", 0)
+
+    scale = 1.0 / display_scale if display_scale else 1.0
+    width_img  = (x2 - x1) * scale
+    height_img = (y2 - y1) * scale
+
+    # Rule 1: bbox must have physical extent in both axes
+    if width_img < MIN_SYMBOL_WIDTH_PX or height_img < MIN_SYMBOL_HEIGHT_PX:
+        return False, f"bbox too small ({width_img:.0f}x{height_img:.0f}px image space)"
+
+    # Rule 2: equipment candidates must have substantial symbol area — real
+    # equipment symbols (compressors, drums) are large boxes; a K-V-201 text
+    # label in a title block is far too small regardless of width.
+    if candidate.get("symbol_category") == "equipment":
+        area_img = width_img * height_img
+        if area_img < 5000:
+            return False, (f"equipment bbox too small for real symbol "
+                           f"({area_img:.0f}px² < 5000px²)")
+        # Rule 3: very flat bbox = text label, not a real equipment symbol.
+        # Real equipment symbols are near-square or at most 2:1; title-block
+        # labels like "K-V-201" are 4:1 or wider (flat text row).
+        aspect = max(width_img, height_img) / max(min(width_img, height_img), 1)
+        if aspect > EQUIPMENT_MAX_ASPECT:
+            return False, (f"equipment bbox too flat "
+                           f"(aspect {aspect:.2f} > {EQUIPMENT_MAX_ASPECT}, "
+                           f"likely text label not a symbol)")
+
+    return True, "ok"
+
+
+def _approx_zone(cx: float, cy: float) -> str:
+    """Classify a candidate centroid into a drawing zone for filter reporting.
+    Thresholds calibrated for the test drawing (9934×7017px layout)."""
+    if cy < 400:
+        return "title_block_top"
+    if cy > 6500:
+        return "bottom_tables"
+    if cx < 800:
+        return "notes_left"
+    if cx > 9000:
+        return "ref_panel_right"
+    return "main_drawing"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 0. Entity resolution — merge duplicate detections BEFORE graph construction
+#    (FIX 1: corruption source — duplicate tag_text became separate graph nodes,
+#     corrupting siblings / parent resolution / validation)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def _cand_center(c):
+    bb = c.get("symbol_bbox") or {}
+    if not bb:
+        return None
+    return ((bb["x1"] + bb["x2"]) / 2.0, (bb["y1"] + bb["y2"]) / 2.0)
+
+
+def _union_bbox(boxes):
+    xs1 = [b["x1"] for b in boxes if b]
+    ys1 = [b["y1"] for b in boxes if b]
+    xs2 = [b["x2"] for b in boxes if b]
+    ys2 = [b["y2"] for b in boxes if b]
+    if not xs1:
+        return {}
+    return {"x1": min(xs1), "y1": min(ys1), "x2": max(xs2), "y2": max(ys2)}
+
+
+def resolve_canonical_entities(candidates, display_scale: float = 1.0):
+    """Merge duplicate detections of the SAME tag into one canonical node BEFORE
+    the graph is built, so duplicates never become separate graph/hierarchy nodes.
+
+    Phase 0 (added): is_real_symbol() pre-filter discards candidates whose
+    symbol_bbox has insufficient physical extent — these are text mentions
+    detected in notes / title blocks / tables, not real drawn symbols. This
+    runs BEFORE deduplication so false-geometry duplicates are not merged into
+    real canonical nodes.
+
+    Grouping (unchanged): by normalised tag_text (strip + uppercase for
+    COMPARISON only — the surviving record keeps its original case). Within a
+    tag group, members are clustered (union-find) and merged only when BOTH:
+      • same symbol_category, AND
+      • centroid-to-centroid distance <= DUP_MAX_DIST_PX.
+    Same-tag detections farther than DUP_MAX_DIST_PX apart, or of a different
+    symbol_category, are genuinely different instances and are kept separate.
+
+    Each merged cluster collapses to the highest-vision_confidence candidate
+    (the primary, whose candidate_id becomes the canonical node id). The primary
+    receives the UNION bbox of the cluster and the union of sow_status values;
+    every other member is remapped onto the primary.
+
+    Returns (deduped_candidates, id_remap, n_merges, filter_stats).
+    filter_stats has keys: n_filtered, zone_counts, filtered_records.
+    id_remap maps every candidate_id → its canonical candidate_id (identity for
+    survivors; filtered candidates are NOT in id_remap).
+    """
+    import copy
+
+    # ── Phase 0: symbol-size pre-filter ──────────────────────────────────
+    real_candidates = []
+    filtered_ids = set()   # candidate_ids removed here — used below to clean refs
+    filter_stats = {"n_filtered": 0, "zone_counts": {}, "filtered_records": []}
+    for c in candidates:
+        ok, reason = is_real_symbol(c, display_scale)
+        if ok:
+            real_candidates.append(c)
+        else:
+            filtered_ids.add(c["candidate_id"])
+            bb = c.get("symbol_bbox") or {}
+            cx = (bb.get("x1", 0) + bb.get("x2", 0)) / 2.0
+            cy = (bb.get("y1", 0) + bb.get("y2", 0)) / 2.0
+            tag = c.get("tag_text", "?")
+            log.info("Filtered non-symbol candidate: %s at (%.0f,%.0f) — %s",
+                     tag, cx, cy, reason)
+            zone = _approx_zone(cx, cy)
+            filter_stats["zone_counts"][zone] = (
+                filter_stats["zone_counts"].get(zone, 0) + 1)
+            filter_stats["filtered_records"].append({
+                "tag": tag, "cx": round(cx), "cy": round(cy),
+                "reason": reason, "zone": zone,
+                "category": c.get("symbol_category", ""),
+            })
+    filter_stats["n_filtered"] = len(filter_stats["filtered_records"])
+    if filter_stats["n_filtered"]:
+        log.info("Symbol-size pre-filter: removed %d non-symbol candidates "
+                 "(zone breakdown: %s)",
+                 filter_stats["n_filtered"], filter_stats["zone_counts"])
+
+    # ── Thing 1: label-only equipment recovery ────────────────────────────
+    # An equipment tag filtered by aspect ratio with NO surviving real-symbol
+    # instance re-enters the hierarchy as a label-only node (is_label_only=True).
+    # Its Gemini attachment confidence is capped at IS_LABEL_ONLY_CONF_CAP so it
+    # cannot corrupt high-confidence assignments.
+    surviving_equip_tags = {
+        (c.get("tag_text") or "").strip().upper()
+        for c in real_candidates
+        if c.get("symbol_category") == "equipment"
+    }
+    # Collect all flat-aspect equipment candidates that were filtered, grouped by tag
+    flat_equip_by_tag = defaultdict(list)
+    for c in candidates:
+        if c["candidate_id"] not in filtered_ids:
+            continue
+        if c.get("symbol_category") != "equipment":
+            continue
+        bb = c.get("symbol_bbox") or {}
+        w = (bb.get("x2", 0) - bb.get("x1", 0))
+        h = (bb.get("y2", 0) - bb.get("y1", 0))
+        aspect = max(w, h) / max(min(w, h), 1)
+        if aspect <= EQUIPMENT_MAX_ASPECT:
+            continue   # filtered for a different reason (size) — not a flat-label
+        norm = (c.get("tag_text") or "").strip().upper()
+        if norm:
+            flat_equip_by_tag[norm].append(c)
+
+    n_label_only = 0
+    for norm, flat_group in flat_equip_by_tag.items():
+        if norm in surviving_equip_tags:
+            continue   # real symbol already exists — keep filter, drop the label
+        # Pick the highest-confidence flat label to represent this equipment
+        best = max(flat_group, key=lambda c: (c.get("vision_confidence") or 0.0))
+        recovered = copy.deepcopy(best)
+        recovered["is_label_only"] = True
+        recovered["equipment_parent_confidence_cap"] = IS_LABEL_ONLY_CONF_CAP
+        # Un-filter it: remove from filtered_ids and add to real_candidates
+        filtered_ids.discard(recovered["candidate_id"])
+        real_candidates.append(recovered)
+        n_label_only += 1
+        log.info("Kept label-only equipment: %s (no symbol box found) — "
+                 "confidence capped at %.1f",
+                 recovered.get("tag_text", norm), IS_LABEL_ONLY_CONF_CAP)
+    if n_label_only:
+        filter_stats["n_label_only_recovered"] = n_label_only
+
+    # ── Thing 2: MOTOR-box → KM-V-201 proxy ──────────────────────────────
+    # KM-V-201 is the motor tag for the compressor train. Step5a may detect
+    # the MOTOR enclosure box without assigning the KM-V-201 tag (symbol_name
+    # contains "MOTOR" but tag_text is empty or generic). If a filtered
+    # KM-V-201 label exists and an untagged MOTOR box survives within
+    # MOTOR_PROXY_RADIUS_PX of it, promote that box to tag "KM-V-201".
+    filtered_km = [
+        c for c in candidates
+        if c["candidate_id"] in filtered_ids
+        and (c.get("tag_text") or "").strip().upper() == "KM-V-201"
+    ]
+    if filtered_km and "KM-V-201" not in surviving_equip_tags:
+        # centroid of the filtered label (use the first found)
+        ref_bb = filtered_km[0].get("symbol_bbox") or {}
+        ref_cx = (ref_bb.get("x1", 0) + ref_bb.get("x2", 0)) / 2.0
+        ref_cy = (ref_bb.get("y1", 0) + ref_bb.get("y2", 0)) / 2.0
+        for c in real_candidates:
+            sname = (c.get("symbol_name") or "").lower()
+            ttag = (c.get("tag_text") or "").strip()
+            if "motor" not in sname:
+                continue
+            if ttag and ttag.upper() != "KM-V-201":
+                continue   # already tagged as something else — don't override
+            bb = c.get("symbol_bbox") or {}
+            cx = (bb.get("x1", 0) + bb.get("x2", 0)) / 2.0
+            cy = (bb.get("y1", 0) + bb.get("y2", 0)) / 2.0
+            if math.hypot(cx - ref_cx, cy - ref_cy) <= MOTOR_PROXY_RADIUS_PX:
+                old_tag = c.get("tag_text", "")
+                c["tag_text"] = "KM-V-201"
+                c["symbol_category"] = "equipment"
+                c["is_motor_proxy"] = True
+                log.info("MOTOR proxy: assigned KM-V-201 to MOTOR box "
+                         "(was %r) at (%.0f,%.0f) — within %dpx of filtered label",
+                         old_tag, cx, cy, MOTOR_PROXY_RADIUS_PX)
+                # also remove any label-only KM-V-201 we may have just recovered
+                real_candidates[:] = [
+                    rc for rc in real_candidates
+                    if not (rc.get("is_label_only")
+                            and (rc.get("tag_text") or "").strip().upper() == "KM-V-201")
+                ]
+                break
+
+    by_tag = defaultdict(list)
+    untagged = []
+    for c in real_candidates:
+        norm = (c.get("tag_text") or "").strip().upper()
+        if norm:
+            by_tag[norm].append(c)
+        else:
+            untagged.append(c)
+
+    deduped, id_remap, n_merges = [], {}, 0
+    n_kept_distance = n_kept_category = 0
+
+    for norm, members in by_tag.items():
+        if len(members) == 1:
+            c = copy.deepcopy(members[0])
+            deduped.append(c)
+            id_remap[c["candidate_id"]] = c["candidate_id"]
+            continue
+
+        # cluster members: merge edge iff (same category) AND (centroid <= DUP_MAX_DIST_PX)
+        uf = UnionFind(len(members))
+        ctrs = [_cand_center(m) for m in members]
+        for i in range(len(members)):
+            for j in range(i + 1, len(members)):
+                same_cat = (members[i].get("symbol_category") ==
+                            members[j].get("symbol_category"))
+                ci, cj = ctrs[i], ctrs[j]
+                if ci is None or cj is None:
+                    continue
+                close = math.hypot(ci[0] - cj[0], ci[1] - cj[1]) <= DUP_MAX_DIST_PX
+                if not same_cat:
+                    n_kept_category += 1
+                elif not close:
+                    n_kept_distance += 1
+                if same_cat and close:
+                    uf.union(i, j)
+
+        clusters = defaultdict(list)
+        for i in range(len(members)):
+            clusters[uf.find(i)].append(i)
+
+        for idxs in clusters.values():
+            group = [members[i] for i in idxs]
+            primary = max(group, key=lambda c: (c.get("vision_confidence") or 0.0,
+                                                 bbox_area(c.get("symbol_bbox") or {})))
+            canon = copy.deepcopy(primary)
+            if len(group) > 1:
+                canon["symbol_bbox"] = _union_bbox(
+                    [g.get("symbol_bbox") or {} for g in group])
+                sow_vals = []
+                for g in group:
+                    sv = g.get("sow_status")
+                    if sv and sv not in sow_vals:
+                        sow_vals.append(sv)
+                if sow_vals:
+                    canon["sow_status"] = sow_vals[0]
+                    canon["sow_status_merged"] = sow_vals
+                canon["merged_from"] = [g["candidate_id"] for g in group]
+                canon["merged_count"] = len(group)
+                n_merges += 1
+                log.info("Merged duplicate: %s (%d instances → 1 canonical)",
+                         canon.get("tag_text", norm), len(group))
+            deduped.append(canon)
+            for g in group:
+                id_remap[g["candidate_id"]] = canon["candidate_id"]
+
+    for c in untagged:
+        cc = copy.deepcopy(c)
+        deduped.append(cc)
+        id_remap[cc["candidate_id"]] = cc["candidate_id"]
+
+    # Rewrite intra-candidate references so edges land on surviving nodes.
+    # Also strip any reference to a filtered-out candidate (filtered_ids) so
+    # build_graph never creates adjacency entries for non-existent nodes.
+    for c in deduped:
+        ce = c.get("connected_equipment")
+        if ce in filtered_ids:
+            c["connected_equipment"] = None   # filtered out — clear dangling ref
+        elif ce in id_remap and id_remap[ce] != ce:
+            c["connected_equipment"] = id_remap[ce]
+        nbs = []
+        for nb in (c.get("nearby_candidates") or []):
+            nid = nb.get("candidate_id")
+            if nid in filtered_ids:
+                continue                      # drop reference to filtered symbol
+            if nid in id_remap:
+                nb = {**nb, "candidate_id": id_remap[nid]}
+            if nb.get("candidate_id") != c["candidate_id"]:   # drop self-refs
+                nbs.append(nb)
+        if "nearby_candidates" in c:
+            c["nearby_candidates"] = nbs
+
+    log.info("Entity resolution: kept-separate guards fired "
+             "(distance>%dpx: %d pairs, category-mismatch: %d pairs)",
+             DUP_MAX_DIST_PX, n_kept_distance, n_kept_category)
+    return deduped, id_remap, n_merges, filter_stats
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -235,7 +605,8 @@ def build_pipelines_and_junctions(segments: list[dict], equip_bboxes=None):
         pipeline incident to them (done in build_graph).
     """
     pipe_idx = [i for i, s in enumerate(segments)
-                if "pipe" in s["type"] and s["length"] >= MIN_PIPE_LEN]
+                if s["type"] in ("horizontal_pipe", "vertical_pipe")
+                and s["length"] >= MIN_PIPE_LEN]
     uf = UnionFind(len(segments))
 
     # ── Pass 1: classify every endpoint↔segment contact ──────────────────
@@ -1136,6 +1507,477 @@ def _cluster_pipelines(pls, radius):
     return [cl["items"] for cl in clusters]
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# Phase 1 — Gemini instrument attachment (GATED on --gemini-attach)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def _instrument_attach_targets(hierarchy):
+    """Split instrument/valve hierarchy records into the two Gemini target groups.
+
+      • unresolved — has graph edges (is_isolated False) but no equipment_parent
+                     (couldn't reach equipment through traversal)
+      • isolated   — zero edges of any kind (is_isolated True); no equipment_parent
+                     either, and these need Gemini the most
+    Records that already have an equipment_parent are never targets.
+    """
+    unresolved, isolated = [], []
+    for h in hierarchy:
+        if h.get("kind") not in ("instrument", "valve"):
+            continue
+        if h.get("equipment_parent"):
+            continue
+        if h.get("is_isolated"):
+            isolated.append(h)
+        else:
+            unresolved.append(h)
+    return unresolved, isolated
+
+
+def _strip_area_prefix(tag):
+    """Drop a leading area-prefix token (e.g. 'V-', 'K-', 'KM-', 'KG-')."""
+    return re.sub(r"^[A-Z]+-", "", (tag or "").strip().upper())
+
+
+# ── Equipment-tag validation (Fix 1: reject noise from Gemini attach) ────────
+_EQUIPMENT_TAG_PATTERN = re.compile(
+    r"^[A-Z]+-[A-Z]-?\d+[A-Z0-9-]*$", re.IGNORECASE
+)
+_EXCLUDED_EQUIPMENT_TOKENS = {"UNKNOWN", "NONE", ""}
+
+
+def is_valid_equipment_tag(tag: str) -> bool:
+    """Return True only if tag looks like a real P&ID equipment tag.
+
+    Accepts: K-V-201, V-V-201, S-V-204, KM-V-201, V-BV-2248
+    Rejects: '12IN-ETH-V012-61440X-PP', 'SB 6IN', '7-61440X', 'UNKNOWN', ''
+    """
+    if not tag:
+        return False
+    t = tag.strip().upper()
+    if t in _EXCLUDED_EQUIPMENT_TOKENS:
+        return False
+    return bool(_EQUIPMENT_TAG_PATTERN.match(t))
+
+
+def _match_tag(gemini_tag, candidate_keys):
+    """Match a tag Gemini returned to one of ``candidate_keys`` (all uppercase),
+    tolerating area-prefix differences (e.g. Gemini 'FV-208' → 'V-FV-208', or
+    'V-201' → 'K-V-201'). Returns the matched candidate key, or None.
+
+    Order: exact → both-stripped equality → suffix match (loosest, guarded to
+    a stripped token of length ≥ 3 so trivial numeric tails don't over-match)."""
+    g = (gemini_tag or "").strip().upper()
+    if not g:
+        return None
+    keys = list(candidate_keys)
+    if g in keys:
+        return g
+    gs = _strip_area_prefix(g)
+    if not gs:
+        return None
+    for t in sorted(keys):                      # both stripped to the same core
+        if _strip_area_prefix(t) == gs:
+            return t
+    if len(gs) >= 3:                            # suffix fallback (e.g. V-201→K-V-201)
+        for t in sorted(keys):
+            if t.endswith(gs):
+                return t
+    return None
+
+
+def _cluster_instruments_by_x(items, radius):
+    """Greedy spatial clustering of instruments (the algorithm specified for
+    Phase 1): sort by x-coordinate, then add each instrument to the current
+    cluster if its centroid is within ``radius`` of the cluster's running
+    centroid, else start a new cluster. ``items`` carry a 'center' (x, y)."""
+    ordered = sorted(items, key=lambda it: it["center"][0])
+    clusters = []
+    for it in ordered:
+        if clusters:
+            cl = clusters[-1]
+            n = len(cl["items"])
+            cx, cy = cl["sum_x"] / n, cl["sum_y"] / n
+            if math.hypot(it["center"][0] - cx, it["center"][1] - cy) <= radius:
+                cl["items"].append(it)
+                cl["sum_x"] += it["center"][0]
+                cl["sum_y"] += it["center"][1]
+                continue
+        clusters.append({"items": [it], "sum_x": it["center"][0],
+                         "sum_y": it["center"][1]})
+    return [cl["items"] for cl in clusters]
+
+
+def gemini_instrument_attach(hierarchy, graph, cands, pipelines, segments, img,
+                             api_key, out_dir, confirm=False, n_workers=8):
+    """Phase 1: ask Gemini what equipment each unresolved/isolated instrument
+    connects to, one image crop per spatial cluster.
+
+    GATING: this function ALWAYS prints a pre-flight report (cluster count =
+    number of Gemini calls, estimated cost, instruments being sent) BEFORE any
+    API call. When ``confirm`` is False it returns immediately after that report
+    (dry run, zero API calls). When ``confirm`` is True it crops + annotates +
+    calls Gemini, caches by crop content hash, and adds GEMINI_ATTACHED edges to
+    ``graph`` in place for high/medium-confidence attachments.
+
+    Returns a report dict. Does NOT re-run the hierarchy — the caller does that
+    after the new edges are added (Step 5)."""
+    unresolved, isolated = _instrument_attach_targets(hierarchy)
+    targets = unresolved + isolated
+    log.info("Gemini attach targets: %d unresolved (edges, no equip parent) + "
+             "%d isolated (zero edges) = %d total",
+             len(unresolved), len(isolated), len(targets))
+
+    cand_by_id = {c["candidate_id"]: c for c in cands}
+    items = []
+    for h in targets:
+        c = cand_by_id.get(h["node_id"])
+        bb = (c or {}).get("symbol_bbox") or {}
+        ctr = _cand_center(c) if c else None
+        if not bb or ctr is None:
+            continue
+        items.append({
+            "node_id": h["node_id"], "tag_text": h.get("tag_text", ""),
+            "bbox": bb, "center": ctr,
+            "group": "isolated" if h.get("is_isolated") else "unresolved",
+        })
+
+    clusters = _cluster_instruments_by_x(items, GEMINI_ATTACH_CLUSTER_PX)
+    n_calls = len(clusters)
+    est_in = n_calls * GEMINI_ATTACH_EST_INPUT_TOK
+    est_out = n_calls * GEMINI_ATTACH_EST_OUTPUT_TOK
+    est_usd = (est_in / 1e6 * GEMINI_PRO_USD_PER_MTOK_IN +
+               est_out / 1e6 * GEMINI_PRO_USD_PER_MTOK_OUT)
+
+    # ── Pre-flight cost report (printed BEFORE any API call) ─────────────────
+    print("\n=== Gemini instrument-attach PRE-FLIGHT (no API calls yet) ===")
+    print(f"  unresolved (edges, no equip parent) : {len(unresolved)}")
+    print(f"  isolated   (zero edges)             : {len(isolated)}")
+    print(f"  total instruments being sent        : {len(items)}")
+    print(f"  spatial clusters = Gemini calls     : {n_calls}")
+    print(f"  est. tokens in / out                : ~{est_in} / ~{est_out}")
+    print(f"  est. cost ({GEMINI_ATTACH_MODEL})   : ~${est_usd:.4f}  (approx)")
+
+    report = {
+        "n_unresolved": len(unresolved),
+        "n_isolated": len(isolated),
+        "n_sent": len(items),
+        "n_clusters": n_calls,
+        "est_cost_usd": round(est_usd, 4),
+        "attachments_by_conf": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "attachments_returned": 0,
+        "edges_added": 0,
+        "unknown_equipment_refs": [],
+        "dry_run": not confirm,
+    }
+    if not confirm:
+        print("  --> DRY RUN: Gemini NOT called. Re-run with --gemini-attach "
+              "(without --gemini-attach-dry-run) to proceed.")
+        return report
+
+    if not api_key:
+        raise RuntimeError("--gemini-attach requires --api-key / GEMINI_API_KEY")
+
+    client, sdk = _build_gemini_client(api_key)
+    H, W = img.shape[:2]
+    pipe_segs = [s for s in segments if "pipe" in s["type"]]
+    equip = [c for c in cands
+             if c.get("symbol_category") == "equipment" and c.get("symbol_bbox")]
+    equip_node_by_tag = {}
+    for n in graph["nodes"]:
+        if n.get("kind") == "equipment" and n.get("tag_text"):
+            equip_node_by_tag.setdefault(n["tag_text"].strip().upper(), n["node_id"])
+
+    # ── CHANGE 1: global equipment roster (so Gemini can name a parent that is
+    #    NOT visible in a local crop — equipment is sparse + distant on this sheet) ──
+    roster_lines = []
+    for n in graph["nodes"]:
+        if n.get("kind") != "equipment" or not n.get("tag_text"):
+            continue
+        bb = n.get("bbox") or {}
+        if not bb:
+            continue
+        cx, cy = bbox_center(bb)
+        side = "left" if cx < W / 2 else "right"
+        vert = "top" if cy < H / 2 else "bottom"
+        roster_lines.append(f"{n['tag_text']} — located {vert}-{side} of drawing")
+    roster_text = "\n".join(roster_lines) if roster_lines else "(none detected)"
+
+    cache_path = Path(out_dir) / "gemini_attach_cache.json"
+    cache = {}
+    if cache_path.exists():
+        try:
+            cache = json.load(open(cache_path))
+        except Exception:
+            cache = {}
+
+    cache_lock = threading.Lock()
+
+    crop_dir = Path(out_dir) / "gemini_attach_crops"
+    crop_dir.mkdir(parents=True, exist_ok=True)
+
+    prompt = (
+        "This is a section of a P&ID engineering drawing.\n\n"
+        "Red-circled instruments need parent equipment assignment.\n"
+        "Blue rectangles are detected equipment.\n"
+        "Gray lines are detected pipe segments.\n\n"
+        "EQUIPMENT ON THIS DRAWING:\n"
+        f"{roster_text}\n\n"
+        "Use this list to name the parent equipment even if it is not visible "
+        "in the crop. Reason from the pipe routing and instrument type to "
+        "identify which equipment this instrument belongs to.\n\n"
+        "For each red-circled instrument, answer:\n"
+        "1. What equipment is it physically connected to? "
+        "(via pipe, leader line, or direct mounting)\n"
+        "2. If connected to a pipe, which direction does the pipe go to reach equipment?\n"
+        "3. Confidence (high/medium/low)\n\n"
+        'If you cannot determine the connection, say "unknown".\n\n'
+        "Respond in JSON only:\n"
+        "{\n"
+        '  "attachments": [\n'
+        "    {\n"
+        '      "instrument_tag": "V-TIT-211",\n'
+        '      "parent_equipment": "K-V-201",\n'
+        '      "connection_type": "pipe" | "leader_line" | "mounted" | "unknown",\n'
+        '      "confidence": "high" | "medium" | "low",\n'
+        '      "reasoning": "connected via 2-inch line to compressor suction"\n'
+        "    }\n"
+        "  ]\n"
+        "}"
+    )
+
+    # ── Per-cluster worker (runs in thread pool) ─────────────────────────────
+    # Returns (ci, answer_or_None, tag_to_node, from_cache, error_str_or_None)
+    # All mutations to shared state (cache, disk) go through cache_lock.
+    # graph/report are mutated ONLY in the sequential apply phase after all
+    # futures complete — no lock needed there.
+    def _call_cluster(ci_cluster):
+        ci, cluster = ci_cluster
+        # Stagger starts to avoid a simultaneous burst on the first request
+        time.sleep(ci * 0.1)
+
+        # Build tag_to_node for this cluster (local — no shared state)
+        tag_to_node = {}
+        for it in cluster:
+            if it["tag_text"]:
+                tag_to_node.setdefault(it["tag_text"].strip().upper(), it["node_id"])
+
+        # Tag-based cache key — stable across re-runs on the same drawing
+        cluster_tags = sorted(it["tag_text"] for it in cluster if it["tag_text"])
+        tag_key = "tag:" + hashlib.md5(
+            json.dumps(cluster_tags, sort_keys=True).encode()).hexdigest()
+        with cache_lock:
+            if tag_key in cache:
+                return ci, cache[tag_key], tag_to_node, True, None
+
+        # Build annotated crop
+        x1 = max(0, min(it["bbox"]["x1"] for it in cluster) - GEMINI_ATTACH_CROP_PAD_PX)
+        y1 = max(0, min(it["bbox"]["y1"] for it in cluster) - GEMINI_ATTACH_CROP_PAD_PX)
+        x2 = min(W, max(it["bbox"]["x2"] for it in cluster) + GEMINI_ATTACH_CROP_PAD_PX)
+        y2 = min(H, max(it["bbox"]["y2"] for it in cluster) + GEMINI_ATTACH_CROP_PAD_PX)
+        crop = img[y1:y2, x1:x2].copy()
+        ch, cw = crop.shape[:2]
+        if ch == 0 or cw == 0:
+            return ci, None, tag_to_node, False, "empty crop"
+        scale = (GEMINI_ATTACH_MAX_SIDE / max(ch, cw)
+                 if max(ch, cw) > GEMINI_ATTACH_MAX_SIDE else 1.0)
+        if scale != 1.0:
+            crop = cv2.resize(crop, (int(cw * scale), int(ch * scale)))
+
+        # capture loop vars for the transform helpers
+        _x1, _y1, _scale = x1, y1, scale
+
+        def _tx(px):
+            return int((px - _x1) * _scale)
+
+        def _ty(py):
+            return int((py - _y1) * _scale)
+
+        # gray lines for detected pipe segments in the region
+        for s in pipe_segs:
+            if (min(s["x0"], s["x1"]) > x2 or max(s["x0"], s["x1"]) < x1 or
+                    min(s["y0"], s["y1"]) > y2 or max(s["y0"], s["y1"]) < y1):
+                continue
+            cv2.line(crop, (_tx(s["x0"]), _ty(s["y0"])),
+                     (_tx(s["x1"]), _ty(s["y1"])), (150, 150, 150), 2)
+
+        # blue rectangles for equipment detected within the padded region
+        for e in equip:
+            eb = e["symbol_bbox"]
+            ec = bbox_center(eb)
+            if not (x1 <= ec[0] <= x2 and y1 <= ec[1] <= y2):
+                continue
+            cv2.rectangle(crop, (_tx(eb["x1"]), _ty(eb["y1"])),
+                          (_tx(eb["x2"]), _ty(eb["y2"])), (255, 0, 0), 2)
+            cv2.putText(crop, e.get("tag_text", ""),
+                        (_tx(eb["x1"]), max(0, _ty(eb["y1"]) - 5)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
+
+        # red circles around each unresolved instrument + tag label
+        for it in cluster:
+            bb = it["bbox"]
+            cx = _tx((bb["x1"] + bb["x2"]) / 2)
+            cy = _ty((bb["y1"] + bb["y2"]) / 2)
+            r = int(max(bb["x2"] - bb["x1"], bb["y2"] - bb["y1"]) / 2 * scale) + 8
+            cv2.circle(crop, (cx, cy), max(r, 12), (0, 0, 255), 3)
+            cv2.putText(crop, it["tag_text"], (cx + 10, cy),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+
+        ok, buf = cv2.imencode(".jpg", crop)
+        if not ok:
+            return ci, None, tag_to_node, False, "imencode failed"
+        img_bytes = buf.tobytes()
+
+        cv2.imwrite(str(crop_dir / f"cluster_{ci}.jpg"), crop)
+
+        # Content-hash fallback cache (handles old entries written before tag-key)
+        content_key = hashlib.sha256(img_bytes + prompt.encode()).hexdigest()
+        with cache_lock:
+            if content_key in cache:
+                return ci, cache[content_key], tag_to_node, True, None
+
+        # Gemini call with exponential-backoff retry on 429 / 503
+        for attempt in range(3):
+            try:
+                if sdk == "new":
+                    from google.genai import types as gt
+                    resp = client.models.generate_content(
+                        model=GEMINI_ATTACH_MODEL,
+                        contents=[gt.Part.from_bytes(data=img_bytes,
+                                                     mime_type="image/jpeg"),
+                                  gt.Part.from_text(text=prompt)],
+                        config=gt.GenerateContentConfig(
+                            temperature=GEMINI_ATTACH_TEMP),
+                    )
+                    raw = resp.text.strip()
+                else:
+                    import google.generativeai as gl
+                    import PIL.Image as PILImage
+                    import io
+                    pil = PILImage.open(io.BytesIO(img_bytes))
+                    cfg = gl.GenerationConfig(temperature=GEMINI_ATTACH_TEMP)
+                    resp = gl.GenerativeModel(GEMINI_ATTACH_MODEL).generate_content(
+                        [prompt, pil], generation_config=cfg)
+                    raw = resp.text.strip()
+
+                clean = raw.replace("```json", "").replace("```", "").strip()
+                m = re.search(r"\{.*\}", clean, re.DOTALL)
+                answer = json.loads(m.group(0) if m else clean)
+
+                with cache_lock:
+                    cache[tag_key] = answer
+                    cache[content_key] = answer
+                    if len(cache) % 5 == 0:
+                        try:
+                            json.dump(cache, open(cache_path, "w"), indent=2)
+                        except Exception:
+                            pass
+
+                return ci, answer, tag_to_node, False, None
+
+            except Exception as e:
+                err_str = str(e)
+                if any(x in err_str for x in ("429", "503", "RESOURCE_EXHAUSTED",
+                                               "overloaded")):
+                    wait = 2 ** attempt  # 1s, 2s, 4s
+                    log.warning("Cluster %d rate-limited, retry in %ds (attempt %d/3)",
+                                ci, wait, attempt + 1)
+                    time.sleep(wait)
+                else:
+                    return ci, None, tag_to_node, False, err_str
+
+        return ci, None, tag_to_node, False, "failed after 3 retries"
+
+    # ── Parallel execution ────────────────────────────────────────────────────
+    effective_workers = min(n_workers, n_calls) if n_calls else 1
+    log.info("Gemini attach: running %d clusters with %d parallel workers",
+             n_calls, effective_workers)
+
+    cluster_results = [None] * n_calls  # (answer, tag_to_node, from_cache)
+    completed_count = 0
+
+    with concurrent.futures.ThreadPoolExecutor(
+            max_workers=effective_workers) as executor:
+        future_to_ci = {
+            executor.submit(_call_cluster, (ci, cluster)): ci
+            for ci, cluster in enumerate(clusters)
+        }
+        for future in concurrent.futures.as_completed(future_to_ci):
+            ci, answer, tag_to_node, from_cache, error = future.result()
+            completed_count += 1
+            status = "CACHE" if from_cache else ("ERR" if error else "LIVE")
+            cluster_tags_preview = sorted(
+                it["tag_text"] for it in clusters[ci] if it["tag_text"])[:5]
+            log.info("Attach %d/%d [%s] cluster=%d  %d instr: %s",
+                     completed_count, n_calls, status, ci,
+                     len(clusters[ci]), ", ".join(cluster_tags_preview))
+            if error:
+                log.warning("Cluster %d failed: %s", ci, error)
+            cluster_results[ci] = (answer, tag_to_node, from_cache)
+
+    # Save cache once after all parallel calls complete
+    try:
+        json.dump(cache, open(cache_path, "w"), indent=2)
+    except Exception:
+        pass
+
+    # ── Sequential result application (no thread safety needed) ──────────────
+    eid = len(graph["edges"])
+    attachments_all = []
+    unknown_refs = []
+
+    for ci, result in enumerate(cluster_results):
+        if result is None:
+            continue
+        answer, tag_to_node, _from_cache = result
+        if answer is None:
+            continue
+
+        for att in (answer.get("attachments") or []):
+            attachments_all.append(att)
+            conf_word = (att.get("confidence") or "unknown").lower()
+            if conf_word not in report["attachments_by_conf"]:
+                conf_word = "unknown"
+            report["attachments_by_conf"][conf_word] += 1
+            if conf_word not in ("high", "medium"):
+                continue
+            ikey = _match_tag(att.get("instrument_tag"), tag_to_node.keys())
+            inode = tag_to_node.get(ikey) if ikey else None
+            if not inode:
+                log.info("Gemini attach: instrument tag not in this cluster: %s",
+                         att.get("instrument_tag"))
+                continue
+            raw_equip = att.get("parent_equipment")
+            if not is_valid_equipment_tag(raw_equip):
+                log.info("Rejected invalid equipment tag: %s", raw_equip)
+                continue
+            ekey = _match_tag(raw_equip, equip_node_by_tag.keys())
+            enode = equip_node_by_tag.get(ekey) if ekey else None
+            if not enode:
+                log.info("Gemini referenced unknown equipment: %s", raw_equip)
+                unknown_refs.append(raw_equip)
+                continue
+            conf = (GEMINI_ATTACH_CONF_HIGH if conf_word == "high"
+                    else GEMINI_ATTACH_CONF_MEDIUM)
+            eq_cand = next((c for c in cands if c["candidate_id"] == enode), None)
+            if eq_cand and eq_cand.get("is_label_only"):
+                conf = min(conf, IS_LABEL_ONLY_CONF_CAP)
+            graph["edges"].append({
+                "edge_id": f"E-{eid}", "from": inode, "to": enode,
+                "rel": "GEMINI_ATTACHED", "category": "functional",
+                "directed": False, "confidence": conf,
+                "evidence": f"gemini_vision: {att.get('reasoning', '')}",
+            })
+            eid += 1
+            report["edges_added"] += 1
+
+    report["attachments_returned"] = len(attachments_all)
+    report["unknown_equipment_refs"] = unknown_refs
+    log.info("Gemini attach: %d attachments returned, %d new GEMINI_ATTACHED "
+             "edges, %d unknown-equipment refs",
+             len(attachments_all), report["edges_added"], len(unknown_refs))
+    return report
+
+
 def gemini_flow_fallback(pipelines, junctions, graph, segments, cands,
                          img, api_key, out_dir):
     """GATED Gemini fallback — resolves flow direction for category-D pipelines
@@ -1597,13 +2439,78 @@ def build_hierarchy(graph, spatial):
     nodes = {n["node_id"]: n for n in graph["nodes"]}
     adj = defaultdict(set)        # rooting/process adjacency — excludes signal
     full_adj = defaultdict(set)   # all edges — drives is_isolated
+
+    # ── FIX 2/3: edge-derived maps for equipment_parent + parent provenance ──
+    mounted_eq = defaultdict(list)   # node_id -> [(eq_node_id, conf, evidence)]
+    pipe_equip = defaultdict(set)    # pipeline_id -> {equipment node_id touching it}
+    pair_edges = defaultdict(list)   # frozenset(a,b) -> [edge, ...] (parent provenance)
     for e in graph["edges"]:
         full_adj[e["from"]].add(e["to"])
         full_adj[e["to"]].add(e["from"])
+        f, t = e["from"], e["to"]
+        pair_edges[frozenset((f, t))].append(e)
+        kf = nodes.get(f, {}).get("kind")
+        kt = nodes.get(t, {}).get("kind")
+        # MOUNTED_ON (CV proximity) and GEMINI_ATTACHED (Phase 1 vision) are both
+        # direct instrument→equipment bindings → strongest equipment_parent signal.
+        if e.get("rel") in ("MOUNTED_ON", "GEMINI_ATTACHED"):
+            if kt == "equipment":
+                mounted_eq[f].append((t, e.get("confidence"), e.get("evidence")))
+            elif kf == "equipment":
+                mounted_eq[t].append((f, e.get("confidence"), e.get("evidence")))
+        if kf == "pipeline" and kt == "equipment":
+            pipe_equip[f].add(t)
+        elif kt == "pipeline" and kf == "equipment":
+            pipe_equip[t].add(f)
         if e.get("category") == "signal":
             continue
         adj[e["from"]].add(e["to"])
         adj[e["to"]].add(e["from"])
+
+    def _resolve_equipment_parent(nid, par, anc):
+        """Resolve the nearest EQUIPMENT parent for a node (FIX 2 + FIX 3 PartA).
+
+        Priority (strongest physical evidence first):
+          1. direct MOUNTED_ON edge to equipment  → edge confidence (~0.674+),
+             edge evidence (instrument physically mounted on equipment).
+          2. direct_parent is itself equipment     → parent-edge confidence.
+          3. first equipment ancestor in parent_chain (reached via a pipeline /
+             junction) → confidence 0.5, evidence='pipeline_traversal'.
+          4. direct_parent is a pipeline that touches exactly ONE equipment
+             (line-collapse — equipment need not be an ancestor; this is the
+             repair logic moved out of step9) → 0.5, 'pipeline_traversal'.
+          5. nothing → all None (do not guess).
+        Returns (tag, node_id, confidence, evidence)."""
+        # 1. direct MOUNTED_ON edge
+        if mounted_eq.get(nid):
+            eq_id, conf, ev = max(mounted_eq[nid], key=lambda x: (x[1] or 0.0))
+            return (nodes.get(eq_id, {}).get("tag_text", ""), eq_id, conf,
+                    ev or "MOUNTED_ON")
+        # 2. direct_parent is equipment
+        if par and nodes.get(par, {}).get("kind") == "equipment":
+            edge = (pair_edges.get(frozenset((nid, par))) or [None])[0]
+            conf = edge.get("confidence") if edge else None
+            return nodes[par].get("tag_text", ""), par, conf, "direct_parent"
+        # 3. first equipment ancestor in parent_chain (via pipeline/junction)
+        for a in anc:
+            if nodes.get(a, {}).get("kind") == "equipment":
+                return nodes[a].get("tag_text", ""), a, 0.5, "pipeline_traversal"
+        # 4. direct_parent pipeline → single touching equipment (line collapse)
+        if par and nodes.get(par, {}).get("kind") == "pipeline":
+            eqs = [e for e in pipe_equip.get(par, set()) if e != nid]
+            if len(eqs) == 1:
+                return (nodes[eqs[0]].get("tag_text", ""), eqs[0], 0.5,
+                        "pipeline_traversal")
+        return None, None, None, None
+
+    def _parent_provenance(nid, par):
+        """confidence + evidence of the graph edge connecting nid to direct_parent."""
+        if not par:
+            return None, None
+        edge = (pair_edges.get(frozenset((nid, par))) or [None])[0]
+        if edge:
+            return edge.get("confidence"), edge.get("evidence")
+        return None, None
 
     # connected components
     seen, components = set(), []
@@ -1627,6 +2534,11 @@ def build_hierarchy(graph, spatial):
     children = defaultdict(list)
 
     for comp in components:
+        # Guard: adjacency can contain stale IDs if any caller bypasses the
+        # pre-filter; silently skip them rather than KeyError.
+        comp = [nid for nid in comp if nid in nodes]
+        if not comp:
+            continue
         # root = best rank, then degree, then bbox area
         root = max(comp, key=lambda nid: (
             _node_rank(nodes[nid]), len(adj[nid]), bbox_area(nodes[nid]["bbox"])))
@@ -1684,12 +2596,21 @@ def build_hierarchy(graph, spatial):
         par = parent.get(nid)
         sibs = [s for s in children.get(par, []) if s != nid] if par else []
         sp = spatial.get(nid, {})
+        ep_tag, ep_id, ep_conf, ep_ev = _resolve_equipment_parent(nid, par, anc)
+        p_conf, p_ev = _parent_provenance(nid, par)
         hierarchy.append({
             "node_id": nid,
             "tag_text": n["tag_text"],
             "kind": n["kind"],
             "root_system": root_of.get(nid),
             "direct_parent": par,
+            "parent_confidence": p_conf,
+            "parent_evidence": p_ev,
+            # FIX 2/3: nearest equipment parent (self-contained, no step9 repair)
+            "equipment_parent": ep_tag,
+            "equipment_parent_id": ep_id,
+            "equipment_parent_confidence": ep_conf,
+            "equipment_parent_evidence": ep_ev,
             "parent_chain": anc,                 # immediate -> root
             "ancestor_path": anc,
             "children": children.get(nid, []),
@@ -1709,18 +2630,121 @@ def build_hierarchy(graph, spatial):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Debug overlay (--debug-annotate) — VISUAL SANITY CHECK ONLY, not a stage
+# ═══════════════════════════════════════════════════════════════════════════
+
+def draw_debug_overlay(img, cands, segments, junctions, graph, out_path,
+                       max_side=4000):
+    """Render a single annotated JPG to visually confirm the three fixes:
+       blue circles  = instruments
+       orange squares= valves
+       red rectangles= equipment (with tag label)
+       red lines     = horizontal_pipe segments (used in pipeline construction)
+       blue lines    = vertical_pipe segments (used in pipeline construction)
+       yellow dots   = junction nodes
+       green lines    = MOUNTED_ON edges (instrument → equipment)
+    diagonal_pipe segments are NOT drawn — they are excluded from union-find
+    pipeline construction, so showing them would misrepresent the pipe network.
+    `cands` should be the CANONICAL (deduped) list so no duplicate symbol is
+    drawn twice at the same location. Colours are BGR."""
+    canvas = img.copy()
+
+    # pipe segments actually used in pipeline construction:
+    #   horizontal_pipe -> red, vertical_pipe -> blue, diagonal_pipe -> skipped
+    for s in segments:
+        if s["type"] == "horizontal_pipe":
+            col = (0, 0, 255)        # red
+        elif s["type"] == "vertical_pipe":
+            col = (255, 0, 0)        # blue
+        else:                        # diagonal_pipe / leader_line: not part of pipe net
+            continue
+        cv2.line(canvas, (int(s["x0"]), int(s["y0"])),
+                 (int(s["x1"]), int(s["y1"])), col, 2)
+
+    pos = {}   # candidate_id -> center (for MOUNTED_ON edges)
+    for c in cands:
+        bb = c.get("symbol_bbox") or {}
+        if not bb:
+            continue
+        x1, y1, x2, y2 = int(bb["x1"]), int(bb["y1"]), int(bb["x2"]), int(bb["y2"])
+        cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
+        pos[c["candidate_id"]] = (cx, cy)
+        cat = c.get("symbol_category", "")
+        if cat == "instrument":
+            r = max(12, (x2 - x1) // 2)
+            cv2.circle(canvas, (cx, cy), r, (255, 0, 0), 3)            # blue
+        elif cat == "valve":
+            cv2.rectangle(canvas, (x1, y1), (x2, y2), (0, 165, 255), 3)  # orange
+        elif cat == "equipment":
+            cv2.rectangle(canvas, (x1, y1), (x2, y2), (0, 0, 255), 4)    # red
+            cv2.putText(canvas, c.get("tag_text", ""), (x1, max(14, y1 - 8)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 0, 255), 3)
+
+    # yellow junction dots
+    for j in junctions:
+        p = j["point"]
+        cv2.circle(canvas, (int(p["x"]), int(p["y"])), 7, (0, 255, 255), -1)
+
+    # green MOUNTED_ON edges
+    n_mo = 0
+    for e in graph["edges"]:
+        if e.get("rel") != "MOUNTED_ON":
+            continue
+        a, b = pos.get(e["from"]), pos.get(e["to"])
+        if a and b:
+            cv2.line(canvas, a, b, (0, 200, 0), 3)
+            n_mo += 1
+
+    h, w = canvas.shape[:2]
+    sc = max_side / max(h, w) if max(h, w) > max_side else 1.0
+    if sc != 1.0:
+        canvas = cv2.resize(canvas, (int(w * sc), int(h * sc)))
+    cv2.imwrite(str(out_path), canvas)
+    log.info("Debug overlay → %s  (%d symbols, %d MOUNTED_ON edges, scale=%.3f)",
+             out_path, len(pos), n_mo, sc)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # Main
 # ═══════════════════════════════════════════════════════════════════════════
 
+def _eqp_count(hier):
+    """(#instrument/valve records WITH equipment_parent, #instrument/valve total)."""
+    inst = [h for h in hier if h.get("kind") in ("instrument", "valve")]
+    have = [h for h in inst if h.get("equipment_parent")]
+    return len(have), len(inst)
+
+
 def run(assoc_path: str, img_path: str, out_dir: str,
-        gemini_flow_fallback_on: bool = False, api_key: str = ""):
+        gemini_flow_fallback_on: bool = False, api_key: str = "",
+        debug_annotate: bool = False,
+        gemini_attach_on: bool = False, gemini_attach_dry_run: bool = False,
+        gemini_attach_workers: int = 8):
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
 
     with open(assoc_path) as f:
         data = json.load(f)
-    cands = data.get("enriched_candidates", [])
-    log.info("Loaded %d enriched candidates from Step 5B", len(cands))
+    cands_all = data.get("enriched_candidates", [])
+    log.info("Loaded %d enriched candidates from Step 5B", len(cands_all))
+
+    # ── FIX 1: entity resolution BEFORE any graph/geometry construction ──
+    # Phase 0: symbol-size pre-filter removes text-mention candidates (title
+    # block, notes, tables) whose bbox has insufficient physical extent.
+    # Phase 1: merge duplicate detections of the same tag into one canonical
+    # node so a duplicate never becomes a separate graph/hierarchy node.
+    # The graph, spatial, pipelines, flow and hierarchy are all built from this
+    # filtered+deduped list. The byte-identical original list is preserved as
+    # enriched_candidates pass-through (step7 joins any id, canonical or merged).
+    log.info("=== FIX 1: entity resolution (symbol-size pre-filter + "
+             "duplicate-detection merge) ===")
+    cands, dup_remap, n_dup_merges, filter_stats = resolve_canonical_entities(
+        cands_all, display_scale=1.0)
+    log.info("Entity resolution: %d input → %d after symbol-size filter "
+             "→ %d canonical (%d dup merges)",
+             len(cands_all),
+             len(cands_all) - filter_stats["n_filtered"],
+             len(cands), n_dup_merges)
 
     img = cv2.imread(img_path)
     if img is None:
@@ -1734,6 +2758,18 @@ def run(assoc_path: str, img_path: str, out_dir: str,
     equip_bboxes = [c.get("symbol_bbox", {}) for c in cands
                     if c.get("symbol_category") == "equipment" and c.get("symbol_bbox")]
     pipelines, junctions = build_pipelines_and_junctions(segments, equip_bboxes)
+
+    # ─────────────────────────────────────────────────────
+    # FUTURE: GEMINI PIPE VERIFICATION LAYER
+    # Insert here after CV pipe fix is stable.
+    # Ambiguous cases to send to Gemini:
+    #   1. Pipe gaps where GAP_BRIDGE_PX closes them — confirm same line?
+    #   2. Junction degree >= 3 — tee or crossing?
+    #   3. Short segments near instrument bboxes — leader or pipe?
+    #   4. Parallel segments < 50px apart — one pipe or two?
+    # Do NOT add this until the CV detector produces clean segments.
+    # Current blocker: step5b detect_pipes_and_lines producing noise.
+    # ─────────────────────────────────────────────────────
 
     log.info("=== Spatial relations (bbox math) ===")
     spatial = compute_spatial(cands)
@@ -1776,6 +2812,61 @@ def run(assoc_path: str, img_path: str, out_dir: str,
 
     log.info("=== Hierarchy traversal ===")
     hierarchy, components = build_hierarchy(graph, spatial)
+
+    # ── Phase 1: GATED Gemini instrument attachment (explicit opt-in) ────────
+    # Find instruments/valves the CV graph couldn't bind to equipment, ask
+    # Gemini what they connect to, add GEMINI_ATTACHED edges, then RE-RUN the
+    # hierarchy so the new paths resolve equipment_parent.
+    attach_report = None
+    if gemini_attach_on or gemini_attach_dry_run:
+        confirm = gemini_attach_on and not gemini_attach_dry_run
+        if confirm and not api_key:
+            raise RuntimeError("--gemini-attach requires --api-key / GEMINI_API_KEY")
+        log.info("=== Phase 1: Gemini instrument attachment (gated) ===")
+        eqp_before_have, eqp_total = _eqp_count(hierarchy)
+        before_has = {h["node_id"]: bool(h.get("equipment_parent")) for h in hierarchy}
+        attach_report = gemini_instrument_attach(
+            hierarchy, graph, cands, pipelines, segments, img,
+            api_key, out_dir, confirm=confirm,
+            n_workers=gemini_attach_workers)
+        attach_report["equip_parent_before"] = f"{eqp_before_have}/{eqp_total}"
+
+        if confirm and attach_report.get("edges_added"):
+            hierarchy, components = build_hierarchy(graph, spatial)
+            eqp_after_have, _ = _eqp_count(hierarchy)
+            attach_report["equip_parent_after"] = f"{eqp_after_have}/{eqp_total}"
+            gained = [h for h in hierarchy
+                      if h.get("equipment_parent") and not before_has.get(h["node_id"])]
+            attach_report["n_gained_equipment_parent"] = len(gained)
+
+            # ── Phase 1 report (the 7 data points) ──
+            print("\n=== Phase 1: Gemini instrument-attach REPORT ===")
+            print(f"  (1) unresolved+isolated sent : {attach_report['n_sent']} "
+                  f"({attach_report['n_unresolved']} unresolved + "
+                  f"{attach_report['n_isolated']} isolated)")
+            print(f"  (2) Gemini calls (clusters)  : {attach_report['n_clusters']}")
+            abc = attach_report["attachments_by_conf"]
+            print(f"  (3) attachments returned     : {attach_report['attachments_returned']} "
+                  f"(high={abc['high']} medium={abc['medium']} "
+                  f"low={abc['low']} unknown={abc['unknown']})")
+            print(f"  (4) new GEMINI_ATTACHED edges: {attach_report['edges_added']}")
+            print(f"  (5) equipment_parent BEFORE  : {attach_report['equip_parent_before']}")
+            print(f"      equipment_parent AFTER   : {attach_report['equip_parent_after']}"
+                  f"   <-- THE KEY NUMBER")
+            print(f"  (7) Gemini refs to equipment NOT in graph: "
+                  f"{len(attach_report['unknown_equipment_refs'])} "
+                  f"{attach_report['unknown_equipment_refs'][:10]}")
+            print(f"  (6) up to 3 instruments that gained equipment_parent from Gemini:")
+            for h in gained[:3]:
+                print(json.dumps(h, indent=2))
+        elif confirm:
+            attach_report["equip_parent_after"] = attach_report["equip_parent_before"]
+            attach_report["n_gained_equipment_parent"] = 0
+            print("\n=== Phase 1: Gemini instrument-attach REPORT ===")
+            print("  No high/medium attachments returned → 0 edges added; "
+                  "hierarchy unchanged.")
+            print(f"  equipment_parent: {attach_report['equip_parent_before']} (unchanged)")
+
     annotate_directed_hierarchy(hierarchy, graph, pipelines)
 
     n_connected = sum(1 for h in hierarchy if not h["is_isolated"])
@@ -1788,7 +2879,21 @@ def run(assoc_path: str, img_path: str, out_dir: str,
         "rel_summary": data.get("rel_summary"),
         # ---- byte-identical pass-through (5c/5d untouched) ----
         "associations": data.get("associations", []),
-        "enriched_candidates": cands,
+        "enriched_candidates": cands_all,
+        # FIX 1: canonical (filtered + deduped) candidates used to build the graph
+        "canonical_candidates": cands,
+        "entity_resolution": {
+            "n_input": len(cands_all),
+            "n_after_symbol_filter": len(cands_all) - filter_stats["n_filtered"],
+            "n_canonical": len(cands),
+            "n_symbol_filter_removed": filter_stats["n_filtered"],
+            "symbol_filter_zone_counts": filter_stats["zone_counts"],
+            "symbol_filter_removed": filter_stats["filtered_records"],
+            "n_merges": n_dup_merges,
+            "dup_max_dist_px": DUP_MAX_DIST_PX,
+            "min_symbol_height_px": MIN_SYMBOL_HEIGHT_PX,
+            "min_symbol_width_px": MIN_SYMBOL_WIDTH_PX,
+        },
         # ---- NEW v2 keys ----
         "line_segments": segments,
         "pipelines": pipelines,
@@ -1828,6 +2933,7 @@ def run(assoc_path: str, img_path: str, out_dir: str,
                                f"recoverable by 2-segment probing — needs a dedicated multi-bend tracer; "
                                f"(3) mechanical shaft hierarchy K-V-201->GEAR->KM-V-201 needs manual annotation."),
         },
+        "gemini_attach": attach_report,
         "arrowheads": arrowheads,
         "check_valves": check_valves,
         "control_loops": control_loops,
@@ -1850,13 +2956,39 @@ def run(assoc_path: str, img_path: str, out_dir: str,
         },
     }
 
-    out_path = str(out / "step5b2_hierarchy.json")
+    # Primary output: hierarchy built from FULL extraction.
+    out_path = str(out / "step5b2_hierarchy_full.json")
     with open(out_path, "w") as f:
         json.dump(payload, f, indent=2)
-    log.info("✓ step5b2_hierarchy.json → %s", out_path)
+    log.info("✓ step5b2_hierarchy_full.json → %s", out_path)
+
+    # Backward-compatible alias — downstream stages that still look for the
+    # plain name (and any older tooling) keep working unchanged.
+    alias_path = str(out / "step5b2_hierarchy.json")
+    with open(alias_path, "w") as f:
+        json.dump(payload, f, indent=2)
+    log.info("✓ step5b2_hierarchy.json (alias) → %s", alias_path)
+
+    # ── Debug overlay (visual sanity check; uses CANONICAL deduped candidates) ──
+    if debug_annotate:
+        draw_debug_overlay(img, cands, segments, junctions, graph,
+                           out / "step5b2_debug_overlay.jpg")
 
     # ── Console report (the 4 data points) ──
     print("\n=== Step 5B2 Phase 1 Complete ===")
+    print(f"  --- Symbol-size pre-filter ---")
+    print(f"  input candidates        : {len(cands_all)}")
+    print(f"  non-symbol filtered out : {filter_stats['n_filtered']}  "
+          f"(zone breakdown: {filter_stats['zone_counts']})")
+    if filter_stats["filtered_records"]:
+        for r in filter_stats["filtered_records"][:10]:
+            print(f"    filtered: {r['tag']:20s}  ({r['cx']:5.0f},{r['cy']:5.0f})"
+                  f"  [{r['zone']}]  {r['reason']}")
+        if filter_stats["n_filtered"] > 10:
+            print(f"    ... and {filter_stats['n_filtered'] - 10} more (see entity_resolution.symbol_filter_removed)")
+    print(f"  after filter            : {len(cands_all) - filter_stats['n_filtered']}")
+    print(f"  after dup merge         : {len(cands)}")
+    print(f"  --- Graph & hierarchy ---")
     print(f"  line segments persisted : {len(segments)}")
     print(f"  (a) pipeline entities   : {len(pipelines)}")
     print(f"  (b) junction nodes      : {len(junctions)}")
@@ -1880,15 +3012,55 @@ def run(assoc_path: str, img_path: str, out_dir: str,
     return payload
 
 
+def _resolve_associations_path(requested: str) -> str:
+    """Resolve the step5b associations input path.
+
+    Hierarchy must always be built from FULL_DRAWING extraction output, so the
+    default input is ``step5b_associations_full.json``. If that file does not
+    exist, fall back to ``step5b_associations.json`` (which may be cloud-filtered)
+    and emit a loud warning — an incomplete hierarchy is the symptom.
+    """
+    if os.path.exists(requested):
+        return requested
+
+    # If the caller asked for the *_full file (default) and it's missing,
+    # fall back to the plain associations file in the same directory.
+    if requested.endswith("step5b_associations_full.json"):
+        fallback = requested.replace("step5b_associations_full.json",
+                                     "step5b_associations.json")
+        if os.path.exists(fallback):
+            print("WARNING: step5b_associations_full.json not found.")
+            print("Falling back to step5b_associations.json.")
+            print("Hierarchy may be incomplete — input may be cloud-filtered.")
+            print("Run step5b with --force-full-drawing step5a output to fix.")
+            return fallback
+
+    # Nothing matched — return the requested path so the open() error is explicit.
+    return requested
+
+
 def main():
     ap = argparse.ArgumentParser(description="Step 5B2: Hierarchy & Graph (Phase 1)")
-    ap.add_argument("--associations", default="output/step5b_associations.json")
+    ap.add_argument("--associations", default="output/step5b_associations_full.json",
+                    help="step5b associations input (default: FULL extraction; "
+                         "falls back to step5b_associations.json with a warning)")
     ap.add_argument("--image")
     ap.add_argument("--context")
     ap.add_argument("--out", default="output")
     ap.add_argument("--gemini-flow-fallback", action="store_true",
                     help="GATED: resolve category-D pipeline flow direction via Gemini (~6 calls)")
+    ap.add_argument("--gemini-attach", action="store_true",
+                    help="GATED Phase 1: attach unresolved/isolated instruments to "
+                         "equipment via Gemini vision (one call per spatial cluster)")
+    ap.add_argument("--gemini-attach-dry-run", action="store_true",
+                    help="Phase 1 cost gate: print cluster count + estimated cost + "
+                         "instruments to send, then STOP without calling Gemini")
+    ap.add_argument("--gemini-attach-workers", type=int, default=8,
+                    help="Parallel workers for Gemini instrument attachment (default 8)")
     ap.add_argument("--api-key", help="Gemini API key (or GEMINI_API_KEY env)")
+    ap.add_argument("--debug-annotate", action="store_true",
+                    help="Write output/step5b2_debug_overlay.jpg (visual sanity check: "
+                         "instruments/valves/equipment, pipes, junctions, MOUNTED_ON edges)")
     args = ap.parse_args()
 
     img_path = args.image
@@ -1902,8 +3074,14 @@ def main():
     api_key = (args.api_key or os.environ.get("GEMINI_API_KEY")
                or os.environ.get("GEMINI_KEY") or "")
 
-    run(args.associations, img_path, args.out,
-        gemini_flow_fallback_on=args.gemini_flow_fallback, api_key=api_key)
+    assoc_path = _resolve_associations_path(args.associations)
+
+    run(assoc_path, img_path, args.out,
+        gemini_flow_fallback_on=args.gemini_flow_fallback, api_key=api_key,
+        debug_annotate=args.debug_annotate,
+        gemini_attach_on=args.gemini_attach,
+        gemini_attach_dry_run=args.gemini_attach_dry_run,
+        gemini_attach_workers=args.gemini_attach_workers)
 
 
 if __name__ == "__main__":
