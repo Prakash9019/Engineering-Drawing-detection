@@ -1,0 +1,762 @@
+{
+  "5a15d295184021a4331e05ce95ca0b6d": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The red lines are not pipe segments. They are annotations added to the image, likely to highlight the text '201'. They do not represent physical pipelines in the context of a P&ID drawing."
+  },
+  "6d8d4ca53871e7599532bbbfd6e31717": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned horizontally or vertically, and there is no connecting line or symbol between them. They appear to be separate lines in the drawing."
+  },
+  "bf0244b053a899d07c52306e707e9fd9": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not part of the same pipeline. The top segment is part of a rectangular box containing text ('001'), while the bottom segment is part of a wavy line, likely representing a boundary or a different type of connection, not a continuous pipe interrupted by a symbol."
+  },
+  "b962db5ebee95ed5de53f4db024767be": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned horizontally and do not appear to be part of the same continuous pipeline. One segment is connected to the wider end of a reducer, while the other is a separate line above it, partially obscured by a revision cloud."
+  },
+  "e4f6bc7e89fa3a779797caf6d7895f0b": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and are separated by a significant distance. They appear to be parts of different structures or symbols within the drawing, rather than a single continuous pipeline interrupted by an element."
+  },
+  "85a32f6f51f94ae438dd20290e09a97c": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red pipe segments are connected to the inlet and outlet of an inline check valve (non-return valve) symbol, indicating they are part of the same continuous pipeline."
+  },
+  "454c98d4b70abfe179b42e7f4da6a373": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are on different horizontal lines, separated by a significant vertical distance. They are not aligned and do not appear to be part of the same continuous pipeline."
+  },
+  "944de79bf91f15b002b2c9a1bf0f36f0": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned horizontally or vertically, and there is no symbol or text between them that would suggest they are part of the same pipeline. They appear to be separate, unrelated lines in the drawing."
+  },
+  "9ec73a2584cec41c24c004964429d90a": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top red line is an underline for the text 'POINTS'. The bottom red line is drawn across a wavy line that represents a revision cloud or annotation boundary. Neither of these lines represents a physical pipe, and they are completely unrelated graphical elements."
+  },
+  "bc81f870c313bc2387bc2b6d6ecd99f2": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not collinear. They are parallel but separated by a significant vertical distance. Furthermore, they appear to serve different graphical purposes: the top segment is a leader line with an arrowhead, while the bottom segment is a border line for a text box or table. They do not represent a single continuous pipeline interrupted by a symbol or text."
+  },
+  "49d41eb539e70b8bfe97db09de6e17fe": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The left red segment is part of an annotation leader line underlining a text label. The right red segment highlights a portion of a thick, scalloped line, which is a standard symbol for a revision cloud. Neither segment represents a physical pipeline."
+  },
+  "cd720d5700476a8f744117597378d9ab": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are located at different vertical positions (y-coordinates) on the drawing. Because they are parallel but not collinear, they represent separate lines and cannot be the same physical pipeline interrupted by a symbol."
+  },
+  "302bb2bd572fe827cfc55e7663ef4ce5": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments are collinear and point directly at each other, separated only by a dimension line and text. This is a standard convention in engineering drawings to indicate a continuous line that has been broken to accommodate text or other annotations."
+  },
+  "4b69f01539d61b2823bb027ac0ab8a51": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are at different vertical positions and do not align horizontally. There are no connecting lines or symbols to suggest they are part of the same pipeline. They appear to be separate, unrelated lines in the drawing."
+  },
+  "3ed85249f816afc15ebd3af892e16117": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The highlighted lines are graphical elements forming part of a reference label or annotation box (indicated by the text 'FROM'), rather than representing physical piping."
+  },
+  "b5724eea9e2381b8adbccd499f24300f": {
+    "junction_type": "crossing",
+    "confidence": "high",
+    "reason": "The red circle highlights a point where a diagonal line crosses a vertical line. There is no dot or other symbol to indicate a connection, which is standard practice in P&ID drawings for lines that cross without connecting."
+  },
+  "3c157cddca25be93e1e495a8ff7b86de": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The highlighted segments are at different elevations and connect to different parts of the system (the top of a vessel and a pipe below it). The vertical arrows between them indicate they are acting as extension lines to show a vertical dimension, rather than being physical pipes themselves. They are definitely not a single interrupted pipeline."
+  },
+  "3d482fe6aa765ad6ed23c1872be9fa5d": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are parallel but vertically offset from each other. In standard engineering drawings, a single continuous pipeline interrupted by a symbol or break would resume along the same collinear axis. Because these segments are at different elevations, they represent separate branches or features, not a single interrupted pipe."
+  },
+  "87bd2a6d534b7d67158650e9bec10d58": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments belong to distinct graphical elements. The left segment is part of a squiggly line (often representing a flexible hose), while the right segment is part of a straight vertical line passing through a cylindrical symbol. They are not aligned and there is no visual connection between them, indicating they are separate pipes."
+  },
+  "0194f56910d6ca98436707c41bb2f70b": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The left red segment is the inlet line connecting to an angle valve (likely a pressure relief valve), while the right red segment is part of the discharge piping routed from the valve's outlet. Inlet and discharge lines of such valves are distinct pipelines, not a single continuous pipe interrupted by a symbol."
+  },
+  "495703105810ac128662f26abb16713f": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are parallel but vertically separated. The lower segment is a connection line for the instrument (TAHH 212), while the upper segment appears to be an unrelated line near the top of the revision cloud. They do not align and there is no visual indication that they are part of the same continuous line."
+  },
+  "0eeadeabd1f82d786390ef0802a70d43": {
+    "junction_type": "crossing",
+    "confidence": "high",
+    "reason": "In standard P&ID symbology, when two lines intersect without a solid dot (node) at the intersection point, it indicates that the pipes cross over each other without physically connecting. A physical connection at a cross would require a dot."
+  },
+  "32f8ad117a812d6c4a45fc2087d255cd": {
+    "junction_type": "crossing",
+    "confidence": "high",
+    "reason": "In standard P&ID and engineering drawing conventions, when two lines intersect without a solid dot or other specific connection symbol at the intersection point, it indicates that the lines (pipes) cross over each other without physically connecting."
+  },
+  "80e94159f883ebac7625e7109462b3ef": {
+    "junction_type": "crossing",
+    "confidence": "high",
+    "reason": "At the highlighted intersection, one of the lines has a distinct gap as it passes the other continuous line. This is a standard drafting convention in P&IDs to indicate that pipes cross over each other without physically connecting. Furthermore, there is no solid dot at the intersection, which would typically be used to denote a physical connection or tee."
+  },
+  "1f3d24154b6e9d964d815d786e534456": {
+    "junction_type": "tee",
+    "confidence": "high",
+    "reason": "The horizontal line terminates directly at the vertical line, forming a solid intersection without continuing past it. There is no gap or 'jump' symbol that would typically indicate lines crossing without connecting, confirming it is a physical connection."
+  },
+  "e575d496615ec2b10a3594da626d8eca": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are parallel and do not align with each other. They are part of different symbols or structures in the drawing, not a single interrupted pipeline."
+  },
+  "d757a401c926970cb62b23afc56a19ac": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and are separated by a significant distance and other drawing elements, indicating they are not part of the same continuous pipeline."
+  },
+  "7fa15310aae70954ef595126e7efa1d2": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are part of different rectangular boxes, which likely represent different equipment or components, not a continuous pipeline interrupted by a symbol."
+  },
+  "0bbd3fe78ffbac4eca604cf3298470e6": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not aligned and are separated by a significant distance. The top segment is part of a horizontal line with a break symbol, while the bottom segment is a vertical line forming part of a rectangular box. There is no visual indication that they are part of the same pipeline."
+  },
+  "37bc05340f761c034d031f03edc77d8e": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not horizontally aligned and appear to be edges of different graphical elements (like boxes or symbols) rather than a single continuous pipeline interrupted by text."
+  },
+  "0d8db5c8a3bdc0b42d44c20fe57759a7": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top red line is a leader line pointing from the text '006-C03B' to the revision cloud. The bottom red line is a segment of a pipe or line that is being revised, as indicated by the revision cloud. They serve different purposes and are not part of the same physical pipeline."
+  },
+  "6ad9ed4f238c7b04cf99730d6fcd4be1": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not collinear; they are vertically offset from one another. In standard P&ID drawings, an interrupted pipeline would have its segments aligned on the same axis. Additionally, the right segment appears to be an underline for the text '61440' rather than a pipe."
+  },
+  "5792f68c323c45cf0099057cf22d9a19": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are parallel but not collinear. They connect to the vertical line at different points with a significant vertical gap between them, indicating they are separate pipes rather than a single interrupted pipeline."
+  },
+  "cbff4d2a9fac19c29d64339f6c6a1573": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and are separated by a significant vertical distance. They appear to be parts of different lines or annotations, not a single interrupted pipeline."
+  },
+  "e360f280d44af258212fd18d9606e03f": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are at different vertical elevations and are not aligned. There are no connecting lines, symbols, or labels to indicate they are part of the same continuous pipeline. They appear to belong to separate, unrelated components in the drawing."
+  },
+  "5592831365dea10ca248089423148143": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The highlighted red lines are vertical segments that form the left and right boundaries of a logical enclosure or panel (indicated by the solid rectangular box) surrounding the control valve's instrumentation. They represent a boundary, not physical process pipes, and are therefore not part of the same pipeline."
+  },
+  "f79727690b480586076dad707a298c1a": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are on different horizontal axes (they are vertically offset). In standard P&ID drafting, a single continuous pipeline interrupted by a label or symbol would resume on the same alignment. The vertical offset indicates they are separate lines."
+  },
+  "c4dce92d529defc9737420845d3056fa": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are on separate, parallel lines that act as distinct inputs to the 'LOW SELECT' block. They do not form a single continuous pipeline."
+  },
+  "bee07168d235cc6a1765590299433006": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments are aligned vertically and are separated by a rectangular symbol, which is typical for a component like a valve or instrument in a P&ID. This indicates they are part of the same pipeline passing through the component."
+  },
+  "230bdcc595d7008a5c80cbbc5aedab48": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red pipe segments are vertically aligned and point towards each other, separated only by a symbol (likely a valve or instrument). In P&ID drawings, this indicates a continuous pipeline interrupted by a component."
+  },
+  "8a7d729192fed4e1625bbbfe26b2097d": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not collinear and do not appear to be a single line interrupted by a symbol or text. One segment enters a rectangular block, while the other is located above it, under some text, indicating they are separate entities in the diagram."
+  },
+  "f39ebbce18c00715b168fa99b4cb3133": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The highlighted lines appear to be the borders of separate rectangular boxes or tables, rather than pipe segments. They are separated by a large gap containing annotation text and show no visual indication of being a continuous flow path."
+  },
+  "8b9d59fa6bfbc0b409d4720667d6d876": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted red segments are parallel vertical lines that are horizontally offset from one another. Because they are not collinear, they represent two separate, distinct lines in the diagram rather than a single pipeline interrupted by a component."
+  },
+  "2d50f72a43ab9bde6fb674a053de5f52": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and do not appear to be part of the same pipeline. One is a horizontal line at the top, and the other is a horizontal line below the number 61440. They are separated by a significant vertical distance and do not share a common path or connection point."
+  },
+  "0087693beba178ee7563970d5b39e732": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and are separated by a significant distance. The arrow pointing from the text '12\"' indicates a dimension or a specific point, not a continuation of a pipeline. Therefore, they are separate unrelated lines."
+  },
+  "b60236803f51a9e992c4cc7a8c26f6e0": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are perpendicular to each other and do not align. One is a vertical line segment, and the other is a horizontal arrow pointing to the right. They are clearly separate elements in the drawing."
+  },
+  "add92e1d56299d8afe1988c687e4ff2b": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top red line highlights a portion of a wavy line, which is a standard symbol for a revision cloud used to indicate changes in the drawing, not a physical pipe. The bottom red line is a straight line connected to a diamond-shaped instrument symbol (T 255B), likely representing a signal or leader line. These are distinct graphical elements serving completely different purposes and are not part of the same pipeline."
+  },
+  "a1419731bda43f4aab4be6454d08dcae": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments belong to completely different graphical elements. The horizontal segment is a line passing through a component symbol, while the vertical segment is drawn over a thick, wavy boundary line. They do not align and there is no logical or visual indication that they are part of the same pipeline."
+  },
+  "a7ebf1aa8f897d75980580d1e01cb581": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are perpendicular to each other (one is horizontal, the other is vertical) and do not align. They are clearly separate lines in the drawing, not a single continuous pipeline interrupted by a symbol."
+  },
+  "d00a5f836671d98288312aa1a38ecd9d": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted pipe segments are not collinear; they are at different vertical positions. Furthermore, there is no connecting line drawn between them to indicate a change in direction, which means they represent separate, distinct pipes rather than a single continuous pipeline interrupted by a symbol."
+  },
+  "5c4eae78ac8a20e340c58caa76250dcb": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are perpendicular to each other and do not align. The horizontal segment appears to be an underline for the text 'V-201', while the vertical segment is a separate line. They are not part of the same continuous pipeline."
+  },
+  "ee4bb76cbfb9263742baaf709243d237": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top red line is part of an annotation or label box (likely indicating a pressure setting of '5barg'), with a leader line pointing to the valve. The bottom red line represents a physical process pipe connecting to the inlet of the valve. They serve different functions in the diagram and are not part of the same pipeline."
+  },
+  "5cfd44790d4213d09c1e8f015af5ab7b": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The vertical red line with double hash marks and an arrowhead represents a signal line (typically pneumatic) providing input to the rectangular component. The horizontal red line is a solid line representing a process pipe. They are different types of lines serving different functions and do not align to form a single interrupted pipeline."
+  },
+  "d1376bd77ca7c6b39d6f7ed17888a96d": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are parallel but vertically separated. There are no connecting lines, symbols, or logical flow indicators to suggest they are part of the same continuous pipeline. They appear to represent distinct, separate pipes in the drawing."
+  },
+  "ea5dafb73150cfb8ed05b269539db5ed": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments have different orientations (one horizontal, one vertical) and belong to different graphical elements. The top segment appears to be part of a scalloped boundary or revision cloud, while the bottom segment is part of a rectangular symbol. They do not align to form a continuous pipeline."
+  },
+  "f95d33925361ae3a32bb52c5c1d844fe": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are located on separate, parallel horizontal lines. There are no visible connecting lines or symbols linking these two distinct paths within the provided image snippet."
+  },
+  "d5f2a9c3927c633a2a89fe9438735a23": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The highlighted red lines form the vertical sides of a rectangular equipment symbol, likely a vessel or tank given the label 'KG-V-201' above it. They represent the physical boundaries of the equipment, not segments of a pipeline."
+  },
+  "395b472ca2a8818cba1c9aac26b28d7b": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are spatially separated, do not align, and there is no visual indication that they are part of the same pipeline."
+  },
+  "7578a7f4c77b82fd4720ec6776ba744a": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top highlighted segment appears to be the border of a rectangular box or symbol, while the bottom segment is a vertical line connecting a symbol to a horizontal line. They are separated by a large gap and serve different graphical purposes, indicating they are not part of the same pipeline."
+  },
+  "6779dad1599fa0c54dc269da14a8bd57": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The highlighted red lines do not represent pipe segments. The top line is a horizontal line underlining a text box, and the bottom line is a vertical line along the edge of a revision cloud. They are unrelated graphical annotation elements, not parts of a continuous pipeline."
+  },
+  "3942be8822cea2b3aa3e561d7aad559f": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are oriented perpendicularly to each other (one horizontal, one vertical) and are separated by a significant distance. There are no connecting lines, symbols, or logical flow to suggest they are part of the same physical pipeline. They appear to be completely unrelated elements within the drawing."
+  },
+  "2ec61be80a011ebd548ab07aa294aea4": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not collinear and are located at different vertical elevations. The left segment is associated with the wavy line symbol at the top, while the right segment connects to a vertical line leading to the 'LS' instrument. There is no visual indication that they are part of the same continuous pipeline interrupted by a symbol."
+  },
+  "00644fe190ca84f0fd0cbc73f63ed50e": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are perpendicular to each other and do not align. One is a horizontal line ending in an arrowhead, indicating flow direction or a connection point, while the other is a vertical line segment. They are clearly separate elements in the drawing, not a single interrupted pipeline."
+  },
+  "ced49576510ccb0494dcc3c739ab126a": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are completely separate and unrelated. The top segment is a line connected to an instrument symbol (diamond), while the bottom segment is actually the top border of an off-page connector symbol (hexagon), not a pipe. They do not align and are not part of the same pipeline."
+  },
+  "c0946a2c8d0ada6297f20e4a9197c9f2": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are a horizontal line and a vertical line that cross each other. In standard P&ID notation, lines that cross without a solid connection dot at the intersection represent separate, unrelated pipelines or signal paths."
+  },
+  "0b52bba9d4dd357c6329c27f599ea8d2": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not collinear and do not appear to be part of the same pipeline. One is a horizontal line entering a reducer, and the other is a vertical line forming part of a box or enclosure symbol."
+  },
+  "d6caa616285b419b980d3ba3f67cdf4e": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are parallel but vertically offset from each other. They are not collinear and connect to different parts of the piping system, indicating they are separate lines rather than a single interrupted pipeline."
+  },
+  "dff0cd3ae4fe13ea7dc5a092d0c5c610": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and do not appear to be part of the same continuous line. One is horizontal and the other is vertical, and they are separated by a significant distance without any connecting symbol or line."
+  },
+  "e24e8b3a416e9829c6d8353b59d439e3": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and are separated by a significant distance. They appear to be distinct parts of the drawing, possibly representing different pipes or boundaries, rather than a single interrupted pipeline."
+  },
+  "21c98fe1c635783fd0bb2deadbd5baf9": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are on lines with different symbology. The top segment is on a wavy line, which typically represents a capillary tube or flexible connection in P&ID diagrams. The bottom segment is on a solid, straight line, which represents a standard rigid process pipe. Because they are different line types and are not collinear, they represent separate physical entities, not a single pipeline interrupted by a symbol."
+  },
+  "b5dd9d2fc341e8fbd038312a6350e149": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top highlighted segment is part of a graphical symbol indicating a slope (annotation), while the bottom highlighted segment represents a physical pipe with a flow direction arrow. They are distinct elements and not parts of the same interrupted pipeline."
+  },
+  "0f52e4de579009338152439d00bdfd12": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are parallel but vertically offset from each other. If they were a single pipeline interrupted by a symbol or text, they would be collinear. The vertical separation indicates they represent separate lines or pipes in the drawing."
+  },
+  "52b5e4a42f6e0271e3e7234393b42cbe": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The vertical and horizontal red line segments physically intersect at a T-junction, indicating they are connected branches of the same pipeline system. There is no gap or interrupting symbol at their meeting point."
+  },
+  "3f72885fbcbbb95126280b8859bf8bd4": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments are perfectly aligned vertically and are only separated by a small gap, which is typical in P&ID drawings to indicate a continuous line that is interrupted for clarity or to accommodate a symbol or text."
+  },
+  "7ecbf103b33f0fac3aa2333094aa5860": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments are aligned horizontally and are separated by a dashed line, which typically indicates a continuation of the same pipeline or a logical connection in P&ID drawings."
+  },
+  "bfa466f6e46f0174731b3e4980f635e7": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The highlighted segment on the left is an underline for the text '001' inside the off-page connector symbol, not a pipe. It is not collinear with or connected to the actual pipeline segment highlighted on the right."
+  },
+  "2f98db9d6d9a75305e27247b12ddfd6a": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are visually separate and serve different purposes in the diagram. The top segment is a horizontal line with a wavy pattern, while the bottom segment is a distinct line with a double hash mark that connects to an off-page reference box. There are no connecting lines or symbols to suggest they are part of the same physical pipeline."
+  },
+  "5aae266c51eb7c05e3395b7edac20f71": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are spatially separated and not aligned. The left segment enters a reducer, while the top right segment is in a completely different location without any visual or logical connection to the first. They represent different parts of the system."
+  },
+  "33a34542deac23b71617d02db10f0c1f": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top red segment is an input line (likely a signal or utility line, indicated by the arrow and hash marks) feeding into an actuator symbol. The bottom red segment is a separate process pipe. They serve different functions and are not part of the same continuous physical pipeline."
+  },
+  "55921a5fe8e2a2054bd07b3e74cd3f0e": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are parallel vertical lines that do not align with each other. They are separated horizontally and do not appear to be part of the same continuous pipeline interrupted by a symbol."
+  },
+  "8619e2e8de8d046c0cd15c306c8c8388": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not collinear and are separated by a significant distance as well as a revision cloud boundary. There is no logical connection, symbol, or text indicating they are part of the same continuous pipeline. The left segment appears to be part of a leader line for a label, while the right segment connects to an instrument symbol."
+  },
+  "2bb39f5656a91b5ac2de31e3f8e52365": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not part of the same pipeline. The top segment is part of a label box (indicated by the arrow shape and surrounding cloud), while the bottom segment is a leader line pointing from the text 'C03B' to another part of the drawing. They serve different annotation purposes and do not represent a continuous physical pipe."
+  },
+  "c5e7703081c3a9c7974644e375606711": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not part of the same pipeline. One is a horizontal line that appears to be part of a larger symbol or boundary, while the other is a horizontal line underlining text. They are not connected and serve different purposes in the drawing."
+  },
+  "d3a89c4388ebb1526af41beeaeaf6981": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The highlighted segments form the top and bottom boundaries of a single flexible hose or jacketed pipe symbol, indicating they are part of the same physical pipeline entity."
+  },
+  "ad6c622b84c3bef3b073140f05e34106": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are perpendicular to each other and located in different parts of the diagram. The horizontal segment is outside the thick wavy boundary, while the vertical segment is inside it. They do not align or connect in any way that would suggest they are a single interrupted pipeline."
+  },
+  "957c28529e17330a46b8a069f39a1ad1": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two segments are far apart and do not align with each other. They are clearly separate pipes."
+  },
+  "345d995d3ce3919e9a63ab17f09e8cec": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The vertical red segment terminates exactly at the horizontal red segment, forming a T-junction. In P&ID notation, a line ending on another line indicates a physical connection (such as an instrument tap or branch), unlike lines that cross completely without a dot, which would indicate they are unrelated."
+  },
+  "8df0beaa570818dccded1dcb5610faf4": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are oriented perpendicularly to each other and are separated by a significant distance and various symbols/text, indicating they are not part of the same continuous pipeline."
+  },
+  "9e5f23a046781a66a3d1ce36fa145af4": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not collinear and are separated by a significant vertical distance. Furthermore, the right segment has an arrowhead, indicating it is likely a leader line for a label rather than a pipe itself. They do not form a continuous line interrupted by a symbol."
+  },
+  "391becdfcf2bb923bdb58fdd42c0d6ff": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are located on opposite sides (top and bottom) of a thick, wavy revision cloud boundary. They are far apart, do not align, and there is no connecting line or logical flow path between them, indicating they are separate and unrelated."
+  },
+  "d00d51d192e3497363369500e3a08c06": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not collinear and do not appear to be part of the same continuous line. One segment is a horizontal line connecting a pipe to a vertical line, while the other is a horizontal line segment below it, seemingly part of a dimensioning or labeling structure, not a continuation of the first pipe."
+  },
+  "10fd69ba347ce43e08b3da1b507717c8": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top red segment is the bottom border of a rectangular text box. The bottom red segment is part of a thick, wavy revision cloud boundary. They are distinct graphical elements and do not represent a continuous pipeline."
+  },
+  "14371229abc5c25bc5e4d15f66c63e61": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are far apart and do not align with each other. There is no indication that they are part of the same pipeline."
+  },
+  "cd1fd54b9fd8971bf7df3141e192bed7": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The highlighted red segments meet directly at a T-junction, indicating they are physically connected and part of the same piping network. They are not interrupted by any symbols or text."
+  },
+  "1bbe945933d944a75ba4f7d9e0b09590": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are perpendicular to each other and do not align. They are clearly separate pipes."
+  },
+  "7e729313d6cac10574c97f386ce9e691": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not aligned and are separated by a significant distance and other drawing elements, indicating they are separate pipes."
+  },
+  "817d0e58d83ccba958d98c615a87a504": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top red segment connects to the top of a large vessel (represented by the semi-circle), while the bottom red segment connects to a component exiting the bottom of that same vessel. Because they are separated by a major piece of equipment, they represent distinct pipelines (e.g., an inlet and an outlet), not a single continuous pipe run."
+  },
+  "d94958962cc946e3623572a9b5309e65": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments belong to different parts of the diagram. The top segment appears to be part of a vessel or equipment boundary symbol, while the right segment is a line connected to the FZT 208 instrument bubble. They are not aligned and do not form a continuous pipeline interrupted by a symbol."
+  },
+  "bee0ae204bdaed210a95b3cb95a5e6ec": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not part of the same pipeline. The top segment is an underline for text within a revision cloud, while the bottom segment is part of a pipeline designation or label, not a continuous pipe line itself."
+  },
+  "e5059426d5728b2532d4d200b60cf6c6": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The vertical red line appears to highlight the straight edge of a revision cloud (indicated by the scalloped border), rather than being a pipe itself. The horizontal red line is part of a pipeline passing through a valve symbol. They are perpendicular, do not align, and represent different types of drawing elements, indicating they are unrelated."
+  },
+  "a0cb7f9c4f294ba58e27b19f147417c1": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two highlighted segments are collinear and appear to be part of the same horizontal pipeline. The visual interruption between them is caused by a revision cloud and an instrument tag (diamond symbol), which is a standard drafting convention in P&IDs to maintain readability. The right segment is also adjacent to a pipe size label ('12\"-'), confirming it is a pipe."
+  },
+  "960c6dc498e9933351fa7ba5cc0ba472": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and do not appear to be part of the same pipeline. One is a horizontal line entering a box labeled 'GEAR', while the other is a horizontal line above the text 'KG-V-'. They are separated by a significant vertical distance and do not share a logical connection path."
+  },
+  "acecf1b9251e127cae25f40327365cbf": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments are collinear and form a continuous line, indicating they are part of the same physical pipeline."
+  },
+  "98afb5f01a12df76f4f435773eb5a357": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are spatially separated and appear in different contexts within the drawing. There are no connecting lines, continuation symbols, or other visual cues to suggest they are part of the same physical pipeline. One is a general pipe line with a size label, while the other is part of a specific valve assembly inside a revision cloud."
+  },
+  "691ef92d8310051206a198cf440cd02c": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red pipe segments are connected to different parts of the main circular vessel or pipe. One connects to the top right, and the other connects to the bottom. They are not part of the same continuous pipeline interrupted by a symbol."
+  },
+  "d8194276bcfdf370ffd01e793ee922e4": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The highlighted red lines are the bottom borders of two separate, unrelated rectangular boxes in the diagram, not segments of a single continuous pipeline. They are spatially separated and do not align or connect in any way."
+  },
+  "c7e3a4e394dd1eac12f9c81fd4f4c13a": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not aligned and are separated by a significant distance and other drawing elements, indicating they are separate pipes."
+  },
+  "ea65697f40811145ef4de27fdffb475c": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The highlighted segments are two distinct, parallel vertical lines located at different horizontal positions. They are separated by other schematic symbols (a coil and an instrument bubble) and do not align or connect to suggest they are a single interrupted pipeline."
+  },
+  "ec44a994ed425d2fb908e52f3a1ecaac": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not part of the same pipeline. One segment is an underline for the text '201', and the other segment is an underline for the text 'KM'. They are not connected to each other or to any pipeline."
+  },
+  "f007d2e8084547b784fa9c59f2b5865e": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are in different orientations (one vertical, one horizontal) and are separated by a significant distance without any alignment or visual cues to suggest they are part of the same continuous pipeline."
+  },
+  "3ec8f414cb8c54daf34c2caf83949cd5": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not collinear and are separated by a significant vertical distance. The top segment appears to be drawn over a revision cloud above some text, while the bottom segment passes horizontally through an instrument symbol (LIC 204). There is no visual indication that they are part of the same continuous pipeline."
+  },
+  "9fd7c157f0a23b36df5ed88c4c20f583": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are in different parts of the drawing, separated by a revision cloud boundary. They have different orientations (one horizontal, one vertical) and connect to different symbols, with no visual indication of continuity between them."
+  },
+  "8fe20aac33e5df6feb5f4fe3d30bc71b": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are perpendicular to each other and meet at a junction with a curved line (likely representing a vessel or tank). This indicates they are separate branches or connections to the equipment, rather than a single continuous pipeline that is merely interrupted by a valve."
+  },
+  "29176d04ccb31d0f576b96f5cd8eadb7": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are parallel vertical lines separated by a significant horizontal distance. There are no connecting lines, symbols, or logical flow indicating they are part of the same pipeline. The left segment appears to be part of a revision cloud boundary, while the right segment is a distinct process or signal line."
+  },
+  "bd26c18c41c3f3b566d8cae9ba15d54f": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The red lines highlight two distinct, parallel horizontal pipe segments. Although they are connected by a vertical branch line containing an instrument symbol (ZLC 209), they represent separate pipelines (such as different headers) rather than a single continuous pipe run."
+  },
+  "cd7f3608e93f25cf2f20c7f2fdcbc2fd": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not part of the same pipeline. The top segment is part of a wavy line, which typically represents a flexible hose or a specific type of connection, while the bottom segment is a straight vertical line forming part of a rectangular shape or boundary. They are visually distinct and serve different purposes in the drawing."
+  },
+  "ca7cf56686c3e29c83dffa83fc1c0034": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are separated by a thick wavy black line, which is a standard drawing convention used to indicate a break, boundary, or separate detail view within the diagram. Additionally, the segments have different orientations (horizontal vs. vertical) and are part of different symbolic structures, indicating they are separate, unrelated lines."
+  },
+  "3a804d56cfc1bfc64bf3a6ffafeb937d": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are perpendicular to each other and do not align. One is vertical and the other is horizontal, indicating they are separate pipes."
+  },
+  "7c27109284a5908d5f6cf440ad57197e": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top red segment appears to be part of the scalloped boundary of a revision cloud. The bottom red segment is a vertical signal line connecting to a pneumatic valve actuator symbol. They are spatially separated, not aligned, and represent completely different types of graphical elements in the diagram, indicating they are unrelated."
+  },
+  "382e1e2505d10a45894856d7af535c5b": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The horizontal red line is a separator within a text label, not a pipe. The vertical red line is an instrument connection or signal line originating from the diamond symbol. They serve completely different functions and are unrelated."
+  },
+  "50886aaba5c6616cd2f1fd4e46bd50b5": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments are collinear and share the same line style, indicating they are part of the same pipeline. The gap between them is filled by a cloud symbol, which is a common convention in P&ID drawings to indicate a revision or a specific area of interest, rather than a physical break in the pipe."
+  },
+  "dafff080fa89de907e6ca182798b0b31": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are on completely different parts of the diagram. One is a horizontal line exiting a reducer, and the other is a vertical line branching off a different horizontal pipe. They are not collinear and there is no symbol connecting them."
+  },
+  "e90608beb78760ec21ff7bbe5db6f7f6": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top red line represents a physical pipe connecting to a valve. The bottom red line is an underline for a text label (likely a line number or specification) and does not represent a physical pipe segment. They are not collinear and serve different graphical purposes."
+  },
+  "1e4c2c67582d4c8a41667ae7d876bcfa": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and are separated by a significant distance and other drawing elements (text, cloud borders). They do not appear to be part of the same continuous pipeline."
+  },
+  "005b4e40d8e8b3b2399bb5cd3aa67053": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two highlighted segments are part of the same continuous wavy line, which represents a single physical pipeline. The line is not interrupted by any symbol, valve, or text; it simply changes direction."
+  },
+  "b1f387671652b7a9db5e2e0c9bba9d6a": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are parallel horizontal lines separated by a significant vertical distance. They are not collinear and there are no connecting lines or symbols between them to suggest they are part of the same continuous pipeline. The top segment appears to be associated with a text label, while the bottom segment acts as a common bus for multiple signal lines entering a control block."
+  },
+  "769bbd9f086b9e7c7befb7af66f6aa29": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and are separated by a large distance. They appear to be parts of different symbols or structures in the drawing, not a single interrupted pipeline."
+  },
+  "44d4451433fd358c1a192e1008805743": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are spatially separated by a significant distance, have different orientations (one horizontal, one vertical), and there are no connecting lines, symbols, or text to suggest they are part of the same continuous pipeline. They appear to belong to separate parts of the system."
+  },
+  "0e1b5c600ef759ad2571347b4001dfab": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not aligned and do not appear to be part of the same pipeline. One is a horizontal line under the text '201', and the other is a horizontal line with a double hash mark, connecting to a vertical line with an arrow."
+  },
+  "7e7f8ff6ab34300e922b630eb0a33f49": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments are aligned horizontally and are separated by a gap that is part of the standard representation for a line crossing another line without connecting. This indicates they are part of the same continuous pipeline."
+  },
+  "7849626c5f4cdaae1bca3951e41007f3": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments are connected by a capacitor symbol, indicating they are part of the same electrical circuit or signal line, despite the interruption by the symbol."
+  },
+  "bf36727c692d4afefac7c573c7a94f1a": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments serve completely different purposes in the drawing and are not connected. The vertical segment on the left is a distinct line (possibly representing a boundary or equipment edge), while the horizontal segment on the right is clearly an underline for a text note. There is no drawn path connecting them."
+  },
+  "730026a3caeb16e85a344568221e45bb": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments are aligned horizontally and are interrupted by a box labeled 'GEAR'. In P&ID drawings, this typically represents a single pipeline passing through or connecting to a piece of equipment, indicating they are part of the same physical line."
+  },
+  "644a9f65f3aa41a0cf18b3bdd3cdcaa8": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are perpendicular to each other and do not align. One is horizontal, underlining text, and the other is vertical. They are clearly separate elements in the drawing."
+  },
+  "50f4f2ef5422c7065d51f6980c3f31ed": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "A continuous path can be traced between the two red segments. The vertical red line on the left connects to a horizontal black line that passes through an inline component labeled 'LS', which then connects to the horizontal red line on the right via a vertical section."
+  },
+  "71f0e3d6be39b64515376e17aa102713": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The red lines act as indicators pointing to two sections of a vertical black line. These sections are collinear and are separated only by an inline valve symbol. In P&ID notation, this indicates a single continuous physical pipeline that passes through the component."
+  },
+  "0da98810f9963156e9641e70b4e0a1c9": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are perpendicular to each other and represent different lines in the diagram. The vertical segment appears to be a common header or bus, while the horizontal segment is part of a specific point-to-point connection. They cross without a connection dot, indicating they are separate, unrelated paths."
+  },
+  "8a380ee103ea2fb56af1822f25b882a2": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are perpendicular to each other and meet at a T-junction. One is a horizontal line entering a valve, and the other is a vertical line joining the horizontal run downstream. They represent distinct intersecting pipes, not a single continuous pipeline interrupted by a symbol."
+  },
+  "93e849280dc4b6ac39beb77c000bd4f3": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The horizontal red line segment with the flow arrow directly intersects and connects to the vertical red line segment, forming a pipe junction. They are not separate or unrelated."
+  },
+  "67511b885d466bcc553e73ed8631bbcc": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and do not appear to be part of the same pipeline. One is a horizontal line underlining text, and the other is a vertical line forming part of a larger structure or symbol."
+  },
+  "f920e72c9c641a6ad4d5c7a163390038": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not part of the same pipeline. The top segment is a horizontal line within a text box or symbol, while the bottom segment is a vertical line connected to a valve symbol. They are oriented differently and are located in separate parts of the drawing, indicating they are unrelated."
+  },
+  "97352a3f63b42aedfa69df9496e797bb": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red pipe segments are connected to opposite sides of a valve symbol (V-NRV-74), indicating they are part of the same pipeline flowing through the valve."
+  },
+  "b89c7257261f4205a3097e4c75ead86e": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top red segment is a vertical line connected to a pressure instrument (PALL 214). The bottom red segment is a horizontal line connected to a different instrument associated with a temperature limit (HH=80degC). There is no drawn connection between them, indicating they are separate lines."
+  },
+  "68b44407969d5c93a871ee244628f04c": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not part of the same pipeline. One is a horizontal line underlining text, and the other is a vertical line that is part of a wavy border or symbol, not a pipe."
+  },
+  "59198245f5deaba96ef3b8faf75b38e5": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are perpendicular to each other and do not align. One is horizontal and the other is vertical. They are clearly separate pipes."
+  },
+  "9321bc55f2ad55e4f4f290637e2661b5": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and do not appear to be part of the same pipeline. The top segment is horizontal, while the bottom segment is vertical and points towards a different part of the drawing."
+  },
+  "59b51430859dfccb284399d4d2d61332": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are oriented differently (one horizontal, one vertical) and are separated by multiple other piping segments and components, indicating they are distinct parts of the piping system rather than a single interrupted line."
+  },
+  "1018c43f499119be078b7d5cad8ca53e": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The top highlighted segment is a horizontal line acting as a separator within a data table. The bottom highlighted segment is a vertical line that appears to be part of a revision cloud boundary. They are distinct drawing elements located in different functional areas of the diagram and do not represent a continuous physical pipeline."
+  },
+  "2b217f9562db550bf9242b146a7dcacc": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are far apart, have different orientations (one is horizontal, the other is vertical), and do not align. Additionally, the segment on the right appears to be part of a revision cloud boundary rather than a pipeline. There is no visual indication that they are part of the same continuous line."
+  },
+  "7cd89939cdc4ab30a3d343382fa8a070": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The horizontal red line is an underline for the text annotation 'FOR MOTOR CONTROL', while the vertical red line is a separate graphical element. They serve different purposes in the drawing and are not part of a continuous pipeline or signal path."
+  },
+  "20d05318bbbcf41a44695226786fc6d8": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are far apart, have different orientations (one vertical, one horizontal), and connect to different, unrelated symbols. There is no visual indication that they are part of the same continuous pipeline."
+  },
+  "b3ded1405b60237cb259bb472a71e8bb": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are perpendicular to each other and are separated by a significant distance. There are no connecting lines, corners, or symbols to suggest they are part of the same continuous pipeline. They appear to be entirely separate lines on the diagram."
+  }
+}

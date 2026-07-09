@@ -35,12 +35,12 @@ Latest full-sheet run stats: `AUTO_ACCEPT 142/198 (71.7%)`, `AUTO_REJECT 0`, avg
 
 ```bash
 cd /Users/suryprakash/Downloads/cdci_extractor_final
-python3 -m venv .venv          # skip if already exists
+python3 -m venv .venv          
 source .venv/bin/activate
 pip install -r requirements.txt
 brew install tesseract         # macOS OCR dependency
 export $(grep -v '^#' .env | xargs)
-echo $GEMINI_KEY               # must print your key
+echo $GEMINI_KEY               
 
 export DRAWING="input_drawing.jpg"
 export REGISTER="ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx"

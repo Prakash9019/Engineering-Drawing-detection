@@ -1,0 +1,127 @@
+{
+  "eb58255ea5e8f8b8e58ffc65a450b7d6": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are not aligned and are separated by a significant distance. They appear to be parts of different structures or symbols within the drawing, rather than a single continuous pipeline interrupted by a component."
+  },
+  "b8a7fbfb3fdf4a01c57fb39279bb058a": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red lines are parallel and do not align with each other. They appear to be separate annotations or underlines for the text '201', rather than segments of a single pipeline."
+  },
+  "f7fc6cff5a073217cc4b1448dd008645": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not part of the same pipeline. The top segment is part of a rectangular box containing text ('001'), while the bottom segment is part of a wavy line, likely representing a boundary or a different type of connection, not a continuous pipe interrupted by a symbol."
+  },
+  "fb83e503e6b138517074194a1911f77b": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments connect to opposite sides of a check valve (non-return valve) symbol, indicating they are part of the same continuous pipeline with an inline component."
+  },
+  "4b984977550ad3cfee44f278a76392a4": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two pipe segments are not aligned and are separated by a significant distance, indicating they are likely separate pipes."
+  },
+  "cc03b8669f766ae4fa509fab6f2a2d70": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not part of the same pipeline. The top segment is a horizontal pipe line, while the bottom segment is part of a revision cloud boundary, not a pipe."
+  },
+  "aefbefa3eb685b0e40b53fc383337ba6": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not part of the same pipeline. The top segment is an underline for the text 'POINTS', while the bottom segment is part of a revision cloud symbol."
+  },
+  "835cf022a63bebec6b8fc06b4a8d6ff5": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are on completely different lines. The top segment is on a line with a wavy top edge and a straight bottom edge. The bottom segment is on a line with a wavy top edge and a wavy bottom edge. They are clearly separate pipes."
+  },
+  "8b164b69249bee8eb0794eaceba517af": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments are perfectly aligned vertically and are only separated by a revision cloud, which is an annotation overlay, not a physical break in the pipe."
+  },
+  "3c0e5615eb6c4771a79a8f66471b702d": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The two red segments are collinear and form a single continuous line representing a pipe. The visual gap between them is caused by a revision cloud symbol drawn over the line, which is a drawing convention to highlight changes and does not indicate a physical break in the pipeline."
+  },
+  "ad0db7295f4c843ada728676c2ba7e35": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are on different horizontal planes and do not align collinearly. They are separated vertically and appear to serve different purposes in the drawing's layout, indicating they are separate entities rather than a single interrupted pipeline."
+  },
+  "a0ec878ade863baa7d7b13afe21a56f6": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are dimension lines, not pipes. They are used to indicate a measurement or distance between two points on the drawing, as shown by the arrows pointing towards them."
+  },
+  "c4ce20b6873153f06381f2eb57377920": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The red lines are not pipes. They are part of a scalloped border and a rectangular box containing text."
+  },
+  "0958bc9358b57ffd54c49d4ac95109a3": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two red segments are parallel and offset vertically. They are not collinear and do not appear to be part of the same continuous line interrupted by a symbol. The vertical arrow between them suggests a dimension or relationship between two distinct lines, rather than a single interrupted line."
+  },
+  "aa22f41877d4c2c9f8a5e7323554725f": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The left highlighted segment traces a wavy boundary line, typically used to denote a revision cloud or a system limit. The right highlighted segment is a straight vertical line connected to an instrument symbol. They are distinct graphical elements serving different purposes and do not align to suggest an interrupted pipeline."
+  },
+  "e0d31beb061000eecdc62426fbefbe9d": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are parallel but located at different vertical positions. They do not align with each other, indicating they are separate lines rather than a single interrupted line."
+  },
+  "9ba153b218c3b2a27126923927a6d10e": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are not collinear and are at different vertical elevations. The left segment appears to be the horizontal portion of a leader line or a labeled line associated with 'C03B'. The right segment is an arbitrary horizontal line drawn across the top curves of a revision cloud and does not correspond to a pipe in the drawing. There is no visual or logical connection between them."
+  },
+  "c58015fa9c177850071e358128c1c165": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are at different vertical positions and do not align horizontally. In P&ID drawings, a single interrupted pipeline would typically continue along the same axis. Their vertical offset indicates they are separate, unrelated lines."
+  },
+  "68949585db3c789757f1a7ea6df62aa8": {
+    "junction_type": "crossing",
+    "confidence": "high",
+    "reason": "The red circle highlights a point where a diagonal line crosses a vertical line. There is no dot or other symbol to indicate a connection, which is standard practice in P&ID drawings to show that lines cross without connecting."
+  },
+  "502dd456dfdad128e0c9eeaf99382cbe": {
+    "junction_type": "crossing",
+    "confidence": "high",
+    "reason": "In standard P&ID and engineering drawing conventions, intersecting lines without a solid dot at the intersection indicate that the pipes cross over each other without physically connecting. A physical connection (like a tee or 4-way junction) would typically be marked with a solid black dot at the point where the lines meet."
+  },
+  "b6b0476cd4fa60fca0ef48b9f26ab447": {
+    "connected": true,
+    "confidence": "high",
+    "reason": "The left red segment connects to the inlet of the pressure relief valve, and the right red segment is part of the discharge piping connected to the outlet of the same valve. They are part of the same continuous flow path, interrupted by the valve."
+  },
+  "3f977d02ab04c963c2eee3eb483ae9ab": {
+    "junction_type": "tee",
+    "confidence": "high",
+    "reason": "The vertical and horizontal lines meet and terminate at the intersection point, forming a corner. Neither line continues past the other. In engineering drawings, pipes that cross without connecting are depicted with at least one line continuing through the intersection (often with a small gap or loop). The fact that they stop at the meeting point indicates a physical connection."
+  },
+  "8b9764d8b538cc52a0e3722fa89aa199": {
+    "connected": false,
+    "confidence": "high",
+    "reason": "The two highlighted segments are parallel but vertically offset from each other. They do not align, indicating they are separate, unrelated lines rather than a single pipeline interrupted by a symbol."
+  },
+  "7321b91a728e85ab8d822353247226ab": {
+    "junction_type": "tee",
+    "confidence": "high",
+    "reason": "The highlighted area shows two lines meeting at a 90-degree angle to form a corner (an 'L' shape). Neither line continues past the intersection point. In P&ID diagrams, this indicates a continuous pipe changing direction (an elbow) or a physical connection, rather than lines crossing over each other without connecting."
+  },
+  "2edd9f5f1e3f4bccaeccdc477747c685": {
+    "junction_type": "crossing",
+    "confidence": "high",
+    "reason": "In standard P&ID notation, when two lines intersect without a solid dot at the crossing point, it indicates that the pipes pass over or under each other without physically connecting. A physical connection would be denoted by a solid dot at the intersection."
+  }
+}

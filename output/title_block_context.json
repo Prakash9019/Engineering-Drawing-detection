@@ -4,12 +4,12 @@
     "sheet_number": "001",
     "continuation_sheet": "002",
     "revision_code": "C",
-    "title": "MESAIEED GAS DISTRIBUTION STATIONS, MGDV | EPIC FOR UPGRADE OF ETHANE COMPRESSORS AT | STATION V AND ASSOCIATED FACILITIES AT STATION S | P&ID \u2013 ETHANE GAS COMPRESSOR (K-V-201)",
-    "title_line_1": "MESAIEED GAS DISTRIBUTION STATIONS, MGDV",
+    "title": "MESAGEED GAS DISTRIBUTION STATIONS, MGDV | EPIC FOR UPGRADE OF ETHANE COMPRESSORS AT | STATION V AND ASSOCIATED FACILITIES AT STATION S | P&ID - ETHANE GAS COMPRESSOR (K-V-201)",
+    "title_line_1": "MESAGEED GAS DISTRIBUTION STATIONS, MGDV",
     "title_line_2": "EPIC FOR UPGRADE OF ETHANE COMPRESSORS AT",
     "title_line_3": "STATION V AND ASSOCIATED FACILITIES AT STATION S",
-    "title_line_4": "P&ID \u2013 ETHANE GAS COMPRESSOR (K-V-201)",
-    "project_name": "MESAIEED GAS DISTRIBUTION STATIONS, MGDV EPIC FOR UPGRADE OF ETHANE COMPRESSORS AT STATION V AND ASSOCIATED FACILITIES AT STATION S",
+    "title_line_4": "P&ID - ETHANE GAS COMPRESSOR (K-V-201)",
+    "project_name": "MESAGEED GAS DISTRIBUTION STATIONS, MGDV EPIC FOR UPGRADE OF ETHANE COMPRESSORS AT STATION V AND ASSOCIATED FACILITIES AT STATION S",
     "contract_number": null,
     "client": null,
     "contractor": null,
@@ -21,7 +21,7 @@
     "drawn_by": "SJ",
     "checked_by": "VJD/MSG/SS",
     "approved_by": "BGS/SR",
-    "confidence": 1.0,
+    "confidence": 0.98,
     "fields_unclear": [],
     "tb_region_used": "bottom_full",
     "tb_bbox_px": [
@@ -77,7 +77,7 @@
   "current_issue_status": "RE-ISSUED FOR CONSTRUCTION",
   "revision_notice_present": true,
   "revision_notice_text": "USE THIS DRAWING FOR INFORMATION WITHIN THE CLOUDED AREAS ONLY",
-  "source_drawing_reference": "4224-MGDV-6-50-2004-001 SHT.001 REV.C",
+  "source_drawing_reference": "4224-MGDV-6-50-2004 SHT.001 REV.C",
   "project_mode": "FULL_EXTRACTION",
   "project_prefix": null,
   "is_revision_drawing": true,
@@ -85,5 +85,5 @@
   "extraction_scope": "CLOUD_ONLY",
   "revision_cloud_required": true,
   "scope_reason": "Explicit revision notice: drawing must be used only within clouded areas",
-  "title_block_confidence": 1.0
+  "title_block_confidence": 0.98
 }

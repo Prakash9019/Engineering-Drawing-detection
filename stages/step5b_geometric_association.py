@@ -127,7 +127,7 @@ def is_table_grid_line(seg: dict, all_horizontal_segs: list[dict],
     return len(same_band) >= MIN_PARALLEL
 
 
-def detect_pipes_and_lines(img_bgr: np.ndarray) -> list[dict]:
+def detect_pipes_and_lines(img_bgr: np.ndarray, drawing_scale: float = 1.0) -> list[dict]:
     """
     Detect process pipe lines using morphological line detection.
     Returns list of line dicts: {x0,y0,x1,y1,length,angle,type}.
@@ -137,6 +137,24 @@ def detect_pipes_and_lines(img_bgr: np.ndarray) -> list[dict]:
     report it WITHOUT changing this function's return type (step5b2_hierarchy.py
     imports and calls this directly and expects a plain list).
     """
+    # Scale pixel thresholds relative to drawing size (constants tuned for ~10000px wide)
+    _min_len = max(int(PIPE_MIN_LENGTH_PX * drawing_scale), 30)
+    _border  = max(int(PIPE_BORDER_MARGIN_PX * drawing_scale), 20)
+    _morph_w = max(int(150 * drawing_scale), 10)
+    _y_band  = max(int(TABLE_GRID_Y_BAND_PX * drawing_scale), 5)
+    if drawing_scale != 1.0:
+        log.info("Pipe detector (scale %.3f): min_len=%d border=%d morph_kern=%d y_band=%d",
+                 drawing_scale, _min_len, _border, _morph_w, _y_band)
+
+    def _classify_local(length: float, ang_from_horizontal: float) -> str:
+        if length < _min_len:
+            return "leader_line"
+        if ang_from_horizontal < 15:
+            return "horizontal_pipe"
+        if ang_from_horizontal > 75:
+            return "vertical_pipe"
+        return "diagonal_pipe"
+
     gray     = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
     clahe    = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
     enhanced = clahe.apply(gray)
@@ -145,10 +163,10 @@ def detect_pipes_and_lines(img_bgr: np.ndarray) -> list[dict]:
 
     H, W = binary.shape
 
-    # CHANGE 1 — large morphological kernels: only continuous >=150px runs survive.
-    h_kern = cv2.getStructuringElement(cv2.MORPH_RECT, MORPH_KERNEL_H)
+    # CHANGE 1 — large morphological kernels: only continuous >=_min_len px runs survive.
+    h_kern = cv2.getStructuringElement(cv2.MORPH_RECT, (_morph_w, 1))
     horiz  = cv2.morphologyEx(binary, cv2.MORPH_OPEN, h_kern)
-    v_kern = cv2.getStructuringElement(cv2.MORPH_RECT, MORPH_KERNEL_V)
+    v_kern = cv2.getStructuringElement(cv2.MORPH_RECT, (1, _morph_w))
     vert   = cv2.morphologyEx(binary, cv2.MORPH_OPEN, v_kern)
 
     lines_out: list[dict] = []
@@ -163,24 +181,24 @@ def detect_pipes_and_lines(img_bgr: np.ndarray) -> list[dict]:
 
             # ── CHANGE 2 — drawing-zone + geometry filters ──
             if orient == "h":
-                if w < PIPE_MIN_LENGTH_PX:                 # too short
+                if w < _min_len:                           # too short
                     rejected += 1; continue
                 if w > W * PIPE_MAX_FRACTION:              # full-width border frame
                     rejected += 1; continue
-                if y < PIPE_BORDER_MARGIN_PX:              # top border
+                if y < _border:                            # top border
                     rejected += 1; continue
                 if y + h > H * PIPE_TITLE_BLOCK_FRAC:      # title block / bottom border
                     rejected += 1; continue
                 if (x + w / 2) > W * PIPE_REF_PANEL_X_FRAC and w > 500:
                     rejected += 1; continue               # reference-panel table lines
             else:  # vertical
-                if x < PIPE_BORDER_MARGIN_PX:              # left border
+                if x < _border:                            # left border
                     rejected += 1; continue
-                if x + w > W - PIPE_BORDER_MARGIN_PX:      # right border
+                if x + w > W - _border:                    # right border
                     rejected += 1; continue
                 if h > H * PIPE_MAX_FRACTION:              # full-height border frame
                     rejected += 1; continue
-                if h < PIPE_MIN_LENGTH_PX:                 # too short
+                if h < _min_len:                           # too short
                     rejected += 1; continue
                 if y + h > H * PIPE_TITLE_BLOCK_FRAC:      # title block
                     rejected += 1; continue
@@ -194,7 +212,7 @@ def detect_pipes_and_lines(img_bgr: np.ndarray) -> list[dict]:
                 "cx":    cx,    "cy":    cy,
                 "length": round(length, 1),
                 "angle":  round(ang, 1),
-                "type":  _classify_pipe_type(length, ang),
+                "type":  _classify_local(length, ang),
             })
 
     # Horizontal segments are collected separately so the table-grid density
@@ -203,7 +221,7 @@ def detect_pipes_and_lines(img_bgr: np.ndarray) -> list[dict]:
     _extract_lines(horiz, "h", horiz_segs)
     n_table_grid = 0
     for seg in horiz_segs:
-        if is_table_grid_line(seg, horiz_segs):
+        if is_table_grid_line(seg, horiz_segs, Y_BAND=_y_band):
             n_table_grid += 1                       # dense parallel band => table grid
         else:
             lines_out.append(seg)
@@ -225,8 +243,8 @@ def detect_pipes_and_lines(img_bgr: np.ndarray) -> list[dict]:
                     continue   # skip H/V already captured by morphology
                 # zone filter: drop border / title-block diagonals
                 xc, yc = (x0 + x1) / 2, (y0 + y1) / 2
-                if (xc < PIPE_BORDER_MARGIN_PX or xc > W - PIPE_BORDER_MARGIN_PX
-                        or yc < PIPE_BORDER_MARGIN_PX or yc > H * PIPE_TITLE_BLOCK_FRAC):
+                if (xc < _border or xc > W - _border
+                        or yc < _border or yc > H * PIPE_TITLE_BLOCK_FRAC):
                     rejected += 1; continue
                 ang_h = abs(angle)
                 if ang_h > 90:
@@ -236,7 +254,7 @@ def detect_pipes_and_lines(img_bgr: np.ndarray) -> list[dict]:
                     "cx": int((x0 + x1) // 2), "cy": int((y0 + y1) // 2),
                     "length": round(length, 1),
                     "angle":  round(angle, 1),
-                    "type":   _classify_pipe_type(length, ang_h),
+                    "type":   _classify_local(length, ang_h),
                 })
     except Exception as e:
         log.warning("Hough lines failed: %s", e)
@@ -253,6 +271,120 @@ def detect_pipes_and_lines(img_bgr: np.ndarray) -> list[dict]:
 
 detect_pipes_and_lines.last_rejected_zones = 0
 detect_pipes_and_lines.last_table_grid_removed = 0
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# EXPERIMENTAL — alternative line detectors (NOT wired into the pipeline yet)
+# These run independently of detect_pipes_and_lines() for A/B comparison only.
+# Both return the same segment schema {x0,y0,x1,y1,cx,cy,length,angle,type}.
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _classify_segment(length: float, ang_from_horizontal: float, min_len: float) -> str:
+    """Geometry-only type, identical rules to detect_pipes_and_lines._classify_local."""
+    if length < min_len:
+        return "leader_line"
+    if ang_from_horizontal < 15:
+        return "horizontal_pipe"
+    if ang_from_horizontal > 75:
+        return "vertical_pipe"
+    return "diagonal_pipe"
+
+
+def _ang_from_horizontal(x0: float, y0: float, x1: float, y1: float) -> float:
+    """Angle of a segment relative to horizontal, folded into [0, 90]."""
+    ang = abs(math.degrees(math.atan2(y1 - y0, x1 - x0)))
+    if ang > 90:
+        ang = 180 - ang
+    return ang
+
+
+def detect_lines_lsd(gray_img: np.ndarray, drawing_scale: float = 1.0) -> list[dict]:
+    """
+    LSD-based line detection, run INDEPENDENTLY of the Hough/morphology path.
+    Returns segments in the same schema as detect_pipes_and_lines() so they can
+    be compared directly. Applies only the same min-length filter (no zone /
+    table-grid / border rejection — this is the raw detector for A/B comparison).
+    """
+    if gray_img.ndim == 3:
+        gray_img = cv2.cvtColor(gray_img, cv2.COLOR_BGR2GRAY)
+    gray_img = np.ascontiguousarray(gray_img, dtype=np.uint8)
+
+    lsd = cv2.createLineSegmentDetector(cv2.LSD_REFINE_STD)
+    detected = lsd.detect(gray_img)
+    lines = detected[0] if detected is not None else None
+
+    min_len = max(PIPE_MIN_LENGTH_PX * drawing_scale, 30.0)
+    segments: list[dict] = []
+    if lines is None:
+        return segments
+
+    for line in lines:
+        x0, y0, x1, y1 = (float(v) for v in line[0])
+        length = math.hypot(x1 - x0, y1 - y0)
+        if length < min_len:
+            continue
+        ang_h = _ang_from_horizontal(x0, y0, x1, y1)
+        segments.append({
+            "x0": int(round(x0)), "y0": int(round(y0)),
+            "x1": int(round(x1)), "y1": int(round(y1)),
+            "cx": int(round((x0 + x1) / 2)), "cy": int(round((y0 + y1) / 2)),
+            "length": round(length, 1),
+            "angle":  round(math.degrees(math.atan2(y1 - y0, x1 - x0)), 1),
+            "type":   _classify_segment(length, ang_h, min_len),
+        })
+    return segments
+
+
+def detect_lines_skeleton(binary_img: np.ndarray, drawing_scale: float = 1.0) -> list[dict]:
+    """
+    Skeletonize the (binary) pipe mask, then trace centerlines with a
+    Probabilistic Hough pass. HoughLinesP on a 1-px skeleton recovers line
+    runs far more cleanly than on the raw thresholded image, because the
+    skeleton has already collapsed thick strokes / fill to single-pixel spines.
+
+    `binary_img` must be a single-channel mask (0 / 255), foreground = ink.
+    Returns the same segment schema as detect_pipes_and_lines(); applies only
+    the min-length filter (no zone / table-grid rejection) for A/B comparison.
+    """
+    if binary_img.ndim == 3:
+        binary_img = cv2.cvtColor(binary_img, cv2.COLOR_BGR2GRAY)
+
+    # 1-pixel skeleton ─ cv2.ximgproc.thinning if present, else skimage fallback.
+    try:
+        skeleton = cv2.ximgproc.thinning(binary_img)            # type: ignore[attr-defined]
+    except AttributeError:
+        from skimage.morphology import skeletonize
+        skeleton = (skeletonize(binary_img > 0).astype("uint8") * 255)
+
+    min_len = max(PIPE_MIN_LENGTH_PX * drawing_scale, 30.0)
+    max_gap = max(int(PIPE_HOUGH_MAX_GAP * drawing_scale), 5)
+
+    hough_lines = cv2.HoughLinesP(
+        skeleton, 1, np.pi / 180,
+        threshold=50,
+        minLineLength=int(min_len),
+        maxLineGap=max_gap,
+    )
+
+    segments: list[dict] = []
+    if hough_lines is None:
+        return segments
+
+    for line in hough_lines:
+        x0, y0, x1, y1 = (float(v) for v in line[0])
+        length = math.hypot(x1 - x0, y1 - y0)
+        if length < min_len:
+            continue
+        ang_h = _ang_from_horizontal(x0, y0, x1, y1)
+        segments.append({
+            "x0": int(round(x0)), "y0": int(round(y0)),
+            "x1": int(round(x1)), "y1": int(round(y1)),
+            "cx": int(round((x0 + x1) / 2)), "cy": int(round((y0 + y1) / 2)),
+            "length": round(length, 1),
+            "angle":  round(math.degrees(math.atan2(y1 - y0, x1 - x0)), 1),
+            "type":   _classify_segment(length, ang_h, min_len),
+        })
+    return segments
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -469,9 +601,12 @@ def run_geometric_association(
         raise FileNotFoundError(f"Cannot read: {img_path}")
     H, W = img.shape[:2]
     log.info("Drawing: %dx%d", W, H)
+    REFERENCE_WIDTH = 10000
+    drawing_scale = W / REFERENCE_WIDTH
+    log.info("Drawing scale: %dpx / %dpx = %.3f", W, REFERENCE_WIDTH, drawing_scale)
 
     log.info("=== Detecting lines and pipes ===")
-    lines = detect_pipes_and_lines(img)
+    lines = detect_pipes_and_lines(img, drawing_scale)
 
     # Pipe-only debug overlay (key visual verification of the detector fix):
     # red = horizontal, blue = vertical, green = diagonal. Save at 2400px wide.
@@ -490,6 +625,31 @@ def run_geometric_association(
     pipe_dbg_path = str(out / "step5b_pipe_debug.jpg")
     cv2.imwrite(pipe_dbg_path, pipe_dbg_sm, [cv2.IMWRITE_JPEG_QUALITY, 85])
     log.info("✓ step5b_pipe_debug.jpg → %s", pipe_dbg_path)
+
+    # ── Segment export (consumed by step5b3_pipe_connectivity.py) ─────────────
+    segs_export = []
+    for i, l in enumerate(lines):
+        segs_export.append({
+            "segment_id": f"SEG-{i}",
+            "x0": l["x0"], "y0": l["y0"],
+            "x1": l["x1"], "y1": l["y1"],
+            "cx": l.get("cx", (l["x0"] + l["x1"]) // 2),
+            "cy": l.get("cy", (l["y0"] + l["y1"]) // 2),
+            "length": l["length"],
+            "angle": l["angle"],
+            "type": l["type"],
+            "pipeline_id": None,
+        })
+    segs_path = str(out / "step5b_pipe_segments.json")
+    with open(segs_path, "w") as f:
+        json.dump({
+            "version": "v1",
+            "drawing_scale": round(drawing_scale, 4),
+            "image_w": W,
+            "image_h": H,
+            "segments": segs_export,
+        }, f, indent=2)
+    log.info("✓ step5b_pipe_segments.json → %s (%d segments)", segs_path, len(segs_export))
 
     log.info("=== Running geometric association ===")
     enriched = associate_candidates(candidates, lines)

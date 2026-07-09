@@ -1,0 +1,2050 @@
+{
+  "tag:59b8ee4044fc75f5a0141aaabe60351b": {
+    "attachments": [
+      {
+        "instrument_tag": "TE-087",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "HS-670",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Connected via leader line to a valve on a pipe segment that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSC-670",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Connected via leader line to a valve on a pipe segment that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSO-670",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Connected via leader line to a valve on a pipe segment that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "PLG-1152",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the right."
+      }
+    ]
+  },
+  "84f595b26f4c5f49dca1d6afb98360b7291a0594cb85f88d9938ab9ad815cbad": {
+    "attachments": [
+      {
+        "instrument_tag": "TE-087",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "HS-670",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Connected via leader line to a valve on a pipe segment that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSC-670",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Connected via leader line to a valve on a pipe segment that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSO-670",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Connected via leader line to a valve on a pipe segment that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "PLG-1152",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the right."
+      }
+    ]
+  },
+  "tag:04d6fcc9ea979b71f5a0a21870b92987": {
+    "attachments": [
+      {
+        "instrument_tag": "PI-61607",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "RO-605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "PI-61608",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "RO-606",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "AIT-60605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "PI-61609",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "RO-607",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "PI-60605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "PI-604",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "AIT-60605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "AIT-604",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "PI-61610",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "MOV-656",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "MOV-659",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "BV-1110",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      }
+    ]
+  },
+  "addc684dc0be3a1a790065c98b93920cdde0e89773a37200252fe521a8104207": {
+    "attachments": [
+      {
+        "instrument_tag": "PI-61607",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "RO-605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "PI-61608",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "RO-606",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "AIT-60605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "PI-61609",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "RO-607",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "PI-60605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "PI-604",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "AIT-60605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "AIT-604",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "PI-61610",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "MOV-656",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "MOV-659",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      },
+      {
+        "instrument_tag": "BV-1110",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment, but no equipment is detected in the drawing to trace it to."
+      }
+    ]
+  },
+  "tag:316e03d136ad586c442c8c74c6c2c271": {
+    "attachments": [
+      {
+        "instrument_tag": "BV-1977",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a pipe that goes off-page. There is no equipment detected on this drawing to assign it to."
+      }
+    ]
+  },
+  "ecc9f09b9442fde8cc84c904acb7c2038d2fd187a99076d7b92b8f1182ebfb83": {
+    "attachments": [
+      {
+        "instrument_tag": "BV-1977",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a pipe that goes off-page. There is no equipment detected on this drawing to assign it to."
+      }
+    ]
+  },
+  "tag:ccfdcc840e68ba3badb4e58caf83c3d5": {
+    "attachments": [
+      {
+        "instrument_tag": "BV-1978",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a pipe segment that goes downwards, but it does not connect to any detected equipment within the visible area."
+      }
+    ]
+  },
+  "9dceb105a5fbc3eaf7b97d2d39db208951ba97841d15f26e83474417bd7673ef": {
+    "attachments": [
+      {
+        "instrument_tag": "BV-1978",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a pipe segment that goes downwards, but it does not connect to any detected equipment within the visible area."
+      }
+    ]
+  },
+  "tag:15f2c72c9c9c76a439d5f119ba8e7fdb": {
+    "attachments": [
+      {
+        "instrument_tag": "RO-606",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "RO-607",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "LG-1127",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "BV-1116",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "TI-610",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "PLG-1135",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "BV-1121",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      }
+    ]
+  },
+  "a85650c4b1153de2fb07c9c12d5bec3e62c5d4a2c48e97651d9e6b1e634e583d": {
+    "attachments": [
+      {
+        "instrument_tag": "RO-606",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "RO-607",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "LG-1127",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "BV-1116",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "TI-610",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "PLG-1135",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      },
+      {
+        "instrument_tag": "BV-1121",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page or to an unidentified component."
+      }
+    ]
+  },
+  "tag:30e7d17519be19829df2483a6f8778c8": {
+    "attachments": [
+      {
+        "instrument_tag": "ZSC-655",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is part of a control loop for a valve (MOV-655), but there is no equipment detected in the drawing to assign it to."
+      }
+    ]
+  },
+  "bf3def7fb49e1a9d7d9beed5f2e76887171bb5d065a611f145cb9052859427e4": {
+    "attachments": [
+      {
+        "instrument_tag": "ZSC-655",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is part of a control loop for a valve (MOV-655), but there is no equipment detected in the drawing to assign it to."
+      }
+    ]
+  },
+  "tag:20fb08a6858bb525c8a2c8ecaf9ae8bb": {
+    "attachments": []
+  },
+  "1b9fe58beefd7be5170af09b9ccab0c74cbcd8abe48b8c6a8a9ffe72cbbb2325": {
+    "attachments": []
+  },
+  "tag:361bd39fa30d9001b9e4eef06abffda6": {
+    "attachments": [
+      {
+        "instrument_tag": "BV-1982",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "XX-654",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSC-654",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSO-654",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "XS-654",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "HSC-654A",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "HS-654",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "MOV-654",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "BV-1108",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "XX-656",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSC-656",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSO-656",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "XS-656",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "HSC-656A",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "HS-656",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "MOV-656",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "BV-1111",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "BV-1117",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      }
+    ]
+  },
+  "6e01948bd0733c674e0600a9fafce2fffe2e486c9916c7ae89a1a55c0f636887": {
+    "attachments": [
+      {
+        "instrument_tag": "BV-1982",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "XX-654",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSC-654",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSO-654",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "XS-654",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "HSC-654A",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "HS-654",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "MOV-654",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "BV-1108",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "XX-656",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSC-656",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "ZSO-656",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "XS-656",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "HSC-656A",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "HS-656",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "MOV-656",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "BV-1111",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      },
+      {
+        "instrument_tag": "BV-1117",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page to the right."
+      }
+    ]
+  },
+  "tag:f19a3f1cff48c80d680f835b2edf3aa6": {
+    "attachments": [
+      {
+        "instrument_tag": "BV-1124",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The valve is connected to a main process line, but there is no equipment listed or visible in the crop to which this line connects."
+      }
+    ]
+  },
+  "50abcaa178bf6fe5d26e6798dc4218263264abea97c911fbcf783eefd985b914": {
+    "attachments": [
+      {
+        "instrument_tag": "BV-1124",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The valve is connected to a main process line, but there is no equipment listed or visible in the crop to which this line connects."
+      }
+    ]
+  },
+  "tag:c26ff92dd46276a08094e4b06724ecb9": {
+    "attachments": [
+      {
+        "instrument_tag": "BV-1981",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1988",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "ZSO-655",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSC-654B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSO-654B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "NRV-602",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1116",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1109",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1114",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSC-656B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSO-656B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSC-657B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSO-657B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1121",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1113",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "NRV-603",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1999",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1120",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1129",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1118",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "MOV-658",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1999B",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1137",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1123",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "NRV-605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1122",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      }
+    ]
+  },
+  "78d87e652e293031a34fdd80bdf9a4cd02c1f6b8aa4cb5f3ed07f75e441d9d7c": {
+    "attachments": [
+      {
+        "instrument_tag": "BV-1981",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1988",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "ZSO-655",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSC-654B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSO-654B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "NRV-602",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1116",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1109",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1114",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSC-656B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSO-656B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSC-657B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "HSO-657B",
+        "parent_equipment": "unknown",
+        "connection_type": "leader_line",
+        "confidence": "low",
+        "reasoning": "Leader line points to a valve on a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1121",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1113",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "NRV-603",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1999",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1120",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1129",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1118",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "MOV-658",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1999B",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "PLG-1137",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1123",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "NRV-605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      },
+      {
+        "instrument_tag": "BV-1122",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe that goes off-page."
+      }
+    ]
+  },
+  "tag:368af965047b55c7ae96fc52aa05773b": {
+    "attachments": [
+      {
+        "instrument_tag": "PI-611",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PI-608",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PLG-1118",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PI-613",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1018",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-993",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PLG-1126",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-604",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-604",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1016",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-995",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PI-607",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PI-607",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "RO-605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PLG-1114",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1107",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1991",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-603",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-603",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1026",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1026",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-606",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-606",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1006",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1006",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1020",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      }
+    ]
+  },
+  "db6d61198593f2f70265907c2fce780e9ad67bc174a385f3f4b8a36439d3126e": {
+    "attachments": [
+      {
+        "instrument_tag": "PI-611",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PI-608",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PLG-1118",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PI-613",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1018",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-993",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PLG-1126",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-604",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-604",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1016",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-995",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PI-607",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PI-607",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "RO-605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "PLG-1114",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1107",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1991",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-603",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-603",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1026",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1026",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-606",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-606",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "AIT-605",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1006",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1006",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      },
+      {
+        "instrument_tag": "BV-1020",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that does not lead to any detected equipment in the provided list."
+      }
+    ]
+  },
+  "tag:494dcf3e778d438ed48aa34a81d260ea": {
+    "attachments": [
+      {
+        "instrument_tag": "MOV-654",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1110",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "HS-657A",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "HS-657",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-657",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-659",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1119",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-661",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "PLG-1138",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1292",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "PLG-1318",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1136",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "PLG-1153",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-665",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-664",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1509",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "PLG-1461",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1126",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-662",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-2325",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1137",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-670",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "PLG-1152",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "HSC-670",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "ZSO-670",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "HSO-655A",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "HSC-655B",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "ZSO-655",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      }
+    ]
+  },
+  "9b09b96bcd65f2f4146a6788a71d23e8969abd9450d00b9bb1a1038ed6d10028": {
+    "attachments": [
+      {
+        "instrument_tag": "MOV-654",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1110",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "HS-657A",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "HS-657",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-657",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-659",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1119",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-661",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "PLG-1138",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1292",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "PLG-1318",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1136",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "PLG-1153",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-665",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-664",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1509",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "PLG-1461",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1126",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-662",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-2325",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "BV-1137",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "MOV-670",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "PLG-1152",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "HSC-670",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "ZSO-670",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "HSO-655A",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "HSC-655B",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      },
+      {
+        "instrument_tag": "ZSO-655",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a pipe segment that goes off-page to the left."
+      }
+    ]
+  },
+  "tag:6557cd8ecc4c4f9c6b8f1eb40a3f854b": {
+    "attachments": [
+      {
+        "instrument_tag": "RO-1119",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "PLG-1119",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "BV-1111",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "TI-609",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "BV-1994",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "PI-614",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "PLG-1134",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "BV-1996",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      }
+    ]
+  },
+  "8e6b7dd57d0f93e4fa3918e0ba6e366ea0e04a081edae0e7fff62fe650ae19ae": {
+    "attachments": [
+      {
+        "instrument_tag": "RO-1119",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "PLG-1119",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "BV-1111",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "TI-609",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "BV-1994",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "PI-614",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "PLG-1134",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      },
+      {
+        "instrument_tag": "BV-1996",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "Connected to a vertical pipe segment between horizontal headers. No equipment is listed or visible."
+      }
+    ]
+  }
+}

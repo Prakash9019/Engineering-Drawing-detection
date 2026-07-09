@@ -6128,5 +6128,1277 @@
         "reasoning": "The instrument is a controller connected via software/data links to a LOW SELECT relay (Y2-207). This type of complex control logic, selecting between multiple controller outputs, is characteristic of compressor control systems (e.g., for surge or capacity control). Therefore, it likely belongs to the compressor K-V-201."
       }
     ]
+  },
+  "tag:2dc2e103cd6e9b01ddd4e5503690fca9": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PIT-212",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "medium",
+        "reasoning": "The instrument is located immediately below the bounding box for K-V-201 and is connected to a process line in its direct vicinity. While the full pipe routing is cut off, proximity strongly suggests it serves this equipment."
+      }
+    ]
+  },
+  "ca577e2680e6cb803a3e38058d78c1c990cd66d8b8f1ab732a2015b6f02cc48b": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PIT-212",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "medium",
+        "reasoning": "The instrument is located immediately below the bounding box for K-V-201 and is connected to a process line in its direct vicinity. While the full pipe routing is cut off, proximity strongly suggests it serves this equipment."
+      }
+    ]
+  },
+  "tag:6f3f24283b5a388ce4e8d5a497b70093": {
+    "attachments": [
+      {
+        "instrument_tag": "PDI-201",
+        "parent_equipment": "S-V-204",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected via impulse lines that route downwards to connect to the main pipe upstream and downstream of the temporary suction strainer S-V-204 to measure differential pressure."
+      },
+      {
+        "instrument_tag": "1 1/2IN",
+        "parent_equipment": "S-V-204",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "This valve acts as an equalizing valve in the manifold for PDI-201; the manifold lines route downwards to connect to the main pipe around S-V-204."
+      }
+    ]
+  },
+  "e41f6030d21a91338b65df15d01bb207c13547a48bd0cd327810c18dcec39940": {
+    "attachments": [
+      {
+        "instrument_tag": "PDI-201",
+        "parent_equipment": "S-V-204",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected via impulse lines that route downwards to connect to the main pipe upstream and downstream of the temporary suction strainer S-V-204 to measure differential pressure."
+      },
+      {
+        "instrument_tag": "1 1/2IN",
+        "parent_equipment": "S-V-204",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "This valve acts as an equalizing valve in the manifold for PDI-201; the manifold lines route downwards to connect to the main pipe around S-V-204."
+      }
+    ]
+  },
+  "tag:bab5833dc2168569e102fc501c3ede03": {
+    "attachments": [
+      {
+        "instrument_tag": "V-NRV-748",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that connects to the main line coming from the left, which is associated with V-V-201 based on the surrounding context and typical P&ID layouts."
+      },
+      {
+        "instrument_tag": "T-201A",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to the main pipe segment that originates from the left, which is associated with V-V-201."
+      }
+    ]
+  },
+  "ba123e5934ddcfb8dbd44936fb019926a419c499dbc482e0825171464d5dbe43": {
+    "attachments": [
+      {
+        "instrument_tag": "V-NRV-748",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that connects to the main line coming from the left, which is associated with V-V-201 based on the surrounding context and typical P&ID layouts."
+      },
+      {
+        "instrument_tag": "T-201A",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to the main pipe segment that originates from the left, which is associated with V-V-201."
+      }
+    ]
+  },
+  "tag:4c100adee536835b01e26e5a157215bd": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PAHH-211",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes to the right, towards the compressor K-V-201."
+      }
+    ]
+  },
+  "2d53d74d70842e072113f9700465b6c71859dc0ef8bcf478c30ff4d66ffd92c4": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PAHH-211",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes to the right, towards the compressor K-V-201."
+      }
+    ]
+  },
+  "tag:918878b39136bf2d9ae5ae4f55c1ef4f": {
+    "attachments": [
+      {
+        "instrument_tag": "V-RST-209",
+        "parent_equipment": "V-V-03",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that leads to the equipment V-V-03."
+      },
+      {
+        "instrument_tag": "V-EY-209",
+        "parent_equipment": "V-V-03",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that leads to the equipment V-V-03."
+      }
+    ]
+  },
+  "7d0708908e5c0ce79a826b589f6e4fe0dce38f4d48156f5319b0526cd609641b": {
+    "attachments": [
+      {
+        "instrument_tag": "V-RST-209",
+        "parent_equipment": "V-V-03",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that leads to the equipment V-V-03."
+      },
+      {
+        "instrument_tag": "V-EY-209",
+        "parent_equipment": "V-V-03",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that leads to the equipment V-V-03."
+      }
+    ]
+  },
+  "tag:80c494805549ae627b5b3070ee0fdde1": {
+    "attachments": [
+      {
+        "instrument_tag": "V-EZSC-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that routes towards the top-left, where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-EZSO-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that routes towards the top-left, where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-ESDV-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that routes towards the top-left, where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-BV-1918",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that routes towards the top-left, where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-BV-1920",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that routes towards the top-left, where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "T-201C",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that routes towards the top-left, where V-V-201 is located."
+      }
+    ]
+  },
+  "42326402ec2b885bfac2b115af139c9835ad9220ec8483cbf0217b8ccf1293d3": {
+    "attachments": [
+      {
+        "instrument_tag": "V-EZSC-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that routes towards the top-left, where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-EZSO-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that routes towards the top-left, where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-ESDV-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that routes towards the top-left, where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-BV-1918",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that routes towards the top-left, where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-BV-1920",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that routes towards the top-left, where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "T-201C",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that routes towards the top-left, where V-V-201 is located."
+      }
+    ]
+  },
+  "tag:7f66544fb568f4e4172997a0e52f7fa6": {
+    "attachments": [
+      {
+        "instrument_tag": "V-BV-2355",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to the main line entering the top of V-V-201."
+      },
+      {
+        "instrument_tag": "V-TT-201B",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to the main line entering the top of V-V-201."
+      },
+      {
+        "instrument_tag": "V-PG-206",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a line that goes directly to the side of V-V-201."
+      },
+      {
+        "instrument_tag": "V-GV-908",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Valve on the line connecting V-PG-206 to V-V-201."
+      },
+      {
+        "instrument_tag": "V-GV-907",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Valve on the line connecting V-PG-206 to V-V-201."
+      },
+      {
+        "instrument_tag": "V-GV-906",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Valve on the upper connection line for V-LG-202 to V-V-201."
+      },
+      {
+        "instrument_tag": "V-LG-202",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Level gauge connected directly to the side of V-V-201."
+      },
+      {
+        "instrument_tag": "V-GV-905",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Valve on the lower connection line for V-LG-202 to V-V-201."
+      }
+    ]
+  },
+  "77a374cb7180552e86ac0fb10fc1ac671ef2d5580abe4579124c0e2aa2573353": {
+    "attachments": [
+      {
+        "instrument_tag": "V-BV-2355",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to the main line entering the top of V-V-201."
+      },
+      {
+        "instrument_tag": "V-TT-201B",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to the main line entering the top of V-V-201."
+      },
+      {
+        "instrument_tag": "V-PG-206",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a line that goes directly to the side of V-V-201."
+      },
+      {
+        "instrument_tag": "V-GV-908",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Valve on the line connecting V-PG-206 to V-V-201."
+      },
+      {
+        "instrument_tag": "V-GV-907",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Valve on the line connecting V-PG-206 to V-V-201."
+      },
+      {
+        "instrument_tag": "V-GV-906",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Valve on the upper connection line for V-LG-202 to V-V-201."
+      },
+      {
+        "instrument_tag": "V-LG-202",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Level gauge connected directly to the side of V-V-201."
+      },
+      {
+        "instrument_tag": "V-GV-905",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Valve on the lower connection line for V-LG-202 to V-V-201."
+      }
+    ]
+  },
+  "tag:e16980890b1370e622c333ff86ca47d1": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PIT-211",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the V-V-201 equipment."
+      },
+      {
+        "instrument_tag": "V-PI-211",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the V-V-201 equipment."
+      },
+      {
+        "instrument_tag": "V-PIT-214",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the V-V-201 equipment."
+      },
+      {
+        "instrument_tag": "V-PI-214",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the V-V-201 equipment."
+      }
+    ]
+  },
+  "4b5748ac611e309bf000669b552225670027b2fb50bd838e7f00cf9584e60c85": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PIT-211",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the V-V-201 equipment."
+      },
+      {
+        "instrument_tag": "V-PI-211",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the V-V-201 equipment."
+      },
+      {
+        "instrument_tag": "V-PIT-214",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the V-V-201 equipment."
+      },
+      {
+        "instrument_tag": "V-PI-214",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the V-V-201 equipment."
+      }
+    ]
+  },
+  "tag:e0b3c9ba91a7ac76f915ec479c853f56": {
+    "attachments": [
+      {
+        "instrument_tag": "V-LIT-206",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a pipe that routes to the left, towards V-V-201."
+      },
+      {
+        "instrument_tag": "V-GV-XX003",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that routes to the left, towards V-V-201."
+      }
+    ]
+  },
+  "4ad118c2193f459adf91bebc5f02cf7d51395ce68d328354d93ce847604c69ff": {
+    "attachments": [
+      {
+        "instrument_tag": "V-LIT-206",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a pipe that routes to the left, towards V-V-201."
+      },
+      {
+        "instrument_tag": "V-GV-XX003",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that routes to the left, towards V-V-201."
+      }
+    ]
+  },
+  "tag:1ff4390801afdba81968fe8dc8fbf38e": {
+    "attachments": [
+      {
+        "instrument_tag": "V-TIT-212",
+        "parent_equipment": "E-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a temperature element (TE 212) and thermowell (TW 212) to a pipe. This pipe routes downwards and to the left, towards the stated location of E-V-201."
+      }
+    ]
+  },
+  "44e2c11b40b3d11016da6f3767666cb65df9dff623df41b191b77989d4c601e1": {
+    "attachments": [
+      {
+        "instrument_tag": "V-TIT-212",
+        "parent_equipment": "E-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a temperature element (TE 212) and thermowell (TW 212) to a pipe. This pipe routes downwards and to the left, towards the stated location of E-V-201."
+      }
+    ]
+  },
+  "tag:4beba9647ab579c45e71f9840d59b05f": {
+    "attachments": [
+      {
+        "instrument_tag": "I-008",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "Instrument is a software link or interlock, not physically connected to equipment in this view."
+      },
+      {
+        "instrument_tag": "TIC-213",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "Instrument is a controller, not physically connected to equipment in this view."
+      },
+      {
+        "instrument_tag": "PI-212",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "Instrument is a software link or interlock, not physically connected to equipment in this view."
+      },
+      {
+        "instrument_tag": "PIC-1466B",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "Instrument is a controller, not physically connected to equipment in this view."
+      }
+    ]
+  },
+  "f46f0da8839b57481ee6fa9addebdff4827c2d309f5a9d1ac77e4e6b9ba38682": {
+    "attachments": [
+      {
+        "instrument_tag": "I-008",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "Instrument is a software link or interlock, not physically connected to equipment in this view."
+      },
+      {
+        "instrument_tag": "TIC-213",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "Instrument is a controller, not physically connected to equipment in this view."
+      },
+      {
+        "instrument_tag": "PI-212",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "Instrument is a software link or interlock, not physically connected to equipment in this view."
+      },
+      {
+        "instrument_tag": "PIC-1466B",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "Instrument is a controller, not physically connected to equipment in this view."
+      }
+    ]
+  },
+  "tag:bba77c12fd00c034ff1b52cc649e8a47": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PIT-213",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-TIT-214",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-TIT-213",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-TE-213",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-TW-213",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "TT-258A",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "TT-258B",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      }
+    ]
+  },
+  "a8efae71436523d10327b92cb7bfe432e2307db99a45a744848fca01587d65e3": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PIT-213",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-TIT-214",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-TIT-213",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-TE-213",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-TW-213",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "TT-258A",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      },
+      {
+        "instrument_tag": "TT-258B",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "Connected to a pipe that goes upwards, likely towards the main compressor K-V-201."
+      }
+    ]
+  },
+  "tag:3aa54fb093dc40732433acfe1e9405e4": {
+    "attachments": [
+      {
+        "instrument_tag": "Y2-207",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a complex network of signal lines, but none of them clearly lead to any of the listed equipment within the visible crop. The lines go off-screen or connect to other instruments without a clear path to a specific piece of equipment."
+      }
+    ]
+  },
+  "d4f566589882a32baed7b987225e881a8a3f15a4102ff6596a7567b7ea7bed2a": {
+    "attachments": [
+      {
+        "instrument_tag": "Y2-207",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a complex network of signal lines, but none of them clearly lead to any of the listed equipment within the visible crop. The lines go off-screen or connect to other instruments without a clear path to a specific piece of equipment."
+      }
+    ]
+  },
+  "tag:33a3821fbef6bb0e60b5bd3ed9389181": {
+    "attachments": [
+      {
+        "instrument_tag": "HS-1466B",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a signal line that goes off-page or to an unidentified component. It is not physically connected to any equipment in the provided list."
+      },
+      {
+        "instrument_tag": "XS-261",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a signal line that goes off-page or to an unidentified component. It is not physically connected to any equipment in the provided list."
+      },
+      {
+        "instrument_tag": "XS-270",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a signal line that goes off-page or to an unidentified component. It is not physically connected to any equipment in the provided list."
+      }
+    ]
+  },
+  "d26c0f3571dc741a310d1b21e5efbe918dd2507238f4d5c69e1b0991281d8b45": {
+    "attachments": [
+      {
+        "instrument_tag": "HS-1466B",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a signal line that goes off-page or to an unidentified component. It is not physically connected to any equipment in the provided list."
+      },
+      {
+        "instrument_tag": "XS-261",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a signal line that goes off-page or to an unidentified component. It is not physically connected to any equipment in the provided list."
+      },
+      {
+        "instrument_tag": "XS-270",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a signal line that goes off-page or to an unidentified component. It is not physically connected to any equipment in the provided list."
+      }
+    ]
+  },
+  "tag:e761460f35c5be577552fbe7bc30051d": {
+    "attachments": [
+      {
+        "instrument_tag": "HS-1466B",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a dashed line, which typically represents an electrical or data signal, not a physical pipe. It is not physically connected to any equipment shown in the crop."
+      }
+    ]
+  },
+  "59b2fcd1c8dec787ae114aa1bc7e0efd294211a324ef6a8a8dff8aca4bf2366a": {
+    "attachments": [
+      {
+        "instrument_tag": "HS-1466B",
+        "parent_equipment": "unknown",
+        "connection_type": "unknown",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a dashed line, which typically represents an electrical or data signal, not a physical pipe. It is not physically connected to any equipment shown in the crop."
+      }
+    ]
+  },
+  "tag:00a04eb8ecc141a8b46fab8fddbadfe1": {
+    "attachments": [
+      {
+        "instrument_tag": "LIC-204",
+        "parent_equipment": "V-V-201",
+        "connection_type": "unknown",
+        "confidence": "medium",
+        "reasoning": "The instrument is a controller that receives a signal (indicated by the dashed line) from LIT-204. LIT-204 is mounted on a vessel to the left. Based on the provided equipment list, this vessel is most likely V-V-201."
+      },
+      {
+        "instrument_tag": "LV-206",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "medium",
+        "reasoning": "The instrument is a level valve located on a piping segment. To reach the parent vessel (labeled V-206 on the drawing, but assumed to be V-V-201 based on the provided equipment list), the pipe routes up and to the left."
+      }
+    ]
+  },
+  "163a2a2386b0ee3fdcd82c8a4643711a21ed632ba65177a017085a07a816b643": {
+    "attachments": [
+      {
+        "instrument_tag": "LIC-204",
+        "parent_equipment": "V-V-201",
+        "connection_type": "unknown",
+        "confidence": "medium",
+        "reasoning": "The instrument is a controller that receives a signal (indicated by the dashed line) from LIT-204. LIT-204 is mounted on a vessel to the left. Based on the provided equipment list, this vessel is most likely V-V-201."
+      },
+      {
+        "instrument_tag": "LV-206",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "medium",
+        "reasoning": "The instrument is a level valve located on a piping segment. To reach the parent vessel (labeled V-206 on the drawing, but assumed to be V-V-201 based on the provided equipment list), the pipe routes up and to the left."
+      }
+    ]
+  },
+  "tag:3ce7f82f8238f97bad9a2275ebefa1ef": {
+    "attachments": [
+      {
+        "instrument_tag": "V-EZSC-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-EZSO-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-ESDV-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is mounted on the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-BV-1918",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is mounted on a branch pipe connected to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-BV-1920",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is mounted on a branch pipe connected to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-BV-761",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is mounted on a branch pipe connected to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "T-201C",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a branch pipe connected to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      }
+    ]
+  },
+  "00b7dbfdb60e15ae573852bfe63f526478aef18af89c3a59f9479deff15a88aa": {
+    "attachments": [
+      {
+        "instrument_tag": "V-EZSC-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-EZSO-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-ESDV-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is mounted on the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-BV-1918",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is mounted on a branch pipe connected to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-BV-1920",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is mounted on a branch pipe connected to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "V-BV-761",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is mounted on a branch pipe connected to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      },
+      {
+        "instrument_tag": "T-201C",
+        "parent_equipment": "V-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a branch pipe connected to the main pipe segment, which routes towards the top-left of the drawing where V-V-201 is located."
+      }
+    ]
+  },
+  "tag:7ba0c7cc95a979492c3609fdc5d9de06": {
+    "attachments": [
+      {
+        "instrument_tag": "2INCSO",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a pipe that goes down and then left, but it is not clear which equipment it connects to from this crop."
+      }
+    ]
+  },
+  "24a540c417be0fe2412a11fc87d230b8c372aa905690e849f349007aea283250": {
+    "attachments": [
+      {
+        "instrument_tag": "2INCSO",
+        "parent_equipment": "unknown",
+        "connection_type": "pipe",
+        "confidence": "low",
+        "reasoning": "The instrument is connected to a pipe that goes down and then left, but it is not clear which equipment it connects to from this crop."
+      }
+    ]
+  },
+  "tag:4c82123b338e925eb66f2a898dc9227e": {
+    "attachments": [
+      {
+        "instrument_tag": "V-HS-214A",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes up and to the left, towards V-V-201."
+      },
+      {
+        "instrument_tag": "V-HS-214B",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes up and to the left, towards V-V-201."
+      }
+    ]
+  },
+  "a006d331643fb726f21ad20e650381f7aa22e6ef61f5425ec89230f0d663e593": {
+    "attachments": [
+      {
+        "instrument_tag": "V-HS-214A",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes up and to the left, towards V-V-201."
+      },
+      {
+        "instrument_tag": "V-HS-214B",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes up and to the left, towards V-V-201."
+      }
+    ]
+  },
+  "tag:5dcaa57135b50cdee3f4c6109d280562": {
+    "attachments": [
+      {
+        "instrument_tag": "V-NRV-748",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that goes left towards the V-V-201 equipment."
+      },
+      {
+        "instrument_tag": "T-201A",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that goes left towards the V-V-201 equipment."
+      }
+    ]
+  },
+  "cfc72fba1bb93649907d1cbd299db6154ecaa081b1a1d9facef8a62e54dc09a5": {
+    "attachments": [
+      {
+        "instrument_tag": "V-NRV-748",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that goes left towards the V-V-201 equipment."
+      },
+      {
+        "instrument_tag": "T-201A",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is on a pipe that goes left towards the V-V-201 equipment."
+      }
+    ]
+  },
+  "tag:769332466a81ad3eb2d25610be0166a7": {
+    "attachments": [
+      {
+        "instrument_tag": "V-ESDV-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is an ESDV on a 12\" line. Following the line to the left, it connects to equipment V-V-201."
+      },
+      {
+        "instrument_tag": "V-BV-761",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is a block valve on a 2\" line. Following the line upwards, it connects to the 12\" line which goes to V-V-201."
+      },
+      {
+        "instrument_tag": "T-201C",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is a temperature transmitter on a 2\" line. Following the line upwards, it connects to the 12\" line which goes to V-V-201."
+      }
+    ]
+  },
+  "41865807d1ec1881d7107433986540d6e0cba538ea901d0734ca8a0868bf4fac": {
+    "attachments": [
+      {
+        "instrument_tag": "V-ESDV-209",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is an ESDV on a 12\" line. Following the line to the left, it connects to equipment V-V-201."
+      },
+      {
+        "instrument_tag": "V-BV-761",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is a block valve on a 2\" line. Following the line upwards, it connects to the 12\" line which goes to V-V-201."
+      },
+      {
+        "instrument_tag": "T-201C",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is a temperature transmitter on a 2\" line. Following the line upwards, it connects to the 12\" line which goes to V-V-201."
+      }
+    ]
+  },
+  "tag:90352bb8d061b634beebbdead75f45c0": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PAHH-211",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes to the right, towards the compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-PALL-214",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes to the right, towards the compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-TAHH-212",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes to the right, towards the compressor K-V-201."
+      }
+    ]
+  },
+  "3e5c7365bdd3e3d6c13888c3249e6a21b06be5ed7f72968a97d5dd3068e2510d": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PAHH-211",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes to the right, towards the compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-PALL-214",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes to the right, towards the compressor K-V-201."
+      },
+      {
+        "instrument_tag": "V-TAHH-212",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes to the right, towards the compressor K-V-201."
+      }
+    ]
+  },
+  "tag:a3129bc627ecb3c79c7f1ff7915706c5": {
+    "attachments": [
+      {
+        "instrument_tag": "V-FZV-208",
+        "parent_equipment": "E-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that leads to E-V-201."
+      },
+      {
+        "instrument_tag": "V-FZSC-208",
+        "parent_equipment": "E-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that leads to E-V-201."
+      },
+      {
+        "instrument_tag": "V-FZSO-208",
+        "parent_equipment": "E-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that leads to E-V-201."
+      },
+      {
+        "instrument_tag": "V-FV-208",
+        "parent_equipment": "E-V-201",
+        "connection_type": "mounted",
+        "confidence": "high",
+        "reasoning": "The instrument is mounted on a valve on a pipe that leads to E-V-201."
+      }
+    ]
+  },
+  "55de00bf0461d7cd9f1019c4c4483278f0d9165d4b32a2e9567560c1b2830286": {
+    "attachments": [
+      {
+        "instrument_tag": "V-FZV-208",
+        "parent_equipment": "E-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that leads to E-V-201."
+      },
+      {
+        "instrument_tag": "V-FZSC-208",
+        "parent_equipment": "E-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that leads to E-V-201."
+      },
+      {
+        "instrument_tag": "V-FZSO-208",
+        "parent_equipment": "E-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "The instrument is connected via a leader line to a valve on a pipe that leads to E-V-201."
+      },
+      {
+        "instrument_tag": "V-FV-208",
+        "parent_equipment": "E-V-201",
+        "connection_type": "mounted",
+        "confidence": "high",
+        "reasoning": "The instrument is mounted on a valve on a pipe that leads to E-V-201."
+      }
+    ]
+  },
+  "tag:107d351f34f00c7e504ad6824d03db47": {
+    "attachments": [
+      {
+        "instrument_tag": "V-EZT-209",
+        "parent_equipment": "K-V-201",
+        "connection_type": "mounted",
+        "confidence": "high",
+        "reasoning": "The instrument is a position transmitter mechanically linked to a valve assembly. This assembly is located on a 12-inch pipe labeled 'SUCTION HEADER', which routes to the compressor K-V-201."
+      }
+    ]
+  },
+  "908aea8665377f75fe69eff58b2d8a3cd42b496d373e11b7f4a034965c2d29ef": {
+    "attachments": [
+      {
+        "instrument_tag": "V-EZT-209",
+        "parent_equipment": "K-V-201",
+        "connection_type": "mounted",
+        "confidence": "high",
+        "reasoning": "The instrument is a position transmitter mechanically linked to a valve assembly. This assembly is located on a 12-inch pipe labeled 'SUCTION HEADER', which routes to the compressor K-V-201."
+      }
+    ]
+  },
+  "tag:ad52c9d1403017e35fa3838966e87364": {
+    "attachments": [
+      {
+        "instrument_tag": "V-XV-202",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "medium",
+        "reasoning": "The text is a reference on the 2-inch pipe, which routes right towards compressor K-V-201."
+      },
+      {
+        "instrument_tag": "T-255B",
+        "parent_equipment": "K-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "Connected via a leader line to a shutdown signal on the 2-inch line, which routes right towards compressor K-V-201."
+      }
+    ]
+  },
+  "7cdf5c39dc7f5f75f03cb4db4b336d08edc2daa64427e12ad2864cb265f3bff0": {
+    "attachments": [
+      {
+        "instrument_tag": "V-XV-202",
+        "parent_equipment": "K-V-201",
+        "connection_type": "pipe",
+        "confidence": "medium",
+        "reasoning": "The text is a reference on the 2-inch pipe, which routes right towards compressor K-V-201."
+      },
+      {
+        "instrument_tag": "T-255B",
+        "parent_equipment": "K-V-201",
+        "connection_type": "leader_line",
+        "confidence": "high",
+        "reasoning": "Connected via a leader line to a shutdown signal on the 2-inch line, which routes right towards compressor K-V-201."
+      }
+    ]
+  },
+  "tag:5fc993a64d2f36bfee7d8fa7f9686fcf": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PT-213",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the main vertical line, which is associated with V-V-201."
+      },
+      {
+        "instrument_tag": "V-TI-213",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the main vertical line, which is associated with V-V-201."
+      },
+      {
+        "instrument_tag": "V-TT-214",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the main vertical line, which is associated with V-V-201."
+      },
+      {
+        "instrument_tag": "V-TIT-213",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the main vertical line, which is associated with V-V-201."
+      }
+    ]
+  },
+  "1d7e43b89bf17a0944c9695ef0d1ca2acd40636e9e0c10a73b55374d72222da3": {
+    "attachments": [
+      {
+        "instrument_tag": "V-PT-213",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the main vertical line, which is associated with V-V-201."
+      },
+      {
+        "instrument_tag": "V-TI-213",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the main vertical line, which is associated with V-V-201."
+      },
+      {
+        "instrument_tag": "V-TT-214",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the main vertical line, which is associated with V-V-201."
+      },
+      {
+        "instrument_tag": "V-TIT-213",
+        "parent_equipment": "V-V-201",
+        "connection_type": "pipe",
+        "confidence": "high",
+        "reasoning": "The instrument is connected to a pipe that goes left towards the main vertical line, which is associated with V-V-201."
+      }
+    ]
   }
 }

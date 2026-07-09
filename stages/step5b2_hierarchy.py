@@ -146,6 +146,23 @@ GEMINI_ATTACH_EST_OUTPUT_TOK  = 350    # small JSON answer per call
 GEMINI_PRO_USD_PER_MTOK_IN    = 2.00   # approx input price per 1e6 tokens
 GEMINI_PRO_USD_PER_MTOK_OUT   = 12.00  # approx output price per 1e6 tokens
 
+# ── Phase 2: Gemini PIPE VERIFICATION (gated on --gemini-pipe-verify) ─────────
+# Repairs the CV pipe graph (does NOT detect new pipes). Three tasks:
+#   1. gap bridging  — two pipeline ends 100-300px apart: same line? → merge
+#   2. elbow reclass — a diagonal between two H/V runs: elbow or noise?
+#   3. tee vs cross  — junction deg>=3: physically joined (tee) or crossing?
+# Runs BEFORE build_graph so the repaired pipelines/junctions feed everything
+# downstream (hierarchy BFS + Gemini attach). Cached by geometry-based key.
+GEMINI_PIPE_VERIFY_MODEL    = GEMINI_FLOW_MODEL   # gemini-3.1-pro-preview
+GEMINI_GAP_MIN_PX           = 100    # Task 1: min endpoint-to-endpoint gap to verify
+GEMINI_GAP_MAX_PX           = 300    # Task 1: max gap (beyond this = unrelated pipes)
+ELBOW_SNAP_PX               = 50     # Task 2: diagonal endpoint must be within this of an H/V end
+GEMINI_PIPE_VERIFY_PAD_PX   = 100    # padding around the region of interest before cropping
+GEMINI_PIPE_VERIFY_MAX_SIDE = 1024   # longest side of the crop sent to Gemini
+GEMINI_PIPE_VERIFY_TEMP     = 0.0    # deterministic
+GEMINI_PIPE_VERIFY_EST_INPUT_TOK  = 1100
+GEMINI_PIPE_VERIFY_EST_OUTPUT_TOK = 200
+
 # ── Track C: signal-line (dashed) detection + control-loop hierarchy ─────────
 # Proximity-gated STRICT path-probing (the "probe2" prototype). A signal edge is
 # accepted only when an orthogonal path between two nearby bubbles is fully on a
@@ -171,9 +188,39 @@ OVERLAP_FRAC       = 0.0    # >0 bbox intersection area => OVERLAPPING
 #    in notes / title blocks / tables from becoming hierarchy nodes)
 MIN_SYMBOL_HEIGHT_PX      = 30   # image space — minimum bbox height for a real symbol
 MIN_SYMBOL_WIDTH_PX       = 30   # image space — minimum bbox width for a real symbol
+EQUIP_AREA_MIN_PX2        = 5000 # image space — minimum bbox area (px²) for a real equipment symbol
 EQUIPMENT_MAX_ASPECT      = 3.5  # equipment bbox wider/taller than this ratio = text label
 IS_LABEL_ONLY_CONF_CAP    = 0.4  # Gemini attachment confidence cap for label-only equipment
 MOTOR_PROXY_RADIUS_PX     = 400  # px: MOTOR box within this of a filtered KM label → proxy
+SITE_PREFIX               = 'V-' # FIX B: site tag prefix; unprefixed tags (ESDV-209) merge
+                                 # into their prefixed twin (V-ESDV-209) when one exists
+
+# ── P3: tag validity gate for pipeline_traversal equipment_parent assignment ──
+# Pipe spec labels (12IN-ETH-V012-61440X-PP, SB 6IN, 7-61440X) and short numeric
+# OCR noise ("212", "213") are extracted by step5a OCR but are NOT real instruments.
+# They must not be given an equipment_parent via the low-confidence pipeline_traversal
+# branch (that is what produces spurious children under K-V-201).
+ISA_TAG_PATTERN  = re.compile(r'^[A-Za-z]{1,4}-[A-Za-z0-9][-A-Za-z0-9]*$')
+PIPE_SPEC_PATTERN = re.compile(r'^\d+[\w°]*[-]|^SB\s|^\d+°?-')
+
+
+def is_valid_instrument_tag(tag: str) -> bool:
+    """True only for tags that look like a real ISA instrument/valve/equipment tag.
+
+    Used to gate pipeline_traversal equipment_parent assignment: pipe-spec labels
+    and numeric OCR noise are rejected so they do not become equipment children."""
+    if not tag or len(tag) < 3:
+        return False
+    # Normalise OCR dash variants to standard hyphen (FIX A)
+    tag = tag.replace('—', '-')  # em-dash → hyphen
+    tag = tag.replace('–', '-')  # en-dash → hyphen
+    if PIPE_SPEC_PATTERN.match(tag):
+        return False
+    # Short numeric-only strings are OCR noise
+    if re.match(r'^\d+$', tag.strip()):
+        return False
+    # Must look like a real ISA tag: letters-number format
+    return bool(ISA_TAG_PATTERN.match(tag))
 
 # Category rank for picking an undirected hierarchy root (higher = closer to root)
 CATEGORY_RANK = {
@@ -246,9 +293,9 @@ def is_real_symbol(candidate, display_scale: float = 1.0) -> tuple:
     # label in a title block is far too small regardless of width.
     if candidate.get("symbol_category") == "equipment":
         area_img = width_img * height_img
-        if area_img < 5000:
+        if area_img < EQUIP_AREA_MIN_PX2:
             return False, (f"equipment bbox too small for real symbol "
-                           f"({area_img:.0f}px² < 5000px²)")
+                           f"({area_img:.0f}px² < {EQUIP_AREA_MIN_PX2}px²)")
         # Rule 3: very flat bbox = text label, not a real equipment symbol.
         # Real equipment symbols are near-square or at most 2:1; title-block
         # labels like "K-V-201" are 4:1 or wider (flat text row).
@@ -516,6 +563,34 @@ def resolve_canonical_entities(candidates, display_scale: float = 1.0):
         cc = copy.deepcopy(c)
         deduped.append(cc)
         id_remap[cc["candidate_id"]] = cc["candidate_id"]
+
+    # ── FIX B: site-prefix merge (second dedup pass) ──────────────────────
+    # Some instruments are detected WITHOUT their site prefix (e.g. ESDV-209)
+    # while the prefixed twin (V-ESDV-209) also exists as a separate canonical
+    # node. Treat the unprefixed as a duplicate of the prefixed version: keep
+    # the prefixed node, discard the unprefixed, and remap its id so any edges
+    # land on the prefixed node. If no prefixed twin exists, keep it as-is.
+    canonical_by_tag = {(c.get("tag_text") or "").strip().upper(): c for c in deduped}
+    n_prefix_merges = 0
+    survivors = []
+    for c in deduped:
+        tag = (c.get("tag_text") or "").strip()
+        norm = tag.upper()
+        if not tag or norm.startswith(SITE_PREFIX.upper()):
+            survivors.append(c)
+            continue
+        prefixed = canonical_by_tag.get((SITE_PREFIX + tag).upper())
+        if prefixed is not None and prefixed["candidate_id"] != c["candidate_id"]:
+            target = prefixed["candidate_id"]
+            # remap the unprefixed canonical AND anything already pointing at it
+            for k, v in list(id_remap.items()):
+                if v == c["candidate_id"]:
+                    id_remap[k] = target
+            n_prefix_merges += 1
+            log.info("Merged unprefixed %s into %s", tag, prefixed.get("tag_text"))
+        else:
+            survivors.append(c)
+    deduped = survivors
 
     # Rewrite intra-candidate references so edges land on surviving nodes.
     # Also strip any reference to a filtered-out candidate (filtered_ids) so
@@ -1508,6 +1583,469 @@ def _cluster_pipelines(pls, radius):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Phase 2 — Gemini PIPE VERIFICATION (GATED on --gemini-pipe-verify)
+# Repairs the CV pipe graph BEFORE build_graph. Three tasks: gap bridging,
+# elbow reclassification, tee-vs-crossing. Everything downstream (hierarchy
+# BFS + Gemini attach) inherits the repaired pipelines/junctions automatically.
+# ═══════════════════════════════════════════════════════════════════════════
+
+def _pv_recompute_pipeline(pl, seg_by_id):
+    """Recompute bbox / total_length / segment_count for a pipeline from its segments."""
+    xs, ys, tot = [], [], 0.0
+    for sid in pl["segment_ids"]:
+        s = seg_by_id.get(sid)
+        if not s:
+            continue
+        xs += [s["x0"], s["x1"]]; ys += [s["y0"], s["y1"]]
+        tot += s.get("length", 0.0)
+    if xs:
+        pl["bbox"] = {"x1": min(xs), "y1": min(ys), "x2": max(xs), "y2": max(ys)}
+    pl["total_length_px"] = round(tot, 1)
+    pl["segment_count"] = len(pl["segment_ids"])
+
+
+def _pv_merge_pipelines(pipelines, junctions, seg_by_id, keep_id, drop_id):
+    """Merge pipeline ``drop_id`` into ``keep_id`` (Task 1 bridge / Task 2 elbow span).
+    Reassigns segments, recomputes geometry, removes the dropped entity, and fixes
+    every junction's connected_pipelines reference. Returns True on success."""
+    if keep_id == drop_id:
+        return False
+    pl_keep = next((p for p in pipelines if p["pipeline_id"] == keep_id), None)
+    pl_drop = next((p for p in pipelines if p["pipeline_id"] == drop_id), None)
+    if not pl_keep or not pl_drop:
+        return False
+    for sid in pl_drop["segment_ids"]:
+        s = seg_by_id.get(sid)
+        if s:
+            s["pipeline_id"] = keep_id
+        if sid not in pl_keep["segment_ids"]:
+            pl_keep["segment_ids"].append(sid)
+    pl_keep["intermediate_nodes"] = sorted(set(pl_keep.get("intermediate_nodes", [])) |
+                                           set(pl_drop.get("intermediate_nodes", [])))
+    pl_keep["reasoning"] = (pl_keep.get("reasoning", "") +
+                            f" | merged {drop_id} (gemini_pipe_verify)")
+    _pv_recompute_pipeline(pl_keep, seg_by_id)
+    pipelines.remove(pl_drop)
+    for j in junctions:
+        cp = j.get("connected_pipelines", [])
+        if drop_id in cp:
+            j["connected_pipelines"] = sorted({keep_id if x == drop_id else x for x in cp})
+    return True
+
+
+def gap_bridge_score(seg_a, seg_b, distance, same_orientation, equip_between):
+    """Quality score for a Task-1 gap candidate (higher = better bridge candidate).
+    seg_a/seg_b are unused beyond signature parity with the spec; orientation and
+    equipment-occlusion are precomputed by the caller."""
+    score = 1.0
+    score -= distance / 300.0          # closer = better
+    if same_orientation:
+        score += 0.3
+    if equip_between:
+        score -= 0.5                    # likely separate pipes
+    return score
+
+
+def _pv_equip_between(ptA, ptB, equip_bboxes):
+    """True if an equipment bbox sits on the short gap between the two endpoints."""
+    for eb in (equip_bboxes or []):
+        for f in (0.25, 0.5, 0.75):
+            sx = ptA[0] + (ptB[0] - ptA[0]) * f
+            sy = ptA[1] + (ptB[1] - ptA[1]) * f
+            if eb.get("x1", 0) <= sx <= eb.get("x2", 0) and \
+               eb.get("y1", 0) <= sy <= eb.get("y2", 0):
+                return True
+    return False
+
+
+def _pv_gemini_json(client, sdk, img_bytes, prompt, label):
+    """One Gemini vision call → parsed JSON dict (None on failure). temp=0,
+    exponential-backoff retry on 429/503 (same pattern as gemini_instrument_attach)."""
+    for attempt in range(3):
+        try:
+            if sdk == "new":
+                from google.genai import types as gt
+                resp = client.models.generate_content(
+                    model=GEMINI_PIPE_VERIFY_MODEL,
+                    contents=[gt.Part.from_bytes(data=img_bytes, mime_type="image/jpeg"),
+                              gt.Part.from_text(text=prompt)],
+                    config=gt.GenerateContentConfig(temperature=GEMINI_PIPE_VERIFY_TEMP),
+                )
+                raw = resp.text.strip()
+            else:
+                import google.generativeai as gl
+                import PIL.Image as PILImage
+                import io
+                pil = PILImage.open(io.BytesIO(img_bytes))
+                cfg = gl.GenerationConfig(temperature=GEMINI_PIPE_VERIFY_TEMP)
+                resp = gl.GenerativeModel(GEMINI_PIPE_VERIFY_MODEL).generate_content(
+                    [prompt, pil], generation_config=cfg)
+                raw = resp.text.strip()
+            clean = raw.replace("```json", "").replace("```", "").strip()
+            m = re.search(r"\{.*\}", clean, re.DOTALL)
+            return json.loads(m.group(0) if m else clean)
+        except Exception as e:
+            err = str(e)
+            if any(x in err for x in ("429", "503", "RESOURCE_EXHAUSTED", "overloaded")):
+                wait = 2 ** attempt
+                log.warning("pipe-verify %s rate-limited, retry in %ds (%d/3)",
+                            label, wait, attempt + 1)
+                time.sleep(wait)
+            else:
+                log.warning("pipe-verify %s failed: %s", label, err)
+                return None
+    return None
+
+
+def _pv_conf_ok(ans, key="confidence"):
+    """Accept high/medium, reject low/missing."""
+    return (ans or {}).get(key, "").lower() in ("high", "medium")
+
+
+def _pv_build_work(pipelines, junctions, segments):
+    """Detect the three repair work-lists from CV geometry (no API).
+    Returns (gap_items, elbow_items, junc_items)."""
+    seg_by_id = {s["segment_id"]: s for s in segments}
+
+    # ── Task 1: gap pairs between DIFFERENT pipelines, GEMINI_GAP_MIN..MAX apart ──
+    hv = [s for s in segments
+          if s["type"] in ("horizontal_pipe", "vertical_pipe") and s.get("pipeline_id")]
+    eps = []
+    for s in hv:
+        eps.append((s["pipeline_id"], s["segment_id"], (s["x0"], s["y0"])))
+        eps.append((s["pipeline_id"], s["segment_id"], (s["x1"], s["y1"])))
+    gap_best = {}   # (pidA,pidB) -> dict(dist, segA, ptA, segB, ptB, pidA, pidB)
+    for i in range(len(eps)):
+        pa, sa, pta = eps[i]
+        for j in range(i + 1, len(eps)):
+            pb, sb, ptb = eps[j]
+            if pa == pb:
+                continue
+            d = math.hypot(pta[0] - ptb[0], pta[1] - ptb[1])
+            if not (GEMINI_GAP_MIN_PX <= d <= GEMINI_GAP_MAX_PX):
+                continue
+            key = tuple(sorted((pa, pb)))
+            if key not in gap_best or d < gap_best[key]["dist"]:
+                gap_best[key] = {"task": "gap", "dist": round(d, 1),
+                                 "segA": sa, "ptA": pta, "segB": sb, "ptB": ptb,
+                                 "pidA": pa, "pidB": pb}
+    gap_items = list(gap_best.values())
+
+    # ── Task 2: diagonals whose BOTH endpoints snap (<=ELBOW_SNAP_PX) to H/V ends ──
+    hv_ends = [(s["pipeline_id"], (s["x0"], s["y0"])) for s in hv] + \
+              [(s["pipeline_id"], (s["x1"], s["y1"])) for s in hv]
+
+    def _nearest_hv_pipe(pt):
+        best, bd = None, ELBOW_SNAP_PX
+        for pid, q in hv_ends:
+            dd = math.hypot(pt[0] - q[0], pt[1] - q[1])
+            if dd <= bd:
+                bd, best = dd, pid
+        return best
+
+    elbow_items = []
+    for d in segments:
+        if d["type"] != "diagonal_pipe":
+            continue
+        pa = _nearest_hv_pipe((d["x0"], d["y0"]))
+        pb = _nearest_hv_pipe((d["x1"], d["y1"]))
+        if pa and pb:
+            elbow_items.append({"task": "elbow", "seg_id": d["segment_id"],
+                                "pidA": pa, "pidB": pb,
+                                "bbox": {"x1": min(d["x0"], d["x1"]), "y1": min(d["y0"], d["y1"]),
+                                         "x2": max(d["x0"], d["x1"]), "y2": max(d["y0"], d["y1"])}})
+
+    # ── Task 3: junctions degree >= 3 ──
+    junc_items = [{"task": "junction", "junction_id": j["junction_id"],
+                   "point": j["point"], "degree": j["degree"]}
+                  for j in junctions if j.get("degree", 0) >= 3]
+
+    return gap_items, elbow_items, junc_items, seg_by_id
+
+
+# Task prompts (verbatim from the spec) ──────────────────────────────────────
+_PV_GAP_PROMPT = (
+    "This is a section of a P&ID engineering drawing.\n"
+    "Two pipe segments are highlighted in red. They end {distance}px apart.\n"
+    "Question: Are these two segments part of the same physical pipeline, "
+    "interrupted by a symbol, valve, or text? Or are they separate unrelated pipes?\n"
+    'Answer in JSON: {{"connected": true/false, "confidence": "high"/"medium"/"low", '
+    '"reason": "..."}}'
+)
+_PV_ELBOW_PROMPT = (
+    "This is a section of a P&ID engineering drawing.\n"
+    "A diagonal line segment is highlighted in red, connecting two pipe runs.\n"
+    "Question: Is this diagonal an elbow/bend connector between the two pipes, "
+    "or is it a symbol edge, hatching line, or text stroke?\n"
+    'Answer in JSON: {"type": "elbow"/"noise", "confidence": "high"/"medium"/"low", '
+    '"reason": "..."}'
+)
+_PV_TEE_PROMPT = (
+    "This is a section of a P&ID engineering drawing.\n"
+    "A junction point is highlighted where pipes meet.\n"
+    "Question: Do these pipes physically connect at this point (tee junction / "
+    "branch), or do they cross over each other without connecting?\n"
+    'Answer in JSON: {"junction_type": "tee"/"crossing", '
+    '"confidence": "high"/"medium"/"low", "reason": "..."}'
+)
+
+
+def gemini_pipe_verify(pipelines, junctions, segments, img, api_key, out_dir,
+                       confirm=False, n_workers=8, limit=20, equip_bboxes=None):
+    """Phase 2 graph repair. ALWAYS prints a dry-run cost gate first. When
+    ``confirm`` is False it returns after the gate with ZERO API calls. When True
+    it crops + annotates + calls Gemini per work item (parallel), then applies
+    repairs to pipelines/junctions/segments IN PLACE. Returns a report dict.
+
+    PILOT MODE: Task-1 gap candidates are scored with gap_bridge_score() and only
+    the top ``limit`` are sent to Gemini (Tasks 2 & 3 are always sent in full).
+    ``limit=None`` or <=0 means no cap (all gaps)."""
+    seg_by_id = {s["segment_id"]: s for s in segments}
+    gap_items, elbow_items, junc_items, seg_by_id = _pv_build_work(
+        pipelines, junctions, segments)
+
+    # ── PILOT: score Task-1 gaps and keep only the top `limit` ───────────────
+    n_gap_total = len(gap_items)
+    for g in gap_items:
+        sa = seg_by_id.get(g["segA"]); sb = seg_by_id.get(g["segB"])
+        same_orient = bool(sa and sb and sa["type"] == sb["type"])
+        eq_between = _pv_equip_between(g["ptA"], g["ptB"], equip_bboxes)
+        g["same_orientation"] = same_orient
+        g["equip_between"] = eq_between
+        g["score"] = round(gap_bridge_score(sa, sb, g["dist"], same_orient, eq_between), 4)
+    gap_items.sort(key=lambda g: g["score"], reverse=True)
+    if limit and limit > 0:
+        gap_items = gap_items[:limit]
+
+    n_total = len(gap_items) + len(elbow_items) + len(junc_items)
+    est_in = n_total * GEMINI_PIPE_VERIFY_EST_INPUT_TOK
+    est_out = n_total * GEMINI_PIPE_VERIFY_EST_OUTPUT_TOK
+    est_usd = (est_in / 1e6 * GEMINI_PRO_USD_PER_MTOK_IN +
+               est_out / 1e6 * GEMINI_PRO_USD_PER_MTOK_OUT)
+
+    n_pl_before = len(pipelines)
+    n_multi_before = sum(1 for p in pipelines if p.get("segment_count", 0) > 1)
+
+    pilot = " (PILOT)" if (limit and limit > 0 and n_gap_total > limit) else ""
+    print("\n=== Gemini PIPE-VERIFY PRE-FLIGHT (no API calls yet) ===")
+    print(f"  Task 1 gap pairs to verify       : {len(gap_items)} of {n_gap_total} "
+          f"(top-scored){pilot}")
+    print(f"  Task 2 diagonal elbow candidates : {len(elbow_items)}")
+    print(f"  Task 3 junctions (deg>=3) to verify: {len(junc_items)}")
+    print(f"  TOTAL Gemini calls needed        : {n_total}")
+    print(f"  est. tokens in / out             : ~{est_in} / ~{est_out}")
+    print(f"  est. cost ({GEMINI_PIPE_VERIFY_MODEL}) : ~${est_usd:.4f}  (approx)")
+
+    report = {
+        "dry_run": not confirm,
+        "gap_candidates_total": n_gap_total,
+        "gap_candidates_sent": len(gap_items),
+        "task1": {"verified": len(gap_items), "bridged": 0, "kept_separate": 0},
+        "task2": {"candidates": len(elbow_items), "reclassified": 0, "noise": 0},
+        "task3": {"verified": len(junc_items), "tee": 0, "crossing": 0},
+        "pipelines_before": n_pl_before, "pipelines_after": n_pl_before,
+        "multi_seg_before": n_multi_before, "multi_seg_after": n_multi_before,
+        "est_cost_usd": round(est_usd, 4),
+    }
+    if not confirm:
+        print("  --> DRY RUN: Gemini NOT called. Re-run with --gemini-pipe-verify "
+              "to proceed.")
+        return report
+    if not api_key:
+        raise RuntimeError("--gemini-pipe-verify requires --api-key / GEMINI_API_KEY")
+
+    client, sdk = _build_gemini_client(api_key)
+    Hh, Ww = img.shape[:2]
+    PAD = GEMINI_PIPE_VERIFY_PAD_PX
+    MS = GEMINI_PIPE_VERIFY_MAX_SIDE
+    crop_dir = Path(out_dir) / "gemini_pipe_verify_crops"
+    crop_dir.mkdir(parents=True, exist_ok=True)
+    cache_path = Path(out_dir) / "gemini_pipe_verify_cache.json"
+    cache = {}
+    if cache_path.exists():
+        try:
+            cache = json.load(open(cache_path))
+        except Exception:
+            cache = {}
+    cache_lock = threading.Lock()
+
+    def _cache_key(item):
+        if item["task"] == "gap":
+            sig = ("gap", round(item["ptA"][0]), round(item["ptA"][1]),
+                   round(item["ptB"][0]), round(item["ptB"][1]))
+        elif item["task"] == "elbow":
+            b = item["bbox"]
+            sig = ("elbow", b["x1"], b["y1"], b["x2"], b["y2"])
+        else:
+            sig = ("junction", item["point"]["x"], item["point"]["y"], item["degree"])
+        return hashlib.md5(json.dumps(sig).encode()).hexdigest()
+
+    def _crop_window(item):
+        if item["task"] == "gap":
+            xs = [item["ptA"][0], item["ptB"][0]]; ys = [item["ptA"][1], item["ptB"][1]]
+        elif item["task"] == "elbow":
+            b = item["bbox"]; xs = [b["x1"], b["x2"]]; ys = [b["y1"], b["y2"]]
+        else:
+            xs = [item["point"]["x"]]; ys = [item["point"]["y"]]
+        x1 = max(0, int(min(xs)) - PAD); y1 = max(0, int(min(ys)) - PAD)
+        x2 = min(Ww, int(max(xs)) + PAD); y2 = min(Hh, int(max(ys)) + PAD)
+        return x1, y1, x2, y2
+
+    def _call_item(idx_item):
+        idx, item = idx_item
+        time.sleep(idx * 0.05)
+        key = _cache_key(item)
+        with cache_lock:
+            if key in cache:
+                return idx, item, cache[key], True, None
+        x1, y1, x2, y2 = _crop_window(item)
+        crop = img[y1:y2, x1:x2].copy()
+        ch, cw = crop.shape[:2]
+        if ch == 0 or cw == 0:
+            return idx, item, None, False, "empty crop"
+        sc = MS / max(ch, cw) if max(ch, cw) > MS else 1.0
+
+        def _tx(px): return int((px - x1) * sc)
+        def _ty(py): return int((py - y1) * sc)
+
+        if item["task"] == "gap":
+            for sid in (item["segA"], item["segB"]):
+                s = seg_by_id.get(sid)
+                if s:
+                    cv2.line(crop, (_tx(s["x0"]), _ty(s["y0"])),
+                             (_tx(s["x1"]), _ty(s["y1"])), (0, 0, 255), 4)
+            prompt = _PV_GAP_PROMPT.format(distance=int(item["dist"]))
+        elif item["task"] == "elbow":
+            s = seg_by_id.get(item["seg_id"])
+            if s:
+                cv2.line(crop, (_tx(s["x0"]), _ty(s["y0"])),
+                         (_tx(s["x1"]), _ty(s["y1"])), (0, 0, 255), 4)
+            prompt = _PV_ELBOW_PROMPT
+        else:
+            cv2.circle(crop, (_tx(item["point"]["x"]), _ty(item["point"]["y"])),
+                       22, (0, 0, 255), 4)
+            prompt = _PV_TEE_PROMPT
+
+        if sc != 1.0:
+            crop = cv2.resize(crop, (int(cw * sc), int(ch * sc)))
+        ok, buf = cv2.imencode(".jpg", crop)
+        if not ok:
+            return idx, item, None, False, "imencode failed"
+        cv2.imwrite(str(crop_dir / f"{item['task']}_{idx}.jpg"), crop)
+        ans = _pv_gemini_json(client, sdk, buf.tobytes(), prompt, f"{item['task']}#{idx}")
+        if ans is not None:
+            with cache_lock:
+                cache[key] = ans
+        return idx, item, ans, False, None
+
+    all_items = [(i, it) for i, it in enumerate(gap_items + elbow_items + junc_items)]
+    eff = min(n_workers, len(all_items)) if all_items else 1
+    log.info("pipe-verify: %d work items, %d parallel workers", len(all_items), eff)
+    results = [None] * len(all_items)
+    done = 0
+    with concurrent.futures.ThreadPoolExecutor(max_workers=eff) as ex:
+        futs = {ex.submit(_call_item, ii): ii[0] for ii in all_items}
+        for fut in concurrent.futures.as_completed(futs):
+            idx, item, ans, cached, err = fut.result()
+            done += 1
+            tag = "CACHE" if cached else ("ERR" if err else "LIVE")
+            log.info("pipe-verify %d/%d [%s] %s", done, len(all_items), tag, item["task"])
+            results[idx] = (item, ans, err)
+    try:
+        json.dump(cache, open(cache_path, "w"), indent=2)
+    except Exception:
+        pass
+
+    # ── Apply repairs sequentially (no thread safety needed) ─────────────────
+    report["task1"]["examples_connected"] = []
+    report["task1"]["examples_separate"] = []
+    report["task3"]["examples"] = []
+    # Task 1 — bridge gaps (merge pipelines). Skip if a pipeline already merged away.
+    live_ids = {p["pipeline_id"] for p in pipelines}
+    for item, ans, err in results:
+        if item["task"] != "gap" or ans is None:
+            continue
+        ex = {"pidA": item["pidA"], "pidB": item["pidB"], "dist": item["dist"],
+              "score": item.get("score"), "reason": ans.get("reason", "")}
+        if ans.get("connected") is True and _pv_conf_ok(ans):
+            if len(report["task1"]["examples_connected"]) < 3:
+                report["task1"]["examples_connected"].append(ex)
+            a, b = item["pidA"], item["pidB"]
+            if a not in live_ids or b not in live_ids:
+                report["task1"]["kept_separate"] += 1
+                continue
+            keep, drop = (a, b)
+            pa = next((p for p in pipelines if p["pipeline_id"] == a), None)
+            pb = next((p for p in pipelines if p["pipeline_id"] == b), None)
+            if pa and pb and pb.get("segment_count", 0) > pa.get("segment_count", 0):
+                keep, drop = b, a
+            if _pv_merge_pipelines(pipelines, junctions, seg_by_id, keep, drop):
+                live_ids.discard(drop)
+                report["task1"]["bridged"] += 1
+            else:
+                report["task1"]["kept_separate"] += 1
+        else:
+            if len(report["task1"]["examples_separate"]) < 3:
+                report["task1"]["examples_separate"].append(ex)
+            report["task1"]["kept_separate"] += 1
+
+    # Task 2 — reclassify diagonals as elbow (assign to a pipeline; span-merge if 2).
+    for item, ans, err in results:
+        if item["task"] != "elbow" or ans is None:
+            continue
+        if ans.get("type", "").lower() == "elbow" and _pv_conf_ok(ans):
+            a, b = item["pidA"], item["pidB"]
+            keep = a if a in live_ids else (b if b in live_ids else None)
+            if keep is None:
+                report["task2"]["noise"] += 1
+                continue
+            seg = seg_by_id.get(item["seg_id"])
+            pl = next((p for p in pipelines if p["pipeline_id"] == keep), None)
+            if seg and pl:
+                seg["pipeline_id"] = keep
+                if seg["segment_id"] not in pl["segment_ids"]:
+                    pl["segment_ids"].append(seg["segment_id"])
+                _pv_recompute_pipeline(pl, seg_by_id)
+                other = b if keep == a else a
+                if other in live_ids and other != keep:
+                    if _pv_merge_pipelines(pipelines, junctions, seg_by_id, keep, other):
+                        live_ids.discard(other)
+                report["task2"]["reclassified"] += 1
+            else:
+                report["task2"]["noise"] += 1
+        else:
+            report["task2"]["noise"] += 1
+
+    # Task 3 — remove crossing junctions (they create false connections).
+    crossing_ids = set()
+    for item, ans, err in results:
+        if item["task"] != "junction" or ans is None:
+            continue
+        jt = ans.get("junction_type", "").lower()
+        report["task3"]["examples"].append(
+            {"junction_id": item["junction_id"], "degree": item["degree"],
+             "verdict": jt or "?", "reason": ans.get("reason", "")})
+        if jt == "crossing" and _pv_conf_ok(ans):
+            crossing_ids.add(item["junction_id"])
+            report["task3"]["crossing"] += 1
+        else:
+            report["task3"]["tee"] += 1
+    if crossing_ids:
+        junctions[:] = [j for j in junctions if j["junction_id"] not in crossing_ids]
+        for p in pipelines:
+            if p.get("intermediate_nodes"):
+                p["intermediate_nodes"] = [n for n in p["intermediate_nodes"]
+                                           if n not in crossing_ids]
+
+    report["pipelines_after"] = len(pipelines)
+    report["multi_seg_after"] = sum(1 for p in pipelines if p.get("segment_count", 0) > 1)
+    log.info("pipe-verify applied: bridged=%d, elbows=%d, crossings_removed=%d; "
+             "pipelines %d→%d", report["task1"]["bridged"], report["task2"]["reclassified"],
+             report["task3"]["crossing"], n_pl_before, report["pipelines_after"])
+    return report
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # Phase 1 — Gemini instrument attachment (GATED on --gemini-attach)
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -2491,6 +3029,14 @@ def build_hierarchy(graph, spatial):
             edge = (pair_edges.get(frozenset((nid, par))) or [None])[0]
             conf = edge.get("confidence") if edge else None
             return nodes[par].get("tag_text", ""), par, conf, "direct_parent"
+        # P3: pipeline_traversal (cases 3 & 4) is low-confidence and is what assigns
+        # pipe-spec labels / numeric OCR noise as spurious equipment children.
+        # Gate both branches behind the instrument-tag validity check.
+        this_tag = nodes.get(nid, {}).get("tag_text", "")
+        if not is_valid_instrument_tag(this_tag):
+            log.info("Skipped pipeline_traversal equipment_parent for "
+                     "non-instrument tag: %s", this_tag)
+            return None, None, None, None
         # 3. first equipment ancestor in parent_chain (via pipeline/junction)
         for a in anc:
             if nodes.get(a, {}).get("kind") == "equipment":
@@ -2719,7 +3265,10 @@ def run(assoc_path: str, img_path: str, out_dir: str,
         gemini_flow_fallback_on: bool = False, api_key: str = "",
         debug_annotate: bool = False,
         gemini_attach_on: bool = False, gemini_attach_dry_run: bool = False,
-        gemini_attach_workers: int = 8):
+        gemini_attach_workers: int = 8,
+        gemini_pipe_verify_on: bool = False, gemini_pipe_verify_dry_run: bool = False,
+        gemini_pipe_verify_workers: int = 8, gemini_pipe_verify_limit: int = 20,
+        verified_graph_path: str = ""):
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
 
@@ -2727,6 +3276,39 @@ def run(assoc_path: str, img_path: str, out_dir: str,
         data = json.load(f)
     cands_all = data.get("enriched_candidates", [])
     log.info("Loaded %d enriched candidates from Step 5B", len(cands_all))
+
+    # ── Drawing-scale: normalise all pixel thresholds to this drawing's size ──
+    # All constants were tuned on a ~10000px wide drawing. Scale them down for
+    # smaller drawings so filters don't over-reject real symbols and pipes.
+    _img_early = cv2.imread(img_path)
+    if _img_early is None:
+        raise FileNotFoundError(f"Cannot read image: {img_path}")
+    _img_h, _img_w = _img_early.shape[:2]
+    REFERENCE_WIDTH = 10000
+    drawing_scale = _img_w / REFERENCE_WIDTH
+    log.info("Drawing scale: %dpx / %dpx = %.3f", _img_w, REFERENCE_WIDTH, drawing_scale)
+    global SNAP_TOL_PX, SYMBOL_PIPE_RADIUS, EQUIP_PIPE_RADIUS, MOUNTED_ON_RADIUS
+    global GAP_BRIDGE_PX, MIN_PIPE_LEN, DUP_MAX_DIST_PX
+    global MIN_SYMBOL_HEIGHT_PX, MIN_SYMBOL_WIDTH_PX, EQUIP_AREA_MIN_PX2
+    global MECH_TRAIN_GAP, MECH_TRAIN_ALIGN, SPATIAL_WINDOW_PX
+    SNAP_TOL_PX          = max(int(25   * drawing_scale), 5)
+    SYMBOL_PIPE_RADIUS   = max(int(60   * drawing_scale), 10)
+    EQUIP_PIPE_RADIUS    = max(int(90   * drawing_scale), 15)
+    MOUNTED_ON_RADIUS    = max(int(200  * drawing_scale), 30)
+    GAP_BRIDGE_PX        = max(int(100  * drawing_scale), 15)
+    MIN_PIPE_LEN         = max(int(60   * drawing_scale), 10)
+    DUP_MAX_DIST_PX      = max(int(1500 * drawing_scale), 200)
+    MIN_SYMBOL_HEIGHT_PX = max(int(30   * drawing_scale), 5)
+    MIN_SYMBOL_WIDTH_PX  = max(int(30   * drawing_scale), 5)
+    EQUIP_AREA_MIN_PX2   = max(int(5000 * drawing_scale * drawing_scale), 400)
+    MECH_TRAIN_GAP       = max(int(700  * drawing_scale), 100)
+    MECH_TRAIN_ALIGN     = max(int(90   * drawing_scale), 15)
+    SPATIAL_WINDOW_PX    = max(int(700  * drawing_scale), 100)
+    log.info("Scaled thresholds: SNAP=%d PIPE_R=%d EQUIP_R=%d MOUNTED=%d "
+             "GAP=%d MIN_LEN=%d DUP_DIST=%d SYM_H=%d SYM_W=%d EQUIP_AREA=%d",
+             SNAP_TOL_PX, SYMBOL_PIPE_RADIUS, EQUIP_PIPE_RADIUS, MOUNTED_ON_RADIUS,
+             GAP_BRIDGE_PX, MIN_PIPE_LEN, DUP_MAX_DIST_PX,
+             MIN_SYMBOL_HEIGHT_PX, MIN_SYMBOL_WIDTH_PX, EQUIP_AREA_MIN_PX2)
 
     # ── FIX 1: entity resolution BEFORE any graph/geometry construction ──
     # Phase 0: symbol-size pre-filter removes text-mention candidates (title
@@ -2746,30 +3328,78 @@ def run(assoc_path: str, img_path: str, out_dir: str,
              len(cands_all) - filter_stats["n_filtered"],
              len(cands), n_dup_merges)
 
-    img = cv2.imread(img_path)
-    if img is None:
-        raise FileNotFoundError(f"Cannot read image: {img_path}")
+    img = _img_early  # already loaded above for scale computation
 
-    log.info("=== Re-detecting line segments (CV only) ===")
-    lines = detect_pipes_and_lines(img)
-    segments = build_line_segments(lines)
+    # ── Pre-verified graph from step5b3 (skip CV detection + build + pipe-verify) ──
+    _vg_loaded = False
+    if verified_graph_path and Path(verified_graph_path).exists():
+        try:
+            with open(verified_graph_path) as _vgf:
+                _vg = json.load(_vgf)
+            if not _vg.get("dry_run"):
+                pipelines  = _vg.get("pipelines",  [])
+                junctions  = _vg.get("junctions",  [])
+                segments   = _vg.get("segments",   [])
+                pipe_verify_report = _vg.get("pipe_verify_report")
+                _vg_loaded = True
+                log.info("✓ Loaded pre-verified graph from %s "
+                         "(pipelines=%d junctions=%d segments=%d)",
+                         verified_graph_path, len(pipelines),
+                         len(junctions), len(segments))
+            else:
+                log.warning("verified-graph is a dry-run skeleton; "
+                            "falling back to CV detection")
+        except Exception as _vge:
+            log.warning("Could not load verified-graph (%s); "
+                        "falling back to CV detection", _vge)
 
-    log.info("=== Building pipelines + junctions (union-find) ===")
-    equip_bboxes = [c.get("symbol_bbox", {}) for c in cands
-                    if c.get("symbol_category") == "equipment" and c.get("symbol_bbox")]
-    pipelines, junctions = build_pipelines_and_junctions(segments, equip_bboxes)
+    if not _vg_loaded:
+        log.info("=== Re-detecting line segments (CV only) ===")
+        lines = detect_pipes_and_lines(img, drawing_scale)
+        segments = build_line_segments(lines)
 
-    # ─────────────────────────────────────────────────────
-    # FUTURE: GEMINI PIPE VERIFICATION LAYER
-    # Insert here after CV pipe fix is stable.
-    # Ambiguous cases to send to Gemini:
-    #   1. Pipe gaps where GAP_BRIDGE_PX closes them — confirm same line?
-    #   2. Junction degree >= 3 — tee or crossing?
-    #   3. Short segments near instrument bboxes — leader or pipe?
-    #   4. Parallel segments < 50px apart — one pipe or two?
-    # Do NOT add this until the CV detector produces clean segments.
-    # Current blocker: step5b detect_pipes_and_lines producing noise.
-    # ─────────────────────────────────────────────────────
+        log.info("=== Building pipelines + junctions (union-find) ===")
+        equip_bboxes = [c.get("symbol_bbox", {}) for c in cands
+                        if c.get("symbol_category") == "equipment"
+                        and c.get("symbol_bbox")]
+        pipelines, junctions = build_pipelines_and_junctions(
+            segments, equip_bboxes)
+
+    # ── Phase 2: GATED Gemini PIPE VERIFICATION (explicit opt-in) ────────────
+    # Repairs the CV pipe graph (gap-bridge / elbow-reclass / tee-vs-crossing)
+    # BEFORE build_graph, so the repaired pipelines + junctions feed the
+    # hierarchy BFS and the Gemini attach layer. ALWAYS prints a cost gate; with
+    # only --gemini-pipe-verify-dry-run it stops there (zero API calls).
+    if not _vg_loaded:
+        pipe_verify_report = None
+    if not _vg_loaded and (gemini_pipe_verify_on or gemini_pipe_verify_dry_run):
+        confirm = gemini_pipe_verify_on and not gemini_pipe_verify_dry_run
+        if confirm and not api_key:
+            raise RuntimeError("--gemini-pipe-verify requires --api-key / GEMINI_API_KEY")
+        log.info("=== Phase 2: Gemini pipe verification (gated) ===")
+        pipe_verify_report = gemini_pipe_verify(
+            pipelines, junctions, segments, img, api_key, out_dir,
+            confirm=confirm, n_workers=gemini_pipe_verify_workers,
+            limit=gemini_pipe_verify_limit, equip_bboxes=equip_bboxes)
+        if confirm:
+            r = pipe_verify_report
+            print("\n=== Phase 2: Gemini pipe-verify REPORT ===")
+            print(f"  Task 1 gaps      : {r['task1']['verified']} verified, "
+                  f"{r['task1']['bridged']} bridged, {r['task1']['kept_separate']} kept separate")
+            print(f"  Task 2 elbows    : {r['task2']['candidates']} candidates, "
+                  f"{r['task2']['reclassified']} reclassified, {r['task2']['noise']} noise")
+            print(f"  Task 3 junctions : {r['task3']['verified']} verified, "
+                  f"{r['task3']['tee']} tee, {r['task3']['crossing']} crossing (removed)")
+            print(f"  Pipelines        : {r['pipelines_before']} → {r['pipelines_after']}")
+            print(f"  Multi-segment PL : {r['multi_seg_before']} → {r['multi_seg_after']}")
+            for lbl, key in (("connected (bridged)", "examples_connected"),
+                             ("separate (kept)", "examples_separate")):
+                for ex in r["task1"].get(key, []):
+                    print(f"    [{lbl}] {ex['pidA']}↔{ex['pidB']} "
+                          f"d={ex['dist']}px score={ex['score']}: {ex['reason'][:90]}")
+            for ex in r["task3"].get("examples", []):
+                print(f"    [junction {ex['junction_id']} deg{ex['degree']}] "
+                      f"{ex['verdict']}: {ex['reason'][:90]}")
 
     log.info("=== Spatial relations (bbox math) ===")
     spatial = compute_spatial(cands)
@@ -2934,6 +3564,7 @@ def run(assoc_path: str, img_path: str, out_dir: str,
                                f"(3) mechanical shaft hierarchy K-V-201->GEAR->KM-V-201 needs manual annotation."),
         },
         "gemini_attach": attach_report,
+        "gemini_pipe_verify": pipe_verify_report,
         "arrowheads": arrowheads,
         "check_valves": check_valves,
         "control_loops": control_loops,
@@ -3057,10 +3688,27 @@ def main():
                          "instruments to send, then STOP without calling Gemini")
     ap.add_argument("--gemini-attach-workers", type=int, default=8,
                     help="Parallel workers for Gemini instrument attachment (default 8)")
+    ap.add_argument("--gemini-pipe-verify", action="store_true",
+                    help="GATED Phase 2: repair the CV pipe graph via Gemini vision "
+                         "(gap-bridge / elbow-reclass / tee-vs-crossing). Prints a cost "
+                         "gate, then runs. Runs BEFORE graph + hierarchy + attach.")
+    ap.add_argument("--gemini-pipe-verify-dry-run", action="store_true",
+                    help="Phase 2 cost gate: print gap/elbow/junction counts + estimated "
+                         "cost, then STOP without calling Gemini")
+    ap.add_argument("--gemini-pipe-verify-workers", type=int, default=8,
+                    help="Parallel workers for Gemini pipe verification (default 8)")
+    ap.add_argument("--gemini-pipe-verify-limit", type=int, default=20,
+                    help="PILOT: max Task-1 gap candidates to verify (top-scored). "
+                         "Default 20; set 0 for no cap (all gaps)")
     ap.add_argument("--api-key", help="Gemini API key (or GEMINI_API_KEY env)")
     ap.add_argument("--debug-annotate", action="store_true",
                     help="Write output/step5b2_debug_overlay.jpg (visual sanity check: "
                          "instruments/valves/equipment, pipes, junctions, MOUNTED_ON edges)")
+    ap.add_argument("--verified-graph",
+                    help="Pre-computed graph from step5b3_pipe_connectivity.py "
+                         "(step5b3_verified_graph.json). When provided, skips CV "
+                         "detection + build_pipelines_and_junctions + gemini_pipe_verify "
+                         "and loads pipelines/junctions/segments directly.")
     args = ap.parse_args()
 
     img_path = args.image
@@ -3081,7 +3729,12 @@ def main():
         debug_annotate=args.debug_annotate,
         gemini_attach_on=args.gemini_attach,
         gemini_attach_dry_run=args.gemini_attach_dry_run,
-        gemini_attach_workers=args.gemini_attach_workers)
+        gemini_attach_workers=args.gemini_attach_workers,
+        gemini_pipe_verify_on=args.gemini_pipe_verify,
+        gemini_pipe_verify_dry_run=args.gemini_pipe_verify_dry_run,
+        gemini_pipe_verify_workers=args.gemini_pipe_verify_workers,
+        gemini_pipe_verify_limit=args.gemini_pipe_verify_limit,
+        verified_graph_path=args.verified_graph or "")
 
 
 if __name__ == "__main__":

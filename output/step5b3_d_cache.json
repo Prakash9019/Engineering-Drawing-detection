@@ -1,0 +1,452 @@
+{
+  "5e744f03094eb954bf077f5a5bdd2b74": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted lines are part of a revision cloud and note box, not a pipeline segment.",
+    "_crop_file": "output/step5b3_crops/trace_PL0002.jpg"
+  },
+  "c30bc3ff6613e3fca44b489f7e6e3c00": {
+    "continues": true,
+    "directions": [
+      "LEFT",
+      "DOWN"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment continues to the left and down, passing through no visible valves before terminating at an unknown location.",
+    "_crop_file": "output/step5b3_crops/trace_PL0000.jpg"
+  },
+  "445f9b6c8b3f333ffaf305eb26f807cb": {
+    "continues": true,
+    "directions": [
+      "LEFT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red pipeline segment extends to the left edge of the image, indicating it continues in that direction, and it does not pass through any valves or terminate at visible equipment within the highlighted section.",
+    "_crop_file": "output/step5b3_crops/trace_PL0001.jpg"
+  },
+  "1cfb8c5c0a8f99eb3a1a5a0271e3f4b0": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted lines appear to be annotations or underlines for text ('MOTOR', 'NOTE-3,16', 'KM-V-201') rather than a pipeline segment.",
+    "_crop_file": "output/step5b3_crops/trace_PL0007.jpg"
+  },
+  "f4697c7a97b86660d01335bfae0356a8": {
+    "continues": true,
+    "directions": [
+      "LEFT",
+      "DOWN"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment continues to the left and down, but does not pass through any valves and its termination point is not visible in this section.",
+    "_crop_file": "output/step5b3_crops/trace_PL0005.jpg"
+  },
+  "d3eb09af112ed2615f99f87fb2f9b024": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted lines are not a pipeline; they appear to be annotations or drawing artifacts crossing over instrument symbols (VI 001, XS 239) and do not represent a physical pipe segment.",
+    "_crop_file": "output/step5b3_crops/trace_PL0003.jpg"
+  },
+  "8695741b6e84933b83d8d59623e4c200": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red lines highlight text annotations ('FIRE', 'NOTE 14', '1\" D 2\"') and parts of instrument bubbles ('TAHH 212'), not a pipeline segment.",
+    "_crop_file": "output/step5b3_crops/trace_PL0004.jpg"
+  },
+  "4be136d224649f2924a6c9f0990276e8": {
+    "continues": true,
+    "directions": [
+      "LEFT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red pipeline segment continues to the left, passing through a valve symbol but not terminating at any visible equipment tag.",
+    "_crop_file": "output/step5b3_crops/trace_PL0006.jpg"
+  },
+  "4550df84c9f1f4e9308fafb80e065013": {
+    "continues": true,
+    "directions": [
+      "LEFT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red line continues to the left, but the termination point is not visible in this crop.",
+    "_crop_file": "output/step5b3_crops/trace_PL0008.jpg"
+  },
+  "ef037bad1934b18bf0cbf14416080d67": {
+    "continues": true,
+    "directions": [
+      "UP"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red pipeline segment continues upwards beyond the highlighted region, passing through a break symbol, and does not pass through any visible valves before terminating off-screen.",
+    "_crop_file": "output/step5b3_crops/trace_PL0010.jpg"
+  },
+  "c29bccc65ab1bbc86552178ee15f828b": {
+    "continues": true,
+    "directions": [
+      "LEFT",
+      "RIGHT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment continues to the left and right, does not pass through any valves, and its termination points are not visible in this section.",
+    "_crop_file": "output/step5b3_crops/trace_PL0012.jpg"
+  },
+  "bb7624c91e02142e14add148a31146c4": {
+    "continues": true,
+    "directions": [
+      "LEFT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment extends to the left edge of the image, indicating it continues in that direction, but no valves or termination points are visible within the highlighted section.",
+    "_crop_file": "output/step5b3_crops/trace_PL0011.jpg"
+  },
+  "96601c1a333936f25f1141ce49cd62d2": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red lines highlight a small section of a pipeline that does not appear to continue beyond the highlighted region, pass through any valves, or terminate at any visible equipment.",
+    "_crop_file": "output/step5b3_crops/trace_PL0013.jpg"
+  },
+  "444684554f7d5702cb03a2384d497fa1": {
+    "continues": true,
+    "directions": [
+      "LEFT",
+      "RIGHT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment extends horizontally to the left and right, connecting to other components, but does not pass through any valves within the highlighted section.",
+    "_crop_file": "output/step5b3_crops/trace_PL0009.jpg"
+  },
+  "ca5c6a52cc0dc010656d17159fff742e": {
+    "continues": true,
+    "directions": [
+      "LEFT",
+      "RIGHT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment continues to the left and right, does not pass through any valves, and its termination points are not visible in this section.",
+    "_crop_file": "output/step5b3_crops/trace_PL0015.jpg"
+  },
+  "36aa7bf2b5f270bd11d6b3814a4ab1f1": {
+    "continues": true,
+    "directions": [
+      "DOWN"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment continues downwards, connecting to the valve assembly below, but does not pass through any valves itself before terminating at the assembly.",
+    "_crop_file": "output/step5b3_crops/trace_PL0014.jpg"
+  },
+  "297066af847e2b94387ec3b75ade4dff": {
+    "continues": true,
+    "directions": [
+      "UP"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red pipeline segment extends upwards and exits the visible area of the drawing without terminating at any equipment or passing through any valves.",
+    "_crop_file": "output/step5b3_crops/trace_PL0016.jpg"
+  },
+  "10c72dc4db4567f158ad23212028f03e": {
+    "continues": true,
+    "directions": [
+      "LEFT",
+      "RIGHT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red pipeline segment continues to the left and right, but does not pass through any valves.",
+    "_crop_file": "output/step5b3_crops/trace_PL0019.jpg"
+  },
+  "003b4981eae5604abaeaf319889a50a8": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red line is an annotation line, not a pipeline segment.",
+    "_crop_file": "output/step5b3_crops/trace_PL0017.jpg"
+  },
+  "49df660cf8ab07767a756c441aba3b39": {
+    "continues": true,
+    "directions": [
+      "LEFT",
+      "RIGHT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red line is a straight horizontal segment that extends beyond the image boundaries on both the left and right sides, with no visible valves or termination points within the cropped area.",
+    "_crop_file": "output/step5b3_crops/trace_PL0018.jpg"
+  },
+  "73d5d529c52dbc0df02cb9586792d5c6": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red lines highlight text and a box outline, not a pipeline segment.",
+    "_crop_file": "output/step5b3_crops/trace_PL0007.jpg"
+  },
+  "55a9fefed2bc0816e9abab914fe38d17": {
+    "continues": true,
+    "directions": [
+      "LEFT",
+      "RIGHT",
+      "DOWN"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment connects to multiple other segments, continuing left, right, and down, without passing through any valves in the highlighted section, and its ultimate termination points are not visible.",
+    "_crop_file": "output/step5b3_crops/trace_PL0009.jpg"
+  },
+  "1338b64a8a51931e3fb2c7a277e76a44": {
+    "continues": true,
+    "directions": [
+      "LEFT",
+      "RIGHT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted line is a signal or control line (dashed), not a physical pipeline, and it continues to the left and right off the highlighted segment.",
+    "_crop_file": "output/step5b3_crops/trace_PL0012.jpg"
+  },
+  "424f1b650abb21f36bfcda0af36bd30e": {
+    "continues": true,
+    "directions": [
+      "UP",
+      "LEFT",
+      "RIGHT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment continues up, left, and right, does not pass through any valves, and its termination points are not visible in this section.",
+    "_crop_file": "output/step5b3_crops/trace_PL0013.jpg"
+  },
+  "e458508af80165279b99b8fd17ce2445": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red lines highlight a revision cloud and a letter 'G', not a pipeline.",
+    "_crop_file": "output/step5b3_crops/trace_PL0020.jpg"
+  },
+  "16e30dd2d653b04a309abc51ff80ad45": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red line highlights a short segment connecting two instruments (XS 270 and SC 201) and does not continue beyond them.",
+    "_crop_file": "output/step5b3_crops/trace_PL0021.jpg"
+  },
+  "cba558892e03c46ee5126fe212a3a410": {
+    "continues": true,
+    "directions": [
+      "DOWN"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment continues downwards, passing through a valve before terminating at an unknown location.",
+    "_crop_file": "output/step5b3_crops/trace_PL0022.jpg"
+  },
+  "2ae4b4d66bf733a7010512d7e0ee1cd7": {
+    "continues": true,
+    "directions": [
+      "RIGHT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment is an off-page connector pointing right, indicating continuation in that direction, with no valves passed through and an unknown termination point within this view.",
+    "_crop_file": "output/step5b3_crops/trace_PL0023.jpg"
+  },
+  "11e5fedfd1e2ed717d73f0baa061ed82": {
+    "continues": true,
+    "directions": [
+      "LEFT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment continues to the left, as indicated by the blue line extending in that direction, and does not pass through any visible valves before terminating at an unknown location.",
+    "_crop_file": "output/step5b3_crops/trace_PL0024.jpg"
+  },
+  "bf209ceb8a0d57d0f5ad69476f2c4058": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red line highlights a revision cloud boundary, not a pipeline segment.",
+    "_crop_file": "output/step5b3_crops/trace_PL0026.jpg"
+  },
+  "c168a624adbf36ca84fcc3e8625501eb": {
+    "continues": true,
+    "directions": [
+      "LEFT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment continues to the left, passing through a reducer and a valve, but does not pass through any valves while remaining the same physical pipe.",
+    "_crop_file": "output/step5b3_crops/trace_PL0027.jpg"
+  },
+  "ef4d0fb267f15ee46e59ebb61ee5312a": {
+    "continues": true,
+    "directions": [
+      "LEFT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red pipeline segment extends to the left edge of the image, indicating it continues beyond the visible area, and it does not pass through any valves within the highlighted section.",
+    "_crop_file": "output/step5b3_crops/trace_PL0025.jpg"
+  },
+  "80106ddb29c73765a7489428dc9919e2": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red line is a standalone annotation or revision mark, not a pipeline segment connected to any equipment or other lines.",
+    "_crop_file": "output/step5b3_crops/trace_PL0030.jpg"
+  },
+  "a7f08985c8e2e9932c3792c9f3527084": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red lines highlight text within a table or box, not a pipeline segment.",
+    "_crop_file": "output/step5b3_crops/trace_PL0028.jpg"
+  },
+  "5fdd0a2bc179277f022a12101ab5363c": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted line is a vertical segment that does not connect to any other lines or equipment in the visible area.",
+    "_crop_file": "output/step5b3_crops/trace_PL0032.jpg"
+  },
+  "2f1565ddf5518a5b88fdfef09f47ee39": {
+    "continues": true,
+    "directions": [
+      "UP",
+      "DOWN"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment is a vertical line that continues both upwards and downwards beyond the highlighted region, without passing through any visible valves, and its termination points are not visible in this section.",
+    "_crop_file": "output/step5b3_crops/trace_PL0031.jpg"
+  },
+  "9a44e24d949f8e7211d7ac1a51bfd0b1": {
+    "continues": false,
+    "directions": [],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted lines are not pipelines; they appear to be markup or annotation lines, possibly indicating a revision or a specific area of interest, as they do not connect to any equipment or follow standard P&ID pipeline conventions.",
+    "_crop_file": "output/step5b3_crops/trace_PL0033.jpg"
+  },
+  "d1ce47a77316118173b10616a4676f2f": {
+    "continues": true,
+    "directions": [
+      "LEFT",
+      "RIGHT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red line represents a signal line connecting PAHH 211 and PALL 214, continuing left towards another instrument and right towards PIT 211.",
+    "_crop_file": "output/step5b3_crops/trace_PL0034.jpg"
+  },
+  "277c635f8939269738d245b8908d5d6c": {
+    "continues": true,
+    "directions": [
+      "LEFT",
+      "RIGHT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red line highlights a pipeline segment that continues to the left and right, passing through a temporary suction strainer but no valves, and its termination points are not visible in this crop.",
+    "_crop_file": "output/step5b3_crops/trace_PL0043.jpg"
+  },
+  "a44d46b491f7997663e003c0eaa08d23": {
+    "continues": true,
+    "directions": [
+      "RIGHT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted pipeline segment continues to the right, where it connects to another pipeline segment.",
+    "_crop_file": "output/step5b3_crops/trace_PL0045.jpg"
+  },
+  "4d874086dc1fe04ae968e6f0f669a205": {
+    "continues": true,
+    "directions": [
+      "LEFT"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red pipeline segment continues to the left, passing through a reducer and a pipe sleeve, but does not pass through any valves before terminating at an unknown location off-screen.",
+    "_crop_file": "output/step5b3_crops/trace_PL0058.jpg"
+  },
+  "c1ff878a34eda0238c9446e7781477a9": {
+    "continues": true,
+    "directions": [
+      "UP",
+      "DOWN"
+    ],
+    "passes_through_valves": [],
+    "terminates_at": "UNKNOWN",
+    "confidence": "high",
+    "reasoning": "The red highlighted line is a vertical segment that connects to a horizontal line above and continues downwards towards a pressure indicator (PI).",
+    "_crop_file": "output/step5b3_crops/trace_PL0054.jpg"
+  }
+}

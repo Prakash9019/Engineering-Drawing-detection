@@ -3,80 +3,79 @@
 -- Region Coverage --
 Region                        Notes  Clouds  OCR chars
 -------------------------------------------------------
-bottom_notes                     12       2       2883
-left_notes                       29       3       2804
-TOTAL                            41       5
+bottom_notes                     21       2       2883
+left_notes                       31       3       2804
+TOTAL                            52       5
 
 -- General & Engineering Notes --
-  [1] Refer to ES.D.10 for symbols and abbreviations.
-  [3] Compressors are variable speed motor driven. A new motor (complete with VSD system) shall be provided.
-  [4] Existing ethane compressor shall be modified for new process conditions defined in the process datasheet. Adequacy of all existing associated equipment such as suction & discharge K.O. drums, discharge gas cooler, anti-surge control valves, auxiliaries and other as applicable has been verified by OEM Hitachi.
-  [5] Load sharing shall be provided by the ethane compressor vendor to share flow rate equally across both operating units.
-  [7] Existing recycle anti-surge valve (including all its accessories such as positioner, actuator, limit switches, position transmitter, volume tanks as applicable) shall be replaced with new by Hitachi.
-  [8] Existing (V-RO-213) shall be demolished and replaced with a new flow element (V-FE-224) by Epic Contractor. The flow transmitter (FIT) shall be retained.
-  [10] Thermowell (TW), temperature element, and temperature transmitter (TT) are to be replaced. Refer to Adequacy Report for Thermowell (4224-MGDTY-4-17-2001).
-  [11] Existing suction K.O. drum internals vane pack (vendor Forain) shall be replaced with new by Hitachi.
-  [A] Refer to Standard Drawing ES.0.07.0100 Rev.B for standard P&ID symbols, equipment symbols and description.
-  [NOTE:12] Existing UCP is replaced; all instrument connectivities, functions, interlocks, and alarms shall be configured in the new PLC-based UCP. All UCP signals shall also be available in the existing GDS SCADA in line with existing philosophy.
-  [NOTE:13] New safety relief valve provided for overpressure protection (blocked discharge condition). Isolation valves provided with new platform for operation.
-  [NOTE:14] One common warehouse spare RV shall be provided for 3 compressors.
-  [NOTE:15] No interlocking for isolation valve on single RV.
-  [NOTE:16] New proposed ATEX, Ex'P' type motor enclosure requires instrument air.
-  [NOTE:17] Existing RCI module shall be removed from the existing UCP panel and re-used inside the new UCP panel.
-  [NOTE:18] Compressor suction ESD valve V-ESDV-209 is retained.
-  [NOTE:19] One temporary suction strainer (common for all three trains) supplied by OEM (MS. Hitachi). After commissioning, the strainer shall be removed and replaced with a fabricated spool piece by Epic Contractor.
-  [NOTE:20] Compressor lower design temperature is -29 DEGC (except dry gas seal O-ring at 0 DEGC). Compressor upper design temperature is 150 DEGC, but casing designed to 170 DEGC for ASME PTC10 Type 2 test using CO2 as test gas. Nameplate rating for ethane gas is 150 DEGC.
-  [NOTE:21] High performance (Class-1) non-return valve (non-slam type) with low crack open DP selected to avoid reverse flow/surge issues during dynamic compressor trip scenario.
-  [NOTE:22] Existing suction & discharge compressor inlet & outlet spool shall be dismantled for modification, then re-instated.
-  [NOTE:23] Soft hand switch configured in UCP HMI to enable/disable Station S High Pressure Controller (%) repeated from load sharing panel.
-  [NOTE:24] Reclosure of XV-202 (normal shutdown depressuring valve) shall be performed by UCP once V-PAL-214 is obtained (@ 18 barg) or after 20 minutes time delay from opening of XV-202, whichever comes first. PAL-214 is an event, not an alarm.
-  [NOTE:25] Refer to Symbols & Legends Drawing No. 4224-MGDTY-6-50-2001-003 for interlock details.
-  [SCOPE:CONTRACTOR] Hitachi / Epic Contractor
+  [1] Refer to ES.D.10
+  [3] Are variable speed motor driven. New motor (complete with VSD system) shall be provided.
+  [4] Shall be modified for new process conditions defined in the process datasheet. Adequacy of all existing associated equipment such as suction & discharge K.O. drums, discharge gas cooler, anti-surge control valves, auxiliaries and other as applicable has been verified by OEM Hitachi.
+  [5] Shall be provided by ethane compressor vendor to share flow rate equally across both operating units.
+  [7] Shall be replaced with new by Hitachi.
+  [8] Shall be demolished and replaced with new Flow Element V-FE-224 by EPIC Contractor. Flow Transmitter (FIT) shall be retained.
+  [9] Arrival temperature signal will be used by ethane compressor control system for calculating maximum allowable arrival pressure based on ethane fluid dew point. The calculation function block to compute the maximum pressure set point for the ethane compressor high pressure override function shall be part of the ethane compressor control system. Based on Equation 1, defined in Operating & Control Philosophy Document NO. 4224-MGDTY-6-03-2001.
+  [10] To be replaced. Refer Adequacy Report for Thermowell (4224-MGDTY-4-17-2001).
+  [11] Shall be replaced with new by Hitachi.
+  [A] Refer to Standard Drawing ES.0.07.0100 REV.B
+  [LABEL:PLANT_S/D] Plant Shutdown
+  [LABEL:TRAIN-2_S/D] Train 2 Shutdown
+  [NOTE:12] The existing Compressor Unit Control Panel (UCP) is being replaced. All existing instrument connectivities, functions, interlocks, and alarms shall be configured in the newly supplied PLC-based UCP. All signals in the UCP shall also be available in the existing GDS SCADA, consistent with the existing philosophy.
+  [NOTE:13] A new Safety Relief Valve shall be provided to safeguard the system against overpressure due to blocked discharge. Isolation valves shall be provided with a new platform for operation.
+  [NOTE:14] One common warehouse spare RV shall be provided for three compressors.
+  [NOTE:15] No interlocking is provided for the isolation valve on a single RV.
+  [NOTE:16] The new proposed ATEX, Ex'P' type motor enclosure requires instrument air.
+  [NOTE:17] The existing RCI module shall be removed from the existing UCP panel and re-used inside the new UCP panel.
+  [NOTE:18] The Compressor Suction ESD Valve (V-ESDV-209) is retained.
+  [NOTE:19] One temporary suction strainer, common for all three trains, shall be supplied by OEM (Ms. Hitachi). After successful commissioning, the strainer shall be removed and replaced with a fabricated spool piece by the EPIC Contractor.
+  [NOTE:20] The compressor's lower design temperature is -29 DEGC, except for the dry gas seal O-ring which is 0 DEGC. The compressor's upper design temperature is 150 DEGC. However, due to ASME PTC10 Type 2 test requirements and the use of CO2 as test gas, the compressor casing shall be designed to 170 DEGC. The ultimate nameplate rating for this unit using ethane gas is 150 DEGC.
+  [NOTE:21] A high performance (Class-1) non-return valve (non-slam type) with low crack open differential pressure (DP) shall be selected to avoid reverse flow and surge issues during dynamic compressor trip scenarios.
+  [NOTE:22] The existing suction and discharge compressor inlet and outlet spool shall be dismantled to facilitate compressor modification, and then re-instated.
+  [NOTE:23] A soft hand switch shall be configured in the UCP HMI to enable or disable the station's high pressure controller (%), which is repeated from the load sharing panel.
+  [NOTE:24] Reclosure of XV-202 (Normal Shutdown Depressuring Valve) shall be performed by the UCP either when V-PAL-214 is obtained (@ 18 barg) or after a 20-minute time delay from the opening of XV-202, whichever occurs first. Note: PAL-214 shall be considered an event, not an alarm.
+  [NOTE:25] For interlock details, refer to Symbols & Legends Drawing No. 4224-MGDTY-6-50-2001-003.
+  [SCOPE:1] This section defines the scope of supply
+  [SCOPE:CONTRACTOR] Hitachi is the EPIC Contractor for the scope of supply
+  [TEMPLATE_NO] ES-0-08-0047-001-G
 
 -- Tag & Symbol Rules --
-  [ABBR:ASC] Anti-Surge Control
-  [ABBR:ASV] Anti-Surge Valve
-  [ABBR:HGBV] Hot Gas Bypass Valve
-  [ABBR:HISEL] High Selector
-  [ABBR:HS] High Speed
-  [ABBR:LOSEL] Low Selector
-  [ABBR:LS] Low Speed
+  [ABBR:ASC] ANTI-SURGE CONTROL
+  [ABBR:ASV] ANTI-SURGE VALVE
+  [ABBR:HGBV] HOT GAS BYPASS VALVE
+  [ABBR:HISEL] HIGH SELECTOR
+  [ABBR:HS] HIGH SPPED
+  [ABBR:LOSEL] LOW SELECTOR
+  [ABBR:LS] LOW SPEED
 
 -- Abbreviations --
   ASC: ANTI-SURGE CONTROL
   ASV: ANTI-SURGE VALVE
-  DWG: Drawing
-  FE: Flow Element
-  FIT: Flow Transmitter
   HGBV: HOT GAS BYPASS VALVE
   HISEL: HIGH SELECTOR
   HS: HIGH SPPED
-  K.O.: Knock-Out
   LOSEL: LOW SELECTOR
   LS: LOW SPEED
-  MGDV: Mesaleed Gas Distribution Station V
-  NO.: Number
-  OEM: Original Equipment Manufacturer
-  P&ID: Piping and Instrumentation Diagram
-  REV: Revision
-  TT: Temperature Transmitter
-  TW: Thermowell
-  VSD: Variable Speed Drive
 
 -- Drafting Standards --
   [2] 2. ALL DRAWINGS ARE PREPARED IN COMPLIANCE WITH COMPANY ENGINEERING STANDARD CORP-ENG-STD-018 REV. 01 (DRAUGHTING), CORP-ENG-STD-021 REV. 01 (ENGINEERING DATA CODING SYSTEM), ES.0.07.0028 REV.D (TAG NUMBERING AND EQUIPMENT IDENTIFIERS), 4224-MGDTY-6-50-2001 (STANDARD SYMBOLS MULTI-DISCIPLINE).
-  [SLOPE] SLOPE 1: 200
+  [6] 6. EXISTING DISCHARGE GAS COOLER E-V-201 WAS PART OF THIS P&ID, NOW IT IS SHOWN IN NEW DWG. NO. 4224-MGDV-6-50-2004-002 ALONG WITH NEW DISCHARGE GAS COOLER.
+  [SCALE_INFO] SCALE:NTS ORIG.DWG SIZE: A1 THIS IS A CAD DRAWING AND MUST NOT BE ALTERED MANUALLY
 
 -- References & Cross-References --
-  [REF:DRAWING_1] 4224-MGDV-6-50-2002-001
-  [REF:DRAWING_2] 4224-MGDV-6-50-2004-003
-  [REF:LINE_V006_C03B] 12”-ETH-V006-C03B
-  [REF:LINE_V067_61440X] 2”-ETH-V067-61440X
-  [REF:SUCTION_HEADER_SOURCE] FROM COMPRESSOR SUCTION HEAD
-  [REF:VALVE_XV202_SOURCE] FROM V-XV-202
+  [LINE_TAG:12-ETH-V006-C03B] 12”-ETH-V006-C03B
+  [LINE_TAG:2-ETH-V067-61440X] 2”-ETH-V067-61440X
+  [REFERENCE:DRW_4224-MGDV-6-50-2002-001] 4224-MGDV-6-50-2002-001
+  [REFERENCE:DRW_4224-MGDV-6-50-2004-003] 4224-MGDV-6-50-2004-003
+  [REFERENCE:FROM_COMP_SUCTION_HEADER] FROM COMPRESSOR SUCTION HEADER
+  [REFERENCE:FROM_V-XV-202] FROM V-XV-202
 
 -- Other Notes --
-  [6] (drawing_scope_change) Existing discharge gas cooler E-V-201 was part of this P&ID; now it is shown in new drawing no. 4224-MGDV-6-50-2004-002 along with a new discharge gas cooler.
-  [9] (system_control_rule) Arrival temperature signal will be used by the ethane compressor control system for calculating maximum allowable arrival pressure based on ethane fluid dew point. The calculation function block to compute the maximum pressure set point for the ethane compressor high pressure override function shall be part of the ethane compressor control system. This is based on Equation 1, defined in Operating & Control Philosophy Document No. 4224-MGDTY-6-03-2001.
+  [DWG_INFO] (title_info) DWG NO. 4224-MGDV-6-50-2004 SHT. 001 Cont. on 002 REV C
+  [REV_0] (revision_entry) 0 ISSUED FOR COMMENTS 16-11-30 SA VJD/MSG/SS BGS/SR
+  [REV_1] (revision_entry) 1 ISSUED FOR HAZOP 15-01-24 SA VJD/MSG/SS BGS/SR
+  [REV_2] (revision_entry) 2 ISSUED FOR APPROVAL 26-03-24 SA VJD/MSG/SS BGS/SR
+  [REV_A] (revision_entry) A APPROVED FOR CONSTRUCTION 11-06-24 SA VJD/MSG/SS BGS/SR
+  [REV_C] (revision_entry) C RE-ISSUED FOR CONSTRUCTION 29-08-24 SJ VJD/MSG/SS BGS/SR
+  [TITLE] (title_info) MESASIED GAS DISTRIBUTION STATIONS, MGDV EPIC FOR UPGRADE OF ETHANE COMPRESSORS AT STATION V AND ASSOCIATED FACILITIES AT STATION S P&ID - ETHANE GAS COMPRESSOR (K-V-201)
 
 == END RULES ==

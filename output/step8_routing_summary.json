@@ -1,28 +1,28 @@
 {
   "version": "v1",
-  "timestamp": "2026-06-28T09:57:46.094632",
+  "timestamp": "2026-07-01T08:16:11.617950",
   "drawing_number": "4224-MGDV-6-50-2004",
   "sheet": "001",
   "revision": "C",
   "totals": {
-    "input_records": 246,
-    "auto_accept": 174,
-    "human_review": 72,
+    "input_records": 254,
+    "auto_accept": 181,
+    "human_review": 73,
     "auto_reject": 0
   },
   "rates": {
-    "accept_pct": 70.7,
-    "review_pct": 29.3,
+    "accept_pct": 71.3,
+    "review_pct": 28.7,
     "reject_pct": 0.0
   },
   "review_breakdown": {
-    "p1_critical": 31,
-    "p2_high": 13,
+    "p1_critical": 34,
+    "p2_high": 11,
     "p3_medium": 28,
     "p4_low": 0
   },
   "confidence_stats": {
-    "avg_c_final": 0.808
+    "avg_c_final": 0.81
   },
   "output_files": {
     "excel": "output/final_tags.xlsx",

@@ -673,6 +673,211 @@ def _is_false_positive(tag_text: str) -> bool:
     return False
 
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# Symbol-size gate — "does this bbox represent a real drawn glyph?"
+# ═══════════════════════════════════════════════════════════════════════════════
+# A candidate is a valid tag ONLY if it has an actual symbol glyph associated
+# with it — a circle, diamond, valve glyph, equipment box, or instrument bubble
+# — positioned adjacent to the tag text. Tag text with no adjacent symbol
+# geometry is NOT a tag, regardless of whether its string matches a valid ISA
+# pattern. Text mentions in notes, title blocks, and tables have bboxes that
+# are too small or too flat to contain a real drawn glyph.
+#
+# These thresholds are kept in sync with step5b2_hierarchy.py (MIN_SYMBOL_*,
+# EQUIP_AREA_MIN_PX2, EQUIPMENT_MAX_ASPECT). The gate runs at step5a so that
+# BOTH outputs (cloud-scoped and full-drawing) are clean at the source, and
+# every downstream consumer (step5b2 hierarchy, step7, future MBOM) inherits
+# the same correctness guarantee without each needing its own copy of this filter.
+_GATE_MIN_W_PX    = 30    # minimum symbol_bbox width in full-image pixels
+_GATE_MIN_H_PX    = 30    # minimum symbol_bbox height in full-image pixels
+_GATE_EQUIP_AREA  = 5000  # minimum symbol_bbox area (px²) for equipment
+_GATE_EQUIP_ASPECT = 3.5  # equipment bbox wider/taller than this ratio = text label
+
+
+def _approx_zone(cx: float, cy: float) -> str:
+    """Classify a centroid into a drawing zone for filter logging.
+    Thresholds match step5b2_hierarchy._approx_zone (9934×7017px layout)."""
+    if cy < 400:
+        return "title_block_top"
+    if cy > 6500:
+        return "bottom_tables"
+    if cx < 800:
+        return "notes_left"
+    if cx > 9000:
+        return "ref_panel_right"
+    return "main_drawing"
+
+
+def _symbol_size_gate(sym_bbox: dict, symbol_category: str) -> tuple:
+    """Return (passes: bool, reason: str).
+
+    Rejects candidates whose symbol_bbox has insufficient physical extent.
+    Coordinates must already be in full-image pixels (global coords).
+    """
+    w = (sym_bbox.get("x2", 0) or 0) - (sym_bbox.get("x1", 0) or 0)
+    h = (sym_bbox.get("y2", 0) or 0) - (sym_bbox.get("y1", 0) or 0)
+    if w < _GATE_MIN_W_PX or h < _GATE_MIN_H_PX:
+        return False, f"bbox too small ({w:.0f}x{h:.0f}px)"
+    if symbol_category == "equipment":
+        area = w * h
+        if area < _GATE_EQUIP_AREA:
+            return False, f"equipment area too small ({area:.0f}px²)"
+        aspect = max(w, h) / max(min(w, h), 1)
+        if aspect > _GATE_EQUIP_ASPECT:
+            return False, (f"equipment bbox too flat "
+                           f"(aspect {aspect:.2f} > {_GATE_EQUIP_ASPECT}, "
+                           f"likely text label not a symbol)")
+    return True, "ok"
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Zone-exclusion gate — "is this just reference text in a non-drawing region?"
+# ═══════════════════════════════════════════════════════════════════════════════
+# Independent of the symbol-size gate. A tag-like string can pass the size/aspect
+# check yet still be pure reference text inside a notes paragraph, a table cell,
+# an off-drawing reference callout, or the title block — there is NO drawn symbol
+# there, only characters that happen to match a tag pattern.
+#
+# CORE PRINCIPLE: a tag is valid ONLY if an actual symbol GLYPH (circle, diamond,
+# valve body, equipment box, instrument bubble) sits adjacent to the tag text —
+# inside it, above/below it, or immediately beside it. step5a's vision schema
+# returns symbol_bbox (the glyph) SEPARATELY from tag_bbox (the text). When Gemini
+# locates a real glyph the two boxes are DISTINCT; when it only reads text the two
+# coincide exactly (symbol_bbox == tag_bbox). That distinctness is the per-candidate
+# "glyph present" evidence. We also accept a glyph-bearing NEIGHBOUR within an
+# adjacency window, so a real margin symbol whose glyph was detected as its own
+# candidate is preserved.
+#
+# This gate fires ONLY inside the known text-only edge zones, so legitimate piping
+# line numbers written along pipes in the main drawing (which ALSO have a merged
+# bbox — their "symbol" is the pipe, detected later by step5b geometry) are never
+# touched. Scoped to step5a so both outputs (cloud + full) inherit it at the source.
+_TEXT_ONLY_ZONES = ("title_block_top", "notes_left", "bottom_tables", "ref_panel_right")
+_GLYPH_ADJ_FACTOR = 1.5   # adjacency window padding = this × tag-bbox height, any direction
+
+# ── Piping line-number exemption ───────────────────────────────────────────────
+# A piping line number (e.g. 10"-GV-V272-11502X, 12IN-ETH-V006-C03B) has NO glyph:
+# its "symbol" is the adjacent pipe + leader arrow, not a circle/diamond/valve body.
+# So the glyph-only zone gate wrongly rejects line numbers that fall in a text-only
+# edge zone — which happens whenever a line number sits near the drawing border
+# (the cx<800 / cx>9000 zone bands clip the drawing margin). A local pipe-line check
+# does NOT help: in these edge zones the drawing border, flag-box outlines and text
+# underlines all read as long straight lines, so line adjacency is true for genuine
+# false positives too (drawing refs, off-page connectors) and cannot discriminate.
+# The discriminating signal is the line-number FORMAT itself: <size>IN-<service>-
+# V<num>-<spec>. Drawing refs (4224-MGDV-...), valve cross-refs (V-XV-202) and
+# equipment (K-V-201) do not match this shape. The regex is OCR-tolerant (accepts
+# " ' ° as inch marks and a stray O for 0 inside the V-number) so it recognises a
+# line number even when the stored text is mildly garbled — it only KEEPS the
+# candidate, it does not rewrite the text.
+_PIPE_LINE_NUMBER_RE = re.compile(
+    r'^\d+(?:\.\d+)?'                          # nominal size: 10, 2, 1.5
+    r'(?:IN|["″”′’°\']+)'                      # inch unit: IN or " ' ° ″ ′ (OCR-tolerant)
+    r'(?:X\d+(?:\.\d+)?(?:IN|["″”′’°\']+))?'    # optional reducer: 4INX3IN
+    r'-[A-Z]{1,5}'                             # service code: GV, ETH, D
+    r'-V[O0]?\d{2,}'                           # -V<num>, tolerate leading O/0 OCR (VO06)
+    r'-[A-Z0-9O]+(?:-[A-Z0-9O]+)*$'            # spec class + optional suffix (-C03B, -PP)
+)
+
+
+def _is_piping_line_number(tag: str) -> bool:
+    """True if the tag text matches the piping line-number format. Such tags are
+    annotations on a pipe (no symbol glyph) and are exempt from the glyph-only
+    zone-text gate. See _PIPE_LINE_NUMBER_RE for rationale."""
+    return bool(tag) and bool(_PIPE_LINE_NUMBER_RE.match(tag.strip()))
+
+
+def _is_in_text_only_zone(cx: float, cy: float) -> bool:
+    """True if the centroid falls in a notes / title-block / table / ref-panel
+    region — these hold reference text, not drawing symbols."""
+    return _approx_zone(cx, cy) in _TEXT_ONLY_ZONES
+
+
+def _glyph_is_distinct(sym_bbox: dict, tag_bbox: dict) -> bool:
+    """True if Gemini located a glyph geometrically distinct from the tag text
+    (different position OR extent). When symbol_bbox == tag_bbox exactly, Gemini
+    boxed only text — no separate glyph was found."""
+    if not sym_bbox or not tag_bbox:
+        return False
+    s = (sym_bbox.get("x1"), sym_bbox.get("y1"), sym_bbox.get("x2"), sym_bbox.get("y2"))
+    t = (tag_bbox.get("x1"), tag_bbox.get("y1"), tag_bbox.get("x2"), tag_bbox.get("y2"))
+    return s != t
+
+
+def _has_adjacent_symbol_glyph(candidate: dict, all_detections: list) -> tuple:
+    """Return (has_glyph: bool, reason: str).
+
+    Evidence that an actual symbol glyph is adjacent to this candidate's tag text:
+      1. OWN glyph   — Gemini located this candidate's symbol_bbox separately from
+         its tag_bbox (the glyph is distinct from the text row).
+      2. NEIGHBOUR glyph — another detection that itself carries a distinct glyph
+         has its symbol_bbox inside the adjacency window around this tag text
+         (tag_bbox expanded by _GLYPH_ADJ_FACTOR × tag height, any direction).
+    """
+    sb = candidate.get("symbol_bbox") or {}
+    tb = candidate.get("tag_bbox") or {}
+
+    # (1) own glyph
+    if _glyph_is_distinct(sb, tb):
+        return True, "own symbol_bbox distinct from tag_bbox"
+
+    # (2) neighbour glyph within the adjacency window around the tag text
+    tx1, ty1 = tb.get("x1", 0), tb.get("y1", 0)
+    tx2, ty2 = tb.get("x2", 0), tb.get("y2", 0)
+    th = max(ty2 - ty1, 1)
+    pad = _GLYPH_ADJ_FACTOR * th
+    wx1, wy1, wx2, wy2 = tx1 - pad, ty1 - pad, tx2 + pad, ty2 + pad
+    for other in all_detections:
+        if other is candidate:
+            continue
+        osb = other.get("symbol_bbox") or {}
+        otb = other.get("tag_bbox") or {}
+        if not _glyph_is_distinct(osb, otb):
+            continue   # the other detection is itself text-only — not a glyph
+        if _rects_overlap(wx1, wy1, wx2, wy2,
+                          osb.get("x1", 0), osb.get("y1", 0),
+                          osb.get("x2", 0), osb.get("y2", 0)):
+            return True, f"adjacent glyph from {other.get('tag_text', '?')}"
+    return False, "no glyph (own or adjacent)"
+
+
+def _apply_zone_text_gate(candidates: list) -> tuple:
+    """Drop candidates that sit in a text-only zone AND have no adjacent symbol
+    glyph (neither their own distinct glyph nor a glyph-bearing neighbour).
+
+    Runs globally (after intra-step dedup) so the neighbour search sees every
+    detection in full-image coordinates. Returns (kept, removed_records).
+    """
+    kept, removed = [], []
+    for c in candidates:
+        sb = c.get("symbol_bbox") or {}
+        cx = (sb.get("x1", 0) + sb.get("x2", 0)) / 2
+        cy = (sb.get("y1", 0) + sb.get("y2", 0)) / 2
+        if not _is_in_text_only_zone(cx, cy):
+            kept.append(c)
+            continue
+        # Piping line numbers have no glyph (their symbol is the pipe); exempt them
+        # so border-margin line numbers wrongly zoned as text are not dropped.
+        if _is_piping_line_number(c.get("tag_text", "")):
+            kept.append(c)
+            zone = _approx_zone(cx, cy)
+            log.info("Zone-text gate kept (piping line number): %-30s at (%.0f,%.0f) [%s]",
+                     c.get("tag_text"), cx, cy, zone)
+            continue
+        has_glyph, why = _has_adjacent_symbol_glyph(c, candidates)
+        if has_glyph:
+            kept.append(c)
+            continue
+        zone = _approx_zone(cx, cy)
+        removed.append({
+            "tag": c.get("tag_text"), "category": c.get("symbol_category"),
+            "cx": round(cx), "cy": round(cy), "zone": zone, "reason": why,
+        })
+        log.info("Zone-text gate filtered: %-30s at (%.0f,%.0f) [%s] — %s",
+                 c.get("tag_text"), cx, cy, zone, why)
+    return kept, removed
+
+
 # ── Tag normalization (post-OCR clean-up) ──────────────────────────────────────
 # Double-prime / inch marks that may follow a pipe size digit (ASCII + unicode).
 _INCH_MARKS = r"(?:''|\"|''|´´|′′|″|”|’’)"
@@ -801,6 +1006,19 @@ def process_patch_candidates(patch_result: dict,
         # ── False positive filter — reject non-tag text ───────────────────────
         # Drawing references, node IDs, fragments that Gemini misidentified
         if _is_false_positive(final_tag):
+            continue
+
+        # ── Symbol-size gate — reject text mentions without a real glyph ──────
+        # sym_bbox is already in full-image pixel coordinates at this point.
+        # Both the cloud-scoped and full-drawing outputs share this gate so that
+        # step5a_candidates_full.json is clean at the source.
+        symbol_category_raw = str(raw.get("symbol_category") or "unknown")
+        passes_gate, gate_reason = _symbol_size_gate(sym_bbox, symbol_category_raw)
+        if not passes_gate:
+            cx_g = (sym_bbox["x1"] + sym_bbox["x2"]) / 2
+            cy_g = (sym_bbox["y1"] + sym_bbox["y2"]) / 2
+            log.info("Symbol-gate filtered: %-30s at (%.0f,%.0f) [%s] — %s",
+                     final_tag, cx_g, cy_g, _approx_zone(cx_g, cy_g), gate_reason)
             continue
 
         candidate = {
@@ -1257,6 +1475,16 @@ def run_candidate_extraction(
     # This catches SAHI duplicates at the source before step5d sees them
     all_candidates = _intra_step_dedup(all_candidates)
 
+    # ── Zone-text gate (global) — drop reference text with no adjacent glyph ───
+    # Runs after dedup so the neighbour-glyph search sees every detection in
+    # full-image coords. Rejects tag-like strings in notes/title/table/ref zones
+    # that have no symbol glyph (their own or an adjacent one).
+    _n_before_zone = len(all_candidates)
+    all_candidates, _zone_removed = _apply_zone_text_gate(all_candidates)
+    if _zone_removed:
+        log.info("Zone-text gate: removed %d text-only-zone candidates (%d → %d)",
+                 len(_zone_removed), _n_before_zone, len(all_candidates))
+
     # Sort back into patch_id order for deterministic output
     all_candidates.sort(key=lambda c: (c.get("patch_id") or 0))
 
@@ -1273,6 +1501,7 @@ def run_candidate_extraction(
             "max_workers":          max_workers,
             "revision_cloud_filter": revision_cloud_present,
             "cloud_regions_used":   len(cloud_regions or []),
+            "zone_text_gate_removed": _zone_removed,
             "total_candidates":     len(all_candidates),
             "candidates":           all_candidates,
         }, f, indent=2)

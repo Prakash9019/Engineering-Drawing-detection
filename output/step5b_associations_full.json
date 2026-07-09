@@ -1,36 +1,19 @@
 {
   "version": "v1",
-  "total_candidates": 299,
-  "lines_detected": 493,
-  "pipe_segments_detected": 220,
-  "leader_lines_detected": 273,
-  "segments_rejected_zones": 362,
+  "total_candidates": 277,
+  "lines_detected": 495,
+  "pipe_segments_detected": 224,
+  "leader_lines_detected": 271,
+  "segments_rejected_zones": 364,
   "segments_rejected_grid": 0,
   "rel_summary": {
-    "ATTACHED_TO": 179,
-    "ADJACENT_TO": 9,
-    "CONTAINED_WITHIN": 106,
-    "ISOLATED": 4,
-    "CONNECTED_TO": 1
+    "ATTACHED_TO": 164,
+    "ADJACENT_TO": 8,
+    "CONTAINED_WITHIN": 101,
+    "CONNECTED_TO": 1,
+    "ISOLATED": 3
   },
   "associations": [
-    {
-      "candidate_id": "7a107524",
-      "tag_text": "K-V-201",
-      "symbol_name": "Compressor",
-      "symbol_bbox": {
-        "x1": 2839,
-        "y1": 150,
-        "x2": 3162,
-        "y2": 222
-      },
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
     {
       "candidate_id": "025080ca",
       "tag_text": "TT-202A",
@@ -75,7 +58,7 @@
         "x2": 8214,
         "y2": 473
       },
-      "connected_pipe": "PIPE@(8092,503)",
+      "connected_pipe": "PIPE@(8091,503)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -92,7 +75,7 @@
         "x2": 8531,
         "y2": 473
       },
-      "connected_pipe": "PIPE@(8092,503)",
+      "connected_pipe": "PIPE@(8091,503)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -109,7 +92,7 @@
         "x2": 1666,
         "y2": 701
       },
-      "connected_pipe": "PIPE@(1500,741)",
+      "connected_pipe": "PIPE@(1499,741)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -132,7 +115,7 @@
         "x2": 1778,
         "y2": 701
       },
-      "connected_pipe": "PIPE@(1500,741)",
+      "connected_pipe": "PIPE@(1499,741)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -269,45 +252,11 @@
         "x2": 6225,
         "y2": 1177
       },
-      "connected_pipe": "PIPE@(5880,933)",
+      "connected_pipe": "PIPE@(5879,933)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
-      "candidate_id": "6df64adc",
-      "tag_text": "SB 8IN",
-      "symbol_name": "Spectacle Blind",
-      "symbol_bbox": {
-        "x1": 5612,
-        "y1": 578,
-        "x2": 5721,
-        "y2": 604
-      },
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ADJACENT_TO",
-      "association_confidence": 0.72,
-      "nearby_candidates": []
-    },
-    {
-      "candidate_id": "e3a60482",
-      "tag_text": "SB 6IN",
-      "symbol_name": "Spectacle Blind",
-      "symbol_bbox": {
-        "x1": 5985,
-        "y1": 625,
-        "x2": 6096,
-        "y2": 651
-      },
-      "connected_pipe": "",
-      "connected_equipment": "7f396e15",
-      "leader_line_detected": true,
-      "spatial_relationship": "CONTAINED_WITHIN",
-      "association_confidence": 0.805,
       "nearby_candidates": []
     },
     {
@@ -320,7 +269,7 @@
         "x2": 6400,
         "y2": 730
       },
-      "connected_pipe": "PIPE@(6243,919)",
+      "connected_pipe": "PIPE@(6243,918)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -337,7 +286,7 @@
         "x2": 6972,
         "y2": 1051
       },
-      "connected_pipe": "PIPE@(6585,919)",
+      "connected_pipe": "PIPE@(6584,919)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ADJACENT_TO",
@@ -354,7 +303,7 @@
         "x2": 7776,
         "y2": 1106
       },
-      "connected_pipe": "PIPE@(7858,957)",
+      "connected_pipe": "PIPE@(7916,1040)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -404,7 +353,7 @@
         "x2": 8486,
         "y2": 1148
       },
-      "connected_pipe": "PIPE@(8741,1142)",
+      "connected_pipe": "PIPE@(8740,1142)",
       "connected_equipment": "1df65283",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -563,7 +512,7 @@
         "x2": 3970,
         "y2": 1613
       },
-      "connected_pipe": "PIPE@(3965,1558)",
+      "connected_pipe": "PIPE@(3964,1558)",
       "connected_equipment": "1495a636",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -883,11 +832,6 @@
           "candidate_id": "78865203",
           "tag_text": "212",
           "distance_px": 47.5
-        },
-        {
-          "candidate_id": "60ff4ca8",
-          "tag_text": "UNKNOWN",
-          "distance_px": 190.8
         }
       ]
     },
@@ -916,11 +860,6 @@
           "candidate_id": "78865203",
           "tag_text": "212",
           "distance_px": 62.7
-        },
-        {
-          "candidate_id": "60ff4ca8",
-          "tag_text": "UNKNOWN",
-          "distance_px": 150.0
         }
       ]
     },
@@ -956,13 +895,7 @@
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.87,
-      "nearby_candidates": [
-        {
-          "candidate_id": "0b87c15b",
-          "tag_text": "UNKNOWN",
-          "distance_px": 16.0
-        }
-      ]
+      "nearby_candidates": []
     },
     {
       "candidate_id": "5cc59888",
@@ -974,18 +907,12 @@
         "x2": 6716,
         "y2": 1382
       },
-      "connected_pipe": "PIPE@(6563,1770)",
+      "connected_pipe": "PIPE@(6563,1769)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.855,
-      "nearby_candidates": [
-        {
-          "candidate_id": "fdcaa605",
-          "tag_text": "V-GV-91",
-          "distance_px": 47.9
-        }
-      ]
+      "nearby_candidates": []
     },
     {
       "candidate_id": "aace5d5f",
@@ -1098,7 +1025,7 @@
         "x2": 7382,
         "y2": 1670
       },
-      "connected_pipe": "PIPE@(7193,1703)",
+      "connected_pipe": "PIPE@(7193,1702)",
       "connected_equipment": "3e4d4635",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -1110,23 +1037,6 @@
           "distance_px": 52.5
         }
       ]
-    },
-    {
-      "candidate_id": "2524b8fd",
-      "tag_text": "KM-V-201",
-      "symbol_name": "Motor",
-      "symbol_bbox": {
-        "x1": 7182,
-        "y1": 1019,
-        "x2": 7571,
-        "y2": 1097
-      },
-      "connected_pipe": "PIPE@(7389,1097)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
     },
     {
       "candidate_id": "72925131",
@@ -1196,11 +1106,6 @@
           "distance_px": 155.4
         },
         {
-          "candidate_id": "7ccd7492",
-          "tag_text": "V-BV-2246",
-          "distance_px": 42.2
-        },
-        {
           "candidate_id": "c29cd2fa",
           "tag_text": "V-BV-2245",
           "distance_px": 163.7
@@ -1229,11 +1134,6 @@
           "distance_px": 155.4
         },
         {
-          "candidate_id": "7ccd7492",
-          "tag_text": "V-BV-2246",
-          "distance_px": 115.4
-        },
-        {
           "candidate_id": "c29cd2fa",
           "tag_text": "V-BV-2245",
           "distance_px": 13.0
@@ -1250,7 +1150,7 @@
         "x2": 8497,
         "y2": 1159
       },
-      "connected_pipe": "PIPE@(8741,1142)",
+      "connected_pipe": "PIPE@(8740,1142)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -1305,23 +1205,6 @@
           "distance_px": 141.8
         }
       ]
-    },
-    {
-      "candidate_id": "b009f9a5",
-      "tag_text": "10IN-GV-V272-11502X",
-      "symbol_name": "Piping Line Number",
-      "symbol_bbox": {
-        "x1": 8888,
-        "y1": 1241,
-        "x2": 9370,
-        "y2": 1289
-      },
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
     },
     {
       "candidate_id": "8d22fc2d",
@@ -1390,7 +1273,7 @@
         "x2": 3872,
         "y2": 1924
       },
-      "connected_pipe": "PIPE@(3758,1855)",
+      "connected_pipe": "PIPE@(3757,1855)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -1418,7 +1301,7 @@
         "x2": 3724,
         "y2": 2029
       },
-      "connected_pipe": "PIPE@(3700,1938)",
+      "connected_pipe": "PIPE@(3699,1938)",
       "connected_equipment": "099fa92d",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -1456,7 +1339,7 @@
         "x2": 4049,
         "y2": 1623
       },
-      "connected_pipe": "PIPE@(3965,1558)",
+      "connected_pipe": "PIPE@(3964,1558)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -1535,7 +1418,7 @@
         "x2": 4679,
         "y2": 1796
       },
-      "connected_pipe": "PIPE@(4653,1833)",
+      "connected_pipe": "PIPE@(4652,1833)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -1646,7 +1529,7 @@
         "x2": 4690,
         "y2": 1797
       },
-      "connected_pipe": "PIPE@(4653,1833)",
+      "connected_pipe": "PIPE@(4652,1833)",
       "connected_equipment": "0c782bad",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -1722,7 +1605,7 @@
         "x2": 4873,
         "y2": 1795
       },
-      "connected_pipe": "PIPE@(4896,1841)",
+      "connected_pipe": "PIPE@(4896,1840)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -1750,7 +1633,7 @@
         "x2": 5054,
         "y2": 1894
       },
-      "connected_pipe": "PIPE@(4896,1841)",
+      "connected_pipe": "PIPE@(4896,1840)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -1801,7 +1684,7 @@
         "x2": 5499,
         "y2": 1508
       },
-      "connected_pipe": "PIPE@(5508,1546)",
+      "connected_pipe": "PIPE@(5507,1546)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -1818,7 +1701,7 @@
         "x2": 5516,
         "y2": 1728
       },
-      "connected_pipe": "PIPE@(5508,1546)",
+      "connected_pipe": "PIPE@(5507,1546)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -1901,90 +1784,6 @@
           "candidate_id": "84c64be8",
           "tag_text": "PIT-212",
           "distance_px": 62.7
-        },
-        {
-          "candidate_id": "60ff4ca8",
-          "tag_text": "UNKNOWN",
-          "distance_px": 192.4
-        }
-      ]
-    },
-    {
-      "candidate_id": "fdcaa605",
-      "tag_text": "V-GV-91",
-      "symbol_name": "Gate Valve",
-      "symbol_bbox": {
-        "x1": 6614,
-        "y1": 1380,
-        "x2": 6667,
-        "y2": 1399
-      },
-      "connected_pipe": "PIPE@(6563,1770)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.875,
-      "nearby_candidates": [
-        {
-          "candidate_id": "5cc59888",
-          "tag_text": "V-GV-917",
-          "distance_px": 47.9
-        }
-      ]
-    },
-    {
-      "candidate_id": "0b87c15b",
-      "tag_text": "UNKNOWN",
-      "symbol_name": "Gate Valve",
-      "symbol_bbox": {
-        "x1": 6361,
-        "y1": 1380,
-        "x2": 6431,
-        "y2": 1402
-      },
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": [
-        {
-          "candidate_id": "87c03136",
-          "tag_text": "V-GV-91",
-          "distance_px": 16.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "60ff4ca8",
-      "tag_text": "UNKNOWN",
-      "symbol_name": "Gate Valve",
-      "symbol_bbox": {
-        "x1": 6143,
-        "y1": 1380,
-        "x2": 6212,
-        "y2": 1401
-      },
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": [
-        {
-          "candidate_id": "91b652fc",
-          "tag_text": "V-PIT-212",
-          "distance_px": 190.8
-        },
-        {
-          "candidate_id": "84c64be8",
-          "tag_text": "PIT-212",
-          "distance_px": 150.0
-        },
-        {
-          "candidate_id": "78865203",
-          "tag_text": "212",
-          "distance_px": 192.4
         }
       ]
     },
@@ -2196,7 +1995,7 @@
         "x2": 7382,
         "y2": 1765
       },
-      "connected_pipe": "PIPE@(7193,1703)",
+      "connected_pipe": "PIPE@(7193,1702)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -2256,39 +2055,6 @@
       ]
     },
     {
-      "candidate_id": "7ccd7492",
-      "tag_text": "V-BV-2246",
-      "symbol_name": "Ball Valve",
-      "symbol_bbox": {
-        "x1": 8069,
-        "y1": 1380,
-        "x2": 8147,
-        "y2": 1395
-      },
-      "connected_pipe": "",
-      "connected_equipment": "9d18dc54",
-      "leader_line_detected": true,
-      "spatial_relationship": "CONTAINED_WITHIN",
-      "association_confidence": 0.87,
-      "nearby_candidates": [
-        {
-          "candidate_id": "9d18dc54",
-          "tag_text": "V-BV-2248",
-          "distance_px": 42.2
-        },
-        {
-          "candidate_id": "df572981",
-          "tag_text": "V-BV-2248",
-          "distance_px": 115.4
-        },
-        {
-          "candidate_id": "c29cd2fa",
-          "tag_text": "V-BV-2245",
-          "distance_px": 122.8
-        }
-      ]
-    },
-    {
       "candidate_id": "c29cd2fa",
       "tag_text": "V-BV-2245",
       "symbol_name": "Ball Valve",
@@ -2313,11 +2079,6 @@
           "candidate_id": "df572981",
           "tag_text": "V-BV-2248",
           "distance_px": 13.0
-        },
-        {
-          "candidate_id": "7ccd7492",
-          "tag_text": "V-BV-2246",
-          "distance_px": 122.8
         }
       ]
     },
@@ -2519,7 +2280,7 @@
         "x2": 3602,
         "y2": 2152
       },
-      "connected_pipe": "PIPE@(3369,2135)",
+      "connected_pipe": "PIPE@(3368,2135)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -2552,7 +2313,7 @@
         "x2": 3724,
         "y2": 2030
       },
-      "connected_pipe": "PIPE@(3700,1938)",
+      "connected_pipe": "PIPE@(3699,1938)",
       "connected_equipment": "099fa92d",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -2590,7 +2351,7 @@
         "x2": 3735,
         "y2": 2128
       },
-      "connected_pipe": "PIPE@(3739,2135)",
+      "connected_pipe": "PIPE@(3738,2135)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -2646,7 +2407,7 @@
         "x2": 5281,
         "y2": 2320
       },
-      "connected_pipe": "PIPE@(5178,2283)",
+      "connected_pipe": "PIPE@(5177,2283)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -2720,7 +2481,7 @@
         "x2": 5291,
         "y2": 2318
       },
-      "connected_pipe": "PIPE@(5178,2283)",
+      "connected_pipe": "PIPE@(5177,2283)",
       "connected_equipment": "8fe48ab4",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -2925,7 +2686,7 @@
         "x2": 7005,
         "y2": 2390
       },
-      "connected_pipe": "PIPE@(6709,2321)",
+      "connected_pipe": "PIPE@(6708,2321)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3027,7 +2788,7 @@
         "x2": 8175,
         "y2": 2374
       },
-      "connected_pipe": "PIPE@(8216,2081)",
+      "connected_pipe": "PIPE@(8216,2080)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3044,7 +2805,7 @@
         "x2": 8570,
         "y2": 2416
       },
-      "connected_pipe": "PIPE@(7774,2451)",
+      "connected_pipe": "PIPE@(7773,2451)",
       "connected_equipment": "337001b6",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -3067,7 +2828,7 @@
         "x2": 8839,
         "y2": 2416
       },
-      "connected_pipe": "PIPE@(7774,2451)",
+      "connected_pipe": "PIPE@(7773,2451)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3079,23 +2840,6 @@
           "distance_px": 140.0
         }
       ]
-    },
-    {
-      "candidate_id": "06447535",
-      "tag_text": "01/E-V-201A",
-      "symbol_name": "Gas Cooler",
-      "symbol_bbox": {
-        "x1": 9200,
-        "y1": 2275,
-        "x2": 9530,
-        "y2": 2327
-      },
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
     },
     {
       "candidate_id": "e2a574fe",
@@ -3130,7 +2874,7 @@
         "x2": 2098,
         "y2": 2627
       },
-      "connected_pipe": "PIPE@(1613,2445)",
+      "connected_pipe": "PIPE@(1612,2445)",
       "connected_equipment": "ec20c1ad",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -3219,7 +2963,7 @@
         "x2": 2109,
         "y2": 2625
       },
-      "connected_pipe": "PIPE@(1613,2445)",
+      "connected_pipe": "PIPE@(1612,2445)",
       "connected_equipment": "31a87276",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -3308,7 +3052,7 @@
         "x2": 2581,
         "y2": 2928
       },
-      "connected_pipe": "PIPE@(2360,2918)",
+      "connected_pipe": "PIPE@(2359,2918)",
       "connected_equipment": "e5be9097",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -3392,7 +3136,7 @@
         "x2": 2591,
         "y2": 2927
       },
-      "connected_pipe": "PIPE@(2360,2918)",
+      "connected_pipe": "PIPE@(2359,2918)",
       "connected_equipment": "e5be9097",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -3425,24 +3169,7 @@
         "x2": 3837,
         "y2": 2471
       },
-      "connected_pipe": "PIPE@(3727,2421)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
-      "candidate_id": "ad24589e",
-      "tag_text": "V-V-201",
-      "symbol_name": "Equipment Tag",
-      "symbol_bbox": {
-        "x1": 3253,
-        "y1": 2602,
-        "x2": 3569,
-        "y2": 2663
-      },
-      "connected_pipe": "PIPE@(3413,2684)",
+      "connected_pipe": "PIPE@(3726,2421)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3476,7 +3203,7 @@
         "x2": 3970,
         "y2": 2937
       },
-      "connected_pipe": "PIPE@(3834,3393)",
+      "connected_pipe": "PIPE@(3834,3392)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3607,7 +3334,7 @@
         "x2": 5136,
         "y2": 2504
       },
-      "connected_pipe": "PIPE@(5023,2654)",
+      "connected_pipe": "PIPE@(5023,2653)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3635,7 +3362,7 @@
         "x2": 5225,
         "y2": 3050
       },
-      "connected_pipe": "PIPE@(5131,2861)",
+      "connected_pipe": "PIPE@(5130,2861)",
       "connected_equipment": "b2c6ba88",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -3658,7 +3385,7 @@
         "x2": 5660,
         "y2": 2656
       },
-      "connected_pipe": "PIPE@(5520,2612)",
+      "connected_pipe": "PIPE@(5519,2612)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3681,7 +3408,7 @@
         "x2": 5774,
         "y2": 2653
       },
-      "connected_pipe": "PIPE@(5577,2442)",
+      "connected_pipe": "PIPE@(5576,2442)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3704,7 +3431,7 @@
         "x2": 6270,
         "y2": 2421
       },
-      "connected_pipe": "PIPE@(6318,2374)",
+      "connected_pipe": "PIPE@(6317,2374)",
       "connected_equipment": "e1e309a3",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -3727,7 +3454,7 @@
         "x2": 6467,
         "y2": 2424
       },
-      "connected_pipe": "PIPE@(6318,2374)",
+      "connected_pipe": "PIPE@(6317,2374)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3823,7 +3550,7 @@
         "x2": 8570,
         "y2": 2552
       },
-      "connected_pipe": "PIPE@(7774,2451)",
+      "connected_pipe": "PIPE@(7773,2451)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3859,40 +3586,6 @@
       ]
     },
     {
-      "candidate_id": "2a4b49cb",
-      "tag_text": "12\u00b0-ETH-VO06-C03B",
-      "symbol_name": "Piping Line Number",
-      "symbol_bbox": {
-        "x1": 472,
-        "y1": 3104,
-        "x2": 926,
-        "y2": 3148
-      },
-      "connected_pipe": "PIPE@(727,3175)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
-      "candidate_id": "df46fe86",
-      "tag_text": "V-XV-202",
-      "symbol_name": "Valve",
-      "symbol_bbox": {
-        "x1": 460,
-        "y1": 3336,
-        "x2": 683,
-        "y2": 3379
-      },
-      "connected_pipe": "PIPE@(696,3417)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
       "candidate_id": "5c3f90c1",
       "tag_text": "T-255B",
       "symbol_name": "Instrument Bubble",
@@ -3902,7 +3595,7 @@
         "x2": 1171,
         "y2": 3309
       },
-      "connected_pipe": "PIPE@(1381,3239)",
+      "connected_pipe": "PIPE@(1380,3239)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3919,7 +3612,7 @@
         "x2": 1271,
         "y2": 2936
       },
-      "connected_pipe": "PIPE@(1719,2918)",
+      "connected_pipe": "PIPE@(1718,2918)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -3936,7 +3629,7 @@
         "x2": 1653,
         "y2": 3253
       },
-      "connected_pipe": "PIPE@(1645,3050)",
+      "connected_pipe": "PIPE@(1645,3049)",
       "connected_equipment": "d8512055",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -3976,7 +3669,7 @@
         "x2": 1662,
         "y2": 3253
       },
-      "connected_pipe": "PIPE@(1645,3050)",
+      "connected_pipe": "PIPE@(1645,3049)",
       "connected_equipment": "cb65f3ca",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -3999,7 +3692,7 @@
         "x2": 2088,
         "y2": 3046
       },
-      "connected_pipe": "PIPE@(1975,3119)",
+      "connected_pipe": "PIPE@(1975,3118)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -4023,52 +3716,9 @@
       "association_confidence": 0.8,
       "nearby_candidates": [
         {
-          "candidate_id": "be4452c0",
-          "tag_text": "V-BV-761",
-          "distance_px": 76.7
-        },
-        {
-          "candidate_id": "324eb383",
-          "tag_text": "V-BV-76",
-          "distance_px": 23.7
-        },
-        {
           "candidate_id": "07cc4af3",
           "tag_text": "V-BV-761",
           "distance_px": 38.1
-        }
-      ]
-    },
-    {
-      "candidate_id": "be4452c0",
-      "tag_text": "V-BV-761",
-      "symbol_name": "Ball Valve",
-      "symbol_bbox": {
-        "x1": 2161,
-        "y1": 3358,
-        "x2": 2186,
-        "y2": 3384
-      },
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": false,
-      "spatial_relationship": "ISOLATED",
-      "association_confidence": 0.3,
-      "nearby_candidates": [
-        {
-          "candidate_id": "98f48f8b",
-          "tag_text": "V-BV-1920",
-          "distance_px": 76.7
-        },
-        {
-          "candidate_id": "324eb383",
-          "tag_text": "V-BV-76",
-          "distance_px": 81.7
-        },
-        {
-          "candidate_id": "07cc4af3",
-          "tag_text": "V-BV-761",
-          "distance_px": 56.5
         }
       ]
     },
@@ -4082,7 +3732,7 @@
         "x2": 2580,
         "y2": 2938
       },
-      "connected_pipe": "PIPE@(2360,2918)",
+      "connected_pipe": "PIPE@(2359,2918)",
       "connected_equipment": "542b4e4e",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -4148,7 +3798,7 @@
         "x2": 2592,
         "y2": 2940
       },
-      "connected_pipe": "PIPE@(2360,2918)",
+      "connected_pipe": "PIPE@(2359,2918)",
       "connected_equipment": "e5be9097",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -4229,7 +3879,7 @@
         "x2": 2998,
         "y2": 3156
       },
-      "connected_pipe": "PIPE@(3025,3057)",
+      "connected_pipe": "PIPE@(3025,3056)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -4369,11 +4019,11 @@
         "x2": 4313,
         "y2": 3066
       },
-      "connected_pipe": "PIPE@(4470,3039)",
+      "connected_pipe": "PIPE@(4469,3039)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "CONNECTED_TO",
-      "association_confidence": 0.643,
+      "association_confidence": 0.646,
       "nearby_candidates": [
         {
           "candidate_id": "8cc51fa2",
@@ -4409,18 +4059,12 @@
         "x2": 4590,
         "y2": 3322
       },
-      "connected_pipe": "PIPE@(4508,3354)",
+      "connected_pipe": "PIPE@(4507,3354)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ADJACENT_TO",
       "association_confidence": 0.72,
-      "nearby_candidates": [
-        {
-          "candidate_id": "3d40e54b",
-          "tag_text": "S-V-204",
-          "distance_px": 61.9
-        }
-      ]
+      "nearby_candidates": []
     },
     {
       "candidate_id": "8cc51fa2",
@@ -4432,7 +4076,7 @@
         "x2": 4324,
         "y2": 3161
       },
-      "connected_pipe": "PIPE@(4470,3039)",
+      "connected_pipe": "PIPE@(4469,3039)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -4455,7 +4099,7 @@
         "x2": 4635,
         "y2": 3161
       },
-      "connected_pipe": "PIPE@(4470,3039)",
+      "connected_pipe": "PIPE@(4469,3039)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -4483,7 +4127,7 @@
         "x2": 4876,
         "y2": 2954
       },
-      "connected_pipe": "PIPE@(5131,2861)",
+      "connected_pipe": "PIPE@(5130,2861)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -4534,7 +4178,7 @@
         "x2": 4870,
         "y2": 3447
       },
-      "connected_pipe": "PIPE@(4744,3258)",
+      "connected_pipe": "PIPE@(4743,3258)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -4551,7 +4195,7 @@
         "x2": 4645,
         "y2": 3067
       },
-      "connected_pipe": "PIPE@(4470,3039)",
+      "connected_pipe": "PIPE@(4469,3039)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -4659,7 +4303,7 @@
         "x2": 6416,
         "y2": 3510
       },
-      "connected_pipe": "PIPE@(6355,3531)",
+      "connected_pipe": "PIPE@(6354,3531)",
       "connected_equipment": "0891214b",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -4918,7 +4562,7 @@
         "x2": 1586,
         "y2": 3418
       },
-      "connected_pipe": "PIPE@(1369,3455)",
+      "connected_pipe": "PIPE@(1368,3455)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -4941,7 +4585,7 @@
         "x2": 1597,
         "y2": 3415
       },
-      "connected_pipe": "PIPE@(1369,3455)",
+      "connected_pipe": "PIPE@(1368,3455)",
       "connected_equipment": "fd0cbaae",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -4951,39 +4595,6 @@
           "candidate_id": "fd0cbaae",
           "tag_text": "2IN-ETH-V067\u201461440X",
           "distance_px": 144.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "324eb383",
-      "tag_text": "V-BV-76",
-      "symbol_name": "Ball Valve",
-      "symbol_bbox": {
-        "x1": 2101,
-        "y1": 3291,
-        "x2": 2130,
-        "y2": 3336
-      },
-      "connected_pipe": "",
-      "connected_equipment": "07cc4af3",
-      "leader_line_detected": true,
-      "spatial_relationship": "CONTAINED_WITHIN",
-      "association_confidence": 0.8,
-      "nearby_candidates": [
-        {
-          "candidate_id": "98f48f8b",
-          "tag_text": "V-BV-1920",
-          "distance_px": 23.7
-        },
-        {
-          "candidate_id": "be4452c0",
-          "tag_text": "V-BV-761",
-          "distance_px": 81.7
-        },
-        {
-          "candidate_id": "07cc4af3",
-          "tag_text": "V-BV-761",
-          "distance_px": 58.0
         }
       ]
     },
@@ -5007,16 +4618,6 @@
           "candidate_id": "98f48f8b",
           "tag_text": "V-BV-1920",
           "distance_px": 38.1
-        },
-        {
-          "candidate_id": "be4452c0",
-          "tag_text": "V-BV-761",
-          "distance_px": 56.5
-        },
-        {
-          "candidate_id": "324eb383",
-          "tag_text": "V-BV-76",
-          "distance_px": 58.0
         }
       ]
     },
@@ -5301,18 +4902,12 @@
         "x2": 4346,
         "y2": 3455
       },
-      "connected_pipe": "PIPE@(4508,3354)",
+      "connected_pipe": "PIPE@(4507,3354)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
-      "nearby_candidates": [
-        {
-          "candidate_id": "3d40e54b",
-          "tag_text": "S-V-204",
-          "distance_px": 186.0
-        }
-      ]
+      "nearby_candidates": []
     },
     {
       "candidate_id": "2a1acea9",
@@ -5352,7 +4947,7 @@
         "x2": 4726,
         "y2": 3670
       },
-      "connected_pipe": "PIPE@(4698,3611)",
+      "connected_pipe": "PIPE@(4697,3611)",
       "connected_equipment": "b3860065",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -5399,34 +4994,6 @@
       ]
     },
     {
-      "candidate_id": "3d40e54b",
-      "tag_text": "S-V-204",
-      "symbol_name": "Strainer",
-      "symbol_bbox": {
-        "x1": 4359,
-        "y1": 3299,
-        "x2": 4523,
-        "y2": 3334
-      },
-      "connected_pipe": "PIPE@(4508,3354)",
-      "connected_equipment": "51ff74cc",
-      "leader_line_detected": false,
-      "spatial_relationship": "CONTAINED_WITHIN",
-      "association_confidence": 0.8,
-      "nearby_candidates": [
-        {
-          "candidate_id": "51ff74cc",
-          "tag_text": "S-V-204",
-          "distance_px": 61.9
-        },
-        {
-          "candidate_id": "16ea59d1",
-          "tag_text": "T-274A",
-          "distance_px": 186.0
-        }
-      ]
-    },
-    {
       "candidate_id": "0f96753c",
       "tag_text": "V-GV-XX002",
       "symbol_name": "Gate Valve",
@@ -5469,7 +5036,7 @@
         "x2": 4737,
         "y2": 3672
       },
-      "connected_pipe": "PIPE@(4698,3611)",
+      "connected_pipe": "PIPE@(4697,3611)",
       "connected_equipment": "fdb0cef5",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -5492,7 +5059,7 @@
         "x2": 5000,
         "y2": 3970
       },
-      "connected_pipe": "PIPE@(4864,3964)",
+      "connected_pipe": "PIPE@(4863,3964)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -5530,7 +5097,7 @@
         "x2": 5350,
         "y2": 3355
       },
-      "connected_pipe": "PIPE@(5156,3358)",
+      "connected_pipe": "PIPE@(5155,3358)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -5593,7 +5160,7 @@
         "x2": 6416,
         "y2": 3593
       },
-      "connected_pipe": "PIPE@(6355,3531)",
+      "connected_pipe": "PIPE@(6354,3531)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -5616,7 +5183,7 @@
         "x2": 7967,
         "y2": 3809
       },
-      "connected_pipe": "PIPE@(7914,3752)",
+      "connected_pipe": "PIPE@(7913,3752)",
       "connected_equipment": "841355a2",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -5639,7 +5206,7 @@
         "x2": 8366,
         "y2": 3653
       },
-      "connected_pipe": "PIPE@(8299,3594)",
+      "connected_pipe": "PIPE@(8298,3594)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -5656,7 +5223,7 @@
         "x2": 8360,
         "y2": 3970
       },
-      "connected_pipe": "",
+      "connected_pipe": "PIPE@(8279,3928)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -5679,7 +5246,7 @@
         "x2": 8686,
         "y2": 3655
       },
-      "connected_pipe": "PIPE@(8604,3594)",
+      "connected_pipe": "PIPE@(8603,3594)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -5790,7 +5357,7 @@
         "x2": 4016,
         "y2": 4063
       },
-      "connected_pipe": "PIPE@(4367,4053)",
+      "connected_pipe": "PIPE@(4366,4053)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -5881,11 +5448,11 @@
         "x2": 4363,
         "y2": 3812
       },
-      "connected_pipe": "PIPE@(4351,3943)",
+      "connected_pipe": "PIPE@(4351,3942)",
       "connected_equipment": "",
       "leader_line_detected": false,
       "spatial_relationship": "ADJACENT_TO",
-      "association_confidence": 0.574,
+      "association_confidence": 0.577,
       "nearby_candidates": [
         {
           "candidate_id": "0f96753c",
@@ -5909,7 +5476,7 @@
         "x2": 4878,
         "y2": 3974
       },
-      "connected_pipe": "PIPE@(4864,3964)",
+      "connected_pipe": "PIPE@(4863,3964)",
       "connected_equipment": "3188bbc0",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -6030,7 +5597,7 @@
         "x2": 5000,
         "y2": 3992
       },
-      "connected_pipe": "PIPE@(4864,3964)",
+      "connected_pipe": "PIPE@(4863,3964)",
       "connected_equipment": "3188bbc0",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -6075,7 +5642,7 @@
         "x2": 7967,
         "y2": 3821
       },
-      "connected_pipe": "PIPE@(7914,3752)",
+      "connected_pipe": "PIPE@(7913,3752)",
       "connected_equipment": "e8ece525",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -6121,7 +5688,7 @@
         "x2": 8359,
         "y2": 4430
       },
-      "connected_pipe": "PIPE@(8282,4471)",
+      "connected_pipe": "PIPE@(8281,4471)",
       "connected_equipment": "709ae5f1",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -6177,7 +5744,7 @@
         "x2": 8370,
         "y2": 3991
       },
-      "connected_pipe": "",
+      "connected_pipe": "PIPE@(8279,3928)",
       "connected_equipment": "0b434d51",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -6246,7 +5813,7 @@
         "x2": 8370,
         "y2": 4430
       },
-      "connected_pipe": "PIPE@(8282,4471)",
+      "connected_pipe": "PIPE@(8281,4471)",
       "connected_equipment": "124d4b76",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -6303,11 +5870,6 @@
       "association_confidence": 0.84,
       "nearby_candidates": [
         {
-          "candidate_id": "49562fcf",
-          "tag_text": "V-GV-921",
-          "distance_px": 177.9
-        },
-        {
           "candidate_id": "908439b1",
           "tag_text": "V-GV-922",
           "distance_px": 11.0
@@ -6316,44 +5878,6 @@
           "candidate_id": "10ecd544",
           "tag_text": "V-GV-922",
           "distance_px": 197.1
-        }
-      ]
-    },
-    {
-      "candidate_id": "49562fcf",
-      "tag_text": "V-GV-921",
-      "symbol_name": "Gate Valve",
-      "symbol_bbox": {
-        "x1": 3964,
-        "y1": 4718,
-        "x2": 3970,
-        "y2": 4790
-      },
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.855,
-      "nearby_candidates": [
-        {
-          "candidate_id": "27406fcf",
-          "tag_text": "V-GV-920",
-          "distance_px": 177.9
-        },
-        {
-          "candidate_id": "908439b1",
-          "tag_text": "V-GV-922",
-          "distance_px": 170.4
-        },
-        {
-          "candidate_id": "10ecd544",
-          "tag_text": "V-GV-922",
-          "distance_px": 26.0
-        },
-        {
-          "candidate_id": "bfa095f4",
-          "tag_text": "T-246A",
-          "distance_px": 187.7
         }
       ]
     },
@@ -6402,11 +5926,6 @@
           "distance_px": 11.0
         },
         {
-          "candidate_id": "49562fcf",
-          "tag_text": "V-GV-921",
-          "distance_px": 170.4
-        },
-        {
           "candidate_id": "10ecd544",
           "tag_text": "V-GV-922",
           "distance_px": 188.9
@@ -6433,11 +5952,6 @@
           "candidate_id": "27406fcf",
           "tag_text": "V-GV-920",
           "distance_px": 197.1
-        },
-        {
-          "candidate_id": "49562fcf",
-          "tag_text": "V-GV-921",
-          "distance_px": 26.0
         },
         {
           "candidate_id": "908439b1",
@@ -6468,11 +5982,6 @@
       "association_confidence": 0.9,
       "nearby_candidates": [
         {
-          "candidate_id": "49562fcf",
-          "tag_text": "V-GV-921",
-          "distance_px": 187.7
-        },
-        {
           "candidate_id": "10ecd544",
           "tag_text": "V-GV-922",
           "distance_px": 162.2
@@ -6499,7 +6008,7 @@
         "x2": 4267,
         "y2": 4646
       },
-      "connected_pipe": "PIPE@(4413,4586)",
+      "connected_pipe": "PIPE@(4412,4586)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -6848,7 +6357,7 @@
         "x2": 8360,
         "y2": 4533
       },
-      "connected_pipe": "PIPE@(8282,4471)",
+      "connected_pipe": "PIPE@(8281,4471)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -6881,7 +6390,7 @@
         "x2": 8370,
         "y2": 4531
       },
-      "connected_pipe": "PIPE@(8282,4471)",
+      "connected_pipe": "PIPE@(8281,4471)",
       "connected_equipment": "709ae5f1",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -6922,29 +6431,6 @@
       "nearby_candidates": []
     },
     {
-      "candidate_id": "bfdf2eab",
-      "tag_text": "1\u00b0-D-V00",
-      "symbol_name": "Piping Line",
-      "symbol_bbox": {
-        "x1": 3711,
-        "y1": 5035,
-        "x2": 3970,
-        "y2": 5038
-      },
-      "connected_pipe": "PIPE@(3946,5048)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.86,
-      "nearby_candidates": [
-        {
-          "candidate_id": "1da223cc",
-          "tag_text": "1IN-D-V006-C06B",
-          "distance_px": 115.6
-        }
-      ]
-    },
-    {
       "candidate_id": "1da223cc",
       "tag_text": "1IN-D-V006-C06B",
       "symbol_name": "Piping Line Number",
@@ -6954,18 +6440,12 @@
         "x2": 4141,
         "y2": 5026
       },
-      "connected_pipe": "PIPE@(3946,5048)",
+      "connected_pipe": "PIPE@(3945,5048)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
-      "nearby_candidates": [
-        {
-          "candidate_id": "bfdf2eab",
-          "tag_text": "1\u00b0-D-V00",
-          "distance_px": 115.6
-        }
-      ]
+      "nearby_candidates": []
     },
     {
       "candidate_id": "75b02e5d",
@@ -6977,7 +6457,7 @@
         "x2": 4241,
         "y2": 5056
       },
-      "connected_pipe": "PIPE@(3946,5048)",
+      "connected_pipe": "PIPE@(3945,5048)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -6987,11 +6467,6 @@
           "candidate_id": "3800d4fc",
           "tag_text": "V-GV-922",
           "distance_px": 95.0
-        },
-        {
-          "candidate_id": "55e6973c",
-          "tag_text": "V-GV-923",
-          "distance_px": 118.7
         }
       ]
     },
@@ -7015,11 +6490,6 @@
           "candidate_id": "75b02e5d",
           "tag_text": "V-GLV-523",
           "distance_px": 95.0
-        },
-        {
-          "candidate_id": "55e6973c",
-          "tag_text": "V-GV-923",
-          "distance_px": 34.3
         },
         {
           "candidate_id": "82954db4",
@@ -7107,7 +6577,7 @@
         "x2": 5116,
         "y2": 5048
       },
-      "connected_pipe": "PIPE@(5066,4988)",
+      "connected_pipe": "PIPE@(5065,4988)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -7153,7 +6623,7 @@
         "x2": 5116,
         "y2": 5233
       },
-      "connected_pipe": "PIPE@(4938,5142)",
+      "connected_pipe": "PIPE@(4938,5141)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -7199,7 +6669,7 @@
         "x2": 5703,
         "y2": 5242
       },
-      "connected_pipe": "PIPE@(5744,5312)",
+      "connected_pipe": "PIPE@(5744,5311)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -7222,7 +6692,7 @@
         "x2": 6132,
         "y2": 5314
       },
-      "connected_pipe": "PIPE@(5953,5162)",
+      "connected_pipe": "PIPE@(5953,5161)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -7273,7 +6743,7 @@
         "x2": 3048,
         "y2": 5454
       },
-      "connected_pipe": "PIPE@(4173,5487)",
+      "connected_pipe": "PIPE@(4172,5487)",
       "connected_equipment": "aa66471e",
       "leader_line_detected": true,
       "spatial_relationship": "CONTAINED_WITHIN",
@@ -7296,7 +6766,7 @@
         "x2": 3255,
         "y2": 5454
       },
-      "connected_pipe": "PIPE@(4173,5487)",
+      "connected_pipe": "PIPE@(4172,5487)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -7306,39 +6776,6 @@
           "candidate_id": "581f5123",
           "tag_text": "10IN\u2014ETH-V061",
           "distance_px": 114.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "55e6973c",
-      "tag_text": "V-GV-923",
-      "symbol_name": "Gate Valve",
-      "symbol_bbox": {
-        "x1": 4261,
-        "y1": 5060,
-        "x2": 4365,
-        "y2": 5069
-      },
-      "connected_pipe": "PIPE@(4237,5241)",
-      "connected_equipment": "3800d4fc",
-      "leader_line_detected": true,
-      "spatial_relationship": "CONTAINED_WITHIN",
-      "association_confidence": 0.88,
-      "nearby_candidates": [
-        {
-          "candidate_id": "75b02e5d",
-          "tag_text": "V-GLV-523",
-          "distance_px": 118.7
-        },
-        {
-          "candidate_id": "3800d4fc",
-          "tag_text": "V-GV-922",
-          "distance_px": 34.3
-        },
-        {
-          "candidate_id": "82954db4",
-          "tag_text": "T-246C",
-          "distance_px": 156.9
         }
       ]
     },
@@ -7362,11 +6799,6 @@
           "candidate_id": "3800d4fc",
           "tag_text": "V-GV-922",
           "distance_px": 188.0
-        },
-        {
-          "candidate_id": "55e6973c",
-          "tag_text": "V-GV-923",
-          "distance_px": 156.9
         },
         {
           "candidate_id": "58780712",
@@ -7425,7 +6857,7 @@
         "x2": 8874,
         "y2": 5444
       },
-      "connected_pipe": "PIPE@(7507,5487)",
+      "connected_pipe": "PIPE@(7506,5487)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "spatial_relationship": "ATTACHED_TO",
@@ -7456,40 +6888,6 @@
       ]
     },
     {
-      "candidate_id": "3a366457",
-      "tag_text": "2IN-ETH-V018",
-      "symbol_name": "Piping Line Number",
-      "symbol_bbox": {
-        "x1": 9200,
-        "y1": 5371,
-        "x2": 9503,
-        "y2": 5420
-      },
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
-      "candidate_id": "123637c3",
-      "tag_text": "V-V-03",
-      "symbol_name": "Vessel",
-      "symbol_bbox": {
-        "x1": 9575,
-        "y1": 5648,
-        "x2": 9755,
-        "y2": 5697
-      },
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
       "candidate_id": "8e30156b",
       "tag_text": "1IN-D-V003-C01B",
       "symbol_name": "Piping Line Number",
@@ -7511,62 +6909,9 @@
           "distance_px": 11.0
         }
       ]
-    },
-    {
-      "candidate_id": "3d1cbb34",
-      "tag_text": "E-V-201",
-      "symbol_name": "Heat Exchanger",
-      "symbol_bbox": {
-        "x1": 948,
-        "y1": 6864,
-        "x2": 1331,
-        "y2": 6921
-      },
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
     }
   ],
   "enriched_candidates": [
-    {
-      "candidate_id": "7a107524",
-      "patch_id": 6,
-      "symbol_name": "Compressor",
-      "symbol_category": "equipment",
-      "tag_text": "K-V-201",
-      "tag_text_gemini": "K-V-201",
-      "tag_text_ocr": "K-V-201",
-      "symbol_bbox": {
-        "x1": 2839,
-        "y1": 150,
-        "x2": 3162,
-        "y2": 222
-      },
-      "tag_bbox": {
-        "x1": 2839,
-        "y1": 150,
-        "x2": 3162,
-        "y2": 222
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "UNSPECIFIED",
-      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
-      "ocr_confidence": 0.41,
-      "vision_confidence": 0.95,
-      "tag_source": "ocr",
-      "functional_context": "ETHANE GAS COMPRESSOR",
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
     {
       "candidate_id": "025080ca",
       "patch_id": 11,
@@ -7666,7 +7011,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Purge Complete",
-      "connected_pipe": "PIPE@(8092,503)",
+      "connected_pipe": "PIPE@(8091,503)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -7702,7 +7047,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Purge Alarm",
-      "connected_pipe": "PIPE@(8092,503)",
+      "connected_pipe": "PIPE@(8091,503)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -7738,7 +7083,7 @@
       "vision_confidence": 0.95,
       "tag_source": "ocr",
       "functional_context": "Piping line segment",
-      "connected_pipe": "PIPE@(1500,741)",
+      "connected_pipe": "PIPE@(1499,741)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -7780,7 +7125,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Piping line segment",
-      "connected_pipe": "PIPE@(1500,741)",
+      "connected_pipe": "PIPE@(1499,741)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -8031,85 +7376,13 @@
       "vision_confidence": 0.99,
       "tag_source": "vision",
       "functional_context": "Main compressor unit",
-      "connected_pipe": "PIPE@(5880,933)",
+      "connected_pipe": "PIPE@(5879,933)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
       "pipe_distance_px": 27.1,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
-      "candidate_id": "6df64adc",
-      "patch_id": 33,
-      "symbol_name": "Spectacle Blind",
-      "symbol_category": "piping",
-      "tag_text": "SB 8IN",
-      "tag_text_gemini": "SB 8\"",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 5612,
-        "y1": 578,
-        "x2": 5721,
-        "y2": 604
-      },
-      "tag_bbox": {
-        "x1": 5638,
-        "y1": 496,
-        "x2": 5760,
-        "y2": 542
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "UNSPECIFIED",
-      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.95,
-      "tag_source": "vision",
-      "functional_context": "On line entering compressor K-V-201",
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 36.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "ADJACENT_TO",
-      "association_confidence": 0.72,
-      "nearby_candidates": []
-    },
-    {
-      "candidate_id": "e3a60482",
-      "patch_id": 33,
-      "symbol_name": "Spectacle Blind",
-      "symbol_category": "piping",
-      "tag_text": "SB 6IN",
-      "tag_text_gemini": "SB 6\"",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 5985,
-        "y1": 625,
-        "x2": 6096,
-        "y2": 651
-      },
-      "tag_bbox": {
-        "x1": 6023,
-        "y1": 561,
-        "x2": 6128,
-        "y2": 606
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "UNSPECIFIED",
-      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.95,
-      "tag_source": "vision",
-      "functional_context": "On line entering compressor K-V-201",
-      "connected_pipe": "",
-      "connected_equipment": "7f396e15",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 19.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "CONTAINED_WITHIN",
-      "association_confidence": 0.805,
       "nearby_candidates": []
     },
     {
@@ -8139,11 +7412,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Temperature measurement on compressor inlet",
-      "connected_pipe": "PIPE@(6243,919)",
+      "connected_pipe": "PIPE@(6243,918)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 109.6,
+      "pipe_distance_px": 108.9,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
       "nearby_candidates": []
@@ -8175,11 +7448,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Gear box connected to a motor or compressor",
-      "connected_pipe": "PIPE@(6585,919)",
+      "connected_pipe": "PIPE@(6584,919)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 26.0,
-      "pipe_distance_px": 92.6,
+      "pipe_distance_px": 93.6,
       "spatial_relationship": "ADJACENT_TO",
       "association_confidence": 0.77,
       "nearby_candidates": []
@@ -8211,11 +7484,11 @@
       "vision_confidence": 0.95,
       "tag_source": "both",
       "functional_context": "Blocked discharge relief valve",
-      "connected_pipe": "PIPE@(7858,957)",
+      "connected_pipe": "PIPE@(7916,1040)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 68.6,
+      "pipe_distance_px": 68.4,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
       "nearby_candidates": []
@@ -8299,11 +7572,11 @@
       "vision_confidence": 0.9,
       "tag_source": "ocr",
       "functional_context": "Valve on 10\" line",
-      "connected_pipe": "PIPE@(8741,1142)",
+      "connected_pipe": "PIPE@(8740,1142)",
       "connected_equipment": "1df65283",
       "leader_line_detected": true,
       "leader_line_distance_px": 8.0,
-      "pipe_distance_px": 46.0,
+      "pipe_distance_px": 45.1,
       "spatial_relationship": "CONTAINED_WITHIN",
       "association_confidence": 0.86,
       "nearby_candidates": [
@@ -8591,7 +7864,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Temperature alarm high high",
-      "connected_pipe": "PIPE@(3965,1558)",
+      "connected_pipe": "PIPE@(3964,1558)",
       "connected_equipment": "1495a636",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -9141,11 +8414,6 @@
           "candidate_id": "78865203",
           "tag_text": "212",
           "distance_px": 47.5
-        },
-        {
-          "candidate_id": "60ff4ca8",
-          "tag_text": "UNKNOWN",
-          "distance_px": 190.8
         }
       ]
     },
@@ -9193,11 +8461,6 @@
           "candidate_id": "78865203",
           "tag_text": "212",
           "distance_px": 62.7
-        },
-        {
-          "candidate_id": "60ff4ca8",
-          "tag_text": "UNKNOWN",
-          "distance_px": 150.0
         }
       ]
     },
@@ -9271,13 +8534,7 @@
       "pipe_distance_px": null,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.87,
-      "nearby_candidates": [
-        {
-          "candidate_id": "0b87c15b",
-          "tag_text": "UNKNOWN",
-          "distance_px": 16.0
-        }
-      ]
+      "nearby_candidates": []
     },
     {
       "candidate_id": "5cc59888",
@@ -9306,20 +8563,14 @@
       "vision_confidence": 0.95,
       "tag_source": "ocr",
       "functional_context": "On 1 1/2\" line",
-      "connected_pipe": "PIPE@(6563,1770)",
+      "connected_pipe": "PIPE@(6563,1769)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 9.0,
       "pipe_distance_px": 118.6,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.855,
-      "nearby_candidates": [
-        {
-          "candidate_id": "fdcaa605",
-          "tag_text": "V-GV-91",
-          "distance_px": 47.9
-        }
-      ]
+      "nearby_candidates": []
     },
     {
       "candidate_id": "aace5d5f",
@@ -9525,7 +8776,7 @@
       "vision_confidence": 0.95,
       "tag_source": "both",
       "functional_context": "High high temperature alarm",
-      "connected_pipe": "PIPE@(7193,1703)",
+      "connected_pipe": "PIPE@(7193,1702)",
       "connected_equipment": "3e4d4635",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -9539,42 +8790,6 @@
           "distance_px": 52.5
         }
       ]
-    },
-    {
-      "candidate_id": "2524b8fd",
-      "patch_id": 57,
-      "symbol_name": "Motor",
-      "symbol_category": "equipment",
-      "tag_text": "KM-V-201",
-      "tag_text_gemini": "KM-V-201",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 7182,
-        "y1": 1019,
-        "x2": 7571,
-        "y2": 1097
-      },
-      "tag_bbox": {
-        "x1": 7193,
-        "y1": 1019,
-        "x2": 7560,
-        "y2": 1088
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "IN_SCOPE",
-      "sow_reason": "Exact match in USE: Motor",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.95,
-      "tag_source": "both",
-      "functional_context": "Motor equipment tag",
-      "connected_pipe": "PIPE@(7389,1097)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 38.8,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
     },
     {
       "candidate_id": "72925131",
@@ -9701,11 +8916,6 @@
           "distance_px": 155.4
         },
         {
-          "candidate_id": "7ccd7492",
-          "tag_text": "V-BV-2246",
-          "distance_px": 42.2
-        },
-        {
           "candidate_id": "c29cd2fa",
           "tag_text": "V-BV-2245",
           "distance_px": 163.7
@@ -9753,11 +8963,6 @@
           "distance_px": 155.4
         },
         {
-          "candidate_id": "7ccd7492",
-          "tag_text": "V-BV-2246",
-          "distance_px": 115.4
-        },
-        {
           "candidate_id": "c29cd2fa",
           "tag_text": "V-BV-2245",
           "distance_px": 13.0
@@ -9791,11 +8996,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "On main horizontal line",
-      "connected_pipe": "PIPE@(8741,1142)",
+      "connected_pipe": "PIPE@(8740,1142)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 7.0,
-      "pipe_distance_px": 38.8,
+      "pipe_distance_px": 37.8,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.865,
       "nearby_candidates": [
@@ -9867,42 +9072,6 @@
           "distance_px": 141.8
         }
       ]
-    },
-    {
-      "candidate_id": "b009f9a5",
-      "patch_id": 61,
-      "symbol_name": "Piping Line Number",
-      "symbol_category": "piping",
-      "tag_text": "10IN-GV-V272-11502X",
-      "tag_text_gemini": "10\"-GV-V272-11502X",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 8888,
-        "y1": 1241,
-        "x2": 9370,
-        "y2": 1289
-      },
-      "tag_bbox": {
-        "x1": 8888,
-        "y1": 1241,
-        "x2": 9370,
-        "y2": 1289
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "UNSPECIFIED",
-      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.99,
-      "tag_source": "vision",
-      "functional_context": "Piping line going to flare header",
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
     },
     {
       "candidate_id": "8d22fc2d",
@@ -10045,7 +9214,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Relief valve with set pressure 65barg.",
-      "connected_pipe": "PIPE@(3758,1855)",
+      "connected_pipe": "PIPE@(3757,1855)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -10092,7 +9261,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Ball valve on a 1\" line.",
-      "connected_pipe": "PIPE@(3700,1938)",
+      "connected_pipe": "PIPE@(3699,1938)",
       "connected_equipment": "099fa92d",
       "leader_line_detected": true,
       "leader_line_distance_px": 18.0,
@@ -10149,7 +9318,7 @@
       "vision_confidence": 0.95,
       "tag_source": "both",
       "functional_context": "Temperature alarm on line",
-      "connected_pipe": "PIPE@(3965,1558)",
+      "connected_pipe": "PIPE@(3964,1558)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -10285,7 +9454,7 @@
       "vision_confidence": 0.95,
       "tag_source": "both",
       "functional_context": "Temperature measurement",
-      "connected_pipe": "PIPE@(4653,1833)",
+      "connected_pipe": "PIPE@(4652,1833)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -10472,7 +9641,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "temperature measurement",
-      "connected_pipe": "PIPE@(4653,1833)",
+      "connected_pipe": "PIPE@(4652,1833)",
       "connected_equipment": "0c782bad",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -10586,7 +9755,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "temperature measurement",
-      "connected_pipe": "PIPE@(4896,1841)",
+      "connected_pipe": "PIPE@(4896,1840)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -10633,7 +9802,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "temperature measurement",
-      "connected_pipe": "PIPE@(4896,1841)",
+      "connected_pipe": "PIPE@(4896,1840)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -10722,7 +9891,7 @@
       "vision_confidence": 0.95,
       "tag_source": "both",
       "functional_context": "Connected to piping line",
-      "connected_pipe": "PIPE@(5508,1546)",
+      "connected_pipe": "PIPE@(5507,1546)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -10758,7 +9927,7 @@
       "vision_confidence": 0.95,
       "tag_source": "both",
       "functional_context": "Connected to TE-211 and TI-211",
-      "connected_pipe": "PIPE@(5508,1546)",
+      "connected_pipe": "PIPE@(5507,1546)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -10900,147 +10069,6 @@
           "candidate_id": "84c64be8",
           "tag_text": "PIT-212",
           "distance_px": 62.7
-        },
-        {
-          "candidate_id": "60ff4ca8",
-          "tag_text": "UNKNOWN",
-          "distance_px": 192.4
-        }
-      ]
-    },
-    {
-      "candidate_id": "fdcaa605",
-      "patch_id": 76,
-      "symbol_name": "Gate Valve",
-      "symbol_category": "valve",
-      "tag_text": "V-GV-91",
-      "tag_text_gemini": "V-GV-91",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 6614,
-        "y1": 1380,
-        "x2": 6667,
-        "y2": 1399
-      },
-      "tag_bbox": {
-        "x1": 6565,
-        "y1": 1404,
-        "x2": 6727,
-        "y2": 1437
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "IN_SCOPE",
-      "sow_reason": "Exact match in USE: Gate Valve",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.95,
-      "tag_source": "vision",
-      "functional_context": "valve on piping line",
-      "connected_pipe": "PIPE@(6563,1770)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 5.0,
-      "pipe_distance_px": 78.1,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.875,
-      "nearby_candidates": [
-        {
-          "candidate_id": "5cc59888",
-          "tag_text": "V-GV-917",
-          "distance_px": 47.9
-        }
-      ]
-    },
-    {
-      "candidate_id": "0b87c15b",
-      "patch_id": 76,
-      "symbol_name": "Gate Valve",
-      "symbol_category": "valve",
-      "tag_text": "UNKNOWN",
-      "tag_text_gemini": "UNKNOWN",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 6361,
-        "y1": 1380,
-        "x2": 6431,
-        "y2": 1402
-      },
-      "tag_bbox": {
-        "x1": 6361,
-        "y1": 1380,
-        "x2": 6431,
-        "y2": 1402
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "IN_SCOPE",
-      "sow_reason": "Exact match in USE: Gate Valve",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.9,
-      "tag_source": "vision",
-      "functional_context": "valve on piping line",
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": [
-        {
-          "candidate_id": "87c03136",
-          "tag_text": "V-GV-91",
-          "distance_px": 16.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "60ff4ca8",
-      "patch_id": 76,
-      "symbol_name": "Gate Valve",
-      "symbol_category": "valve",
-      "tag_text": "UNKNOWN",
-      "tag_text_gemini": "UNKNOWN",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 6143,
-        "y1": 1380,
-        "x2": 6212,
-        "y2": 1401
-      },
-      "tag_bbox": {
-        "x1": 6143,
-        "y1": 1380,
-        "x2": 6212,
-        "y2": 1401
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "IN_SCOPE",
-      "sow_reason": "Exact match in USE: Gate Valve",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.9,
-      "tag_source": "vision",
-      "functional_context": "valve on piping line",
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": [
-        {
-          "candidate_id": "91b652fc",
-          "tag_text": "V-PIT-212",
-          "distance_px": 190.8
-        },
-        {
-          "candidate_id": "84c64be8",
-          "tag_text": "PIT-212",
-          "distance_px": 150.0
-        },
-        {
-          "candidate_id": "78865203",
-          "tag_text": "212",
-          "distance_px": 192.4
         }
       ]
     },
@@ -11383,7 +10411,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Temperature Alarm High High",
-      "connected_pipe": "PIPE@(7193,1703)",
+      "connected_pipe": "PIPE@(7193,1702)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -11483,58 +10511,6 @@
       ]
     },
     {
-      "candidate_id": "7ccd7492",
-      "patch_id": 80,
-      "symbol_name": "Ball Valve",
-      "symbol_category": "valve",
-      "tag_text": "V-BV-2246",
-      "tag_text_gemini": "V-BV-2246",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 8069,
-        "y1": 1380,
-        "x2": 8147,
-        "y2": 1395
-      },
-      "tag_bbox": {
-        "x1": 7963,
-        "y1": 1401,
-        "x2": 8147,
-        "y2": 1438
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "IN_SCOPE",
-      "sow_reason": "Exact match in USE: Ball Valve",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.95,
-      "tag_source": "both",
-      "functional_context": "Valve on piping line",
-      "connected_pipe": "",
-      "connected_equipment": "9d18dc54",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 6.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "CONTAINED_WITHIN",
-      "association_confidence": 0.87,
-      "nearby_candidates": [
-        {
-          "candidate_id": "9d18dc54",
-          "tag_text": "V-BV-2248",
-          "distance_px": 42.2
-        },
-        {
-          "candidate_id": "df572981",
-          "tag_text": "V-BV-2248",
-          "distance_px": 115.4
-        },
-        {
-          "candidate_id": "c29cd2fa",
-          "tag_text": "V-BV-2245",
-          "distance_px": 122.8
-        }
-      ]
-    },
-    {
       "candidate_id": "c29cd2fa",
       "patch_id": 80,
       "symbol_name": "Ball Valve",
@@ -11578,11 +10554,6 @@
           "candidate_id": "df572981",
           "tag_text": "V-BV-2248",
           "distance_px": 13.0
-        },
-        {
-          "candidate_id": "7ccd7492",
-          "tag_text": "V-BV-2246",
-          "distance_px": 122.8
         }
       ]
     },
@@ -11991,11 +10962,11 @@
       "vision_confidence": 0.95,
       "tag_source": "ocr",
       "functional_context": "On 2\" line",
-      "connected_pipe": "PIPE@(3369,2135)",
+      "connected_pipe": "PIPE@(3368,2135)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 6.0,
-      "pipe_distance_px": 24.6,
+      "pipe_distance_px": 25.5,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.87,
       "nearby_candidates": [
@@ -12043,7 +11014,7 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "On 1\" line branching off 2\" line",
-      "connected_pipe": "PIPE@(3700,1938)",
+      "connected_pipe": "PIPE@(3699,1938)",
       "connected_equipment": "099fa92d",
       "leader_line_detected": true,
       "leader_line_distance_px": 18.0,
@@ -12100,11 +11071,11 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "On piping line",
-      "connected_pipe": "PIPE@(3739,2135)",
+      "connected_pipe": "PIPE@(3738,2135)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 17.0,
-      "pipe_distance_px": 86.2,
+      "pipe_distance_px": 86.3,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.815,
       "nearby_candidates": [
@@ -12194,7 +11165,7 @@
       "vision_confidence": 0.9,
       "tag_source": "ocr",
       "functional_context": "Piping line",
-      "connected_pipe": "PIPE@(5178,2283)",
+      "connected_pipe": "PIPE@(5177,2283)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -12325,7 +11296,7 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "Piping line",
-      "connected_pipe": "PIPE@(5178,2283)",
+      "connected_pipe": "PIPE@(5177,2283)",
       "connected_equipment": "8fe48ab4",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -12663,11 +11634,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Temperature transmitter",
-      "connected_pipe": "PIPE@(6709,2321)",
+      "connected_pipe": "PIPE@(6708,2321)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 66.5,
+      "pipe_distance_px": 67.5,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
       "nearby_candidates": [
@@ -12860,7 +11831,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Vertical piping line",
-      "connected_pipe": "PIPE@(8216,2081)",
+      "connected_pipe": "PIPE@(8216,2080)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -12896,7 +11867,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Horizontal piping line",
-      "connected_pipe": "PIPE@(7774,2451)",
+      "connected_pipe": "PIPE@(7773,2451)",
       "connected_equipment": "337001b6",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -12938,7 +11909,7 @@
       "vision_confidence": 0.95,
       "tag_source": "ocr",
       "functional_context": "Main process line",
-      "connected_pipe": "PIPE@(7774,2451)",
+      "connected_pipe": "PIPE@(7773,2451)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -12952,42 +11923,6 @@
           "distance_px": 140.0
         }
       ]
-    },
-    {
-      "candidate_id": "06447535",
-      "patch_id": 104,
-      "symbol_name": "Gas Cooler",
-      "symbol_category": "equipment",
-      "tag_text": "01/E-V-201A",
-      "tag_text_gemini": "01/E-V-201A",
-      "tag_text_ocr": "01/E-V-201A",
-      "symbol_bbox": {
-        "x1": 9200,
-        "y1": 2275,
-        "x2": 9530,
-        "y2": 2327
-      },
-      "tag_bbox": {
-        "x1": 9200,
-        "y1": 2275,
-        "x2": 9530,
-        "y2": 2327
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "UNSPECIFIED",
-      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
-      "ocr_confidence": 0.71,
-      "vision_confidence": 0.9,
-      "tag_source": "ocr",
-      "functional_context": "Gas Cooler",
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
     },
     {
       "candidate_id": "e2a574fe",
@@ -13058,11 +11993,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Position switch closed for valve",
-      "connected_pipe": "PIPE@(1613,2445)",
+      "connected_pipe": "PIPE@(1612,2445)",
       "connected_equipment": "ec20c1ad",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 109.5,
+      "pipe_distance_px": 109.8,
       "spatial_relationship": "CONTAINED_WITHIN",
       "association_confidence": 0.9,
       "nearby_candidates": [
@@ -13204,11 +12139,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Limit switch for ESDV-209",
-      "connected_pipe": "PIPE@(1613,2445)",
+      "connected_pipe": "PIPE@(1612,2445)",
       "connected_equipment": "31a87276",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 111.2,
+      "pipe_distance_px": 111.6,
       "spatial_relationship": "CONTAINED_WITHIN",
       "association_confidence": 0.9,
       "nearby_candidates": [
@@ -13350,11 +12285,11 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "On 12\" line",
-      "connected_pipe": "PIPE@(2360,2918)",
+      "connected_pipe": "PIPE@(2359,2918)",
       "connected_equipment": "e5be9097",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 42.5,
+      "pipe_distance_px": 43.4,
       "spatial_relationship": "CONTAINED_WITHIN",
       "association_confidence": 0.9,
       "nearby_candidates": [
@@ -13491,11 +12426,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Check valve in a piping line.",
-      "connected_pipe": "PIPE@(2360,2918)",
+      "connected_pipe": "PIPE@(2359,2918)",
       "connected_equipment": "e5be9097",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 52.1,
+      "pipe_distance_px": 53.1,
       "spatial_relationship": "CONTAINED_WITHIN",
       "association_confidence": 0.9,
       "nearby_candidates": [
@@ -13543,47 +12478,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Piping line entering from left",
-      "connected_pipe": "PIPE@(3727,2421)",
+      "connected_pipe": "PIPE@(3726,2421)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
       "pipe_distance_px": 2.6,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
-      "candidate_id": "ad24589e",
-      "patch_id": 112,
-      "symbol_name": "Equipment Tag",
-      "symbol_category": "equipment",
-      "tag_text": "V-V-201",
-      "tag_text_gemini": "V-V-201",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 3253,
-        "y1": 2602,
-        "x2": 3569,
-        "y2": 2663
-      },
-      "tag_bbox": {
-        "x1": 3253,
-        "y1": 2602,
-        "x2": 3569,
-        "y2": 2663
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "UNSPECIFIED",
-      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.95,
-      "tag_source": "vision",
-      "functional_context": "Equipment tag for vessel",
-      "connected_pipe": "PIPE@(3413,2684)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 51.5,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
       "nearby_candidates": []
@@ -13651,7 +12550,7 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "Piping line size and rating",
-      "connected_pipe": "PIPE@(3834,3393)",
+      "connected_pipe": "PIPE@(3834,3392)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -13915,11 +12814,11 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "Connected to piping line",
-      "connected_pipe": "PIPE@(5023,2654)",
+      "connected_pipe": "PIPE@(5023,2653)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 61.5,
+      "pipe_distance_px": 60.6,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
       "nearby_candidates": [
@@ -13962,7 +12861,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Temperature transmitter",
-      "connected_pipe": "PIPE@(5131,2861)",
+      "connected_pipe": "PIPE@(5130,2861)",
       "connected_equipment": "b2c6ba88",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -14004,7 +12903,7 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "Piping line connected to flow element",
-      "connected_pipe": "PIPE@(5520,2612)",
+      "connected_pipe": "PIPE@(5519,2612)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -14046,7 +12945,7 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "Piping line",
-      "connected_pipe": "PIPE@(5577,2442)",
+      "connected_pipe": "PIPE@(5576,2442)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -14088,11 +12987,11 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "Piping line",
-      "connected_pipe": "PIPE@(6318,2374)",
+      "connected_pipe": "PIPE@(6317,2374)",
       "connected_equipment": "e1e309a3",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 3.9,
+      "pipe_distance_px": 4.0,
       "spatial_relationship": "CONTAINED_WITHIN",
       "association_confidence": 0.9,
       "nearby_candidates": [
@@ -14130,7 +13029,7 @@
       "vision_confidence": 0.95,
       "tag_source": "both",
       "functional_context": "Piping line",
-      "connected_pipe": "PIPE@(6318,2374)",
+      "connected_pipe": "PIPE@(6317,2374)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -14302,7 +13201,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Main process line",
-      "connected_pipe": "PIPE@(7774,2451)",
+      "connected_pipe": "PIPE@(7773,2451)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -14359,78 +13258,6 @@
       ]
     },
     {
-      "candidate_id": "2a4b49cb",
-      "patch_id": 127,
-      "symbol_name": "Piping Line Number",
-      "symbol_category": "piping",
-      "tag_text": "12\u00b0-ETH-VO06-C03B",
-      "tag_text_gemini": "12\"-ETH-V006-C03B",
-      "tag_text_ocr": "12\u00b0-ETH-VO06-C03B",
-      "symbol_bbox": {
-        "x1": 472,
-        "y1": 3104,
-        "x2": 926,
-        "y2": 3148
-      },
-      "tag_bbox": {
-        "x1": 472,
-        "y1": 3104,
-        "x2": 926,
-        "y2": 3148
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "UNSPECIFIED",
-      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
-      "ocr_confidence": 0.5,
-      "vision_confidence": 0.95,
-      "tag_source": "vision",
-      "functional_context": "Piping line number",
-      "connected_pipe": "PIPE@(727,3175)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 48.9,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
-      "candidate_id": "df46fe86",
-      "patch_id": 127,
-      "symbol_name": "Valve",
-      "symbol_category": "valve",
-      "tag_text": "V-XV-202",
-      "tag_text_gemini": "V-XV-202",
-      "tag_text_ocr": "V-XV-202",
-      "symbol_bbox": {
-        "x1": 460,
-        "y1": 3336,
-        "x2": 683,
-        "y2": 3379
-      },
-      "tag_bbox": {
-        "x1": 460,
-        "y1": 3336,
-        "x2": 683,
-        "y2": 3379
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "UNSPECIFIED",
-      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
-      "ocr_confidence": 0.48,
-      "vision_confidence": 0.95,
-      "tag_source": "vision",
-      "functional_context": "Valve tag",
-      "connected_pipe": "PIPE@(696,3417)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 58.8,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
       "candidate_id": "5c3f90c1",
       "patch_id": 127,
       "symbol_name": "Instrument Bubble",
@@ -14457,11 +13284,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Instrument tag",
-      "connected_pipe": "PIPE@(1381,3239)",
+      "connected_pipe": "PIPE@(1380,3239)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 96.1,
+      "pipe_distance_px": 95.1,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
       "nearby_candidates": []
@@ -14493,11 +13320,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "On 12\" line",
-      "connected_pipe": "PIPE@(1719,2918)",
+      "connected_pipe": "PIPE@(1718,2918)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 14.0,
-      "pipe_distance_px": 52.7,
+      "pipe_distance_px": 51.7,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.83,
       "nearby_candidates": []
@@ -14529,11 +13356,11 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "On 2\" line",
-      "connected_pipe": "PIPE@(1645,3050)",
+      "connected_pipe": "PIPE@(1645,3049)",
       "connected_equipment": "d8512055",
       "leader_line_detected": true,
       "leader_line_distance_px": 2.0,
-      "pipe_distance_px": 37.5,
+      "pipe_distance_px": 38.2,
       "spatial_relationship": "CONTAINED_WITHIN",
       "association_confidence": 0.89,
       "nearby_candidates": [
@@ -14607,11 +13434,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Valve on piping line",
-      "connected_pipe": "PIPE@(1645,3050)",
+      "connected_pipe": "PIPE@(1645,3049)",
       "connected_equipment": "cb65f3ca",
       "leader_line_detected": true,
       "leader_line_distance_px": 12.0,
-      "pipe_distance_px": 31.3,
+      "pipe_distance_px": 32.2,
       "spatial_relationship": "CONTAINED_WITHIN",
       "association_confidence": 0.84,
       "nearby_candidates": [
@@ -14649,7 +13476,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Valve on piping line",
-      "connected_pipe": "PIPE@(1975,3119)",
+      "connected_pipe": "PIPE@(1975,3118)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 11.0,
@@ -14694,71 +13521,9 @@
       "association_confidence": 0.8,
       "nearby_candidates": [
         {
-          "candidate_id": "be4452c0",
-          "tag_text": "V-BV-761",
-          "distance_px": 76.7
-        },
-        {
-          "candidate_id": "324eb383",
-          "tag_text": "V-BV-76",
-          "distance_px": 23.7
-        },
-        {
           "candidate_id": "07cc4af3",
           "tag_text": "V-BV-761",
           "distance_px": 38.1
-        }
-      ]
-    },
-    {
-      "candidate_id": "be4452c0",
-      "patch_id": 130,
-      "symbol_name": "Ball Valve",
-      "symbol_category": "valve",
-      "tag_text": "V-BV-761",
-      "tag_text_gemini": "V-BV-761",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 2161,
-        "y1": 3358,
-        "x2": 2186,
-        "y2": 3384
-      },
-      "tag_bbox": {
-        "x1": 1972,
-        "y1": 3355,
-        "x2": 1995,
-        "y2": 3075
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "IN_SCOPE",
-      "sow_reason": "Exact match in USE: Ball Valve",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.9,
-      "tag_source": "vision",
-      "functional_context": "On a 2\" line, near a level controller.",
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": false,
-      "leader_line_distance_px": null,
-      "pipe_distance_px": null,
-      "spatial_relationship": "ISOLATED",
-      "association_confidence": 0.3,
-      "nearby_candidates": [
-        {
-          "candidate_id": "98f48f8b",
-          "tag_text": "V-BV-1920",
-          "distance_px": 76.7
-        },
-        {
-          "candidate_id": "324eb383",
-          "tag_text": "V-BV-76",
-          "distance_px": 81.7
-        },
-        {
-          "candidate_id": "07cc4af3",
-          "tag_text": "V-BV-761",
-          "distance_px": 56.5
         }
       ]
     },
@@ -14789,11 +13554,11 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "On the main 12\" line.",
-      "connected_pipe": "PIPE@(2360,2918)",
+      "connected_pipe": "PIPE@(2359,2918)",
       "connected_equipment": "542b4e4e",
       "leader_line_detected": true,
       "leader_line_distance_px": 4.0,
-      "pipe_distance_px": 37.6,
+      "pipe_distance_px": 38.6,
       "spatial_relationship": "CONTAINED_WITHIN",
       "association_confidence": 0.88,
       "nearby_candidates": [
@@ -14893,11 +13658,11 @@
       "vision_confidence": 0.95,
       "tag_source": "ocr",
       "functional_context": "On main horizontal line",
-      "connected_pipe": "PIPE@(2360,2918)",
+      "connected_pipe": "PIPE@(2359,2918)",
       "connected_equipment": "e5be9097",
       "leader_line_detected": true,
       "leader_line_distance_px": 1.0,
-      "pipe_distance_px": 48.3,
+      "pipe_distance_px": 49.2,
       "spatial_relationship": "CONTAINED_WITHIN",
       "association_confidence": 0.895,
       "nearby_candidates": [
@@ -15012,7 +13777,7 @@
       "vision_confidence": 0.85,
       "tag_source": "vision",
       "functional_context": "Vertical branch line",
-      "connected_pipe": "PIPE@(3025,3057)",
+      "connected_pipe": "PIPE@(3025,3056)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -15247,13 +14012,13 @@
       "vision_confidence": 0.95,
       "tag_source": "both",
       "functional_context": "On line to temporary suction strainer",
-      "connected_pipe": "PIPE@(4470,3039)",
+      "connected_pipe": "PIPE@(4469,3039)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 60.0,
-      "pipe_distance_px": 17.0,
+      "pipe_distance_px": 16.1,
       "spatial_relationship": "CONNECTED_TO",
-      "association_confidence": 0.643,
+      "association_confidence": 0.646,
       "nearby_candidates": [
         {
           "candidate_id": "8cc51fa2",
@@ -15325,20 +14090,14 @@
       "vision_confidence": 0.9,
       "tag_source": "both",
       "functional_context": "Filters debris from the suction line",
-      "connected_pipe": "PIPE@(4508,3354)",
+      "connected_pipe": "PIPE@(4507,3354)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 36.0,
       "pipe_distance_px": 94.9,
       "spatial_relationship": "ADJACENT_TO",
       "association_confidence": 0.72,
-      "nearby_candidates": [
-        {
-          "candidate_id": "3d40e54b",
-          "tag_text": "S-V-204",
-          "distance_px": 61.9
-        }
-      ]
+      "nearby_candidates": []
     },
     {
       "candidate_id": "8cc51fa2",
@@ -15367,7 +14126,7 @@
       "vision_confidence": 0.8,
       "tag_source": "both",
       "functional_context": "Isolation valve for PDI-201",
-      "connected_pipe": "PIPE@(4470,3039)",
+      "connected_pipe": "PIPE@(4469,3039)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 14.0,
@@ -15409,7 +14168,7 @@
       "vision_confidence": 0.8,
       "tag_source": "both",
       "functional_context": "Isolation valve for PDI-201",
-      "connected_pipe": "PIPE@(4470,3039)",
+      "connected_pipe": "PIPE@(4469,3039)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 14.0,
@@ -15456,11 +14215,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Instrument bubble T-217C",
-      "connected_pipe": "PIPE@(5131,2861)",
+      "connected_pipe": "PIPE@(5130,2861)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 100.2,
+      "pipe_distance_px": 99.2,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
       "nearby_candidates": [
@@ -15545,7 +14304,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Instrument bubble T-274B",
-      "connected_pipe": "PIPE@(4744,3258)",
+      "connected_pipe": "PIPE@(4743,3258)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -15581,7 +14340,7 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "Gate valve V-GV-910",
-      "connected_pipe": "PIPE@(4470,3039)",
+      "connected_pipe": "PIPE@(4469,3039)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 6.0,
@@ -15784,7 +14543,7 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "High select logic block",
-      "connected_pipe": "PIPE@(6355,3531)",
+      "connected_pipe": "PIPE@(6354,3531)",
       "connected_equipment": "0891214b",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -16233,7 +14992,7 @@
       "vision_confidence": 0.95,
       "tag_source": "ocr",
       "functional_context": "Piping line",
-      "connected_pipe": "PIPE@(1369,3455)",
+      "connected_pipe": "PIPE@(1368,3455)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -16275,7 +15034,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Piping line number",
-      "connected_pipe": "PIPE@(1369,3455)",
+      "connected_pipe": "PIPE@(1368,3455)",
       "connected_equipment": "fd0cbaae",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -16287,58 +15046,6 @@
           "candidate_id": "fd0cbaae",
           "tag_text": "2IN-ETH-V067\u201461440X",
           "distance_px": 144.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "324eb383",
-      "patch_id": 150,
-      "symbol_name": "Ball Valve",
-      "symbol_category": "valve",
-      "tag_text": "V-BV-76",
-      "tag_text_gemini": "V-BV-76",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 2101,
-        "y1": 3291,
-        "x2": 2130,
-        "y2": 3336
-      },
-      "tag_bbox": {
-        "x1": 1961,
-        "y1": 3366,
-        "x2": 2126,
-        "y2": 3403
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "IN_SCOPE",
-      "sow_reason": "Exact match in USE: Ball Valve",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.9,
-      "tag_source": "vision",
-      "functional_context": "Ball valve",
-      "connected_pipe": "",
-      "connected_equipment": "07cc4af3",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 30.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "CONTAINED_WITHIN",
-      "association_confidence": 0.8,
-      "nearby_candidates": [
-        {
-          "candidate_id": "98f48f8b",
-          "tag_text": "V-BV-1920",
-          "distance_px": 23.7
-        },
-        {
-          "candidate_id": "be4452c0",
-          "tag_text": "V-BV-761",
-          "distance_px": 81.7
-        },
-        {
-          "candidate_id": "07cc4af3",
-          "tag_text": "V-BV-761",
-          "distance_px": 58.0
         }
       ]
     },
@@ -16381,16 +15088,6 @@
           "candidate_id": "98f48f8b",
           "tag_text": "V-BV-1920",
           "distance_px": 38.1
-        },
-        {
-          "candidate_id": "be4452c0",
-          "tag_text": "V-BV-761",
-          "distance_px": 56.5
-        },
-        {
-          "candidate_id": "324eb383",
-          "tag_text": "V-BV-76",
-          "distance_px": 58.0
         }
       ]
     },
@@ -16863,20 +15560,14 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Connected to piping",
-      "connected_pipe": "PIPE@(4508,3354)",
+      "connected_pipe": "PIPE@(4507,3354)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 95.7,
+      "pipe_distance_px": 94.7,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
-      "nearby_candidates": [
-        {
-          "candidate_id": "3d40e54b",
-          "tag_text": "S-V-204",
-          "distance_px": 186.0
-        }
-      ]
+      "nearby_candidates": []
     },
     {
       "candidate_id": "2a1acea9",
@@ -16952,7 +15643,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Connected to LIT-204",
-      "connected_pipe": "PIPE@(4698,3611)",
+      "connected_pipe": "PIPE@(4697,3611)",
       "connected_equipment": "b3860065",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -17016,53 +15707,6 @@
           "candidate_id": "a848216c",
           "tag_text": "LIT-206",
           "distance_px": 32.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "3d40e54b",
-      "patch_id": 156,
-      "symbol_name": "Strainer",
-      "symbol_category": "equipment",
-      "tag_text": "S-V-204",
-      "tag_text_gemini": "S-V-204",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 4359,
-        "y1": 3299,
-        "x2": 4523,
-        "y2": 3334
-      },
-      "tag_bbox": {
-        "x1": 4374,
-        "y1": 3463,
-        "x2": 4557,
-        "y2": 3503
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "UNSPECIFIED",
-      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.9,
-      "tag_source": "vision",
-      "functional_context": "Temporary suction strainer",
-      "connected_pipe": "PIPE@(4508,3354)",
-      "connected_equipment": "51ff74cc",
-      "leader_line_detected": false,
-      "leader_line_distance_px": null,
-      "pipe_distance_px": 36.4,
-      "spatial_relationship": "CONTAINED_WITHIN",
-      "association_confidence": 0.8,
-      "nearby_candidates": [
-        {
-          "candidate_id": "51ff74cc",
-          "tag_text": "S-V-204",
-          "distance_px": 61.9
-        },
-        {
-          "candidate_id": "16ea59d1",
-          "tag_text": "T-274A",
-          "distance_px": 186.0
         }
       ]
     },
@@ -17145,7 +15789,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Level control",
-      "connected_pipe": "PIPE@(4698,3611)",
+      "connected_pipe": "PIPE@(4697,3611)",
       "connected_equipment": "fdb0cef5",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -17187,7 +15831,7 @@
       "vision_confidence": 0.95,
       "tag_source": "ocr",
       "functional_context": "Isolation valve",
-      "connected_pipe": "PIPE@(4864,3964)",
+      "connected_pipe": "PIPE@(4863,3964)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 11.0,
@@ -17244,7 +15888,7 @@
       "vision_confidence": 0.95,
       "tag_source": "ocr",
       "functional_context": "Process line",
-      "connected_pipe": "PIPE@(5156,3358)",
+      "connected_pipe": "PIPE@(5155,3358)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -17364,7 +16008,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "High select relay receiving inputs from low suction pressure override and individual suction pressure control.",
-      "connected_pipe": "PIPE@(6355,3531)",
+      "connected_pipe": "PIPE@(6354,3531)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -17406,7 +16050,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "LOW SELECT relay",
-      "connected_pipe": "PIPE@(7914,3752)",
+      "connected_pipe": "PIPE@(7913,3752)",
       "connected_equipment": "841355a2",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -17448,7 +16092,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Logic block",
-      "connected_pipe": "PIPE@(8299,3594)",
+      "connected_pipe": "PIPE@(8298,3594)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -17484,11 +16128,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Logic block",
-      "connected_pipe": "",
+      "connected_pipe": "PIPE@(8279,3928)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": null,
+      "pipe_distance_px": 23.7,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
       "nearby_candidates": [
@@ -17526,7 +16170,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Connected to a logic line",
-      "connected_pipe": "PIPE@(8604,3594)",
+      "connected_pipe": "PIPE@(8603,3594)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -17713,11 +16357,11 @@
       "vision_confidence": 0.95,
       "tag_source": "both",
       "functional_context": "On a 2\" 600# line",
-      "connected_pipe": "PIPE@(4367,4053)",
+      "connected_pipe": "PIPE@(4366,4053)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 11.0,
-      "pipe_distance_px": 54.2,
+      "pipe_distance_px": 53.7,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.845,
       "nearby_candidates": [
@@ -17880,13 +16524,13 @@
       "vision_confidence": 0.85,
       "tag_source": "both",
       "functional_context": "Isolation valve",
-      "connected_pipe": "PIPE@(4351,3943)",
+      "connected_pipe": "PIPE@(4351,3942)",
       "connected_equipment": "",
       "leader_line_detected": false,
       "leader_line_distance_px": null,
-      "pipe_distance_px": 37.8,
+      "pipe_distance_px": 36.8,
       "spatial_relationship": "ADJACENT_TO",
-      "association_confidence": 0.574,
+      "association_confidence": 0.577,
       "nearby_candidates": [
         {
           "candidate_id": "0f96753c",
@@ -17927,7 +16571,7 @@
       "vision_confidence": 0.85,
       "tag_source": "both",
       "functional_context": "Isolation valve",
-      "connected_pipe": "PIPE@(4864,3964)",
+      "connected_pipe": "PIPE@(4863,3964)",
       "connected_equipment": "3188bbc0",
       "leader_line_detected": true,
       "leader_line_distance_px": 25.0,
@@ -18124,7 +16768,7 @@
       "vision_confidence": 0.9,
       "tag_source": "vision",
       "functional_context": "Isolation valve",
-      "connected_pipe": "PIPE@(4864,3964)",
+      "connected_pipe": "PIPE@(4863,3964)",
       "connected_equipment": "3188bbc0",
       "leader_line_detected": true,
       "leader_line_distance_px": 7.0,
@@ -18207,7 +16851,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Logic controller receiving multiple inputs",
-      "connected_pipe": "PIPE@(7914,3752)",
+      "connected_pipe": "PIPE@(7913,3752)",
       "connected_equipment": "e8ece525",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -18291,7 +16935,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Pressure indicating controller",
-      "connected_pipe": "PIPE@(8282,4471)",
+      "connected_pipe": "PIPE@(8281,4471)",
       "connected_equipment": "709ae5f1",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -18385,11 +17029,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Connected to a signal line",
-      "connected_pipe": "",
+      "connected_pipe": "PIPE@(8279,3928)",
       "connected_equipment": "0b434d51",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": null,
+      "pipe_distance_px": 7.7,
       "spatial_relationship": "CONTAINED_WITHIN",
       "association_confidence": 0.9,
       "nearby_candidates": [
@@ -18511,7 +17155,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Connected to a signal line",
-      "connected_pipe": "PIPE@(8282,4471)",
+      "connected_pipe": "PIPE@(8281,4471)",
       "connected_equipment": "124d4b76",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -18608,11 +17252,6 @@
       "association_confidence": 0.84,
       "nearby_candidates": [
         {
-          "candidate_id": "49562fcf",
-          "tag_text": "V-GV-921",
-          "distance_px": 177.9
-        },
-        {
           "candidate_id": "908439b1",
           "tag_text": "V-GV-922",
           "distance_px": 11.0
@@ -18621,63 +17260,6 @@
           "candidate_id": "10ecd544",
           "tag_text": "V-GV-922",
           "distance_px": 197.1
-        }
-      ]
-    },
-    {
-      "candidate_id": "49562fcf",
-      "patch_id": 196,
-      "symbol_name": "Gate Valve",
-      "symbol_category": "valve",
-      "tag_text": "V-GV-921",
-      "tag_text_gemini": "V-GV-921",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 3964,
-        "y1": 4718,
-        "x2": 3970,
-        "y2": 4790
-      },
-      "tag_bbox": {
-        "x1": 3922,
-        "y1": 4701,
-        "x2": 3955,
-        "y2": 4880
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "IN_SCOPE",
-      "sow_reason": "Exact match in USE: Gate Valve",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.9,
-      "tag_source": "vision",
-      "functional_context": "On 1/2\" line branching down",
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 9.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.855,
-      "nearby_candidates": [
-        {
-          "candidate_id": "27406fcf",
-          "tag_text": "V-GV-920",
-          "distance_px": 177.9
-        },
-        {
-          "candidate_id": "908439b1",
-          "tag_text": "V-GV-922",
-          "distance_px": 170.4
-        },
-        {
-          "candidate_id": "10ecd544",
-          "tag_text": "V-GV-922",
-          "distance_px": 26.0
-        },
-        {
-          "candidate_id": "bfa095f4",
-          "tag_text": "T-246A",
-          "distance_px": 187.7
         }
       ]
     },
@@ -18764,11 +17346,6 @@
           "distance_px": 11.0
         },
         {
-          "candidate_id": "49562fcf",
-          "tag_text": "V-GV-921",
-          "distance_px": 170.4
-        },
-        {
           "candidate_id": "10ecd544",
           "tag_text": "V-GV-922",
           "distance_px": 188.9
@@ -18814,11 +17391,6 @@
           "candidate_id": "27406fcf",
           "tag_text": "V-GV-920",
           "distance_px": 197.1
-        },
-        {
-          "candidate_id": "49562fcf",
-          "tag_text": "V-GV-921",
-          "distance_px": 26.0
         },
         {
           "candidate_id": "908439b1",
@@ -18868,11 +17440,6 @@
       "association_confidence": 0.9,
       "nearby_candidates": [
         {
-          "candidate_id": "49562fcf",
-          "tag_text": "V-GV-921",
-          "distance_px": 187.7
-        },
-        {
           "candidate_id": "10ecd544",
           "tag_text": "V-GV-922",
           "distance_px": 162.2
@@ -18916,11 +17483,11 @@
       "vision_confidence": 0.95,
       "tag_source": "both",
       "functional_context": "Manual isolation valve",
-      "connected_pipe": "PIPE@(4413,4586)",
+      "connected_pipe": "PIPE@(4412,4586)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 7.0,
-      "pipe_distance_px": 62.0,
+      "pipe_distance_px": 61.2,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.865,
       "nearby_candidates": [
@@ -19493,7 +18060,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Pressure control loop",
-      "connected_pipe": "PIPE@(8282,4471)",
+      "connected_pipe": "PIPE@(8281,4471)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -19545,7 +18112,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Unknown",
-      "connected_pipe": "PIPE@(8282,4471)",
+      "connected_pipe": "PIPE@(8281,4471)",
       "connected_equipment": "709ae5f1",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -19607,48 +18174,6 @@
       "nearby_candidates": []
     },
     {
-      "candidate_id": "bfdf2eab",
-      "patch_id": 217,
-      "symbol_name": "Piping Line",
-      "symbol_category": "piping",
-      "tag_text": "1\u00b0-D-V00",
-      "tag_text_gemini": "1\"-D-V00",
-      "tag_text_ocr": "1\u00b0-D-V00",
-      "symbol_bbox": {
-        "x1": 3711,
-        "y1": 5035,
-        "x2": 3970,
-        "y2": 5038
-      },
-      "tag_bbox": {
-        "x1": 3748,
-        "y1": 4982,
-        "x2": 3970,
-        "y2": 5027
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "UNSPECIFIED",
-      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
-      "ocr_confidence": 0.41,
-      "vision_confidence": 0.85,
-      "tag_source": "both",
-      "functional_context": "Horizontal piping line",
-      "connected_pipe": "PIPE@(3946,5048)",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 8.0,
-      "pipe_distance_px": 11.0,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.86,
-      "nearby_candidates": [
-        {
-          "candidate_id": "1da223cc",
-          "tag_text": "1IN-D-V006-C06B",
-          "distance_px": 115.6
-        }
-      ]
-    },
-    {
       "candidate_id": "1da223cc",
       "patch_id": 218,
       "symbol_name": "Piping Line Number",
@@ -19675,20 +18200,14 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Horizontal line",
-      "connected_pipe": "PIPE@(3946,5048)",
+      "connected_pipe": "PIPE@(3945,5048)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
       "pipe_distance_px": 45.5,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
-      "nearby_candidates": [
-        {
-          "candidate_id": "bfdf2eab",
-          "tag_text": "1\u00b0-D-V00",
-          "distance_px": 115.6
-        }
-      ]
+      "nearby_candidates": []
     },
     {
       "candidate_id": "75b02e5d",
@@ -19717,11 +18236,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "On horizontal line",
-      "connected_pipe": "PIPE@(3946,5048)",
+      "connected_pipe": "PIPE@(3945,5048)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 3.0,
-      "pipe_distance_px": 30.9,
+      "pipe_distance_px": 31.8,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.885,
       "nearby_candidates": [
@@ -19729,11 +18248,6 @@
           "candidate_id": "3800d4fc",
           "tag_text": "V-GV-922",
           "distance_px": 95.0
-        },
-        {
-          "candidate_id": "55e6973c",
-          "tag_text": "V-GV-923",
-          "distance_px": 118.7
         }
       ]
     },
@@ -19776,11 +18290,6 @@
           "candidate_id": "75b02e5d",
           "tag_text": "V-GLV-523",
           "distance_px": 95.0
-        },
-        {
-          "candidate_id": "55e6973c",
-          "tag_text": "V-GV-923",
-          "distance_px": 34.3
         },
         {
           "candidate_id": "82954db4",
@@ -19942,7 +18451,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Position switch, closed",
-      "connected_pipe": "PIPE@(5066,4988)",
+      "connected_pipe": "PIPE@(5065,4988)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -20026,7 +18535,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Position switch, open",
-      "connected_pipe": "PIPE@(4938,5142)",
+      "connected_pipe": "PIPE@(4938,5141)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -20110,11 +18619,11 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Limit switch open connected to logic",
-      "connected_pipe": "PIPE@(5744,5312)",
+      "connected_pipe": "PIPE@(5744,5311)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
-      "pipe_distance_px": 116.1,
+      "pipe_distance_px": 116.0,
       "spatial_relationship": "ATTACHED_TO",
       "association_confidence": 0.9,
       "nearby_candidates": [
@@ -20152,7 +18661,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Flow relay/converter",
-      "connected_pipe": "PIPE@(5953,5162)",
+      "connected_pipe": "PIPE@(5953,5161)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -20260,7 +18769,7 @@
       "vision_confidence": 0.95,
       "tag_source": "ocr",
       "functional_context": "Piping line number",
-      "connected_pipe": "PIPE@(4173,5487)",
+      "connected_pipe": "PIPE@(4172,5487)",
       "connected_equipment": "aa66471e",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -20302,7 +18811,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Piping line number",
-      "connected_pipe": "PIPE@(4173,5487)",
+      "connected_pipe": "PIPE@(4172,5487)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -20314,58 +18823,6 @@
           "candidate_id": "581f5123",
           "tag_text": "10IN\u2014ETH-V061",
           "distance_px": 114.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "55e6973c",
-      "patch_id": 240,
-      "symbol_name": "Gate Valve",
-      "symbol_category": "valve",
-      "tag_text": "V-GV-923",
-      "tag_text_gemini": "V-GV-923",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 4261,
-        "y1": 5060,
-        "x2": 4365,
-        "y2": 5069
-      },
-      "tag_bbox": {
-        "x1": 4266,
-        "y1": 5073,
-        "x2": 4432,
-        "y2": 5111
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "IN_SCOPE",
-      "sow_reason": "Exact match in USE: Gate Valve",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.95,
-      "tag_source": "vision",
-      "functional_context": "Valve on piping line",
-      "connected_pipe": "PIPE@(4237,5241)",
-      "connected_equipment": "3800d4fc",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 4.0,
-      "pipe_distance_px": 78.7,
-      "spatial_relationship": "CONTAINED_WITHIN",
-      "association_confidence": 0.88,
-      "nearby_candidates": [
-        {
-          "candidate_id": "75b02e5d",
-          "tag_text": "V-GLV-523",
-          "distance_px": 118.7
-        },
-        {
-          "candidate_id": "3800d4fc",
-          "tag_text": "V-GV-922",
-          "distance_px": 34.3
-        },
-        {
-          "candidate_id": "82954db4",
-          "tag_text": "T-246C",
-          "distance_px": 156.9
         }
       ]
     },
@@ -20408,11 +18865,6 @@
           "candidate_id": "3800d4fc",
           "tag_text": "V-GV-922",
           "distance_px": 188.0
-        },
-        {
-          "candidate_id": "55e6973c",
-          "tag_text": "V-GV-923",
-          "distance_px": 156.9
         },
         {
           "candidate_id": "58780712",
@@ -20526,7 +18978,7 @@
       "vision_confidence": 0.95,
       "tag_source": "vision",
       "functional_context": "Piping line",
-      "connected_pipe": "PIPE@(7507,5487)",
+      "connected_pipe": "PIPE@(7506,5487)",
       "connected_equipment": "",
       "leader_line_detected": true,
       "leader_line_distance_px": 0.0,
@@ -20578,78 +19030,6 @@
       ]
     },
     {
-      "candidate_id": "3a366457",
-      "patch_id": 251,
-      "symbol_name": "Piping Line Number",
-      "symbol_category": "piping",
-      "tag_text": "2IN-ETH-V018",
-      "tag_text_gemini": "2\"-ETH-V018",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 9200,
-        "y1": 5371,
-        "x2": 9503,
-        "y2": 5420
-      },
-      "tag_bbox": {
-        "x1": 9200,
-        "y1": 5371,
-        "x2": 9503,
-        "y2": 5420
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "UNSPECIFIED",
-      "sow_reason": "NO_SCOPE_DEFINITION_FOUND",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.95,
-      "tag_source": "vision",
-      "functional_context": "Piping line designation",
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
-      "candidate_id": "123637c3",
-      "patch_id": 251,
-      "symbol_name": "Vessel",
-      "symbol_category": "equipment",
-      "tag_text": "V-V-03",
-      "tag_text_gemini": "V-V-03",
-      "tag_text_ocr": null,
-      "symbol_bbox": {
-        "x1": 9575,
-        "y1": 5648,
-        "x2": 9755,
-        "y2": 5697
-      },
-      "tag_bbox": {
-        "x1": 9575,
-        "y1": 5648,
-        "x2": 9755,
-        "y2": 5697
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "IN_SCOPE",
-      "sow_reason": "Exact match in USE: Vessel",
-      "ocr_confidence": 0.0,
-      "vision_confidence": 0.95,
-      "tag_source": "vision",
-      "functional_context": "Drain vessel tag",
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
-    },
-    {
       "candidate_id": "8e30156b",
       "patch_id": 270,
       "symbol_name": "Piping Line Number",
@@ -20690,42 +19070,6 @@
           "distance_px": 11.0
         }
       ]
-    },
-    {
-      "candidate_id": "3d1cbb34",
-      "patch_id": 296,
-      "symbol_name": "Heat Exchanger",
-      "symbol_category": "equipment",
-      "tag_text": "E-V-201",
-      "tag_text_gemini": "E-V-201",
-      "tag_text_ocr": "E-V-201",
-      "symbol_bbox": {
-        "x1": 948,
-        "y1": 6864,
-        "x2": 1331,
-        "y2": 6921
-      },
-      "tag_bbox": {
-        "x1": 1136,
-        "y1": 6864,
-        "x2": 1331,
-        "y2": 6921
-      },
-      "scope_type": "FULL_DRAWING",
-      "sow_status": "IN_SCOPE",
-      "sow_reason": "Exact match in USE: Heat Exchanger",
-      "ocr_confidence": 0.4,
-      "vision_confidence": 0.9,
-      "tag_source": "ocr",
-      "functional_context": "Mentioned in notes as part of existing equipment",
-      "connected_pipe": "",
-      "connected_equipment": "",
-      "leader_line_detected": true,
-      "leader_line_distance_px": 0.0,
-      "pipe_distance_px": null,
-      "spatial_relationship": "ATTACHED_TO",
-      "association_confidence": 0.9,
-      "nearby_candidates": []
     }
   ]
 }

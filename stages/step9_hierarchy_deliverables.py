@@ -68,6 +68,21 @@ NOISE_RELS = {"JUNCTION_OF", "ADJACENT_TO"}
 VIRTUAL_KINDS = {"pipeline", "junction"}
 CONTROL_KINDS = {"valve"}      # valves / actuators = control devices (orange)
 
+# Pipe-spec line numbers (e.g. 12IN-ETH-V012, 2IN-GV-V273, 1°-D-V003) are NOT
+# equipment — they are piping line numbers. Detect by kind or by leading-digit
+# spec patterns so they go to the dedicated "Piping Lines" sheet, not the
+# Equipment Hierarchy sheet.
+PIPING_SPEC_RE1 = re.compile(r"^\d+[\w°]*[-]")   # 12IN-ETH-V012, 2IN-GV-V273, 7-61440X
+PIPING_SPEC_RE2 = re.compile(r"^\d+°?-[A-Z]")    # 1°-D-V003, 12-ETH-...
+
+
+def is_piping_node(kind, tag_text):
+    """True if a node is a piping line number rather than real equipment/instrument."""
+    if kind == "piping":
+        return True
+    t = (tag_text or "").strip()
+    return bool(PIPING_SPEC_RE1.match(t) or PIPING_SPEC_RE2.match(t))
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Load + index
@@ -444,11 +459,15 @@ def write_sheet(ws, headers, rows, sev_col=None):
 def build_hierarchy_excel(M: HierModel, rels, cross_rows, out_path):
     wb = openpyxl.Workbook()
 
-    # Sheet 1 — Equipment Hierarchy
+    # Sheet 1 — Asset Hierarchy (P1a: piping line numbers excluded → Piping Lines sheet)
     ws = wb.active
-    ws.title = "Equipment Hierarchy"
+    ws.title = "Asset Hierarchy"
     rows = []
+    piping_nodes = []
     for nid, h in sorted(M.hier.items(), key=lambda kv: (len(M.ancestor_ids(kv[0])), M.label(kv[0]))):
+        if is_piping_node(h.get("kind", ""), M.label(nid)):
+            piping_nodes.append(nid)
+            continue
         anc = M.ancestor_tags(nid)
         pid, via = M.effective_parent(nid)
         parent_disp = M.label(pid) if pid else (f"LINE:{M.label(via)}" if via else "NULL")
@@ -461,6 +480,14 @@ def build_hierarchy_excel(M: HierModel, rels, cross_rows, out_path):
     write_sheet(ws, ["Plant", "Area", "System", "Functional Location", "Parent Equipment",
                      "Equipment", "Equipment Description", "Equipment Type",
                      "Hierarchy Level", "Path", "Source Drawing", "Confidence"], rows)
+
+    # Sheet 1b — Piping Lines (P1b: line numbers excluded from Asset Hierarchy, placed in Piping Lines sheet)
+    wsp = wb.create_sheet("Piping Lines")
+    prows = [[M.label(nid), M.description(nid), M.source_drawing, M.confidence(nid)]
+             for nid in sorted(piping_nodes, key=lambda n: M.label(n))]
+    if not prows:
+        prows = [["—", "No piping line numbers detected", "", ""]]
+    write_sheet(wsp, ["Line Number", "Description", "Source Drawing", "Confidence"], prows)
 
     # Sheet 2 — Parent Child Relationships
     ws2 = wb.create_sheet("Parent Child Relationships")
@@ -488,9 +515,9 @@ def build_hierarchy_excel(M: HierModel, rels, cross_rows, out_path):
     write_sheet(ws4, ["Source Drawing", "Source Tag", "Referenced Drawing",
                       "Referenced Tag", "Relationship"], crows)
 
-    # Sheet 5 — Orphan Nodes
+    # Sheet 5 — Orphan Nodes (P1c: dedup by tag_text, keep highest-confidence instance)
     ws5 = wb.create_sheet("Orphan Nodes")
-    orows = []
+    best_by_tag = {}   # tag_text → (confidence_float, row)
     for nid, h in M.hier.items():
         pid, via = M.effective_parent(nid)
         # connected if it has an equipment parent OR is attached to a process line
@@ -507,10 +534,17 @@ def build_hierarchy_excel(M: HierModel, rels, cross_rows, out_path):
             if no_sys:    reasons.append("no system")
             if no_fl:     reasons.append("no functional location")
             if isolated:  reasons.append("isolated (no graph edge)")
-            orows.append([M.label(nid), M.hier[nid].get("kind", ""),
-                          "YES" if no_parent else "", "YES" if no_fl else "",
-                          "YES" if no_sys else "", "YES" if isolated else "",
-                          "; ".join(reasons) or "line-rooted (review)"])
+            row = [M.label(nid), M.hier[nid].get("kind", ""),
+                   "YES" if no_parent else "", "YES" if no_fl else "",
+                   "YES" if no_sys else "", "YES" if isolated else "",
+                   "; ".join(reasons) or "line-rooted (review)"]
+            conf = M.confidence(nid)
+            conf_f = float(conf) if isinstance(conf, (int, float)) else -1.0
+            tag = (M.hier[nid].get("tag_text") or M.label(nid))
+            prev = best_by_tag.get(tag)
+            if prev is None or conf_f > prev[0]:
+                best_by_tag[tag] = (conf_f, row)
+    orows = [v[1] for v in sorted(best_by_tag.values(), key=lambda x: x[1][0])]
     if not orows:
         orows = [["—", "—", "", "", "", "", "No orphan nodes"]]
     write_sheet(ws5, ["Node", "Kind", "No Parent Found", "No Functional Location",
