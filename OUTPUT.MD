@@ -17,4 +17,6 @@ INFO ✓ step5a_candidates.json → output/step5a_candidates.json
 
   Output: output/step5a_candidates.json
 
+
+$env:GEMINI_KEY = "AIzaSyDTSjEd1aWHKuloe3_uTXbq3g5KmAZUOT8"
   
