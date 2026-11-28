@@ -21,6 +21,7 @@ from langgraph.graph import END, START, StateGraph
 from api.evals import evaluate_pair
 from api.model_routing import apply_model_routing
 from api.observability import append_jsonl, emit_event
+from api.store import JobStore
 
 
 class WorkflowState(TypedDict, total=False):
@@ -46,6 +47,7 @@ def _event(state: WorkflowState, event: str, **fields: Any) -> None:
     record = emit_event(event, job_id=state["job_id"], **fields)
     _, out = _paths(state)
     append_jsonl(out / "events.jsonl", record)
+    JobStore(out.parent.parent / "jobs.sqlite3").event(state["job_id"], event, **fields)
 
 
 def _run(state: WorkflowState, stage: str, script: str, args: list[str],
