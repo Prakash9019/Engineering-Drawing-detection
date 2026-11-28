@@ -40,7 +40,7 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 # ── Detection parameters ──────────────────────────────────────────────────────
-GEMINI_MODEL          = "gemini-3.1-pro-preview"
+GEMINI_MODEL          = os.getenv("CDCI_MODEL_CLOUD", "gemini-3.1-pro-preview")
 GEMINI_TEMPERATURE    = 0.0           # deterministic decoding (best-effort)
 GEMINI_SEED           = 42            # fixed seed for reproducible sampling
 GEMINI_CACHE_NAME     = "gemini_cloud_cache.json"  # content-hash response cache

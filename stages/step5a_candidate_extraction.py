@@ -69,7 +69,7 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 # ── Model config (per Gemini Multimodal Strategy doc) ─────────────────────────
-GEMINI_MODEL     = "gemini-3.1-pro-preview"
+GEMINI_MODEL     = os.getenv("CDCI_MODEL_EXTRACTION", "gemini-3.1-pro-preview")
 GEMINI_FALLBACK  = "gemini-2.5-pro"
 TEMPERATURE      = 0.0      # mandatory for deterministic extraction
 MEDIA_RESOLUTION = "MEDIA_RESOLUTION_HIGH"

@@ -5,6 +5,88 @@
 
 ---
 
+## Windows setup (PowerShell)
+
+Run from the cloned repository root. These commands replace the old macOS absolute path and shell syntax.
+
+```powershell
+# macOS equivalent retained: cd /Users/suryaprakash/Downloads/cdci_extractor_final
+Set-Location (git rev-parse --show-toplevel)
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+py -3 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+winget install -e --id UB-Mannheim.TesseractOCR
+winget install -e --id oschwartz10612.Poppler
+
+# Add Tesseract and Poppler binaries to this PowerShell session's PATH.
+$TesseractPath = "C:\Program Files\Tesseract-OCR"
+if (Test-Path $TesseractPath) { $env:Path = "$TesseractPath;$env:Path" }
+$PopplerRoot = Join-Path $env:LOCALAPPDATA "Microsoft\WinGet\Packages\oschwartz10612.Poppler_*"
+$PopplerBin = Get-ChildItem -Path $PopplerRoot -Directory -Recurse -ErrorAction SilentlyContinue |
+    Where-Object { Test-Path (Join-Path $_.FullName "pdftotext.exe") } |
+    Select-Object -First 1 -ExpandProperty FullName
+if ($PopplerBin) { $env:Path = "$PopplerBin;$env:Path" }
+
+# macOS equivalents: brew install tesseract poppler
+Get-Command tesseract, pdffonts, pdftotext, pdfinfo, pdftoppm -ErrorAction Stop | Select-Object Name, Source
+
+# Set these in this PowerShell session. Keep .env out of Git.
+$env:GEMINI_KEY = "YOUR_GEMINI_API_KEY"
+$env:DRAWING = "input_drawing.jpg"
+$env:REGISTER = "ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx"
+$env:SOW = "ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx"
+New-Item -ItemType Directory -Force output | Out-Null
+```
+
+## Full pipeline — Windows PowerShell
+
+```powershell
+$ErrorActionPreference = "Stop"
+$KEY = $env:GEMINI_KEY
+$DRAWING = "input_drawing.jpg"
+$REGISTER = "ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx"
+$SOW = "ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx"
+if ([string]::IsNullOrWhiteSpace($KEY)) { throw "Set GEMINI_KEY first." }
+New-Item -ItemType Directory -Force output | Out-Null
+
+# PHASE 1 — Context
+python stages/step1_format_detect.py $DRAWING --out output/ --api-key $KEY
+python stages/step2_title_block.py --context output/drawing_context.json --api-key $KEY
+python stages/step2b_cloud_detection.py $DRAWING --out output/ --api-key $KEY
+
+# Optional browser-based cloud review
+python step2c_cloud_editor/step2c_cloud_editor.py --image $DRAWING --clouds output/outer_clouds_v2.json --overlay output/overlay_v2.jpg --out output/
+python stages/step3_notes_agent.py --context output/drawing_context.json --api-key $KEY
+python stages/step4_sow_agent.py build --excel $SOW --out output/ --skip-vision
+python stages/step6_table_agent.py --context output/drawing_context.json --api-key $KEY
+
+# Build FULL-drawing hierarchy first; preserve its inputs before any cloud-scoped run.
+python stages/step5a_candidate_extraction.py --context output/drawing_context.json --api-key $KEY --workers 1 --force-full-drawing --out output/
+Copy-Item output/step5a_candidates.json output/step5a_candidates_full.json -Force
+python stages/step5b_geometric_association.py --candidates output/step5a_candidates_full.json --image $DRAWING --out output/
+Copy-Item output/step5b_associations.json output/step5b_associations_full.json -Force
+python stages/step5b2_hierarchy.py --associations output/step5b_associations_full.json --image $DRAWING --out output/
+python stages/step9_hierarchy_deliverables.py --hierarchy output/step5b2_hierarchy_full.json --context output/drawing_context.json --out output/
+
+# Revision deliverable extraction. Omit --force-full-drawing for cloud scope.
+python stages/step5a_candidate_extraction.py --context output/drawing_context.json --api-key $KEY --workers 1 --out output/
+python stages/step5b_geometric_association.py --candidates output/step5a_candidates.json --image $DRAWING --out output/
+python stages/step5c_validation_engine.py --associations output/step5b_associations.json --register $REGISTER --notes output/notes_context.json --out output/
+python stages/step5d_duplicate_resolution.py --validated output/step5c_validated.json --out output/
+python stages/step7_cedm_normalizer.py --final output/step5_final_output.json --context output/drawing_context.json --out output/ --project CDCI --hierarchy output/step5b2_hierarchy_full.json
+python stages/step8_confidence_router.py --cedm output/step7_cedm_output.json --context output/drawing_context.json --out output/
+
+# Reporting
+python stages/eval_coverage.py --candidates output/step5a_candidates.json --register $REGISTER --image $DRAWING --out output/
+python stages/compare_final_vs_annexure4.py --final output/final_tags.xlsx --register $REGISTER --out output/final_tags_vs_annexure4.xlsx
+python stages/stage_visualizer.py --candidates output/step5a_candidates.json --deduped output/step5d_deduped.json --sow output/sow_symbol_memory.json --image $DRAWING --out output/stages/
+```
+
+## Outputs and benchmark
+
 ## What you get at the end
 
 | Deliverable | Path | Purpose |
@@ -31,20 +113,20 @@ Latest full-sheet run stats: `AUTO_ACCEPT 142/198 (71.7%)`, `AUTO_REJECT 0`, avg
 
 ---
 
-## Prerequisites (run once per machine)
+## macOS / Linux setup (original commands retained as comments)
 
 ```bash
-cd /Users/suryprakash/Downloads/cdci_extractor_final
-python3 -m venv .venv          
-source .venv/bin/activate
-pip install -r requirements.txt
-brew install tesseract         # macOS OCR dependency
-export $(grep -v '^#' .env | xargs)
-echo $GEMINI_KEY               
-
-export DRAWING="input_drawing.jpg"
-export REGISTER="ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx"
-
+# cd /Users/suryprakash/Downloads/cdci_extractor_final
+# python3 -m venv .venv          
+# source .venv/bin/activate
+# pip install -r requirements.txt
+# brew install tesseract         # macOS OCR dependency
+# export $(grep -v '^#' .env | xargs)
+# echo $GEMINI_KEY               
+#
+# export DRAWING="input_drawing.jpg"
+# export REGISTER="ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx"
+#
 ```
 
 | Setting | Value |
@@ -55,106 +137,106 @@ export REGISTER="ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx"
 
 ---
 
-## Full pipeline — all commands in one place
+## macOS / Linux full pipeline (original commands retained as comments)
 
 ```bash
-cd /Users/suryprakash/Downloads/cdci_extractor_final
-source .venv/bin/activate
-export $(grep -v '^#' .env | xargs)
-export DRAWING="input_drawing.jpg"
-export REGISTER="ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx"
-export SOW="ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx"
-
-# ══════════════════════════════════════════════════════════════════════════════
-# PHASE 1 — Context (run once per drawing, ~2–4 min, Gemini API)
-# ══════════════════════════════════════════════════════════════════════════════
-
-python3 stages/step1_format_detect.py  $DRAWING --out output/ --api-key $GEMINI_KEY
-python3 stages/step2_title_block.py    --context output/drawing_context.json --api-key $GEMINI_KEY
-python3 stages/step2b_cloud_detection.py $DRAWING --out output/ --api-key $GEMINI_KEY
-
-# OPTIONAL — step2c: human review & correction of revision clouds (browser, no API).
-# Skip it and step5a falls back to step2b output automatically (pipeline still runs).
-python3 step2c_cloud_editor/step2c_cloud_editor.py \
-  --image $DRAWING --clouds output/outer_clouds_v2.json \
-  --overlay output/overlay_v2.jpg --out output/
-# edit clouds in browser → click Done → writes approved_clouds.json + cloud_mask_approved.png + overlay_approved.jpg, then exits
-
-python3 stages/step3_notes_agent.py    --context output/drawing_context.json --api-key $GEMINI_KEY
-python3 stages/step4_sow_agent.py build --excel $SOW --out output/ --skip-vision
-python3 stages/step6_table_agent.py    --context output/drawing_context.json --api-key $GEMINI_KEY
-
-# ══════════════════════════════════════════════════════════════════════════════
-# PHASE 2 — Tag extraction (~1–5 min depending on mode, Gemini API)
-# ══════════════════════════════════════════════════════════════════════════════
-
-# Option A — FULL SHEET (best Annexure-4 recall, recommended for register comparison)
-python3 stages/step5a_candidate_extraction.py \
-  --context output/drawing_context.json --api-key $GEMINI_KEY --workers 8 \
-  --force-full-drawing
-
-# Option B — CLOUD SCOPE ONLY (default when drawing_context has extraction_scope=CLOUD_ONLY)
-python3 stages/step5a_candidate_extraction.py \
-  --context output/drawing_context.json --api-key $GEMINI_KEY --workers 8
-
-# ══════════════════════════════════════════════════════════════════════════════
-# PHASE 3 — Post-processing (no API, < 30 s)
-# ══════════════════════════════════════════════════════════════════════════════
-
-python3 stages/step5b_geometric_association.py \
-  --candidates output/step5a_candidates.json --image $DRAWING --out output/
-
-# step5b2 — connectivity graph + hierarchy + flow direction (Track B) + control
-# loops (Track C). Side-branch off step5b; REQUIRED before step7 — step7 reads
-# step5b2_hierarchy.json for PARENT_EQUIP / FLOW / CONTROL_LOOP / isolation
-# enrichment. MUST be re-run whenever step5a/step5b change, or step7 silently
-# uses a STALE hierarchy (candidate_ids won't match → zero enrichment).
-# Deterministic by default; add --gemini-flow-fallback for category-D flow (~6
-# Gemini calls, cached in gemini_flow_cache.json).
-python3 stages/step5b2_hierarchy.py \
-  --associations output/step5b_associations_full.json --image $DRAWING --out output/
-  # default --associations is step5b_associations_full.json (FULL drawing).
-  # If absent, falls back to step5b_associations.json WITH A WARNING (hierarchy
-  # may be cloud-incomplete). See "Hierarchy pipeline" section above.
-  # Writes step5b2_hierarchy_full.json (primary) + step5b2_hierarchy.json (alias).
-  # optional: --gemini-flow-fallback --api-key $GEMINI_KEY
-
-python3 stages/step5c_validation_engine.py \
-  --associations output/step5b_associations.json \
-  --register $REGISTER --notes output/notes_context.json --out output/
-
-python3 stages/step5d_duplicate_resolution.py \
-  --validated output/step5c_validated.json --out output/
-
-# ══════════════════════════════════════════════════════════════════════════════
-# PHASE 4 — Deliverable (no API, < 10 s)
-# ══════════════════════════════════════════════════════════════════════════════
-
-python3 stages/step7_cedm_normalizer.py \
-  --final output/step5_final_output.json \
-  --context output/drawing_context.json --out output/ --project CDCI
-
-python3 stages/step8_confidence_router.py \
-  --cedm output/step7_cedm_output.json \
-  --context output/drawing_context.json --out output/
-
-# ══════════════════════════════════════════════════════════════════════════════
-# PHASE 5 — Reporting / QA (optional, no API)
-# ══════════════════════════════════════════════════════════════════════════════
-
-python3 stages/eval_coverage.py \
-  --candidates output/step5a_candidates.json \
-  --register $REGISTER --image $DRAWING --out output/
-
-python3 stages/compare_final_vs_annexure4.py \
-  --final output/final_tags.xlsx --register $REGISTER \
-  --out output/final_tags_vs_annexure4.xlsx
-
-python3 stages/stage_visualizer.py \
-  --candidates output/step5a_candidates.json \
-  --deduped output/step5d_deduped.json \
-  --sow output/sow_symbol_memory.json \
-  --image $DRAWING --out output/stages/
+# cd /Users/suryprakash/Downloads/cdci_extractor_final
+# source .venv/bin/activate
+# export $(grep -v '^#' .env | xargs)
+# export DRAWING="input_drawing.jpg"
+# export REGISTER="ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx"
+# export SOW="ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx"
+#
+# # ══════════════════════════════════════════════════════════════════════════════
+# # PHASE 1 — Context (run once per drawing, ~2–4 min, Gemini API)
+# # ══════════════════════════════════════════════════════════════════════════════
+#
+# python3 stages/step1_format_detect.py  $DRAWING --out output/ --api-key $GEMINI_KEY
+# python3 stages/step2_title_block.py    --context output/drawing_context.json --api-key $GEMINI_KEY
+# python3 stages/step2b_cloud_detection.py $DRAWING --out output/ --api-key $GEMINI_KEY
+#
+# # OPTIONAL — step2c: human review & correction of revision clouds (browser, no API).
+# # Skip it and step5a falls back to step2b output automatically (pipeline still runs).
+# python3 step2c_cloud_editor/step2c_cloud_editor.py \
+#   --image $DRAWING --clouds output/outer_clouds_v2.json \
+#   --overlay output/overlay_v2.jpg --out output/
+# # edit clouds in browser → click Done → writes approved_clouds.json + cloud_mask_approved.png + overlay_approved.jpg, then exits
+#
+# python3 stages/step3_notes_agent.py    --context output/drawing_context.json --api-key $GEMINI_KEY
+# python3 stages/step4_sow_agent.py build --excel $SOW --out output/ --skip-vision
+# python3 stages/step6_table_agent.py    --context output/drawing_context.json --api-key $GEMINI_KEY
+#
+# # ══════════════════════════════════════════════════════════════════════════════
+# # PHASE 2 — Tag extraction (~1–5 min depending on mode, Gemini API)
+# # ══════════════════════════════════════════════════════════════════════════════
+#
+# # Option A — FULL SHEET (best Annexure-4 recall, recommended for register comparison)
+# python3 stages/step5a_candidate_extraction.py \
+#   --context output/drawing_context.json --api-key $GEMINI_KEY --workers 8 \
+#   --force-full-drawing
+#
+# # Option B — CLOUD SCOPE ONLY (default when drawing_context has extraction_scope=CLOUD_ONLY)
+# python3 stages/step5a_candidate_extraction.py \
+#   --context output/drawing_context.json --api-key $GEMINI_KEY --workers 8
+#
+# # ══════════════════════════════════════════════════════════════════════════════
+# # PHASE 3 — Post-processing (no API, < 30 s)
+# # ══════════════════════════════════════════════════════════════════════════════
+#
+# python3 stages/step5b_geometric_association.py \
+#   --candidates output/step5a_candidates.json --image $DRAWING --out output/
+#
+# # step5b2 — connectivity graph + hierarchy + flow direction (Track B) + control
+# # loops (Track C). Side-branch off step5b; REQUIRED before step7 — step7 reads
+# # step5b2_hierarchy.json for PARENT_EQUIP / FLOW / CONTROL_LOOP / isolation
+# # enrichment. MUST be re-run whenever step5a/step5b change, or step7 silently
+# # uses a STALE hierarchy (candidate_ids won't match → zero enrichment).
+# # Deterministic by default; add --gemini-flow-fallback for category-D flow (~6
+# # Gemini calls, cached in gemini_flow_cache.json).
+# python3 stages/step5b2_hierarchy.py \
+#   --associations output/step5b_associations_full.json --image $DRAWING --out output/
+#   # default --associations is step5b_associations_full.json (FULL drawing).
+#   # If absent, falls back to step5b_associations.json WITH A WARNING (hierarchy
+#   # may be cloud-incomplete). See "Hierarchy pipeline" section above.
+#   # Writes step5b2_hierarchy_full.json (primary) + step5b2_hierarchy.json (alias).
+#   # optional: --gemini-flow-fallback --api-key $GEMINI_KEY
+#
+# python3 stages/step5c_validation_engine.py \
+#   --associations output/step5b_associations.json \
+#   --register $REGISTER --notes output/notes_context.json --out output/
+#
+# python3 stages/step5d_duplicate_resolution.py \
+#   --validated output/step5c_validated.json --out output/
+#
+# # ══════════════════════════════════════════════════════════════════════════════
+# # PHASE 4 — Deliverable (no API, < 10 s)
+# # ══════════════════════════════════════════════════════════════════════════════
+#
+# python3 stages/step7_cedm_normalizer.py \
+#   --final output/step5_final_output.json \
+#   --context output/drawing_context.json --out output/ --project CDCI
+#
+# python3 stages/step8_confidence_router.py \
+#   --cedm output/step7_cedm_output.json \
+#   --context output/drawing_context.json --out output/
+#
+# # ══════════════════════════════════════════════════════════════════════════════
+# # PHASE 5 — Reporting / QA (optional, no API)
+# # ══════════════════════════════════════════════════════════════════════════════
+#
+# python3 stages/eval_coverage.py \
+#   --candidates output/step5a_candidates.json \
+#   --register $REGISTER --image $DRAWING --out output/
+#
+# python3 stages/compare_final_vs_annexure4.py \
+#   --final output/final_tags.xlsx --register $REGISTER \
+#   --out output/final_tags_vs_annexure4.xlsx
+#
+# python3 stages/stage_visualizer.py \
+#   --candidates output/step5a_candidates.json \
+#   --deduped output/step5d_deduped.json \
+#   --sow output/sow_symbol_memory.json \
+#   --image $DRAWING --out output/stages/
 ```
 
 **Resume after failure:** each step writes its own output file. Delete that file and re-run from that step forward. Never delete `output/drawing_context.json` mid-pipeline.
@@ -169,36 +251,49 @@ instrument can have a parent equipment that was only detected outside the
 cloud, so the hierarchy must see the whole sheet. The revision *deliverable*
 still uses cloud extraction (Phase 2 Option B) — these are two separate chains.
 
+### Windows PowerShell equivalent
+
+```powershell
+python stages/step5a_candidate_extraction.py --context output/drawing_context.json --api-key $env:GEMINI_KEY --workers 1 --force-full-drawing --out output/
+Copy-Item output/step5a_candidates.json output/step5a_candidates_full.json -Force
+python stages/step5b_geometric_association.py --candidates output/step5a_candidates_full.json --image $env:DRAWING --out output/
+Copy-Item output/step5b_associations.json output/step5b_associations_full.json -Force
+python stages/step5b2_hierarchy.py --associations output/step5b_associations_full.json --image $env:DRAWING --out output/
+python stages/step9_hierarchy_deliverables.py --hierarchy output/step5b2_hierarchy_full.json --context output/drawing_context.json --out output/
+```
+
+### macOS / Linux original commands (commented reference)
+
 ```bash
-# ── Hierarchy extraction (ALWAYS full drawing) ────────────────────────────────
-# 1. step5a — FULL extraction. step5a's --out is a directory (writes
-#    step5a_candidates.json); copy it to the *_full name the hierarchy expects.
-python3 stages/step5a_candidate_extraction.py \
-  --context output/drawing_context.json \
-  --api-key $GEMINI_KEY \
-  --workers 8 \
-  --force-full-drawing \
-  --out output/
-cp output/step5a_candidates.json output/step5a_candidates_full.json
-
-# 2. step5b — associations off the FULL candidates (same dir; copy to *_full).
-python3 stages/step5b_geometric_association.py \
-  --candidates output/step5a_candidates_full.json \
-  --image $DRAWING --out output/
-cp output/step5b_associations.json output/step5b_associations_full.json
-
-# 3. step5b2 — hierarchy. Defaults to step5b_associations_full.json and writes
-#    step5b2_hierarchy_full.json (primary) + step5b2_hierarchy.json (alias).
-python3 stages/step5b2_hierarchy.py \
-  --associations output/step5b_associations_full.json \
-  --image $DRAWING --out output/
-
-# 4. step9 — engineer-friendly deliverables from step5b2_hierarchy_full.json:
-#    final_hierarchy.xlsx, hierarchy_viewer.html, hierarchy_graph.html,
-#    hierarchy_validation_report.xlsx  (no API; Excel + self-contained HTML).
-python3 stages/step9_hierarchy_deliverables.py \
-  --hierarchy output/step5b2_hierarchy_full.json \
-  --context output/drawing_context.json --out output/
+# # ── Hierarchy extraction (ALWAYS full drawing) ────────────────────────────────
+# # 1. step5a — FULL extraction. step5a's --out is a directory (writes
+# #    step5a_candidates.json); copy it to the *_full name the hierarchy expects.
+# python3 stages/step5a_candidate_extraction.py \
+#   --context output/drawing_context.json \
+#   --api-key $GEMINI_KEY \
+#   --workers 8 \
+#   --force-full-drawing \
+#   --out output/
+# cp output/step5a_candidates.json output/step5a_candidates_full.json
+#
+# # 2. step5b — associations off the FULL candidates (same dir; copy to *_full).
+# python3 stages/step5b_geometric_association.py \
+#   --candidates output/step5a_candidates_full.json \
+#   --image $DRAWING --out output/
+# cp output/step5b_associations.json output/step5b_associations_full.json
+#
+# # 3. step5b2 — hierarchy. Defaults to step5b_associations_full.json and writes
+# #    step5b2_hierarchy_full.json (primary) + step5b2_hierarchy.json (alias).
+# python3 stages/step5b2_hierarchy.py \
+#   --associations output/step5b_associations_full.json \
+#   --image $DRAWING --out output/
+#
+# # 4. step9 — engineer-friendly deliverables from step5b2_hierarchy_full.json:
+# #    final_hierarchy.xlsx, hierarchy_viewer.html, hierarchy_graph.html,
+# #    hierarchy_validation_report.xlsx  (no API; Excel + self-contained HTML).
+# python3 stages/step9_hierarchy_deliverables.py \
+#   --hierarchy output/step5b2_hierarchy_full.json \
+#   --context output/drawing_context.json --out output/
 ```
 
 ### Hierarchy review deliverables (step9)
@@ -332,13 +427,21 @@ JSON:         output/outer_clouds_v2.json
 
 A browser-based human-in-the-loop editor that sits **between step2b and step3**. Use it when you want a person to verify/fix the revision-cloud geometry before extraction.
 
+### Windows PowerShell equivalent
+
+```powershell
+python step2c_cloud_editor/step2c_cloud_editor.py --image $env:DRAWING --clouds output/outer_clouds_v2.json --overlay output/overlay_v2.jpg --out output/
+```
+
+### macOS / Linux original commands (commented reference)
+
 ```bash
-python3 step2c_cloud_editor/step2c_cloud_editor.py \
-  --image $DRAWING \
-  --clouds output/outer_clouds_v2.json \
-  --overlay output/overlay_v2.jpg \
-  --out output/
-# flags: --port N (default 8765, auto-tries +10 if busy), --no-browser
+# python3 step2c_cloud_editor/step2c_cloud_editor.py \
+#   --image $DRAWING \
+#   --clouds output/outer_clouds_v2.json \
+#   --overlay output/overlay_v2.jpg \
+#   --out output/
+# # flags: --port N (default 8765, auto-tries +10 if busy), --no-browser
 ```
 
 | | |
@@ -390,12 +493,21 @@ Only step5a loads cloud data; downstream stages (5b/5c/5d, eval) inherit the sco
 
 ### Phase 2 — Extraction (step5a)
 
+### Windows PowerShell equivalent
+
+```powershell
+python stages/step5a_candidate_extraction.py --context output/drawing_context.json --api-key $env:GEMINI_KEY --workers 1 --out output/
+# Add --force-full-drawing only when you need full-sheet extraction.
+```
+
+### macOS / Linux original commands (commented reference)
+
 ```bash
-python3 stages/step5a_candidate_extraction.py \
-  --context output/drawing_context.json \
-  --api-key $GEMINI_KEY \
-  --workers 8 \
-  [--force-full-drawing]   # add this for full-sheet extraction
+# python3 stages/step5a_candidate_extraction.py \
+#   --context output/drawing_context.json \
+#   --api-key $GEMINI_KEY \
+#   --workers 8 \
+#   [--force-full-drawing]   # add this for full-sheet extraction
 ```
 
 | | |
@@ -489,15 +601,24 @@ CLOUD_FILTER mode) vs **FULL→FILTER** (step5a full, then filtered to cloud
 scope). Answers: can we drop the DIRECT_CLOUD path? Build now, run across a
 validation set (50–100 drawings) later.
 
+### Windows PowerShell equivalent
+
+```powershell
+python stages/validate_full_vs_cloud.py --full-candidates output/step5a_candidates_full.json --cloud-candidates output/step5a_candidates_cloud.json --cloud-regions output/approved_clouds.json --register $env:REGISTER --out output/
+# Omit --register to compare the two extraction modes without ground truth.
+```
+
+### macOS / Linux original commands (commented reference)
+
 ```bash
-python3 stages/validate_full_vs_cloud.py \
-  --full-candidates  output/step5a_candidates_full.json \
-  --cloud-candidates output/step5a_candidates_cloud.json \
-  --cloud-regions    output/approved_clouds.json \
-  --register $REGISTER \
-  --out output/
-# --cloud-candidates = a DIRECT step5a CLOUD_FILTER run (no --force-full-drawing).
-# --register optional: omit to compare the two modes against each other only.
+# python3 stages/validate_full_vs_cloud.py \
+#   --full-candidates  output/step5a_candidates_full.json \
+#   --cloud-candidates output/step5a_candidates_cloud.json \
+#   --cloud-regions    output/approved_clouds.json \
+#   --register $REGISTER \
+#   --out output/
+# # --cloud-candidates = a DIRECT step5a CLOUD_FILTER run (no --force-full-drawing).
+# # --register optional: omit to compare the two modes against each other only.
 ```
 
 **Acceptance gate (must hold on EVERY drawing in the set to approve removal of DIRECT_CLOUD):**
@@ -520,62 +641,96 @@ If any threshold fails on any drawing → **keep both extraction modes**.
 
 ## Quick health checks
 
+### Windows PowerShell equivalent
+
+```powershell
+# Run the Windows-native verification script already included in the repo.
+.\verify_all.ps1
+# Lightweight Python syntax and eval checks:
+python -m compileall -q api stages core
+python -m pytest -q
+```
+
+### macOS / Linux original commands (commented reference)
+
 ```bash
-cd /Users/suryprakash/Downloads/cdci_extractor_final
-source .venv/bin/activate
-
-# Candidate counts at each stage
-python3 -c "import json; d=json.load(open('output/step5a_candidates.json')); print('step5a:', len(d['candidates']))"
-python3 -c "import json; d=json.load(open('output/step5_final_output.json')); print('step5d PRIMARY:', len(d['candidates']))"
-
-# Annexure-4 recall
-python3 -c "
-import json
-d=json.load(open('output/eval_coverage_report.json'))
-print(f'FOUND {len(d[\"found\"])}/{d[\"ground_truth_count\"]}  missing={len(d[\"missing\"])}  extra={d[\"extra_count\"]}')
-"
-
-# Routing distribution
-python3 -c "import json; d=json.load(open('output/step8_routing_summary.json')); print(d['totals']); print(d['rates'])"
-
-# Cloud detection stats
-python3 -c "import json; d=json.load(open('output/outer_clouds_v2.json')); print(d['stats'])"
-
-# Drawing scope from context
-python3 -c "import json; c=json.load(open('output/drawing_context.json')); print(c['extraction_scope'], c['revision_cloud_required'], c['project_mode'])"
-
-# Duplicate rate
-python3 -c "
-import json; d=json.load(open('output/step5d_deduped.json'))
-p=sum(1 for r in d['all_records'] if r['duplicate_status']=='PRIMARY')
-x=sum(1 for r in d['all_records'] if r['duplicate_status']=='DISCARDED')
-print(f'PRIMARY={p} DISCARDED={x} dup_rate={x/(p+x)*100:.1f}%')
-"
+# cd /Users/suryprakash/Downloads/cdci_extractor_final
+# source .venv/bin/activate
+#
+# # Candidate counts at each stage
+# python3 -c "import json; d=json.load(open('output/step5a_candidates.json')); print('step5a:', len(d['candidates']))"
+# python3 -c "import json; d=json.load(open('output/step5_final_output.json')); print('step5d PRIMARY:', len(d['candidates']))"
+#
+# # Annexure-4 recall
+# python3 -c "
+# import json
+# d=json.load(open('output/eval_coverage_report.json'))
+# print(f'FOUND {len(d[\"found\"])}/{d[\"ground_truth_count\"]}  missing={len(d[\"missing\"])}  extra={d[\"extra_count\"]}')
+# "
+#
+# # Routing distribution
+# python3 -c "import json; d=json.load(open('output/step8_routing_summary.json')); print(d['totals']); print(d['rates'])"
+#
+# # Cloud detection stats
+# python3 -c "import json; d=json.load(open('output/outer_clouds_v2.json')); print(d['stats'])"
+#
+# # Drawing scope from context
+# python3 -c "import json; c=json.load(open('output/drawing_context.json')); print(c['extraction_scope'], c['revision_cloud_required'], c['project_mode'])"
+#
+# # Duplicate rate
+# python3 -c "
+# import json; d=json.load(open('output/step5d_deduped.json'))
+# p=sum(1 for r in d['all_records'] if r['duplicate_status']=='PRIMARY')
+# x=sum(1 for r in d['all_records'] if r['duplicate_status']=='DISCARDED')
+# print(f'PRIMARY={p} DISCARDED={x} dup_rate={x/(p+x)*100:.1f}%')
+# "
 ```
 
 ---
 
 ## Re-run shortcuts
 
+### Windows PowerShell equivalent
+
+```powershell
+# Re-run extraction only (skip Phase 1).
+Remove-Item output/step5a_candidates.json -Force -ErrorAction SilentlyContinue
+python stages/step5a_candidate_extraction.py --context output/drawing_context.json --api-key $env:GEMINI_KEY --workers 1 --force-full-drawing --out output/
+# Then repeat full geometry, hierarchy, validation, dedup, normalization and routing.
+
+# Re-run from dedup onwards (cheapest).
+python stages/step5d_duplicate_resolution.py --validated output/step5c_validated.json --out output/
+python stages/step7_cedm_normalizer.py --final output/step5_final_output.json --context output/drawing_context.json --out output/ --project CDCI --hierarchy output/step5b2_hierarchy_full.json
+python stages/step8_confidence_router.py --cedm output/step7_cedm_output.json --context output/drawing_context.json --out output/
+
+# Re-run cloud detection only.
+python stages/step2b_cloud_detection.py $env:DRAWING --out output/ --api-key $env:GEMINI_KEY
+
+# Test a single SAHI patch.
+python stages/step5a_candidate_extraction.py --context output/drawing_context.json --api-key $env:GEMINI_KEY --patch 19 --debug
+```
+
+### macOS / Linux original commands (commented reference)
+
 ```bash
-# Re-run extraction only (skip Phase 1)
-rm -f output/step5a_candidates.json
-python3 stages/step5a_candidate_extraction.py \
-  --context output/drawing_context.json --api-key $GEMINI_KEY --workers 8 --force-full-drawing
-# then Phase 3 + 4 commands above
-
-# Re-run from dedup onwards (cheapest)
-python3 stages/step5d_duplicate_resolution.py --validated output/step5c_validated.json --out output/
-python3 stages/step7_cedm_normalizer.py --final output/step5_final_output.json --context output/drawing_context.json --out output/ --project CDCI
-python3 stages/step8_confidence_router.py --cedm output/step7_cedm_output.json --context output/drawing_context.json --out output/
-
-# Re-run cloud detection only
-python3 stages/step2b_cloud_detection.py input_drawing.jpg --out output/ --api-key $GEMINI_KEY
-# inspect output/overlay_v2.jpg before running step5a
-
-# Test a single SAHI patch (debug)
-python3 stages/step5a_candidate_extraction.py \
-  --context output/drawing_context.json --api-key $GEMINI_KEY --patch 19 --debug
+# # Re-run extraction only (skip Phase 1)
+# rm -f output/step5a_candidates.json
+# python3 stages/step5a_candidate_extraction.py \
+#   --context output/drawing_context.json --api-key $GEMINI_KEY --workers 8 --force-full-drawing
+# # then Phase 3 + 4 commands above
+#
+# # Re-run from dedup onwards (cheapest)
+# python3 stages/step5d_duplicate_resolution.py --validated output/step5c_validated.json --out output/
+# python3 stages/step7_cedm_normalizer.py --final output/step5_final_output.json --context output/drawing_context.json --out output/ --project CDCI
+# python3 stages/step8_confidence_router.py --cedm output/step7_cedm_output.json --context output/drawing_context.json --out output/
+#
+# # Re-run cloud detection only
+# python3 stages/step2b_cloud_detection.py input_drawing.jpg --out output/ --api-key $GEMINI_KEY
+# # inspect output/overlay_v2.jpg before running step5a
+#
+# # Test a single SAHI patch (debug)
+# python3 stages/step5a_candidate_extraction.py \
+#   --context output/drawing_context.json --api-key $GEMINI_KEY --patch 19 --debug
 ```
 
 ---
