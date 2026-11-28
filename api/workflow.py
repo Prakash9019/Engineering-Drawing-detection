@@ -142,10 +142,10 @@ def _eval(state: WorkflowState, eval_id: str) -> list[dict[str, Any]]:
 def _pair_01(state: WorkflowState) -> WorkflowState:
     _, out = _paths(state)
     _step(state, "1_format_detection", "stages/step1_format_detect.py",
-          [state["drawing_path"], "--out", str(out), "--api-key", (os.getenv("GEMINI_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY") or "")],
+          [state["drawing_path"], "--out", str(out), ],
           ["drawing_context.json"])
     _step(state, "2_title_revision", "stages/step2_title_block.py",
-          ["--context", str(out / "drawing_context.json"), "--api-key", (os.getenv("GEMINI_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY") or "")],
+          ["--context", str(out / "drawing_context.json"), ],
           ["title_block_context.json"])
     return {"pair_evals": _eval(state, "eval_01_format_title")}
 
@@ -153,10 +153,10 @@ def _pair_01(state: WorkflowState) -> WorkflowState:
 def _pair_02(state: WorkflowState) -> WorkflowState:
     _, out = _paths(state)
     _step(state, "3_revision_clouds", "stages/step2b_cloud_detection.py",
-          [state["drawing_path"], "--out", str(out), "--api-key", (os.getenv("GEMINI_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY") or "")],
+          [state["drawing_path"], "--out", str(out), ],
           ["outer_clouds_v2.json"])
     _step(state, "4_notes_context", "stages/step3_notes_agent.py",
-          ["--context", str(out / "drawing_context.json"), "--api-key", (os.getenv("GEMINI_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY") or "")],
+          ["--context", str(out / "drawing_context.json"), ],
           ["notes_context.json"])
     return {"pair_evals": _eval(state, "eval_02_cloud_notes")}
 
@@ -168,7 +168,7 @@ def _pair_03(state: WorkflowState) -> WorkflowState:
            "--skip-vision", "--context", str(out / "drawing_context.json")],
           ["sow_symbol_memory.json"])
     _step(state, "6_table_extraction", "stages/step6_table_agent.py",
-          ["--context", str(out / "drawing_context.json"), "--api-key", (os.getenv("GEMINI_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY") or "")],
+          ["--context", str(out / "drawing_context.json"), ],
           ["tables_context.json"])
     return {"pair_evals": _eval(state, "eval_03_scope_tables")}
 
