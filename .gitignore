@@ -13,3 +13,10 @@ __pycache__/
 .claude_backup/
 
 
+
+# Local API runtime and frontend build output
+runtime/
+web/node_modules/
+web/.next/
+web/out/
+web/next-env.d.ts

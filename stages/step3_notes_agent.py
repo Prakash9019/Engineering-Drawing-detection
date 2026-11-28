@@ -31,7 +31,7 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 # ── Models ────────────────────────────────────────────────────────────────────
-GEMINI_FLASH_MODEL = "gemini-2.5-flash"
+GEMINI_FLASH_MODEL = os.getenv("CDCI_MODEL_NOTES", "gemini-2.5-flash")
 
 # ── Region detection parameters ──────────────────────────────────────────────
 OVERLAP_PX          = 80     # pixel overlap between adjacent zones

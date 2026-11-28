@@ -56,7 +56,7 @@ ADAPTIVE_C      = 10
 RASTER_DPI      = 300   # DPI to rasterize PDFs at
 
 # ── Gemini model for cheap classification ────────────────────────────────────
-GEMINI_CLASSIFY_MODEL = "gemini-2.5-flash-lite"   # cheapest/fastest
+GEMINI_CLASSIFY_MODEL = os.getenv("CDCI_MODEL_CLASSIFY", "gemini-2.5-flash-lite")  # cheapest/fastest
 GEMINI_THUMB_SIZE     = 1024                        # px for classification call
 
 # Minimum number of characters from pdftotext to call a PDF "vector"

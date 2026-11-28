@@ -72,7 +72,7 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 # ── Models ─────────────────────────────────────────────────────────────────────
-GEMINI_MODEL    = "gemini-2.5-flash"
+GEMINI_MODEL    = os.getenv("CDCI_MODEL_TITLE", "gemini-2.5-flash")
 GEMINI_MAX_SIDE = 3000   # title block needs high res for small text
 
 # ── Title block location heuristics ───────────────────────────────────────────

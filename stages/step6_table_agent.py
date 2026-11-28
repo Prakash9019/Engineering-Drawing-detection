@@ -69,8 +69,8 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 # ── Models ─────────────────────────────────────────────────────────────────────
-GEMINI_FLASH_MODEL   = "gemini-2.5-flash"
-GEMINI_PRO_MODEL     = "gemini-2.5-pro"
+GEMINI_FLASH_MODEL   = os.getenv("CDCI_MODEL_TABLE", "gemini-2.5-flash")
+GEMINI_PRO_MODEL     = os.getenv("CDCI_MODEL_TABLE_FALLBACK", "gemini-2.5-pro")
 GEMINI_MAX_SIDE      = 4096
 
 # ── Fallback scan tiles (used when binary not available for adaptive detection) ──
