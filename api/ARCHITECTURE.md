@@ -21,3 +21,7 @@ Approve/reject/edit decisions record the decision, reviewer, note and timestamp 
 
 ## Production boundary
 This local SQLite queue is single-host/single-worker. Multi-host use requires PostgreSQL job/checkpoint storage, Redis/SQS, object storage, OIDC and tenant isolation, signed downloads, secret manager, distributed quota controls, OpenTelemetry, backup/recovery, data retention and dead-letter handling.
+
+
+## Authentication warning
+The optional X-API-Key dependency is a local/private demo guard, not a production identity system. NEXT_PUBLIC_CDCI_API_KEY is embedded into browser JavaScript and must never contain a privileged production secret. Public deployments must replace it with OIDC/session authentication via a backend-for-frontend, enforce tenant ownership on every job read/write, and issue short-lived signed artifact URLs.
