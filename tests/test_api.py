@@ -12,8 +12,6 @@ def setup_api(tmp_path, monkeypatch):
     monkeypatch.setenv("GEMINI_KEY","test-key")
     monkeypatch.setenv("CDCI_API_KEY","")
     monkeypatch.setenv("CDCI_AUTH_REQUIRED","false")
-    (app_module.ROOT/"ANNEXURE-4_4224-MGDV-6-50-2004-001-C.xlsx").touch()
-    (app_module.ROOT/"ANNEXURE-2_CDC-SYMBOLS_USED_AND_NOT_USED.xlsx").touch()
 
 
 def test_health_is_available():
