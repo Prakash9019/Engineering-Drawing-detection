@@ -7,7 +7,7 @@ from api.workflow import build_graph
 
 
 def test_eval_passes_when_paired_artifacts_exist(tmp_path):
-    (tmp_path / "drawing_context.json").write_text(json.dumps({"drawing": "raster"}), encoding="utf-8")
+    (tmp_path / "drawing_context.json").write_text(json.dumps({"drawing": "raster", "drawing_number": "D-001", "revision_code": "C"}), encoding="utf-8")
     (tmp_path / "title_block_context.json").write_text(json.dumps({"revision": "C"}), encoding="utf-8")
 
     result = evaluate_pair("eval_01_format_title", tmp_path)
