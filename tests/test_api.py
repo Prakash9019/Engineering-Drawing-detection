@@ -61,6 +61,7 @@ def test_sse_replays_durable_events(monkeypatch,tmp_path):
     workspace=tmp_path/"job-sse";workspace.mkdir()
     app_module.STORE.create("sse-job",workspace,"drawing.png")
     app_module.STORE.event("sse-job","test.event",step="test")
+    app_module.STORE.update("sse-job", status="completed")
     client=TestClient(app_module.app)
     response=client.get("/api/jobs/sse-job/events",headers={"Last-Event-ID":"0"})
     assert response.status_code==200
