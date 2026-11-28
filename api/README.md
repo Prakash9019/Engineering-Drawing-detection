@@ -1,34 +1,42 @@
-# CDCI demo API
+# CDCI API and worker
 
-This service keeps the existing extraction scripts intact and orchestrates them through LangGraph.
+The API persists uploads and queues jobs in SQLite. A separate worker process claims and executes LangGraph workflows.
 
 ## Windows PowerShell
 
-From the repository root after installing Tesseract and Poppler as documented in \`PIPELINE_RUNBOOK.md\`:
-
+Terminal 1 — API:
 \`\`\`powershell
-py -3 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-Copy-Item .env.example .env
-notepad .env
-# Add GEMINI_KEY=your-key, save the file, then:
 python -m uvicorn api.app:app --host 127.0.0.1 --port 8000
 \`\`\`
 
-Open \`http://127.0.0.1:8000/docs\`. Upload a drawing and optionally upload register/SOW workbooks. If omitted, the API uses the repository's sample Annexure files.
-
-## macOS / Linux
-
-\`\`\`bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-# Add GEMINI_KEY=your-key to .env, then:
-python -m uvicorn api.app:app --host 127.0.0.1 --port 8000
+Terminal 2 — worker:
+\`\`\`powershell
+python -m api.worker
 \`\`\`
 
-The UI is in \`web/\` and runs separately on port 3000.
+Terminal 3 — frontend:
+\`\`\`powershell
+cd web
+npm install
+$env:NEXT_PUBLIC_API_URL = "http://127.0.0.1:8000"
+$env:NEXT_PUBLIC_CDCI_API_KEY = "YOUR_CDCI_API_KEY"
+npm run dev
+\`\`\`
 
-The demo uses SQLite for job metadata and LangGraph checkpoints, local disk under \`runtime/jobs\`, and one active drawing at a time by default. The SQLite checkpointer is intended for lightweight/single-process demos, not horizontally scaled workers. Production needs PostgreSQL-backed metadata/checkpoints, object storage, a durable queue/worker pool, authentication/authorization, signed artifact URLs, secret management, distributed model rate limiting, and OpenTelemetry-compatible tracing/metrics. Do not expose the development API directly to the public internet.
+Set GEMINI_KEY and optional CDCI_API_KEY in root .env. Set CDCI_AUTH_REQUIRED=true to fail closed if the API key is absent. The API key is sent in X-API-Key headers.
+
+## Endpoints
+- POST /api/jobs — queue upload; accepts Idempotency-Key.
+- GET /api/jobs/{id} — job state and history.
+- GET /api/jobs/{id}/events — replayable SSE; supports Last-Event-ID.
+- GET /api/jobs/{id}/files/{name} — allowlisted result file.
+- POST /api/jobs/{id}/review — approve/reject/edit human queue item.
+- GET /api/metrics — Prometheus text exposition.
+- GET /api/health — liveness.
+
+## Settings
+CDCI_API_KEY, CDCI_AUTH_REQUIRED, CDCI_RUNTIME_DIR, CDCI_MAX_UPLOAD_BYTES,
+CDCI_WORKER_POLL_SECONDS, CDCI_WORKER_LEASE_SECONDS, CDCI_JOB_MAX_ATTEMPTS,
+CDCI_CORS_ORIGINS.
+
+SQLite claiming uses BEGIN IMMEDIATE and is single-host/single-worker only. Do not share its database on a network filesystem. Multi-host production requires PostgreSQL state and checkpointer, Redis/SQS, object storage, OIDC/tenant authorization, signed URLs, secret manager, distributed rate limits, OTEL, backups, retention and dead-letter handling.
